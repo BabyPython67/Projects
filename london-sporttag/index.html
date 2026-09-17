@@ -13,9 +13,9 @@
 :root{
   color-scheme:light;
   --land:#eae9e6; --grid:#dbd9d3;
-  --water:#c8d5dd; --water-l:#aebfc9;
-  --park:#d9e0cd; --park-l:#c0cbaa;
-  --road:#dad8d1;
+  --water:#ccd7dd; --water-l:#b6c5cd;
+  --park:#dde2d4; --park-l:#c9d0bb;
+  --road:#dad8d1; --urban:#e3e1dc; --urban-l:#d3d0c9;
   --ink:#14161a; --ink-2:#454a52; --ink-3:#62686f;
   --card:#ffffff; --card-2:#f4f3f0; --line:#d4d2cc; --line-2:#c2bfb8;
   --A:#2a78d6; --B:#1baf7a; --C:#eb6834;
@@ -30,8 +30,8 @@
     color-scheme:dark;
     --land:#16181d; --grid:#24272e;
     --water:#1e2a32; --water-l:#2e404b;
-    --park:#212a1e; --park-l:#33422d;
-    --road:#262a32;
+    --park:#1f251d; --park-l:#2e382a;
+    --road:#262a32; --urban:#1b1e25; --urban-l:#272b34;
     --ink:#eef0f4; --ink-2:#b0b6c0; --ink-3:#868c96;
     --card:#1c1f26; --card-2:#242832; --line:#313640; --line-2:#3f4551;
     --A:#3987e5; --B:#199e70; --C:#d95926;
@@ -46,8 +46,8 @@
   color-scheme:dark;
   --land:#16181d; --grid:#24272e;
   --water:#1e2a32; --water-l:#2e404b;
-  --park:#212a1e; --park-l:#33422d;
-  --road:#262a32;
+  --park:#1f251d; --park-l:#2e382a;
+  --road:#262a32; --urban:#1b1e25; --urban-l:#272b34;
   --ink:#eef0f4; --ink-2:#b0b6c0; --ink-3:#868c96;
   --card:#1c1f26; --card-2:#242832; --line:#313640; --line-2:#3f4551;
   --A:#3987e5; --B:#199e70; --C:#d95926;
@@ -80,6 +80,8 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   background-size:64px 64px;
 }
 #geo{display:block}
+#rings{transition:opacity .25s ease}
+#world.detail #rings{opacity:0}
 
 /* Everything readable lives in screen space and only ever translates, so it
    never re-rasterises while zooming. */
@@ -96,6 +98,22 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   .lvl-over,.lvl-detail{transition:none}
 }
 
+/* ------------------------------------------------- orientation lettering */
+.district{
+  font-family:Archivo,sans-serif; font-size:.7rem; font-weight:500; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--ink-3); opacity:.62; white-space:nowrap;
+  user-select:none; transition:opacity .2s ease;
+}
+.district.major{font-size:.76rem; opacity:.8; letter-spacing:.26em}
+#stage.over .district.minor{opacity:0}
+.ringlab{
+  font-family:"IBM Plex Mono",monospace; font-size:.64rem; letter-spacing:.1em;
+  color:var(--ink-3); white-space:nowrap; user-select:none;
+  background:var(--land); padding:1px 6px; border-radius:100px;
+  transition:opacity .2s ease;
+}
+#stage.detail .ringlab{opacity:0}
+
 /* ---------------------------------------------------------- map lettering */
 .maplabel{
   font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.16em;
@@ -103,6 +121,11 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   transition:opacity .2s ease;
 }
 .maplabel.water{color:var(--water-l); letter-spacing:.3em; font-size:.72rem}
+.maplabel.area{
+  font-size:.62rem; letter-spacing:.18em; color:var(--ink-2); opacity:.75;
+  transition:font-size .2s ease, opacity .2s ease;
+}
+#stage.detail .maplabel.area{font-size:.96rem; letter-spacing:.3em; opacity:1}
 .maplabel.faint{
   color:var(--ink-3); letter-spacing:.12em; text-transform:none; font-size:.66rem;
   background:var(--land); padding:2px 8px; border-radius:100px;
@@ -270,9 +293,45 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
 .zbtn.wide{width:auto; padding:0 11px; font-size:.78rem; font-weight:500}
 .zbtn:hover{background:var(--card-2); color:var(--ink)}
 
+.bl{bottom:14px; left:14px; padding:9px 12px; display:flex; align-items:center; gap:13px}
+.compass{
+  position:relative; width:30px; height:30px; border-radius:50%;
+  border:1px solid var(--line); display:grid; place-items:center; flex:none;
+}
+.compass .arrow{
+  width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent;
+  border-bottom:10px solid var(--ink); position:absolute; top:4px;
+}
+.compass .n{
+  position:absolute; bottom:3px; font-family:"IBM Plex Mono",monospace;
+  font-size:.56rem; font-weight:600; color:var(--ink-3); letter-spacing:.06em;
+}
+.scale{display:flex; flex-direction:column; gap:3px}
+.scale .lbl{font-size:.68rem; color:var(--ink-2); letter-spacing:.04em}
+.ringkey{
+  font-size:.66rem; line-height:1.3; color:var(--ink-3); padding-left:12px;
+  border-left:1px solid var(--line); display:flex; flex-direction:column; justify-content:center;
+}
+.scale .bar{
+  height:7px; border:1px solid var(--ink-2); border-top:0; width:80px;
+  transition:width .12s linear;
+}
+
+.mini{
+  bottom:14px; right:14px; padding:0; overflow:hidden; width:150px;
+  display:block; cursor:pointer; line-height:0;
+}
+.mini svg{display:block; width:100%; height:auto}
+.mini .cap{
+  display:block; line-height:1.3; text-align:left; padding:5px 8px 6px;
+  border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace;
+  font-size:.58rem; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3);
+}
+.mini:hover .cap{color:var(--ink)}
+
 .strip{
   position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
-  max-width:min(1120px, calc(100vw - 28px)); display:flex; align-items:stretch;
+  max-width:min(880px, calc(100vw - 640px)); display:flex; align-items:stretch;
   background:var(--card); border:1px solid var(--line-2); border-radius:12px;
   box-shadow:var(--shadow); overflow:hidden;
 }
@@ -302,6 +361,10 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   .vrow{flex-wrap:wrap}
   .vbtn{padding:5px 8px; font-size:.74rem}
   .strip{left:10px; right:10px; bottom:106px; transform:none; max-width:none}
+  .mini{display:none}
+  .bl{bottom:10px; left:10px; padding:6px 9px; gap:9px}
+  .scale .bar{width:60px}
+  .ringkey{display:none}
   .cl{width:136px; padding:8px 10px}
   .cl .nm{font-size:.85rem}
   .cl .kick{font-size:.56rem; letter-spacing:.1em}
@@ -323,7 +386,7 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
       <div class="ttl">Olympia-Tag London</div>
       <div class="sb">LK Sport · Tagesausflug ab Eastbourne</div>
       <div class="budget"><b>Limit 15 £ pro Person</b> für die Aktivität. Zug (~10–20 £) und Londoner ÖPNV (Tagescap 8,90 £) kommen zusätzlich dazu.</div>
-      <div class="lvlrow"><span class="lvl" id="lvl">Übersicht</span><span class="hint" id="hint">Ziehen · Scrollen zum Zoomen · Doppelklick</span></div>
+      <div class="lvlrow"><span class="lvl" id="lvl">Übersicht</span><span class="hint" id="where">ganz London</span></div>
     </div>
 
     <div class="panel tr">
@@ -340,6 +403,17 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
       </div>
     </div>
 
+    <div class="panel bl">
+      <div class="compass" aria-hidden="true"><span class="arrow"></span><span class="n">N</span></div>
+      <div class="scale"><span class="lbl mono" id="scaleLbl">1 km</span><div class="bar" id="scaleBar"></div></div>
+      <div class="ringkey"><span class="rings" aria-hidden="true"></span>Ringe 2 · 5 · 10 km<br>Luftlinie ab Victoria</div>
+    </div>
+
+    <button class="panel mini" id="mini" aria-label="Zur Gesamtübersicht">
+      <svg id="miniSvg" viewBox="0 0 2360 1950" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+      <span class="cap">Gesamtkarte</span>
+    </button>
+
     <div class="strip" id="strip" hidden></div>
   </div>
 </div>
@@ -350,29 +424,75 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
 
   /* ============================================================== geo base */
 
+  /* ============================================================== geo base */
+
   var LAT0 = 51.505, LON0 = -0.105, K = 15000;
   var COS = Math.cos(LAT0 * Math.PI / 180);
   var OX = 1150, OY = 800, W = 2360, H = 1950;
+  var KM = K / 111.32;                       /* world px per kilometre */
   function X(lon){ return (lon - LON0) * COS * K + OX; }
   function Y(lat){ return -(lat - LAT0) * K + OY; }
+
+  /* Built-up inner London — the shape that separates city from nowhere. */
+  var INNER = [[51.5540,-0.1900],[51.5545,-0.1150],[51.5500,-0.0450],[51.5360,0.0040],
+               [51.5120,0.0170],[51.4880,0.0150],[51.4670,-0.0250],[51.4560,-0.0900],
+               [51.4545,-0.1500],[51.4625,-0.2000],[51.4830,-0.2210],[51.5190,-0.2210]];
 
   var THAMES = [[51.4870,-0.2270],[51.4715,-0.2080],[51.4660,-0.1780],[51.4820,-0.1480],
                 [51.4890,-0.1230],[51.5010,-0.1190],[51.5080,-0.0990],[51.5075,-0.0780],
                 [51.5030,-0.0540],[51.5070,-0.0280],[51.4880,-0.0180],[51.4930,0.0050],
                 [51.5050,0.0130]];
   var LEA = [[51.5600,-0.0230],[51.5480,-0.0190],[51.5380,-0.0110],[51.5200,-0.0030],[51.5070,-0.0060]];
+  var CANAL = [[51.5330,-0.1600],[51.5355,-0.1420],[51.5370,-0.1180],[51.5350,-0.0900],
+               [51.5320,-0.0620],[51.5300,-0.0400],[51.5240,-0.0300],[51.5150,-0.0270]];
+  var SERP = [[51.5072,-0.1748],[51.5058,-0.1692],[51.5042,-0.1646],[51.5028,-0.1598]];
 
+  /* Hand-traced outlines — close enough that the parks read as themselves. */
   var PARKS = [
-    { lat:51.5073, lon:-0.1720, w:0.0360, h:0.0110, n:"Hyde Park & Kensington Gardens", card:1 },
-    { lat:51.5313, lon:-0.1560, w:0.0215, h:0.0090, n:"Regent's Park" },
-    { lat:51.5450, lon:-0.0175, w:0.0210, h:0.0175, n:"Queen Elizabeth Olympic Park", card:1 },
-    { lat:51.4795, lon:-0.1590, w:0.0125, h:0.0060, n:"Battersea Park" },
-    { lat:51.4370, lon:-0.2075, w:0.0110, h:0.0062, n:"Wimbledon Park" },
-    { lat:51.5035, lon:-0.1420, w:0.0105, h:0.0048, n:"Green Park & St James's" },
-    { lat:51.5360, lon:-0.0400, w:0.0120, h:0.0060, n:"Victoria Park" }
+    { n:"Hyde Park & Kensington Gardens", card:1, lab:[51.4990,-0.1690],
+      pts:[[51.5127,-0.1895],[51.5124,-0.1508],[51.5030,-0.1487],[51.5015,-0.1560],
+           [51.5002,-0.1655],[51.5012,-0.1795],[51.5030,-0.1880]] },
+    { n:"Queen Elizabeth Olympic Park", card:1, lab:[51.5332,-0.0150],
+      pts:[[51.5522,-0.0225],[51.5498,-0.0092],[51.5420,-0.0055],[51.5352,-0.0118],
+           [51.5378,-0.0232],[51.5450,-0.0272]] },
+    { n:"Regent's Park", lab:[51.5238,-0.1530],
+      pts:[[51.5365,-0.1600],[51.5358,-0.1443],[51.5270,-0.1437],[51.5252,-0.1520],[51.5265,-0.1625]] },
+    { n:"Green Park & St James's", minor:1, lab:[51.4998,-0.1285],
+      pts:[[51.5062,-0.1478],[51.5048,-0.1275],[51.5010,-0.1285],[51.5008,-0.1420],[51.5030,-0.1472]] },
+    { n:"Battersea Park", lab:[51.4756,-0.1610],
+      pts:[[51.4832,-0.1700],[51.4830,-0.1522],[51.4772,-0.1525],[51.4775,-0.1700]] },
+    { n:"Victoria Park", lab:[51.5316,-0.0390],
+      pts:[[51.5402,-0.0482],[51.5392,-0.0288],[51.5332,-0.0298],[51.5342,-0.0488]] },
+    { n:"Greenwich Park", lab:[51.4703,0.0015],
+      pts:[[51.4802,-0.0030],[51.4800,0.0062],[51.4722,0.0060],[51.4722,-0.0028]] },
+    { n:"Wimbledon Park", lab:[51.4320,-0.2076],
+      pts:[[51.4402,-0.2122],[51.4400,-0.2030],[51.4338,-0.2032],[51.4340,-0.2122]] }
   ];
 
-  /* ============================================================== content */
+  /* Neighbourhood names are what actually anchors a reader on a city map. */
+  var DISTRICTS = [
+    { n:"Westminster",     lat:51.4900, lon:-0.1120, major:1 },
+    { n:"City of London",  lat:51.5152, lon:-0.0910, major:1 },
+    { n:"Canary Wharf",    lat:51.5035, lon:-0.0235, major:1 },
+    { n:"Camden",          lat:51.5412, lon:-0.1440, major:1 },
+    { n:"Chelsea",         lat:51.4872, lon:-0.1690, major:1 },
+    { n:"Greenwich",       lat:51.4835, lon:0.0040,  major:1 },
+    { n:"Soho",            lat:51.5132, lon:-0.1330 },
+    { n:"Shoreditch",      lat:51.5262, lon:-0.0778 },
+    { n:"Hackney",         lat:51.5470, lon:-0.0560 },
+    { n:"Islington",       lat:51.5365, lon:-0.1035 },
+    { n:"Southwark",       lat:51.5012, lon:-0.0905 },
+    { n:"Bermondsey",      lat:51.4972, lon:-0.0640 },
+    { n:"Kensington",      lat:51.4998, lon:-0.1930 },
+    { n:"Notting Hill",    lat:51.5142, lon:-0.2050 },
+    { n:"Fulham",          lat:51.4790, lon:-0.2010 },
+    { n:"Clapham",         lat:51.4625, lon:-0.1385 },
+    { n:"Isle of Dogs",    lat:51.4888, lon:-0.0148 },
+    { n:"Wimbledon",       lat:51.4222, lon:-0.2060 }
+  ];
+
+  /* Air-line rings around Victoria — every trip starts there. */
+  var RINGS = [2, 5, 10];
 
   var HUBS = [
     { id:"victoria", lat:51.4952, lon:-0.1441, name:"London Victoria", sub:"Ankunft ~10:00" },
@@ -595,6 +715,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   CLUSTERS.forEach(function(c){ POS[c.id] = { x:X(c.lon), y:Y(c.lat) }; });
   POS.eastbourne = { x:EASTBOURNE.x, y:EASTBOURNE.y };
 
+  /* anchors the "where am I" readout snaps to */
+  var LANDMARKS = [];
+
   function esc(s){
     return String(s).replace(/[&<>"]/g, function(c){
       return { "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;" }[c];
@@ -611,18 +734,52 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     }).join(" ");
   }
 
+  function smooth(pts){
+    var n = pts.length, d = "", i;
+    var P = pts.map(function(p){ return [X(p[1]), Y(p[0])]; });
+    for (i = 0; i < n; i++){
+      var p0 = P[(i - 1 + n) % n], p1 = P[i], p2 = P[(i + 1) % n], p3 = P[(i + 2) % n];
+      if (i === 0) d += "M" + p1[0].toFixed(1) + " " + p1[1].toFixed(1);
+      d += "C" + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + " " + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) +
+           "," + (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + " " + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) +
+           "," + p2[0].toFixed(1) + " " + p2[1].toFixed(1);
+    }
+    return d + "Z";
+  }
+
+  function poly(pts){
+    return pts.map(function(p, i){
+      return (i ? "L" : "M") + X(p[1]).toFixed(1) + " " + Y(p[0]).toFixed(1);
+    }).join(" ") + "Z";
+  }
+
   function buildGeo(){
     var g = document.getElementById("geo");
     g.setAttribute("width", W);
     g.setAttribute("height", H);
     g.setAttribute("viewBox", "0 0 " + W + " " + H);
 
-    var parks = PARKS.map(function(p){
-      return '<rect x="' + (X(p.lon) - p.w * COS * K / 2).toFixed(1) +
-        '" y="' + (Y(p.lat) - p.h * K / 2).toFixed(1) +
-        '" width="' + (p.w * COS * K).toFixed(1) + '" height="' + (p.h * K).toFixed(1) +
-        '" rx="26" fill="var(--park)" stroke="var(--park-l)" stroke-width="1.5"/>';
+    var vx = X(-0.1441), vy = Y(51.4952);
+
+    var rings = RINGS.map(function(km){
+      return '<circle cx="' + vx.toFixed(1) + '" cy="' + vy.toFixed(1) + '" r="' + (km * KM).toFixed(1) +
+        '" fill="none" stroke="var(--ink-3)" stroke-width="1.25" stroke-dasharray="5 10" ' +
+        'vector-effect="non-scaling-stroke" opacity=".55"/>';
     }).join("");
+
+    var parks = PARKS.map(function(p){
+      return '<path d="' + poly(p.pts) + '" fill="var(--park)" stroke="var(--park-l)" stroke-width="1.5"/>';
+    }).join("");
+
+    var water =
+      '<path d="' + path(THAMES) + '" fill="none" stroke="var(--water)" stroke-width="52" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<path d="' + path(LEA) + '" fill="none" stroke="var(--water)" stroke-width="15" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<path d="' + path(CANAL) + '" fill="none" stroke="var(--water)" stroke-width="9" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<path d="' + path(SERP) + '" fill="none" stroke="var(--water)" stroke-width="13" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>';
 
     var rail = '<path d="M' + POS.eastbourne.x + " " + POS.eastbourne.y +
       "L" + POS.victoria.x + " " + POS.victoria.y +
@@ -638,11 +795,25 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
       'stroke-dasharray="2 9" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".6"/>';
 
     g.innerHTML =
-      '<path d="' + path(THAMES) + '" fill="none" stroke="var(--water)" stroke-width="52" ' +
+      '<path d="' + smooth(INNER) + '" fill="var(--urban)" stroke="var(--urban-l)" stroke-width="1.5" ' +
+        'vector-effect="non-scaling-stroke"/>' +
+      water + parks +
+      '<g id="rings">' + rings + "</g>" +
+      rail + tube + '<g id="routes"></g>';
+
+    /* the locator uses the same geometry, drawn once */
+    document.getElementById("miniSvg").innerHTML =
+      '<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="var(--land)"/>' +
+      '<path d="' + smooth(INNER) + '" fill="var(--urban)"/>' +
+      '<path d="' + path(THAMES) + '" fill="none" stroke="var(--water)" stroke-width="46" ' +
         'stroke-linejoin="round" stroke-linecap="round"/>' +
-      '<path d="' + path(LEA) + '" fill="none" stroke="var(--water)" stroke-width="16" ' +
-        'stroke-linejoin="round" stroke-linecap="round"/>' +
-      parks + rail + tube + '<g id="routes"></g>';
+      PARKS.map(function(p){ return '<path d="' + poly(p.pts) + '" fill="var(--park)"/>'; }).join("") +
+      CLUSTERS.map(function(c){
+        return '<circle cx="' + POS[c.id].x + '" cy="' + POS[c.id].y + '" r="46" fill="var(--ink)"/>';
+      }).join("") +
+      '<circle cx="' + vx + '" cy="' + vy + '" r="34" fill="var(--card)" stroke="var(--ink)" stroke-width="18"/>' +
+      '<rect id="miniBox" x="0" y="0" width="100" height="100" fill="var(--ink)" ' +
+        'fill-opacity=".10" stroke="var(--ink)" stroke-width="34" rx="24"/>';
   }
 
   /* ================================================================ camera */
@@ -651,7 +822,6 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   var world = document.getElementById("world");
   var stage = document.getElementById("stage");
   var lvlEl = document.getElementById("lvl");
-  var hintEl = document.getElementById("hint");
 
   var ZMIN = 0.12, ZMAX = 2.4, Z_IN = 0.70, Z_OUT = 0.60;
   var st = { z:0.3, tx:0, ty:0 };
@@ -677,6 +847,65 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
         (r.y * z + ty + r.dy).toFixed(1) + "px,0) translate(-50%,-50%)";
     }
     syncLevel();
+    updateScale();
+    updateLocator();
+    updateWhere();
+  }
+
+  /* -------------------------------------------------- orientation readouts */
+
+  var scaleBar = document.getElementById("scaleBar");
+  var scaleLbl = document.getElementById("scaleLbl");
+  var miniBox = null;
+  var whereEl = document.getElementById("where");
+  var lastScale = -1, lastWhere = "";
+
+  function updateScale(){
+    /* pick 1/2/5 x 10^n kilometres so the bar lands near 90 px */
+    var km = 90 / (KM * st.z);
+    var p = Math.pow(10, Math.floor(Math.log10(km))), m = km / p;
+    var v = (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p;
+    if (v === lastScale) { scaleBar.style.width = (v * KM * st.z).toFixed(1) + "px"; return; }
+    lastScale = v;
+    scaleBar.style.width = (v * KM * st.z).toFixed(1) + "px";
+    scaleLbl.textContent = v >= 1 ? (v % 1 ? v.toFixed(1).replace(".", ",") : v) + " km"
+                                  : Math.round(v * 1000) + " m";
+  }
+
+  function updateLocator(){
+    if (!miniBox) miniBox = document.getElementById("miniBox");
+    if (!miniBox) return;
+    miniBox.setAttribute("x", ((0 - st.tx) / st.z).toFixed(0));
+    miniBox.setAttribute("y", ((0 - st.ty) / st.z).toFixed(0));
+    miniBox.setAttribute("width", (vw() / st.z).toFixed(0));
+    miniBox.setAttribute("height", (vh() / st.z).toFixed(0));
+  }
+
+  var COMPASS = ["nördlich", "nordöstlich", "östlich", "südöstlich",
+                 "südlich", "südwestlich", "westlich", "nordwestlich"];
+
+  /* what the centre of the screen is looking at, in words */
+  function updateWhere(){
+    var cx = (vw() / 2 - st.tx) / st.z, cy = (vh() / 2 - st.ty) / st.z;
+    var best = null, bestD = Infinity;
+    LANDMARKS.forEach(function(l){
+      var d = Math.hypot(l.x - cx, l.y - cy);
+      if (d < bestD){ bestD = d; best = l; }
+    });
+    var v = POS.victoria;
+    var km = Math.hypot(cx - v.x, cy - v.y) / KM;
+    var txt;
+    if (bestD / KM < 0.35 && best.id === "victoria") txt = "bei London Victoria";
+    else if (km < 0.6) txt = "Zentrum · London Victoria";
+    else {
+      var ang = (Math.atan2(cx - v.x, v.y - cy) * 180 / Math.PI + 360) % 360;
+      txt = (bestD / KM < 2.2 ? best.name + " · " : "") +
+        km.toFixed(km < 10 ? 1 : 0).replace(".", ",") + " km " +
+        COMPASS[Math.round(ang / 45) % 8] + " von Victoria";
+    }
+    if (txt === lastWhere) return;
+    lastWhere = txt;
+    whereEl.textContent = txt;
   }
 
   /* a dead band around the switch keeps the two layers from flickering when
@@ -688,10 +917,8 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     level = next;
     stage.classList.toggle("over", level === "over");
     stage.classList.toggle("detail", level === "detail");
+    world.classList.toggle("detail", level === "detail");
     lvlEl.textContent = level === "over" ? "Übersicht" : "Detail";
-    hintEl.textContent = level === "over"
-      ? "Ziehen · Scrollen zum Zoomen · Doppelklick"
-      : "Angebot anklicken · Esc schließt";
   }
 
   function kick(){
@@ -852,12 +1079,17 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     stage.textContent = "";
     reg = [];
 
+    DISTRICTS.forEach(function(d){
+      put("district " + (d.major ? "major" : "minor"), esc(d.n), X(d.lon), Y(d.lat));
+    });
+
     PARKS.forEach(function(p){
-      put("maplabel" + (p.card ? " under-card" : ""), esc(p.n).toUpperCase(),
-          X(p.lon), Y(p.lat) + p.h * K / 2 + 40);
+      put("maplabel" + (p.card ? " under-card area" : "") + (p.minor ? " lvl-detail" : ""),
+          esc(p.n).toUpperCase(),
+          X(p.lab[1]), Y(p.lab[0]));
     });
     put("maplabel water", "Thames", X(-0.0700), Y(51.5040));
-    put("maplabel faint", "nicht maßstäblich",
+    put("maplabel faint", "Bahn nicht maßstäblich",
         (POS.eastbourne.x + POS.victoria.x) / 2, (POS.eastbourne.y + POS.victoria.y) / 2);
 
     HUBS.forEach(function(h){
@@ -912,10 +1144,10 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
       var d = pts.map(function(p, i){
         return (i ? "L" : "M") + p.x.toFixed(1) + " " + p.y.toFixed(1);
       }).join(" ");
-      out += '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="9" ' +
-        'stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".30"/>' +
-        '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="3" ' +
-        'stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="2 9" ' +
+      out += '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="7" ' +
+        'stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".22"/>' +
+        '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="2.5" ' +
+        'stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="1 11" ' +
         'vector-effect="non-scaling-stroke"/>';
     }
     g.innerHTML = out;
@@ -1086,6 +1318,13 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   });
 
   /* ================================================================== boot */
+
+  CLUSTERS.forEach(function(c){ LANDMARKS.push({ id:c.id, name:c.name, x:POS[c.id].x, y:POS[c.id].y }); });
+  HUBS.forEach(function(h){ if (!h.quiet) LANDMARKS.push({ id:h.id, name:h.name, x:POS[h.id].x, y:POS[h.id].y }); });
+  DISTRICTS.forEach(function(d){ LANDMARKS.push({ id:"d", name:d.n, x:X(d.lon), y:Y(d.lat) }); });
+  LANDMARKS.push({ id:"eastbourne", name:"Eastbourne", x:POS.eastbourne.x, y:POS.eastbourne.y });
+
+  document.getElementById("mini").addEventListener("click", function(){ closeCard(); fit(true); });
 
   buildGeo();
   world.style.width = W + "px";

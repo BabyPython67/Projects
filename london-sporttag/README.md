@@ -32,6 +32,21 @@ skaliert, damit sie auf jeder Zoomstufe lesbar bleiben.
 Die drei Tagesvarianten sind keine Gebiete, sondern Routen über die Karte: A und C
 spielen beide im Olympic Park und lassen sich geografisch nicht trennen.
 
+## Orientierung
+
+Die Karte trägt sechs feste Bezugssysteme, damit man nicht im Leeren steht:
+
+- **Stadtkörper** — die bebaute Fläche des inneren London als geglättete Form, damit Stadt
+  von Umland unterscheidbar ist
+- **Stadtteilnamen** — 18 Viertel an ihrer echten Lage, sechs davon auf jeder Zoomstufe
+- **Entfernungsringe** um London Victoria bei 2, 5 und 10 km Luftlinie, weil jede Fahrt dort beginnt
+- **Maßstabsleiste**, die sich mit dem Zoom auf 1/2/5er-Schritte einrastet, plus Nordpfeil
+- **Standortanzeige** in Worten: was die Bildschirmmitte gerade zeigt, plus Entfernung und
+  Himmelsrichtung ab Victoria
+- **Übersichtskarte** unten rechts mit dem aktuellen Ausschnitt als Rahmen; Klick springt zurück
+
+Dazu Gewässer (Themse, Lea, Regent's Canal, Serpentine) und acht nachgezeichnete Parks.
+
 ## Rendering
 
 Der transformierte Layer enthält ausschließlich Geometrie — Flüsse, Parks, Linien. Jede
