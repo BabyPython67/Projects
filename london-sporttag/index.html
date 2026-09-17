@@ -8,49 +8,54 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
+/* The base map stays near-neutral so the three day-variant hues are the only
+   saturated things on screen; each hue also carries a text-safe variant. */
 :root{
   color-scheme:light;
-  --land:#f1f0ec; --grid:#dbd9d2;
-  --water:#c3d8e4; --water-l:#a5c3d3;
-  --park:#dce5d1; --park-l:#c5d3b6;
-  --road:#e2e0d9;
-  --ink:#15171b; --ink-2:#4e525a; --ink-3:#868b95;
-  --card:#ffffff; --card-2:#f7f6f3; --line:#dedcd7;
+  --land:#eae9e6; --grid:#dbd9d3;
+  --water:#c8d5dd; --water-l:#aebfc9;
+  --park:#d9e0cd; --park-l:#c0cbaa;
+  --road:#dad8d1;
+  --ink:#14161a; --ink-2:#454a52; --ink-3:#62686f;
+  --card:#ffffff; --card-2:#f4f3f0; --line:#d4d2cc; --line-2:#c2bfb8;
   --A:#2a78d6; --B:#1baf7a; --C:#eb6834;
-  --accent:#d6006e; --accent-soft:#fce9f2;
-  --warn:#9a5a08;
-  --shadow:0 1px 2px rgba(20,22,26,.09), 0 10px 30px -12px rgba(20,22,26,.30);
-  --shadow-lg:0 2px 6px rgba(20,22,26,.12), 0 28px 60px -20px rgba(20,22,26,.45);
+  --At:#1f5fae; --Bt:#0d7a57; --Ct:#b0491d;
+  --Abg:#1f5fae; --Bbg:#0d7a57; --Cbg:#b0491d; --Vfg:#ffffff;
+  --over:#bf3a2b;
+  --shadow:0 1px 2px rgba(20,22,26,.10), 0 10px 26px -14px rgba(20,22,26,.40);
+  --shadow-lg:0 2px 8px rgba(20,22,26,.14), 0 26px 56px -22px rgba(20,22,26,.50);
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]){
     color-scheme:dark;
-    --land:#111419; --grid:#1c2029;
-    --water:#14252f; --water-l:#1e3a49;
-    --park:#16241b; --park-l:#223628;
-    --road:#212630;
-    --ink:#eef1f5; --ink-2:#aab2be; --ink-3:#767e8b;
-    --card:#191d25; --card-2:#20252f; --line:#2b303b;
+    --land:#16181d; --grid:#24272e;
+    --water:#1e2a32; --water-l:#2e404b;
+    --park:#212a1e; --park-l:#33422d;
+    --road:#262a32;
+    --ink:#eef0f4; --ink-2:#b0b6c0; --ink-3:#868c96;
+    --card:#1c1f26; --card-2:#242832; --line:#313640; --line-2:#3f4551;
     --A:#3987e5; --B:#199e70; --C:#d95926;
-    --accent:#ff5fae; --accent-soft:#2d1020;
-    --warn:#e0a44a;
-    --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 30px -12px rgba(0,0,0,.8);
-    --shadow-lg:0 2px 6px rgba(0,0,0,.6), 0 28px 60px -20px rgba(0,0,0,.95);
+    --At:#7fb6f2; --Bt:#4fc79b; --Ct:#f08a5c;
+    --Abg:#3987e5; --Bbg:#199e70; --Cbg:#d95926; --Vfg:#14161a;
+    --over:#f08878;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 26px -14px rgba(0,0,0,.8);
+    --shadow-lg:0 2px 8px rgba(0,0,0,.6), 0 26px 56px -22px rgba(0,0,0,.95);
   }
 }
 :root[data-theme="dark"]{
   color-scheme:dark;
-  --land:#111419; --grid:#1c2029;
-  --water:#14252f; --water-l:#1e3a49;
-  --park:#16241b; --park-l:#223628;
-  --road:#212630;
-  --ink:#eef1f5; --ink-2:#aab2be; --ink-3:#767e8b;
-  --card:#191d25; --card-2:#20252f; --line:#2b303b;
+  --land:#16181d; --grid:#24272e;
+  --water:#1e2a32; --water-l:#2e404b;
+  --park:#212a1e; --park-l:#33422d;
+  --road:#262a32;
+  --ink:#eef0f4; --ink-2:#b0b6c0; --ink-3:#868c96;
+  --card:#1c1f26; --card-2:#242832; --line:#313640; --line-2:#3f4551;
   --A:#3987e5; --B:#199e70; --C:#d95926;
-  --accent:#ff5fae; --accent-soft:#2d1020;
-  --warn:#e0a44a;
-  --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 30px -12px rgba(0,0,0,.8);
-  --shadow-lg:0 2px 6px rgba(0,0,0,.6), 0 28px 60px -20px rgba(0,0,0,.95);
+  --At:#7fb6f2; --Bt:#4fc79b; --Ct:#f08a5c;
+  --Abg:#3987e5; --Bbg:#199e70; --Cbg:#d95926; --Vfg:#14161a;
+  --over:#f08878;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 26px -14px rgba(0,0,0,.8);
+  --shadow-lg:0 2px 8px rgba(0,0,0,.6), 0 26px 56px -22px rgba(0,0,0,.95);
 }
 
 *{box-sizing:border-box}
@@ -61,110 +66,117 @@ body{
   font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased;
 }
 button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; padding:0}
-:focus-visible{outline:2px solid var(--accent); outline-offset:2px}
+:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
 .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
 
 #app{position:relative; height:100%; overflow:hidden; background:var(--land)}
-
-/* ------------------------------------------------------------ map canvas */
 #viewport{position:absolute; inset:0; overflow:hidden; cursor:grab; touch-action:none}
 #viewport.drag{cursor:grabbing}
+
+/* One transform for the whole geography; nothing inside it carries text. */
 #world{
-  position:absolute; top:0; left:0; transform-origin:0 0;
+  position:absolute; top:0; left:0; transform-origin:0 0; will-change:transform;
   background-image:radial-gradient(var(--grid) 1.6px, transparent 1.6px);
   background-size:64px 64px;
 }
-#geo{position:absolute; top:0; left:0; pointer-events:none}
-#world.over .under-card{opacity:0}
-#geo text{
-  font-size:clamp(13px, calc(12px / var(--z, .4)), 40px);
-  letter-spacing:.11em;
-  stroke:var(--land); stroke-width:5px; paint-order:stroke; stroke-linejoin:round;
-}
-#geo text.big{font-size:clamp(15px, calc(15px / var(--z, .4)), 46px); letter-spacing:.22em}
-.under-card{transition:opacity .2s}
+#geo{display:block}
 
-/* ------------------------------------------------------------ map nodes */
-.node{
-  position:absolute; transform-origin:center center;
-  transform:translate(-50%,-50%) scale(var(--inv,1));
-  will-change:transform;
+/* Everything readable lives in screen space and only ever translates, so it
+   never re-rasterises while zooming. */
+#stage{position:absolute; inset:0; pointer-events:none}
+.sn{position:absolute; left:0; top:0}
+#stage.moving .sn{will-change:transform}
+.hit{pointer-events:auto}
+.lvl-over, .lvl-detail{transition:opacity .2s ease}
+#stage.over .lvl-detail{opacity:0; pointer-events:none}
+#stage.detail .lvl-over{opacity:0; pointer-events:none}
+#stage.detail .hub .sub{opacity:0}
+#stage.over .under-card{opacity:0}
+@media (prefers-reduced-motion:reduce){
+  .lvl-over,.lvl-detail{transition:none}
 }
-.node.hidden{display:none}
 
-.node.spot{width:0; height:0}
+/* ---------------------------------------------------------- map lettering */
+.maplabel{
+  font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3); white-space:nowrap; user-select:none;
+  transition:opacity .2s ease;
+}
+.maplabel.water{color:var(--water-l); letter-spacing:.3em; font-size:.72rem}
+.maplabel.faint{
+  color:var(--ink-3); letter-spacing:.12em; text-transform:none; font-size:.66rem;
+  background:var(--land); padding:2px 8px; border-radius:100px;
+}
+
+/* ---------------------------------------------------------------- markers */
+.hub{display:flex; flex-direction:column; align-items:center; gap:4px}
+.hub .ring{
+  width:15px; height:15px; border-radius:50%; background:var(--card);
+  border:4px solid var(--ink); box-shadow:var(--shadow);
+}
+.hub .lb{
+  font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600; letter-spacing:.06em;
+  text-transform:uppercase; background:var(--card); padding:2px 7px; border-radius:5px;
+  border:1px solid var(--line); white-space:nowrap; color:var(--ink);
+}
+.hub .sub{
+  font-family:"IBM Plex Mono",monospace; font-size:.62rem; color:var(--ink-3);
+  white-space:nowrap; transition:opacity .2s ease;
+}
+
 .anchor{
-  position:absolute; left:0; top:0; transform:translate(-50%,-50%);
   width:11px; height:11px; border-radius:50%; background:var(--card);
   border:3px solid var(--ink-3); box-shadow:var(--shadow);
 }
 .anchor.A{border-color:var(--A)} .anchor.B{border-color:var(--B)} .anchor.C{border-color:var(--C)}
-.node.excl .anchor{opacity:.55}
-.node.dim .anchor{opacity:.3}
-.node.spot .pin{position:absolute; left:0; top:0}
-.node.spot .card{position:absolute; left:0; top:0; transform:translate(-50%,-50%)}
+.anchor.excl{opacity:.5}
+
 .pin{
   display:flex; align-items:center; gap:8px; white-space:nowrap;
   background:var(--card); border:1px solid var(--line); border-radius:100px;
   padding:5px 12px 5px 8px; box-shadow:var(--shadow); cursor:pointer;
-  transition:border-color .15s, box-shadow .15s, transform .15s;
+  transition:border-color .14s, box-shadow .14s;
 }
-.node.spot:hover{z-index:30}
 .pin:hover{border-color:var(--ink); box-shadow:var(--shadow-lg)}
 .pin .dot{width:9px; height:9px; border-radius:50%; background:var(--ink-3); flex:none}
-.pin .nm{font-size:.83rem; font-weight:600; letter-spacing:-.01em}
+.pin .nm{font-size:.83rem; font-weight:600; letter-spacing:-.01em; color:var(--ink)}
 .pin .pr{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-2); font-variant-numeric:tabular-nums}
-.pin .pr.free{color:var(--B)}
-.node.dim .pin{opacity:.32}
-.node.excl .pin{border-style:dashed; background:transparent; box-shadow:none}
-.node.excl .pr{text-decoration:line-through; color:var(--ink-3)}
-
-.hub{display:flex; flex-direction:column; align-items:center; gap:4px; cursor:default}
-.hub .ring{
-  width:17px; height:17px; border-radius:50%; background:var(--card);
-  border:4px solid var(--ink); box-shadow:var(--shadow);
-}
-.hub .lb{
-  font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:600; letter-spacing:.06em;
-  text-transform:uppercase; background:var(--card); padding:2px 7px; border-radius:5px;
-  border:1px solid var(--line); white-space:nowrap;
-}
-.hub .sub{font-family:"IBM Plex Mono",monospace; font-size:.62rem; color:var(--ink-3); white-space:nowrap}
+.pin .pr.free{color:var(--Bt)}
+.excl .pin{border-style:dashed; background:transparent; box-shadow:none}
+.excl .pin .pr{text-decoration:line-through; color:var(--ink-3)}
+.sn.dim{opacity:.3}
+.sn:hover{z-index:20}
 
 .cl{
   width:206px; text-align:left; background:var(--card); border:1px solid var(--line);
   border-radius:12px; padding:10px 13px; box-shadow:var(--shadow); cursor:pointer;
-  transition:border-color .15s, transform .15s, box-shadow .15s;
+  transition:border-color .14s, box-shadow .14s;
 }
-.cl:hover{transform:translateY(-2px); box-shadow:var(--shadow-lg); border-color:var(--ink-3)}
+.cl:hover{box-shadow:var(--shadow-lg); border-color:var(--ink)}
 .cl .kick{
   font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.13em;
   text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:3px;
 }
-.cl .nm{font-size:.95rem; font-weight:700; letter-spacing:-.02em; line-height:1.15; display:block}
+.cl .nm{font-size:.95rem; font-weight:700; letter-spacing:-.02em; line-height:1.15; display:block; color:var(--ink)}
 .cl .meta{
   font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-2);
   margin-top:4px; display:block; font-variant-numeric:tabular-nums;
 }
 .cl .vtags{display:flex; gap:5px; margin-top:7px}
-.cl .zoom{
-  margin-top:9px; font-size:.72rem; color:var(--ink-3);
-  display:flex; align-items:center; gap:5px;
-}
-.node.dim .cl{opacity:.35}
 
 .vtag{
   display:inline-flex; align-items:center; gap:4px; font-family:"IBM Plex Mono",monospace;
   font-size:.62rem; font-weight:600; letter-spacing:.06em; padding:2px 7px;
   border-radius:100px; border:1px solid currentColor;
 }
-.vtag.A{color:var(--A)} .vtag.B{color:var(--B)} .vtag.C{color:var(--C)}
+.vtag.A{color:var(--At)} .vtag.B{color:var(--Bt)} .vtag.C{color:var(--Ct)}
+.vtag.off{color:var(--over)}
 .vtag .d{width:5px; height:5px; border-radius:50%; background:currentColor}
 
-/* ------------------------------------------------------------ open card */
-.node.open{z-index:40}
+/* ------------------------------------------------------------------- card */
+.cardwrap{z-index:40}
 .card{
-  width:min(430px,88vw); background:var(--card); border:1px solid var(--line);
+  width:min(430px,88vw); background:var(--card); border:1px solid var(--line-2);
   border-radius:14px; box-shadow:var(--shadow-lg); overflow:hidden;
   display:flex; flex-direction:column; max-height:min(74vh,620px); cursor:default;
 }
@@ -193,8 +205,8 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
 }
 .hero dd{margin:0; font-size:1.18rem; font-weight:700; letter-spacing:-.02em; line-height:1.15; font-variant-numeric:tabular-nums}
 .hero dd small{display:block; font-size:.72rem; font-weight:400; color:var(--ink-2); letter-spacing:0; margin-top:1px}
-.hero dd.free{color:var(--B)}
-.hero dd.over{color:var(--accent)}
+.hero dd.free{color:var(--Bt)}
+.hero dd.over{color:var(--over)}
 
 .card h3{
   margin:16px 0 7px; font-family:"IBM Plex Mono",monospace; font-size:.62rem;
@@ -208,13 +220,13 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
 .card p.pe{margin:0; font-size:.87rem; color:var(--ink-2)}
 .risks{margin:0; padding-left:16px; font-size:.83rem; color:var(--ink-2)}
 .risks li{margin-bottom:5px}
-.risks li::marker{color:var(--warn)}
+.risks li::marker{color:var(--ink-3)}
 
-/* ------------------------------------------------------------ HUD */
+/* -------------------------------------------------------------------- HUD */
 .hud{position:absolute; inset:0; pointer-events:none; z-index:60}
 .hud > *{pointer-events:auto}
 .panel{
-  position:absolute; background:var(--card); border:1px solid var(--line);
+  position:absolute; background:var(--card); border:1px solid var(--line-2);
   border-radius:12px; box-shadow:var(--shadow);
 }
 .tl{top:14px; left:14px; padding:12px 15px; max-width:290px}
@@ -225,20 +237,30 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   font-size:.76rem; color:var(--ink-2); line-height:1.4;
 }
 .tl .budget b{color:var(--ink); font-weight:600}
+.lvlrow{
+  margin-top:9px; padding-top:8px; border-top:1px solid var(--line);
+  display:flex; align-items:baseline; gap:9px; flex-wrap:wrap;
+}
+.lvlrow .lvl{
+  font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--ink); font-weight:600;
+}
+.lvlrow .hint{font-size:.72rem; color:var(--ink-3)}
 
 .tr{top:14px; right:14px; padding:9px 10px; display:flex; flex-direction:column; gap:8px; align-items:stretch}
 .vrow{display:flex; gap:5px}
 .vbtn{
   display:flex; align-items:center; gap:6px; border:1px solid var(--line); border-radius:8px;
   padding:6px 9px; font-size:.78rem; font-weight:500; color:var(--ink-2); white-space:nowrap;
+  transition:background .14s, color .14s, border-color .14s;
 }
 .vbtn .d{width:8px; height:8px; border-radius:50%; background:var(--ink-3)}
 .vbtn.A .d{background:var(--A)} .vbtn.B .d{background:var(--B)} .vbtn.C .d{background:var(--C)}
-.vbtn:hover{background:var(--card-2)}
+.vbtn:hover{background:var(--card-2); color:var(--ink)}
 .vbtn[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--card); font-weight:600}
-.vbtn[aria-pressed="true"].A{border-color:var(--A); background:var(--A); color:#fff}
-.vbtn[aria-pressed="true"].B{border-color:var(--B); background:var(--B); color:#fff}
-.vbtn[aria-pressed="true"].C{border-color:var(--C); background:var(--C); color:#fff}
+.vbtn[aria-pressed="true"].A{border-color:var(--Abg); background:var(--Abg); color:var(--Vfg)}
+.vbtn[aria-pressed="true"].B{border-color:var(--Bbg); background:var(--Bbg); color:var(--Vfg)}
+.vbtn[aria-pressed="true"].C{border-color:var(--Cbg); background:var(--Cbg); color:var(--Vfg)}
 .vbtn[aria-pressed="true"] .d{background:currentColor}
 .zrow{display:flex; gap:5px; justify-content:flex-end}
 .zbtn{
@@ -248,20 +270,10 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
 .zbtn.wide{width:auto; padding:0 11px; font-size:.78rem; font-weight:500}
 .zbtn:hover{background:var(--card-2); color:var(--ink)}
 
-.lvlrow{
-  margin-top:9px; padding-top:8px; border-top:1px solid var(--line);
-  display:flex; align-items:baseline; gap:9px; flex-wrap:wrap;
-}
-.lvlrow .lvl{
-  font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.11em;
-  text-transform:uppercase; color:var(--accent); font-weight:600;
-}
-.lvlrow .hint{font-size:.72rem; color:var(--ink-3)}
-
 .strip{
   position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
   max-width:min(1120px, calc(100vw - 28px)); display:flex; align-items:stretch;
-  background:var(--card); border:1px solid var(--line); border-radius:12px;
+  background:var(--card); border:1px solid var(--line-2); border-radius:12px;
   box-shadow:var(--shadow); overflow:hidden;
 }
 .strip .lead{
@@ -285,29 +297,25 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
 @media (max-width:760px){
   .tl{max-width:none; right:14px; padding:10px 12px}
   .tl .budget{display:none}
+  .lvlrow .hint{display:none}
   .tr{top:auto; bottom:64px; right:10px; left:10px; flex-direction:row; justify-content:space-between; align-items:center; padding:8px}
   .vrow{flex-wrap:wrap}
   .vbtn{padding:5px 8px; font-size:.74rem}
-  .lvlrow .hint{display:none}
   .strip{left:10px; right:10px; bottom:106px; transform:none; max-width:none}
   .cl{width:136px; padding:8px 10px}
   .cl .nm{font-size:.85rem}
   .cl .kick{font-size:.56rem; letter-spacing:.1em}
   .cl .meta{display:none}
   .cl .vtags{margin-top:5px}
-  .strip .lead{min-width:112px; padding:8px 11px}
 }
-@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms !important}}
 </style>
 </head>
 <body>
 
 <div id="app">
   <div id="viewport">
-    <div id="world">
-      <svg id="geo" aria-hidden="true"></svg>
-      <div id="nodes"></div>
-    </div>
+    <div id="world"><svg id="geo" aria-hidden="true"></svg></div>
+    <div id="stage" class="over"></div>
   </div>
 
   <div class="hud">
@@ -315,7 +323,7 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
       <div class="ttl">Olympia-Tag London</div>
       <div class="sb">LK Sport · Tagesausflug ab Eastbourne</div>
       <div class="budget"><b>Limit 15 £ pro Person</b> für die Aktivität. Zug (~10–20 £) und Londoner ÖPNV (Tagescap 8,90 £) kommen zusätzlich dazu.</div>
-      <div class="lvlrow"><span class="lvl" id="lvl">Übersicht</span><span class="hint" id="hint">Ziehen · Scrollen zum Zoomen</span></div>
+      <div class="lvlrow"><span class="lvl" id="lvl">Übersicht</span><span class="hint" id="hint">Ziehen · Scrollen zum Zoomen · Doppelklick</span></div>
     </div>
 
     <div class="panel tr">
@@ -331,7 +339,6 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
         <button class="zbtn" id="zIn" aria-label="Reinzoomen">+</button>
       </div>
     </div>
-
 
     <div class="strip" id="strip" hidden></div>
   </div>
@@ -588,181 +595,223 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   CLUSTERS.forEach(function(c){ POS[c.id] = { x:X(c.lon), y:Y(c.lat) }; });
   POS.eastbourne = { x:EASTBOURNE.x, y:EASTBOURNE.y };
 
-  /* ============================================================== svg base */
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;" }[c];
+    });
+  }
+
+  /* ========================================================= geography svg */
+  /* Shapes only — no text lives inside the transformed layer, so zooming is a
+     single composited transform instead of a text re-layout per frame.        */
 
   function path(pts){
-    return pts.map(function(p, i){ return (i ? "L" : "M") + X(p[1]).toFixed(1) + " " + Y(p[0]).toFixed(1); }).join(" ");
+    return pts.map(function(p, i){
+      return (i ? "L" : "M") + X(p[1]).toFixed(1) + " " + Y(p[0]).toFixed(1);
+    }).join(" ");
   }
 
   function buildGeo(){
-    var s = '<svg xmlns="http://www.w3.org/2000/svg"></svg>';
     var g = document.getElementById("geo");
-    g.setAttribute("width", W); g.setAttribute("height", H);
+    g.setAttribute("width", W);
+    g.setAttribute("height", H);
     g.setAttribute("viewBox", "0 0 " + W + " " + H);
 
     var parks = PARKS.map(function(p){
-      return '<rect x="' + (X(p.lon) - p.w * COS * K / 2).toFixed(1) + '" y="' + (Y(p.lat) - p.h * K / 2).toFixed(1) +
+      return '<rect x="' + (X(p.lon) - p.w * COS * K / 2).toFixed(1) +
+        '" y="' + (Y(p.lat) - p.h * K / 2).toFixed(1) +
         '" width="' + (p.w * COS * K).toFixed(1) + '" height="' + (p.h * K).toFixed(1) +
         '" rx="26" fill="var(--park)" stroke="var(--park-l)" stroke-width="1.5"/>';
     }).join("");
 
-    var parkNames = PARKS.map(function(p){
-      return '<text x="' + X(p.lon).toFixed(1) + '" y="' + (Y(p.lat) + p.h * K / 2 + 42).toFixed(1) +
-        '" text-anchor="middle" fill="var(--ink-3)" font-family="IBM Plex Mono, monospace" ' +
-        '' + (p.card ? ' class="under-card"' : "") + ">" +
-        p.n.toUpperCase() + "</text>";
-    }).join("");
+    var rail = '<path d="M' + POS.eastbourne.x + " " + POS.eastbourne.y +
+      "L" + POS.victoria.x + " " + POS.victoria.y +
+      '" fill="none" stroke="var(--ink-3)" stroke-width="2.5" stroke-dasharray="11 8" ' +
+      'vector-effect="non-scaling-stroke" opacity=".6"/>';
 
-    var rail = '<path d="' + "M" + POS.eastbourne.x + " " + POS.eastbourne.y + " L" + POS.victoria.x + " " + POS.victoria.y +
-      '" fill="none" stroke="var(--ink-3)" stroke-width="3" stroke-dasharray="14 9" opacity=".55"/>';
-    var tube = '<path d="M' + POS.victoria.x + " " + POS.victoria.y + " L" + POS.greenpark.x + " " + POS.greenpark.y +
-      " L" + POS.stratford.x + " " + POS.stratford.y + '" fill="none" stroke="var(--road)" stroke-width="9" stroke-linecap="round"/>' +
-      '<path d="M' + POS.victoria.x + " " + POS.victoria.y + " L" + POS.greenpark.x + " " + POS.greenpark.y +
-      " L" + POS.stratford.x + " " + POS.stratford.y + '" fill="none" stroke="var(--ink-3)" stroke-width="2.5" stroke-dasharray="2 10" stroke-linecap="round" opacity=".65"/>';
-
-    var brk = (function(){
-      var mx = (POS.eastbourne.x + POS.victoria.x) / 2, my = (POS.eastbourne.y + POS.victoria.y) / 2;
-      return '<text x="' + mx + '" y="' + (my + 6) + '" text-anchor="middle" fill="var(--ink-3)" ' +
-        'font-family="IBM Plex Mono, monospace">nicht maßstäblich</text>';
-    })();
+    var tubeD = "M" + POS.victoria.x + " " + POS.victoria.y +
+      "L" + POS.greenpark.x + " " + POS.greenpark.y +
+      "L" + POS.stratford.x + " " + POS.stratford.y;
+    var tube = '<path d="' + tubeD + '" fill="none" stroke="var(--road)" stroke-width="6" ' +
+      'stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>' +
+      '<path d="' + tubeD + '" fill="none" stroke="var(--ink-3)" stroke-width="2.5" ' +
+      'stroke-dasharray="2 9" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".6"/>';
 
     g.innerHTML =
-      '<path d="' + path(THAMES) + '" fill="none" stroke="var(--water)" stroke-width="52" stroke-linejoin="round" stroke-linecap="round"/>' +
-      '<path d="' + path(THAMES) + '" fill="none" stroke="var(--water-l)" stroke-width="54" stroke-linejoin="round" stroke-linecap="round" opacity=".35" transform="translate(0,-1)"/>' +
-      '<path d="' + path(LEA) + '" fill="none" stroke="var(--water)" stroke-width="16" stroke-linejoin="round" stroke-linecap="round"/>' +
-      parks + parkNames + rail + tube + brk +
-      '<text class="big" x="' + X(-0.0700) + '" y="' + Y(51.5040) + '" fill="var(--water-l)" ' +
-      'font-family="IBM Plex Mono, monospace" opacity=".9">THAMES</text>' +
-      '<g id="routes"></g>';
-    return s;
+      '<path d="' + path(THAMES) + '" fill="none" stroke="var(--water)" stroke-width="52" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<path d="' + path(LEA) + '" fill="none" stroke="var(--water)" stroke-width="16" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>' +
+      parks + rail + tube + '<g id="routes"></g>';
   }
 
-  /* ============================================================== state */
+  /* ================================================================ camera */
 
-  var st = { z:0.3, tx:0, ty:0, level:"over", variant:null, open:null };
-  var vp = document.getElementById("viewport");
+  var vpEl = document.getElementById("viewport");
   var world = document.getElementById("world");
-  var nodeHost = document.getElementById("nodes");
-  var ZMIN = 0.12, ZMAX = 2.2, THRESH = 0.62;
+  var stage = document.getElementById("stage");
+  var lvlEl = document.getElementById("lvl");
+  var hintEl = document.getElementById("hint");
 
-  function applyTransform(){
-    world.style.transform = "translate(" + st.tx + "px," + st.ty + "px) scale(" + st.z + ")";
-    world.style.setProperty("--inv", 1 / st.z);
-    world.style.setProperty("--z", st.z);
+  var ZMIN = 0.12, ZMAX = 2.4, Z_IN = 0.70, Z_OUT = 0.60;
+  var st = { z:0.3, tx:0, ty:0 };
+  var cam = { z:0.3, tx:0, ty:0, anchor:null };
+  var reg = [];
+  var level = "over";
+  var variant = null;
+  var openId = null;
+  var rafId = null, lastT = 0;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function vw(){ return vpEl.clientWidth; }
+  function vh(){ return vpEl.clientHeight; }
+  function clamp(v, lo, hi){ return v < lo ? lo : v > hi ? hi : v; }
+
+  function apply(){
+    world.style.transform = "translate3d(" + st.tx.toFixed(2) + "px," + st.ty.toFixed(2) +
+      "px,0) scale(" + st.z.toFixed(4) + ")";
+    var z = st.z, tx = st.tx, ty = st.ty;
+    for (var i = 0; i < reg.length; i++){
+      var r = reg[i];
+      r.el.style.transform = "translate3d(" + (r.x * z + tx + r.dx).toFixed(1) + "px," +
+        (r.y * z + ty + r.dy).toFixed(1) + "px,0) translate(-50%,-50%)";
+    }
+    syncLevel();
   }
 
-  function vw(){ return vp.clientWidth; }
-  function vh(){ return vp.clientHeight; }
+  /* a dead band around the switch keeps the two layers from flickering when
+     the wheel lands right on the threshold */
+  function syncLevel(){
+    var next = level === "over" ? (st.z > Z_IN ? "detail" : "over")
+                                : (st.z < Z_OUT ? "over" : "detail");
+    if (next === level) return;
+    level = next;
+    stage.classList.toggle("over", level === "over");
+    stage.classList.toggle("detail", level === "detail");
+    lvlEl.textContent = level === "over" ? "Übersicht" : "Detail";
+    hintEl.textContent = level === "over"
+      ? "Ziehen · Scrollen zum Zoomen · Doppelklick"
+      : "Angebot anklicken · Esc schließt";
+  }
 
-  /* On a narrow screen the whole world can only be fitted at a zoom where the
-     constant-size area cards overlap, so phones frame London itself and reach
-     the (not-to-scale) Eastbourne tail by panning. */
+  function kick(){
+    if (rafId === null){ lastT = 0; rafId = requestAnimationFrame(frame); }
+  }
+
+  function frame(now){
+    rafId = null;
+    var dt = lastT ? Math.min(64, now - lastT) : 16.7;
+    lastT = now;
+    var k = reduce ? 1 : 1 - Math.pow(1 - 0.26, dt / 16.667);
+    var moving = false;
+
+    if (Math.abs(cam.z - st.z) > 0.0004){ st.z += (cam.z - st.z) * k; moving = true; }
+    else st.z = cam.z;
+
+    if (cam.anchor){
+      /* hold the point under the cursor while the zoom eases in */
+      st.tx = cam.anchor.sx - cam.anchor.wx * st.z;
+      st.ty = cam.anchor.sy - cam.anchor.wy * st.z;
+      cam.tx = st.tx; cam.ty = st.ty;
+      if (!moving) cam.anchor = null;
+    } else {
+      if (Math.abs(cam.tx - st.tx) > 0.06){ st.tx += (cam.tx - st.tx) * k; moving = true; }
+      else st.tx = cam.tx;
+      if (Math.abs(cam.ty - st.ty) > 0.06){ st.ty += (cam.ty - st.ty) * k; moving = true; }
+      else st.ty = cam.ty;
+    }
+
+    apply();
+    if (moving) kick();
+    else stage.classList.remove("moving");
+  }
+
+  function zoomTo(nz, sx, sy){
+    if (sx == null){ sx = vw() / 2; sy = vh() / 2; }
+    cam.anchor = { sx:sx, sy:sy, wx:(sx - st.tx) / st.z, wy:(sy - st.ty) / st.z };
+    cam.z = clamp(nz, ZMIN, ZMAX);
+    stage.classList.add("moving");
+    kick();
+  }
+
+  function flyTo(nz, tx, ty){
+    cam.anchor = null;
+    cam.z = clamp(nz, ZMIN, ZMAX);
+    cam.tx = tx; cam.ty = ty;
+    stage.classList.add("moving");
+    kick();
+  }
+
+  function centerOn(id, nz){
+    var p = POS[id]; if (!p) return;
+    var z = clamp(nz || Math.max(st.z, 1.0), ZMIN, ZMAX);
+    flyTo(z, vw() / 2 - p.x * z, vh() / 2 - p.y * z);
+  }
+
+  /* On a narrow screen the whole world only fits at a zoom where the area
+     cards would overlap, so phones frame London and pan to the rail tail. */
   var BOX_ALL = { x:0, y:0, w:W, h:H };
   var BOX_LDN = { x:250, y:40, w:2070, h:1290 };
 
-  function fit(animate){
+  function fitTarget(){
     var narrow = vw() < 760;
     var box = narrow ? BOX_LDN : BOX_ALL;
     var insetT = narrow ? 120 : 104, insetB = narrow ? 150 : 78, insetX = narrow ? 12 : 24;
     var aw = Math.max(200, vw() - insetX * 2), ah = Math.max(200, vh() - insetT - insetB);
-    var z = Math.max(ZMIN, Math.min(Math.min(aw / box.w, ah / box.h), 1));
-    var t = { z:z,
-              tx:insetX + (aw - box.w * z) / 2 - box.x * z,
-              ty:insetT + (ah - box.h * z) / 2 - box.y * z };
-    animate ? tween(t) : (set(t), render(true));
+    var z = clamp(Math.min(aw / box.w, ah / box.h), ZMIN, 1);
+    return { z:z,
+             tx:insetX + (aw - box.w * z) / 2 - box.x * z,
+             ty:insetT + (ah - box.h * z) / 2 - box.y * z };
   }
 
-  function centerOn(id, z){
-    var p = POS[id]; if (!p) return;
-    var nz = z || Math.max(st.z, 0.95);
-    tween({ z:nz, tx:vw() / 2 - p.x * nz, ty:vh() / 2 - p.y * nz });
+  function fit(animate){
+    var t = fitTarget();
+    if (animate) flyTo(t.z, t.tx, t.ty);
+    else { st.z = cam.z = t.z; st.tx = cam.tx = t.tx; st.ty = cam.ty = t.ty; cam.anchor = null; apply(); }
   }
 
-  function set(t){ st.z = t.z; st.tx = t.tx; st.ty = t.ty; applyTransform(); }
-
-  var anim = null;
-  function tween(to){
-    if (anim) cancelAnimationFrame(anim);
-    var from = { z:st.z, tx:st.tx, ty:st.ty }, t0 = performance.now(), dur = 480;
-    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce){ set(to); render(); return; }
-    (function frame(now){
-      var k = Math.min(1, (now - t0) / dur), e = 1 - Math.pow(1 - k, 3);
-      set({ z:from.z + (to.z - from.z) * e, tx:from.tx + (to.tx - from.tx) * e, ty:from.ty + (to.ty - from.ty) * e });
-      if (k < 1) anim = requestAnimationFrame(frame); else { anim = null; render(); }
-    })(performance.now());
+  function clampPan(){
+    var pad = 140, lo, hi;
+    lo = Math.min(pad, vw() - W * st.z - pad); hi = Math.max(pad, vw() - W * st.z - pad);
+    st.tx = clamp(st.tx, lo, hi);
+    lo = Math.min(pad, vh() - H * st.z - pad); hi = Math.max(pad, vh() - H * st.z - pad);
+    st.ty = clamp(st.ty, lo, hi);
+    cam.tx = st.tx; cam.ty = st.ty;
   }
 
-  /* ============================================================== render */
+  /* ================================================================= stage */
 
-  function money(v){ return v; }
+  function put(cls, html, x, y, dx, dy){
+    var el = document.createElement("div");
+    el.className = "sn " + cls;
+    if (html) el.innerHTML = html;
+    stage.appendChild(el);
+    reg.push({ el:el, x:x, y:y, dx:dx || 0, dy:dy || 0 });
+    return el;
+  }
+
   function vtags(list){
-    return list.map(function(k){ return '<span class="vtag ' + k + '"><span class="d"></span>' + k + "</span>"; }).join("");
+    return list.map(function(k){
+      return '<span class="vtag ' + k + '"><span class="d"></span>' + k + "</span>";
+    }).join("");
   }
 
-  function inVariant(spot){
-    if (!st.variant) return true;
-    return spot.v.indexOf(st.variant) >= 0;
+  function clusterHTML(c){
+    return '<button class="cl" data-cluster="' + c.id + '">' +
+      '<span class="kick">' + esc(c.kick) + "</span>" +
+      '<span class="nm">' + esc(c.name) + "</span>" +
+      '<span class="meta">' + esc(c.meta) + "</span>" +
+      (c.v.length ? '<span class="vtags">' + vtags(c.v) + "</span>" : "") +
+      "</button>";
   }
 
-  function nodeHTML(){
-    var out = "";
-    var detail = st.level === "detail";
-
-    /* hubs */
-    HUBS.forEach(function(h){
-      if (h.quiet && !detail) return;
-      var p = POS[h.id];
-      out += '<div class="node" style="left:' + p.x + "px; top:" + p.y + 'px">' +
-        '<div class="hub"><span class="ring"></span>' +
-        '<span class="lb">' + h.name + "</span>" +
-        (detail ? "" : '<span class="sub">' + h.sub + "</span>") +
-        "</div></div>";
-    });
-
-    /* origin */
-    out += '<div class="node" style="left:' + POS.eastbourne.x + "px; top:" + POS.eastbourne.y + 'px">' +
-      '<div class="hub"><span class="ring"></span><span class="lb">' + EASTBOURNE.name + "</span>" +
-      '<span class="sub">' + EASTBOURNE.sub + "</span></div></div>";
-
-    if (!detail){
-      CLUSTERS.forEach(function(c){
-        var p = POS[c.id];
-        var dim = st.variant && c.v.indexOf(st.variant) < 0 && c.v.length > 0;
-        var dimOther = st.variant && c.v.length === 0;
-        out += '<div class="node' + (dim || dimOther ? " dim" : "") + '" style="left:' + p.x + "px; top:" + p.y + 'px">' +
-          '<button class="cl" data-cluster="' + c.id + '">' +
-            '<span class="kick">' + c.kick + "</span>" +
-            '<span class="nm">' + c.name + "</span>" +
-            '<span class="meta">' + c.meta + "</span>" +
-            (c.v.length ? '<span class="vtags">' + vtags(c.v) + "</span>" : "") +
-          "</button></div>";
-      });
-      return out;
-    }
-
-    /* spots */
-    SPOTS.forEach(function(s){
-      var p = POS[s.id];
-      var open = st.open === s.id;
-      var dim = !inVariant(s);
-      var cls = "node spot" + (open ? " open" : "") + (dim && !open ? " dim" : "") + (s.excl ? " excl" : "");
-      var vk = s.v.length ? s.v[0] : "";
-      out += '<div class="' + cls + '" style="left:' + p.x + "px; top:" + p.y + 'px">' +
-        '<span class="anchor ' + vk + '"></span>';
-      if (open) out += cardHTML(s);
-      else {
-        var o = s.off || [0, 0];
-        out += '<button class="pin" data-spot="' + s.id + '" style="transform:translate(calc(-50% + ' +
-          o[0] + 'px), calc(-50% + ' + o[1] + 'px))">' +
-          '<span class="dot" style="background:' + (vk ? "var(--" + vk + ")" : "var(--ink-3)") + '"></span>' +
-          '<span class="nm">' + (s.short || s.name) + "</span>" +
-          '<span class="pr' + (s.price === 0 ? " free" : "") + '">' + s.priceL + "</span>" +
-          "</button>";
-      }
-      out += "</div>";
-    });
-    return out;
+  function pinHTML(s){
+    var vk = s.v.length ? s.v[0] : "";
+    return '<button class="pin" data-spot="' + s.id + '">' +
+      '<span class="dot" style="background:' + (vk ? "var(--" + vk + ")" : "var(--ink-3)") + '"></span>' +
+      '<span class="nm">' + esc(s.short || s.name) + "</span>" +
+      '<span class="pr' + (s.price === 0 ? " free" : "") + '">' + esc(s.priceL) + "</span>" +
+      "</button>";
   }
 
   function cardHTML(s){
@@ -770,164 +819,191 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     return '<div class="card">' +
       '<div class="hd">' +
         '<button class="x" data-close="1" aria-label="Schließen">✕</button>' +
-        '<div class="kick">' + s.venue + "</div>" +
-        "<h2>" + s.name + "</h2>" +
+        '<div class="kick">' + esc(s.venue) + "</div>" +
+        "<h2>" + esc(s.name) + "</h2>" +
         '<div class="tags">' + (s.v.length ? vtags(s.v) : "") +
-          (s.excl ? '<span class="vtag" style="color:var(--accent)">ausgeschlossen</span>' : "") +
+          (s.excl ? '<span class="vtag off">ausgeschlossen</span>' : "") +
         "</div>" +
       "</div>" +
       '<div class="bd">' +
         '<dl class="hero">' +
-          '<div><dt>Kosten p. P.</dt><dd class="' + (s.price === 0 ? "free" : over ? "over" : "") + '">' + s.priceL +
-            (s.priceSub ? "<small>" + s.priceSub + "</small>" : "") + "</dd></div>" +
-          "<div><dt>Dauer</dt><dd>" + s.dur + (s.durSub ? "<small>" + s.durSub + "</small>" : "") + "</dd></div>" +
+          '<div><dt>Kosten p. P.</dt><dd class="' + (s.price === 0 ? "free" : over ? "over" : "") + '">' +
+            esc(s.priceL) + (s.priceSub ? "<small>" + esc(s.priceSub) + "</small>" : "") + "</dd></div>" +
+          "<div><dt>Dauer</dt><dd>" + esc(s.dur) +
+            (s.durSub ? "<small>" + esc(s.durSub) + "</small>" : "") + "</dd></div>" +
         "</dl>" +
         "<h3>Wo &amp; wie hin</h3>" +
         '<dl class="facts">' +
-          "<div><dt>Ort</dt><dd>" + s.where + "</dd></div>" +
-          "<div><dt>Anfahrt</dt><dd>" + s.travel + "</dd></div>" +
-          "<div><dt>Buchung</dt><dd>" + s.booking + "</dd></div>" +
-          "<div><dt>Vorlauf</dt><dd>" + s.lead + "</dd></div>" +
+          "<div><dt>Ort</dt><dd>" + esc(s.where) + "</dd></div>" +
+          "<div><dt>Anfahrt</dt><dd>" + esc(s.travel) + "</dd></div>" +
+          "<div><dt>Buchung</dt><dd>" + esc(s.booking) + "</dd></div>" +
+          "<div><dt>Vorlauf</dt><dd>" + esc(s.lead) + "</dd></div>" +
         "</dl>" +
-        "<h3>Bezug zum LK Sport</h3><p class=\"pe\">" + s.pe + "</p>" +
-        (s.risks && s.risks.length ? "<h3>Offene Punkte</h3><ul class=\"risks\">" +
-          s.risks.map(function(r){ return "<li>" + r + "</li>"; }).join("") + "</ul>" : "") +
+        "<h3>Bezug zum LK Sport</h3><p class=\"pe\">" + esc(s.pe) + "</p>" +
+        (s.risks && s.risks.length
+          ? "<h3>Offene Punkte</h3><ul class=\"risks\">" +
+            s.risks.map(function(r){ return "<li>" + esc(r) + "</li>"; }).join("") + "</ul>"
+          : "") +
       "</div></div>";
+  }
+
+  /* Rebuilt only on discrete actions — never while zooming or panning. */
+  function buildStage(){
+    stage.textContent = "";
+    reg = [];
+
+    PARKS.forEach(function(p){
+      put("maplabel" + (p.card ? " under-card" : ""), esc(p.n).toUpperCase(),
+          X(p.lon), Y(p.lat) + p.h * K / 2 + 40);
+    });
+    put("maplabel water", "Thames", X(-0.0700), Y(51.5040));
+    put("maplabel faint", "nicht maßstäblich",
+        (POS.eastbourne.x + POS.victoria.x) / 2, (POS.eastbourne.y + POS.victoria.y) / 2);
+
+    HUBS.forEach(function(h){
+      put("hit" + (h.quiet ? " lvl-detail" : ""),
+        '<div class="hub"><span class="ring"></span><span class="lb">' + esc(h.name) +
+        '</span><span class="sub">' + esc(h.sub) + "</span></div>", POS[h.id].x, POS[h.id].y);
+    });
+    put("hit", '<div class="hub"><span class="ring"></span><span class="lb">' + esc(EASTBOURNE.name) +
+      '</span><span class="sub">' + esc(EASTBOURNE.sub) + "</span></div>",
+      POS.eastbourne.x, POS.eastbourne.y);
+
+    CLUSTERS.forEach(function(c){
+      var dim = variant && (c.v.indexOf(variant) < 0);
+      put("hit lvl-over" + (dim ? " dim" : ""), clusterHTML(c), POS[c.id].x, POS[c.id].y);
+    });
+
+    SPOTS.forEach(function(s){
+      var vk = s.v.length ? s.v[0] : "";
+      var dim = variant && s.v.indexOf(variant) < 0;
+      var p = POS[s.id];
+      put("lvl-detail anchor " + vk + (s.excl ? " excl" : "") + (dim ? " dim" : ""), "", p.x, p.y);
+      if (openId === s.id){
+        put("hit cardwrap", cardHTML(s), p.x, p.y);
+      } else {
+        var o = s.off || [0, 0];
+        put("hit lvl-detail" + (s.excl ? " excl" : "") + (dim ? " dim" : ""),
+            pinHTML(s), p.x, p.y, o[0], o[1]);
+      }
+    });
+
+    apply();
   }
 
   function renderRoutes(){
     var g = document.getElementById("routes");
     if (!g) return;
-    var leads = "";
-    if (st.level === "over"){
-      CLUSTERS.forEach(function(c){
-        if (!c.leads) return;
-        var a = POS[c.id];
-        c.leads.forEach(function(id){
-          var b2 = POS[id]; if (!b2) return;
-          leads += '<path d="M' + a.x.toFixed(1) + " " + a.y.toFixed(1) + "L" + b2.x.toFixed(1) + " " + b2.y.toFixed(1) +
-            '" stroke="var(--ink-3)" stroke-width="2" stroke-dasharray="6 8" fill="none" opacity=".45"/>' +
-            '<circle cx="' + b2.x.toFixed(1) + '" cy="' + b2.y.toFixed(1) + '" r="7" fill="var(--ink-3)" opacity=".55"/>';
-        });
+    var out = "";
+    CLUSTERS.forEach(function(c){
+      if (!c.leads) return;
+      var a = POS[c.id];
+      c.leads.forEach(function(id){
+        var b = POS[id]; if (!b) return;
+        out += '<path class="lead-line" d="M' + a.x.toFixed(1) + " " + a.y.toFixed(1) +
+          "L" + b.x.toFixed(1) + " " + b.y.toFixed(1) +
+          '" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="5 7" fill="none" ' +
+          'vector-effect="non-scaling-stroke" opacity=".5"/>';
       });
+    });
+    if (variant){
+      var v = VAR[variant];
+      var pts = v.route.map(function(id){ return POS[id]; }).filter(Boolean);
+      var d = pts.map(function(p, i){
+        return (i ? "L" : "M") + p.x.toFixed(1) + " " + p.y.toFixed(1);
+      }).join(" ");
+      out += '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="9" ' +
+        'stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".30"/>' +
+        '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="3" ' +
+        'stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="2 9" ' +
+        'vector-effect="non-scaling-stroke"/>';
     }
-    if (!st.variant){ g.innerHTML = leads; return; }
-    var v = VAR[st.variant];
-    var pts = v.route.map(function(id){ return POS[id]; }).filter(Boolean);
-    var d = pts.map(function(p, i){ return (i ? "L" : "M") + p.x.toFixed(1) + " " + p.y.toFixed(1); }).join(" ");
-    g.innerHTML = leads + '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="7" ' +
-      'stroke-linejoin="round" stroke-linecap="round" opacity=".28"/>' +
-      '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="3" ' +
-      'stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="1 14" opacity=".9"/>';
+    g.innerHTML = out;
   }
 
   function renderStrip(){
     var el = document.getElementById("strip");
-    if (!st.variant){ el.hidden = true; return; }
-    var v = VAR[st.variant];
+    if (!variant){ el.hidden = true; return; }
+    var v = VAR[variant];
     el.hidden = false;
     el.innerHTML =
-      '<div class="lead"><span class="k" style="color:' + v.color + '">VARIANTE ' + st.variant + "</span>" +
-        '<span class="n">' + v.name + '</span><span class="c">' + v.cost + "</span></div>" +
+      '<div class="lead"><span class="k" style="color:var(--' + variant + 't)">VARIANTE ' + variant + "</span>" +
+        '<span class="n">' + esc(v.name) + '</span><span class="c">' + esc(v.cost) + "</span></div>" +
       '<div class="stops">' + v.stops.map(function(s){
-        return '<button class="stop" data-goto="' + s[2] + '"><span class="t" style="color:' + v.color + '">' +
-          s[0] + '</span><span class="l">' + s[1] + "</span></button>";
+        return '<button class="stop" data-goto="' + s[2] + '"><span class="t" style="color:var(--' +
+          variant + 't)">' + esc(s[0]) + '</span><span class="l">' + esc(s[1]) + "</span></button>";
       }).join("") + "</div>";
   }
 
-  function renderHUD(){
-    var over = st.level === "over";
-    document.getElementById("lvl").textContent = over ? "Übersicht" : "Detail";
-    document.getElementById("hint").textContent = over
-      ? "Ziehen zum Bewegen · Scrollen zum Zoomen · Gebiet anklicken"
-      : "Angebot anklicken für alle Details · Esc schließt";
-    ["All","A","B","C"].forEach(function(k){
-      var id = "v" + k;
-      document.getElementById(id).setAttribute("aria-pressed",
-        (k === "All" ? st.variant === null : st.variant === k) ? "true" : "false");
+  function setVariant(k){
+    variant = k;
+    if (k && openId){
+      var s = SPOTS.filter(function(x){ return x.id === openId; })[0];
+      if (s && s.v.indexOf(k) < 0) openId = null;
+    }
+    ["All", "A", "B", "C"].forEach(function(n){
+      document.getElementById("v" + n).setAttribute("aria-pressed",
+        (n === "All" ? variant === null : variant === n) ? "true" : "false");
     });
-  }
-
-  /* Rebuilding the node layer on every frame would destroy the element a
-     click started on, so only rebuild when what is drawn actually changes. */
-  var sig = null;
-  function render(force){
-    var lvl = st.z >= THRESH ? "detail" : "over";
-    if (lvl !== st.level){ st.level = lvl; if (lvl === "over") st.open = null; }
-    var next = st.level + "|" + st.variant + "|" + st.open;
-    if (!force && next === sig) return;
-    sig = next;
-    world.classList.toggle("over", st.level === "over");
-    nodeHost.innerHTML = nodeHTML();
+    buildStage();
     renderRoutes();
     renderStrip();
-    renderHUD();
   }
 
-  /* ============================================================== events */
+  function openSpot(id){
+    openId = id;
+    buildStage();
+    centerOn(id, Math.max(st.z, 1.0));
+  }
+  function closeCard(){ if (openId){ openId = null; buildStage(); } }
 
-  nodeHost.addEventListener("click", function(e){
+  /* ================================================================ events */
+
+  stage.addEventListener("click", function(e){
     var cl = e.target.closest("[data-cluster]");
     if (cl){ centerOn(cl.dataset.cluster, 1.6); return; }
-    if (e.target.closest("[data-close]")){ st.open = null; render(); return; }
+    if (e.target.closest("[data-close]")){ closeCard(); return; }
     var sp = e.target.closest("[data-spot]");
-    if (sp){
-      st.open = sp.dataset.spot;
-      render();
-      centerOn(st.open, Math.max(st.z, 1.0));
-    }
+    if (sp) openSpot(sp.dataset.spot);
   });
 
   document.getElementById("strip").addEventListener("click", function(e){
     var b = e.target.closest("[data-goto]");
     if (!b) return;
     var id = b.dataset.goto;
-    if (SPOTS.some(function(s){ return s.id === id; })){
-      st.open = id;
-      if (st.z < THRESH) { st.level = "detail"; }
-      render();
-      centerOn(id, Math.max(st.z, 1.0));
-    } else centerOn(id, Math.max(st.z, 0.7));
+    if (SPOTS.some(function(s){ return s.id === id; })) openSpot(id);
+    else centerOn(id, Math.max(st.z, 0.8));
   });
 
-  function setVariant(k){
-    st.variant = k;
-    if (k && st.open){
-      var s = SPOTS.filter(function(x){ return x.id === st.open; })[0];
-      if (s && s.v.indexOf(k) < 0) st.open = null;
-    }
-    render();
-  }
   document.getElementById("vAll").addEventListener("click", function(){ setVariant(null); });
-  ["A","B","C"].forEach(function(k){
-    document.getElementById("v" + k).addEventListener("click", function(){ setVariant(st.variant === k ? null : k); });
+  ["A", "B", "C"].forEach(function(k){
+    document.getElementById("v" + k).addEventListener("click", function(){
+      setVariant(variant === k ? null : k);
+    });
   });
+  document.getElementById("fitBtn").addEventListener("click", function(){ closeCard(); fit(true); });
+  document.getElementById("zIn").addEventListener("click", function(){ zoomTo(cam.z * 1.6); });
+  document.getElementById("zOut").addEventListener("click", function(){ zoomTo(cam.z / 1.6); });
 
-  document.getElementById("fitBtn").addEventListener("click", function(){ st.open = null; fit(true); });
-  document.getElementById("zIn").addEventListener("click", function(){ zoomBy(1.45); });
-  document.getElementById("zOut").addEventListener("click", function(){ zoomBy(1 / 1.45); });
-
-  function zoomBy(f, cx, cy){
-    var nz = Math.max(ZMIN, Math.min(ZMAX, st.z * f));
-    var mx = cx == null ? vw() / 2 : cx, my = cy == null ? vh() / 2 : cy;
-    tween({ z:nz, tx:mx - (mx - st.tx) * (nz / st.z), ty:my - (my - st.ty) * (nz / st.z) });
-  }
-
-  vp.addEventListener("wheel", function(e){
+  vpEl.addEventListener("wheel", function(e){
     e.preventDefault();
-    var r = vp.getBoundingClientRect();
-    var mx = e.clientX - r.left, my = e.clientY - r.top;
-    var nz = Math.max(ZMIN, Math.min(ZMAX, st.z * Math.exp(-e.deltaY * 0.0016)));
-    if (anim){ cancelAnimationFrame(anim); anim = null; }
-    set({ z:nz, tx:mx - (mx - st.tx) * (nz / st.z), ty:my - (my - st.ty) * (nz / st.z) });
-    render();
+    var r = vpEl.getBoundingClientRect();
+    /* a trackpad pinch arrives as ctrl+wheel with much smaller deltas */
+    var f = e.ctrlKey ? 0.012 : 0.0022;
+    zoomTo(cam.z * Math.exp(-e.deltaY * f), e.clientX - r.left, e.clientY - r.top);
   }, { passive:false });
 
-  /* drag + pinch */
+  vpEl.addEventListener("dblclick", function(e){
+    if (e.target.closest(".card")) return;
+    var r = vpEl.getBoundingClientRect();
+    zoomTo(cam.z * (e.altKey ? 1 / 1.9 : 1.9), e.clientX - r.left, e.clientY - r.top);
+  });
+
   /* Capture is claimed only once a drag really starts — capturing on
-     pointerdown would retarget the following click away from the node. */
+     pointerdown would retarget the following click away from the marker. */
   var pts = new Map(), last = null, pinch = null, dragging = false, captured = null;
-  vp.addEventListener("pointerdown", function(e){
+
+  vpEl.addEventListener("pointerdown", function(e){
     if (e.target.closest(".card")) return;
     pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
     if (pts.size === 1){ last = { x:e.clientX, y:e.clientY }; dragging = false; }
@@ -936,60 +1012,86 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
       pinch = { d:Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y), z:st.z };
     }
   });
-  vp.addEventListener("pointermove", function(e){
+
+  vpEl.addEventListener("pointermove", function(e){
     if (!pts.has(e.pointerId)) return;
     pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+
     if (pts.size === 2 && pinch){
       var a = Array.from(pts.values());
       var d = Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y);
-      var r = vp.getBoundingClientRect();
+      var r = vpEl.getBoundingClientRect();
       var mx = (a[0].x + a[1].x) / 2 - r.left, my = (a[0].y + a[1].y) / 2 - r.top;
-      var nz = Math.max(ZMIN, Math.min(ZMAX, pinch.z * (d / pinch.d)));
-      set({ z:nz, tx:mx - (mx - st.tx) * (nz / st.z), ty:my - (my - st.ty) * (nz / st.z) });
+      var nz = clamp(pinch.z * (d / pinch.d), ZMIN, ZMAX);
+      /* fingers track 1:1, so no easing here */
+      st.tx = mx - (mx - st.tx) * (nz / st.z);
+      st.ty = my - (my - st.ty) * (nz / st.z);
+      st.z = nz;
+      cam.z = st.z; cam.tx = st.tx; cam.ty = st.ty; cam.anchor = null;
+      stage.classList.add("moving");
+      apply();
       return;
     }
+
     if (!last) return;
     var dx = e.clientX - last.x, dy = e.clientY - last.y;
     if (!dragging){
       if (Math.abs(dx) + Math.abs(dy) < 5) return;
       dragging = true;
       captured = e.pointerId;
-      vp.setPointerCapture(e.pointerId);
-      vp.classList.add("drag");
+      vpEl.setPointerCapture(e.pointerId);
+      vpEl.classList.add("drag");
+      stage.classList.add("moving");
     }
     last = { x:e.clientX, y:e.clientY };
-    if (anim){ cancelAnimationFrame(anim); anim = null; }
-    set({ z:st.z, tx:st.tx + dx, ty:st.ty + dy });
+    cam.anchor = null;
+    cam.z = st.z;
+    st.tx += dx; st.ty += dy;
+    clampPan();
+    apply();
   });
+
   function up(e){
     pts.delete(e.pointerId);
     if (pts.size < 2) pinch = null;
     if (captured === e.pointerId){
-      if (vp.hasPointerCapture(e.pointerId)) vp.releasePointerCapture(e.pointerId);
+      if (vpEl.hasPointerCapture(e.pointerId)) vpEl.releasePointerCapture(e.pointerId);
       captured = null;
     }
-    if (pts.size === 0){ last = null; dragging = false; vp.classList.remove("drag"); render(); }
+    if (pts.size === 0){
+      last = null; dragging = false;
+      vpEl.classList.remove("drag");
+      if (rafId === null) stage.classList.remove("moving");
+    }
   }
-  vp.addEventListener("pointerup", up);
-  vp.addEventListener("pointercancel", up);
+  vpEl.addEventListener("pointerup", up);
+  vpEl.addEventListener("pointercancel", up);
 
   document.addEventListener("keydown", function(e){
-    if (e.key === "Escape"){ if (st.open){ st.open = null; render(); } else if (st.variant) setVariant(null); }
-    else if (e.key === "+" || e.key === "=") zoomBy(1.45);
-    else if (e.key === "-") zoomBy(1 / 1.45);
-    else if (e.key === "0"){ st.open = null; fit(true); }
-    else if (e.key === "a" || e.key === "A") setVariant(st.variant === "A" ? null : "A");
-    else if (e.key === "b" || e.key === "B") setVariant(st.variant === "B" ? null : "B");
-    else if (e.key === "c" || e.key === "C") setVariant(st.variant === "C" ? null : "C");
+    var t = (e.target.tagName || "").toLowerCase();
+    if (t === "input" || t === "textarea") return;
+    if (e.key === "Escape"){ if (openId) closeCard(); else if (variant) setVariant(null); }
+    else if (e.key === "+" || e.key === "=") zoomTo(cam.z * 1.6);
+    else if (e.key === "-") zoomTo(cam.z / 1.6);
+    else if (e.key === "0"){ closeCard(); fit(true); }
+    else if (e.key === "a" || e.key === "A") setVariant(variant === "A" ? null : "A");
+    else if (e.key === "b" || e.key === "B") setVariant(variant === "B" ? null : "B");
+    else if (e.key === "c" || e.key === "C") setVariant(variant === "C" ? null : "C");
   });
 
-  window.addEventListener("resize", function(){ render(true); });
+  var rt = null;
+  window.addEventListener("resize", function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){ apply(); }, 120);
+  });
 
-  /* ============================================================== boot */
+  /* ================================================================== boot */
 
   buildGeo();
   world.style.width = W + "px";
   world.style.height = H + "px";
+  buildStage();
+  renderRoutes();
   fit(false);
 })();
 </script>

@@ -32,6 +32,28 @@ skaliert, damit sie auf jeder Zoomstufe lesbar bleiben.
 Die drei Tagesvarianten sind keine Gebiete, sondern Routen über die Karte: A und C
 spielen beide im Olympic Park und lassen sich geografisch nicht trennen.
 
+## Rendering
+
+Der transformierte Layer enthält ausschließlich Geometrie — Flüsse, Parks, Linien. Jede
+Beschriftung, jeder Pin und jede Karte liegt in einem Overlay im Bildschirmkoordinaten-
+system und wird pro Frame nur verschoben, nie skaliert. Zoomen kostet damit eine einzige
+composited Transform plus rund 35 `translate3d`-Schreibvorgänge statt einer Neuberechnung
+der Textlayouts; gemessener Median 16,7 ms pro Frame.
+
+Das Zoomen läuft über eine exponentielle Glättung in einer rAF-Schleife: Mausrad und
+Buttons setzen ein Ziel, der Punkt unter dem Cursor bleibt währenddessen fixiert. Ziehen
+und Pinch greifen ohne Glättung direkt durch, damit sie 1:1 am Finger hängen. Der Wechsel
+zwischen Übersicht und Detail hat eine Hysterese (rein ab 0,70, raus unter 0,60) und
+blendet beide Ebenen per Opacity über, statt DOM neu zu bauen.
+
+## Farben
+
+Die Grundkarte ist absichtlich nahezu unbunt. Wasser und Parkflächen tragen nur eine
+Spur Farbton, damit die drei Varianten-Farben die einzigen gesättigten Flächen auf dem
+Schirm bleiben. Die Trias Blau/Grün/Orange ist gegen Farbfehlsichtigkeit geprüft
+(CVD-ΔE ≥ 9,2 in beiden Modi); jede Farbe hat zusätzlich eine dunklere Textvariante,
+damit Beschriftungen die 4,5:1-Schwelle halten.
+
 ## Datenstand
 
 Recherchestand 14.09.2026. Preise sind vor der Buchung zu verifizieren — insbesondere der
