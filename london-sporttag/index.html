@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Olympia-Tag London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  color-scheme: light;
+  --ground:#eceff4;
+  --surface:#ffffff;
+  --surface-2:#f5f7fa;
+  --line:#d3dae4;
+  --line-strong:#aab6c6;
+  --ink:#131c28;
+  --ink-2:#47536a;
+  --ink-3:#6d7a8d;
+  --accent:#2a78d6;
+  --accent-ink:#1c5aa6;
+  --accent-soft:#e4eefb;
+  --gold:#9c7615;
+  --gold-soft:#f8efd7;
+  --gold-line:#ddc88a;
+  --good:#1a7a4e; --good-soft:#e3f2ea;
+  --warn:#9a6212; --warn-soft:#fbeeda;
+  --crit:#b3352b; --crit-soft:#fae8e5;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --s4:#eda100;
+  --rail-south:#1a7a4e;
+  --rail-victoria:#0f7fb8;
+  --rail-walk:#6d7a8d;
+  --shadow:0 1px 2px rgba(19,28,40,.06), 0 8px 24px -16px rgba(19,28,40,.4);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --ground:#0b1119;
+    --surface:#141c26;
+    --surface-2:#1b2532;
+    --line:#28323f;
+    --line-strong:#3d4b5c;
+    --ink:#e9eef4;
+    --ink-2:#aab6c5;
+    --ink-3:#7e8b9c;
+    --accent:#5aa2f5;
+    --accent-ink:#8cc0ff;
+    --accent-soft:#16283d;
+    --gold:#dfb851;
+    --gold-soft:#2c2413;
+    --gold-line:#5c4a1d;
+    --good:#4fbd85; --good-soft:#12301f;
+    --warn:#e0a44a; --warn-soft:#31240f;
+    --crit:#f0796c; --crit-soft:#361a17;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+    --rail-south:#4fbd85;
+    --rail-victoria:#4bb4e0;
+    --rail-walk:#7e8b9c;
+    --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.9);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --ground:#0b1119;
+  --surface:#141c26;
+  --surface-2:#1b2532;
+  --line:#28323f;
+  --line-strong:#3d4b5c;
+  --ink:#e9eef4;
+  --ink-2:#aab6c5;
+  --ink-3:#7e8b9c;
+  --accent:#5aa2f5;
+  --accent-ink:#8cc0ff;
+  --accent-soft:#16283d;
+  --gold:#dfb851;
+  --gold-soft:#2c2413;
+  --gold-line:#5c4a1d;
+  --good:#4fbd85; --good-soft:#12301f;
+  --warn:#e0a44a; --warn-soft:#31240f;
+  --crit:#f0796c; --crit-soft:#361a17;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --s4:#c98500;
+  --rail-south:#4fbd85;
+  --rail-victoria:#4bb4e0;
+  --rail-walk:#7e8b9c;
+  --shadow:0 1px 2px rgba(0,0,0,.4), 0 10px 28px -18px rgba(0,0,0,.9);
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:"IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+  font-size:16px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+img{max-width:100%}
+[hidden]{display:none !important}
+
+h1,h2,h3,h4,.display{
+  font-family:"Barlow Condensed", "Arial Narrow", system-ui, sans-serif;
+  font-weight:700;
+  letter-spacing:.005em;
+  text-wrap:balance;
+  margin:0;
+  line-height:1.08;
+}
+.mono{font-family:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace; font-variant-numeric:tabular-nums}
+
+.eyebrow{
+  font-family:"IBM Plex Mono", ui-monospace, monospace;
+  font-size:.68rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--ink-3);
+  font-weight:500;
+}
+
+a{color:var(--accent-ink)}
+button{font:inherit; color:inherit}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:4px}
+
+/* ---------- shell ---------- */
+.topbar{
+  position:sticky;
+  top:env(safe-area-inset-top, 0px);
+  z-index:50;
+  background:color-mix(in srgb, var(--surface) 92%, transparent);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--line);
+}
+.topbar-in{
+  max-width:1080px; margin:0 auto;
+  padding-block:10px; padding-inline:20px;
+  display:flex; align-items:center; gap:16px; flex-wrap:wrap;
+}
+.wordmark{display:flex; align-items:baseline; gap:9px; margin-right:auto}
+.wordmark .rings{
+  font-size:1.35rem; line-height:1;
+  color:var(--gold);
+}
+.wordmark b{font-family:"Barlow Condensed",sans-serif; font-size:1.4rem; font-weight:700; letter-spacing:.01em}
+.wordmark span{font-size:.72rem; color:var(--ink-3); letter-spacing:.06em; text-transform:uppercase}
+.jump{display:flex; gap:2px; flex-wrap:wrap}
+.jump a{
+  font-size:.79rem; text-decoration:none; color:var(--ink-2);
+  padding:5px 9px; border-radius:6px;
+}
+.jump a:hover{background:var(--surface-2); color:var(--ink)}
+
+.wrap{max-width:1080px; margin:0 auto; padding-inline:20px; padding-block:0 64px}
+section{padding-block:38px; border-top:1px solid var(--line)}
+section:first-of-type{border-top:0}
+.sec-head{display:flex; align-items:flex-end; gap:14px; flex-wrap:wrap; margin-bottom:20px}
+.sec-head h2{font-size:clamp(1.5rem,3.4vw,2rem)}
+.sec-head p{margin:0; color:var(--ink-2); font-size:.92rem; max-width:52ch}
+
+/* ---------- hero ---------- */
+.hero{padding-block:34px 30px}
+.hero h1{font-size:clamp(2.4rem,7vw,4.2rem); letter-spacing:-.01em}
+.hero .lede{
+  margin:14px 0 0; max-width:62ch; font-size:1.05rem; color:var(--ink-2);
+}
+.hero .lede strong{color:var(--ink); font-weight:600}
+
+.facts{
+  display:grid; gap:1px; margin-top:26px;
+  grid-template-columns:repeat(auto-fit, minmax(170px,1fr));
+  background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden;
+}
+.fact{background:var(--surface); padding:16px 18px}
+.fact dt{font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); margin:0 0 6px}
+.fact dd{margin:0; font-family:"Barlow Condensed",sans-serif; font-size:1.65rem; font-weight:700; line-height:1.05}
+.fact .sub{display:block; font-family:"IBM Plex Sans",sans-serif; font-size:.78rem; font-weight:400; color:var(--ink-2); line-height:1.35; margin-top:4px}
+
+/* ---------- chips / badges ---------- */
+.chip{
+  display:inline-flex; align-items:center; gap:5px;
+  font-size:.72rem; font-weight:600; letter-spacing:.02em;
+  padding:3px 9px; border-radius:100px; white-space:nowrap;
+  border:1px solid transparent;
+}
+.chip .dot{width:7px; height:7px; border-radius:50%; background:currentColor; flex:none}
+.chip.good{background:var(--good-soft); color:var(--good); border-color:color-mix(in srgb, var(--good) 28%, transparent)}
+.chip.warn{background:var(--warn-soft); color:var(--warn); border-color:color-mix(in srgb, var(--warn) 30%, transparent)}
+.chip.crit{background:var(--crit-soft); color:var(--crit); border-color:color-mix(in srgb, var(--crit) 30%, transparent)}
+.chip.neutral{background:var(--surface-2); color:var(--ink-2); border-color:var(--line)}
+.chip.gold{background:var(--gold-soft); color:var(--gold); border-color:var(--gold-line)}
+.chip.accent{background:var(--accent-soft); color:var(--accent-ink); border-color:color-mix(in srgb, var(--accent) 30%, transparent)}
+
+/* ---------- recommendation ---------- */
+.rec{
+  margin-top:26px; display:grid; gap:18px; grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  background:var(--gold-soft); border:1px solid var(--gold-line);
+  border-radius:12px; padding:20px 22px;
+}
+.rec h3{font-size:1.5rem; margin-bottom:6px}
+.rec p{margin:0; font-size:.93rem; color:var(--ink-2)}
+.rec .why{border-left:2px solid var(--gold-line); padding-left:16px}
+.rec .why ul{margin:0; padding-left:16px; font-size:.86rem; color:var(--ink-2)}
+.rec .why li{margin-bottom:4px}
+.rec .why li::marker{color:var(--gold)}
+
+/* ---------- route rail ---------- */
+.rail{
+  display:flex; align-items:stretch; gap:0; margin-top:4px;
+  background:var(--surface); border:1px solid var(--line); border-radius:12px;
+  padding:22px 20px; box-shadow:var(--shadow); overflow-x:auto;
+}
+.stop{flex:0 0 auto; min-width:120px; text-align:left; padding-right:4px}
+.stop .node{display:flex; align-items:center; gap:0; margin-bottom:10px}
+.stop .pip{
+  width:15px; height:15px; border-radius:50%;
+  background:var(--surface); border:3.5px solid var(--ink); flex:none;
+}
+.stop.hub .pip{border-color:var(--accent); width:19px; height:19px}
+.stop .name{font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.12rem; line-height:1.1}
+.stop .meta{font-size:.74rem; color:var(--ink-3); line-height:1.35; margin-top:3px}
+.leg{flex:1 1 90px; min-width:90px; padding:0 8px}
+.leg .track{height:7px; border-radius:100px; background:var(--rail-south); margin:4px 0 10px}
+.leg.victoria .track{background:var(--rail-victoria)}
+.leg.walk .track{background:repeating-linear-gradient(90deg, var(--rail-walk) 0 5px, transparent 5px 11px); height:4px; margin-top:5.5px}
+.leg .lab{font-size:.72rem; color:var(--ink-2); line-height:1.35}
+.leg .lab b{display:block; font-family:"IBM Plex Mono",monospace; font-size:.76rem; font-weight:600; color:var(--ink); font-variant-numeric:tabular-nums}
+.rail-note{margin:10px 2px 0; font-size:.79rem; color:var(--ink-3)}
+
+/* ---------- tabs ---------- */
+.tabs{display:flex; gap:8px; flex-wrap:wrap; margin-bottom:0}
+.tab{
+  position:relative; cursor:pointer;
+  background:var(--surface); border:1px solid var(--line); border-bottom-color:transparent;
+  border-radius:10px 10px 0 0; padding:11px 16px 13px; text-align:left;
+  min-width:180px; flex:1 1 180px;
+  transition:background .15s, border-color .15s;
+}
+.tab .lane{
+  font-family:"IBM Plex Mono",monospace; font-size:.66rem; letter-spacing:.12em;
+  color:var(--ink-3); display:block; margin-bottom:2px;
+}
+.tab .tname{font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.18rem; line-height:1.12; display:block}
+.tab .tcost{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink-2); margin-top:3px; display:block}
+.tab:hover{background:var(--surface-2)}
+.tab[aria-selected="true"]{
+  background:var(--surface); border-color:var(--line);
+  box-shadow:inset 0 3px 0 0 var(--accent);
+}
+.tab[aria-selected="true"] .lane{color:var(--accent-ink)}
+.tab[data-rec="1"]::after{
+  content:"★"; position:absolute; top:8px; right:11px; color:var(--gold); font-size:.85rem;
+}
+.panel{
+  background:var(--surface); border:1px solid var(--line); border-radius:0 12px 12px 12px;
+  padding:24px; box-shadow:var(--shadow); margin-top:-1px;
+}
+@media (max-width:640px){
+  .tab{border-radius:10px; border-bottom-color:var(--line)}
+  .panel{border-radius:12px; margin-top:10px}
+}
+
+/* three-question grid */
+.q3{display:grid; gap:1px; background:var(--line); border:1px solid var(--line); border-radius:10px; overflow:hidden; margin-bottom:22px}
+@media (min-width:660px){ .q3{grid-template-columns:repeat(3,1fr)} }
+.q3 .cell{background:var(--surface-2); padding:15px 17px}
+.q3 .cell .k{font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.02rem; color:var(--accent-ink); margin-bottom:5px; display:flex; align-items:center; gap:7px}
+.q3 .cell .v{font-size:.9rem; color:var(--ink); line-height:1.5}
+.q3 .cell .v b{font-family:"Barlow Condensed", "Arial Narrow", sans-serif; font-size:1.22rem; font-weight:700; font-variant-numeric:tabular-nums; line-height:1.15; display:inline-block; margin-bottom:2px}
+
+/* day bar */
+.daybar-wrap{margin-bottom:8px}
+.daybar{display:flex; height:30px; border-radius:6px; overflow:hidden; background:var(--surface-2); gap:2px}
+.daybar .seg{position:relative; display:flex; align-items:center; justify-content:center; min-width:2px}
+.daybar .seg span{
+  font-family:"IBM Plex Mono",monospace; font-size:.68rem; font-weight:600; color:#fff;
+  white-space:nowrap; overflow:hidden; padding:0 4px; text-shadow:0 1px 1px rgba(0,0,0,.28);
+}
+.seg.train{background:var(--s1)} .seg.transit{background:var(--s2)}
+.seg.activity{background:var(--s3)} .seg.pause{background:var(--s4)}
+.daybar-scale{display:flex; justify-content:space-between; margin-top:5px}
+.daybar-scale span{font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-3)}
+.legend{display:flex; gap:14px; flex-wrap:wrap; margin-top:10px}
+.legend .item{display:flex; align-items:center; gap:6px; font-size:.76rem; color:var(--ink-2)}
+.legend .sw{width:11px; height:11px; border-radius:3px; flex:none}
+
+/* schedule */
+.schedule{list-style:none; margin:20px 0 0; padding:0}
+.schedule li{display:grid; grid-template-columns:62px 1fr; gap:14px; padding:9px 0; border-top:1px solid var(--line)}
+.schedule li:first-child{border-top:0}
+.schedule .t{font-family:"IBM Plex Mono",monospace; font-size:.83rem; font-weight:600; color:var(--accent-ink); padding-top:1px; font-variant-numeric:tabular-nums}
+.schedule .d{font-size:.92rem}
+.schedule .d small{display:block; color:var(--ink-3); font-size:.78rem; margin-top:1px}
+
+.panel-foot{display:grid; gap:18px; margin-top:22px; padding-top:18px; border-top:1px solid var(--line)}
+@media (min-width:720px){ .panel-foot{grid-template-columns:1fr 1fr} }
+.panel-foot h4{font-size:1.05rem; margin-bottom:5px}
+.panel-foot p{margin:0; font-size:.87rem; color:var(--ink-2)}
+
+/* ---------- calculator ---------- */
+.calc{display:grid; gap:20px; align-items:start}
+@media (min-width:840px){ .calc{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)} }
+.card{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px; box-shadow:var(--shadow)}
+.field{margin-bottom:17px}
+.field:last-child{margin-bottom:0}
+.field > label, .field .flabel{
+  display:block; font-family:"IBM Plex Mono",monospace; font-size:.68rem;
+  letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3); margin-bottom:8px;
+}
+.opts{display:flex; flex-wrap:wrap; gap:7px}
+.opt{position:relative}
+.opt input{position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer}
+.opt span{
+  display:inline-flex; align-items:center; gap:7px; cursor:pointer;
+  border:1px solid var(--line); background:var(--surface-2); color:var(--ink-2);
+  border-radius:8px; padding:7px 11px; font-size:.83rem; transition:.14s;
+}
+.opt span .p{font-family:"IBM Plex Mono",monospace; font-size:.78rem; color:var(--ink-3); font-variant-numeric:tabular-nums}
+.opt input:checked + span{
+  border-color:var(--accent); background:var(--accent-soft); color:var(--ink); font-weight:500;
+}
+.opt input:checked + span .p{color:var(--accent-ink)}
+.opt input:focus-visible + span{outline:2px solid var(--accent); outline-offset:2px}
+.opt input:disabled + span{opacity:.45; cursor:not-allowed}
+select, input[type="number"]{
+  font:inherit; font-size:.88rem; color:var(--ink); background:var(--surface-2);
+  border:1px solid var(--line); border-radius:8px; padding:8px 10px; width:100%; max-width:320px;
+}
+.inline-fields{display:flex; gap:14px; flex-wrap:wrap}
+.inline-fields .field{flex:1 1 200px; margin-bottom:0}
+
+.readout{position:sticky; top:calc(env(safe-area-inset-top, 0px) + 70px)}
+.meter{margin-bottom:16px}
+.meter-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px; margin-bottom:6px}
+.meter-top .ml{font-size:.8rem; color:var(--ink-2)}
+.meter-top .mv{font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.45rem; font-variant-numeric:tabular-nums}
+.meter-bar{position:relative; height:12px; border-radius:100px; background:var(--surface-2); border:1px solid var(--line); overflow:hidden}
+.meter-fill{height:100%; border-radius:100px 4px 4px 100px; transition:width .25s ease}
+.meter-fill.good{background:var(--good)} .meter-fill.warn{background:var(--warn)} .meter-fill.crit{background:var(--crit)}
+.meter-limit{position:absolute; top:-3px; bottom:-3px; width:2px; background:var(--ink-2); opacity:.75}
+.meter-foot{display:flex; justify-content:space-between; margin-top:5px; font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-3)}
+.totals{border-top:1px solid var(--line); margin-top:4px; padding-top:14px}
+.totals .row{display:flex; justify-content:space-between; gap:12px; padding:5px 0; font-size:.87rem}
+.totals .row .v{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; font-weight:500}
+.totals .row.big{border-top:1px solid var(--line); margin-top:8px; padding-top:11px; font-size:1rem}
+.totals .row.big .k{font-weight:600}
+.totals .row.big .v{font-family:"Barlow Condensed",sans-serif; font-size:1.5rem; font-weight:700}
+.verdict{margin-top:14px; padding:11px 13px; border-radius:9px; font-size:.85rem; line-height:1.45}
+.verdict.good{background:var(--good-soft); color:var(--good)}
+.verdict.warn{background:var(--warn-soft); color:var(--warn)}
+.verdict.crit{background:var(--crit-soft); color:var(--crit)}
+.verdict b{font-weight:600}
+
+/* ---------- price chart ---------- */
+.chart{background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:20px; box-shadow:var(--shadow); position:relative}
+.bars{display:flex; flex-direction:column; gap:9px; margin-top:4px}
+.bar-row{display:grid; grid-template-columns:minmax(120px,215px) minmax(0,1fr) 92px; gap:12px; align-items:center; cursor:default; border-radius:6px}
+.bar-row:hover, .bar-row:focus-visible{background:var(--surface-2)}
+.bar-label{font-size:.85rem; line-height:1.3}
+.bar-label small{display:block; color:var(--ink-3); font-size:.72rem}
+.bar-track{
+  position:relative; height:22px; background:
+    linear-gradient(90deg, var(--line) 0 1px, transparent 1px) repeat-x;
+  background-size:25% 100%;
+  border-left:1px solid var(--line-strong);
+}
+.bar-track::after{
+  content:""; position:absolute; left:75%; top:-4px; bottom:-4px; width:0;
+  border-left:2px dashed var(--ink-3);
+}
+.bar-fill{height:100%; border-radius:0 4px 4px 0; min-width:2px}
+.bar-fill.good{background:var(--good)} .bar-fill.warn{background:var(--warn)} .bar-fill.crit{background:var(--crit)}
+.bar-val{
+  position:absolute; top:0; height:22px; display:flex; align-items:center; padding-left:7px;
+  font-family:"IBM Plex Mono",monospace; font-size:.78rem; font-weight:600; font-variant-numeric:tabular-nums;
+}
+.bar-row .bar-status{justify-self:start}
+.axis{display:flex; margin-top:7px; margin-left:0}
+.axis .sp{flex:0 0 auto}
+.axis-scale{position:relative; height:16px}
+.axis-scale span{position:absolute; transform:translateX(-50%); font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-3)}
+.axis-scale span:first-child{transform:none}
+.axis-scale span:last-child{transform:translateX(-100%)}
+.limit-tag{
+  position:absolute; transform:translateX(-50%); top:0;
+  font-family:"IBM Plex Mono",monospace; font-size:.66rem; color:var(--ink-2); white-space:nowrap;
+}
+@media (max-width:620px){
+  .bar-row{grid-template-columns:1fr; gap:4px; padding:7px 0; border-top:1px solid var(--line)}
+  .bar-row .bar-status{margin-top:2px}
+}
+.tip{
+  position:absolute; z-index:20; pointer-events:none; opacity:0;
+  background:var(--ink); color:var(--surface); border-radius:8px; padding:9px 11px;
+  font-size:.78rem; line-height:1.45; max-width:250px; transition:opacity .12s;
+  box-shadow:0 8px 24px -8px rgba(0,0,0,.5);
+}
+.tip[data-show="1"]{opacity:1}
+.tip b{display:block; font-size:.83rem; margin-bottom:3px}
+.tip .tr{display:flex; justify-content:space-between; gap:12px; opacity:.85}
+
+/* ---------- activity cards ---------- */
+.filters{display:flex; gap:7px; flex-wrap:wrap; margin-bottom:18px}
+.filter{
+  cursor:pointer; border:1px solid var(--line); background:var(--surface);
+  border-radius:100px; padding:6px 13px; font-size:.82rem; color:var(--ink-2); transition:.14s;
+}
+.filter:hover{background:var(--surface-2)}
+.filter[aria-pressed="true"]{background:var(--ink); border-color:var(--ink); color:var(--ground); font-weight:500}
+.grid-cards{display:grid; gap:14px; grid-template-columns:repeat(auto-fill, minmax(268px,1fr))}
+.acard{background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:16px 17px; display:flex; flex-direction:column; gap:9px}
+.acard .top{display:flex; justify-content:space-between; align-items:flex-start; gap:10px}
+.acard h4{font-size:1.14rem; line-height:1.14}
+.acard .price{font-family:"Barlow Condensed",sans-serif; font-weight:700; font-size:1.45rem; line-height:1; white-space:nowrap; font-variant-numeric:tabular-nums}
+.acard dl{margin:0; display:grid; grid-template-columns:auto 1fr; gap:3px 10px; font-size:.82rem}
+.acard dt{color:var(--ink-3); font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.06em; text-transform:uppercase; padding-top:3px}
+.acard dd{margin:0; color:var(--ink-2)}
+.acard .tags{display:flex; gap:5px; flex-wrap:wrap; margin-top:auto; padding-top:4px}
+.acard .note{font-size:.78rem; color:var(--ink-2); background:var(--surface-2); border-radius:7px; padding:7px 9px; border-left:2px solid var(--line-strong)}
+.acard .note.flag{border-left-color:var(--warn); background:var(--warn-soft); color:var(--warn)}
+
+/* ---------- checklist ---------- */
+.checklist{display:grid; gap:14px; grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.phase{background:var(--surface); border:1px solid var(--line); border-radius:11px; padding:17px}
+.phase .when{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.11em; text-transform:uppercase; color:var(--accent-ink); margin-bottom:9px}
+.phase ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px}
+.phase li label{display:flex; gap:10px; align-items:flex-start; font-size:.86rem; cursor:pointer; line-height:1.45}
+.phase li input{margin:3px 0 0; accent-color:var(--accent); width:16px; height:16px; flex:none; cursor:pointer}
+.phase li input:checked + span{color:var(--ink-3); text-decoration:line-through; text-decoration-thickness:1px}
+.phase li span small{display:block; text-decoration:none; color:var(--ink-3); font-size:.76rem}
+.reset-btn{margin-top:14px; background:none; border:1px solid var(--line); border-radius:7px; padding:6px 11px; font-size:.78rem; color:var(--ink-2); cursor:pointer}
+.reset-btn:hover{background:var(--surface-2)}
+
+/* ---------- caveats ---------- */
+.caveats{display:grid; gap:11px; grid-template-columns:repeat(auto-fit,minmax(290px,1fr))}
+.caveat{background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--warn); border-radius:9px; padding:13px 15px}
+.caveat b{display:block; font-family:"Barlow Condensed",sans-serif; font-size:1.05rem; margin-bottom:3px}
+.caveat p{margin:0; font-size:.84rem; color:var(--ink-2)}
+
+footer{border-top:1px solid var(--line); padding-block:26px; color:var(--ink-3); font-size:.8rem}
+footer p{margin:0 0 6px; max-width:70ch}
+
+.weather-toggle{display:flex; gap:3px; background:var(--surface-2); border:1px solid var(--line); border-radius:8px; padding:3px}
+.weather-toggle button{
+  border:0; background:none; cursor:pointer; border-radius:6px; padding:5px 10px;
+  font-size:.79rem; color:var(--ink-2);
+}
+.weather-toggle button[aria-pressed="true"]{background:var(--surface); color:var(--ink); font-weight:600; box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.weather-note{
+  margin-top:14px; padding:11px 14px; border-radius:9px; font-size:.87rem;
+  background:var(--accent-soft); color:var(--ink); border:1px solid color-mix(in srgb, var(--accent) 25%, transparent);
+}
+.table-toggle{
+  background:none; border:1px solid var(--line); border-radius:7px; padding:5px 10px;
+  font-size:.76rem; color:var(--ink-2); cursor:pointer; margin-left:auto;
+}
+.table-toggle:hover{background:var(--surface-2)}
+.data-table{width:100%; border-collapse:collapse; margin-top:14px; font-size:.83rem}
+.data-table th, .data-table td{text-align:left; padding:7px 10px; border-bottom:1px solid var(--line)}
+.data-table th{font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-3); font-weight:500}
+.data-table td.num{font-family:"IBM Plex Mono",monospace; font-variant-numeric:tabular-nums; text-align:right}
+.table-scroll{overflow-x:auto}
+
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:.001ms !important; transition-duration:.001ms !important}
+}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-in">
+    <div class="wordmark">
+      <span class="rings" aria-hidden="true">◎</span>
+      <b>Olympia-Tag London</b>
+      <span>LK Sport &middot; Tagesausflug</span>
+    </div>
+    <nav class="jump" aria-label="Seitenabschnitte">
+      <a href="#anreise">Anreise</a>
+      <a href="#varianten">Varianten</a>
+      <a href="#budget">Budget</a>
+      <a href="#aktivitaeten">Aktivitäten</a>
+      <a href="#buchung">Buchung</a>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="eyebrow">Eastbourne → London &middot; Recherchestand 14.09.2026</p>
+    <h1>Ein Tag Sport<br>im Olympiapark.</h1>
+    <p class="lede">Drei durchgerechnete Tagesprogramme für <strong>15 Personen</strong> mit einem Limit von <strong>15 £ pro Person für die Aktivität</strong>. Die Empfehlung: ein Olympia-Tag im Queen Elizabeth Olympic Park – kostenlose Laufblöcke im Park plus <em>eine</em> bezahlte Olympia-Aktivität, zusammen rund 8 £.</p>
+
+    <dl class="facts">
+      <div class="fact">
+        <dt>Wo</dt>
+        <dd>Stratford, E20
+          <span class="sub">Queen Elizabeth Olympic Park – alle Venues auf einem Gelände</span>
+        </dd>
+      </div>
+      <div class="fact">
+        <dt>Wie lange</dt>
+        <dd>ca. 12 h
+          <span class="sub">Tür zu Tür: ab Eastbourne 8:15 – zurück ca. 20:30</span>
+        </dd>
+      </div>
+      <div class="fact">
+        <dt>Aktivität kostet</dt>
+        <dd>~8,00 £
+          <span class="sub">Schwimmen 7,90 £ oder VeloPark 7,60 £ – Limit 15 £ ✓</span>
+        </dd>
+      </div>
+      <div class="fact">
+        <dt>Plus Anreise</dt>
+        <dd>~19 £
+          <span class="sub">Zug ab ca. 10 £ + ÖPNV-Tagescap 8,90 £ – nicht im 15-£-Limit</span>
+        </dd>
+      </div>
+    </dl>
+
+    <div class="rec">
+      <div>
+        <span class="chip gold"><span class="dot"></span>Empfehlung</span>
+        <h3 style="margin-top:8px">Variante 1 — Olympia-Tag im Queen Elizabeth Olympic Park</h3>
+        <p>Kostenlose Laufrunden entlang der Kanäle und um die Wettkampfstätten, Picknick im Park, danach Schwimmen im Olympia-Becken oder Pay-and-Ride auf der Olympia-Radstrecke. Alles auf einem Gelände, ein einziger Transfer.</p>
+      </div>
+      <div class="why">
+        <p class="eyebrow" style="margin:0 0 7px">Warum diese</p>
+        <ul>
+          <li>Stärkster Fachbezug: Olympia-Erbe, Trainingslehre, Ausdauer</li>
+          <li>Echtes Wettkampf-Venue statt Freizeitangebot</li>
+          <li>Gratis- und Bezahlteile kombinierbar → viel Budgetpuffer</li>
+          <li>Indoor-Alternative (Copper Box) direkt nebenan als Plan B</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANREISE -->
+  <section id="anreise">
+    <div class="sec-head">
+      <h2>Wo ist es – und wie kommt der Kurs hin?</h2>
+      <p>Eine Umsteigeverbindung. Die Zeiten sind Fahrzeiten, ohne Puffer für 15 Personen.</p>
+    </div>
+
+    <div class="rail">
+      <div class="stop">
+        <div class="node"><span class="pip"></span></div>
+        <div class="name">Eastbourne</div>
+        <div class="meta">Abfahrt ca. 8:15–8:30</div>
+      </div>
+      <div class="leg">
+        <div class="track"></div>
+        <div class="lab"><b>1 h 27–1 h 40</b>Southern, direkt<br>56 Züge/Tag &middot; Advance ab ~9–11 £</div>
+      </div>
+      <div class="stop hub">
+        <div class="node"><span class="pip"></span></div>
+        <div class="name">London Victoria</div>
+        <div class="meta">Ankunft ca. 10:00</div>
+      </div>
+      <div class="leg victoria">
+        <div class="track"></div>
+        <div class="lab"><b>30–45 Min</b>Victoria → Green Park → Jubilee<br>2,80 £/Fahrt &middot; Tagescap 8,90 £</div>
+      </div>
+      <div class="stop hub">
+        <div class="node"><span class="pip"></span></div>
+        <div class="name">Stratford</div>
+        <div class="meta">Olympic Park, 10 Min zu Fuß</div>
+      </div>
+      <div class="leg walk">
+        <div class="track"></div>
+        <div class="lab"><b>10–15 Min</b>alternativ ab Victoria<br>zu Fuß</div>
+      </div>
+      <div class="stop">
+        <div class="node"><span class="pip"></span></div>
+        <div class="name">Hyde Park</div>
+        <div class="meta">Variante 2 – ohne ÖPNV</div>
+      </div>
+    </div>
+    <p class="rail-note">Rückfahrt: häufige Direktzüge bis spätabends. Für einen entspannten Tag Rückfahrt gegen 18:00–19:30 ab Victoria, Ankunft Eastbourne ca. 19:30–21:00. Bei Southern nach <strong>GroupSave</strong>/Gruppenrabatt für 15 Personen fragen.</p>
+  </section>
+
+  <!-- VARIANTEN -->
+  <section id="varianten">
+    <div class="sec-head">
+      <h2>Drei Varianten</h2>
+      <p>Jede beantwortet dieselben drei Fragen: Wo, wie lange, was kostet es?</p>
+      <div class="weather-toggle" role="group" aria-label="Wetterlage">
+        <button type="button" id="wDry" aria-pressed="true">☀ Trocken</button>
+        <button type="button" id="wWet" aria-pressed="false">☂ Regen</button>
+      </div>
+    </div>
+
+    <div class="weather-note" id="weatherNote">Bei trockenem Wetter ist <strong>Variante 1</strong> die Empfehlung – Outdoor-Blöcke und Olympia-Venue lassen sich voll ausspielen.</div>
+
+    <div class="tabs" role="tablist" aria-label="Tagesvarianten" style="margin-top:20px">
+      <button class="tab" role="tab" id="tab-1" aria-controls="panelHost" aria-selected="true" data-rec="1" tabindex="0">
+        <span class="lane">VARIANTE 1</span>
+        <span class="tname">Olympia-Tag</span>
+        <span class="tcost">Queen Elizabeth Olympic Park · ~8 £</span>
+      </button>
+      <button class="tab" role="tab" id="tab-2" aria-controls="panelHost" aria-selected="false" tabindex="-1">
+        <span class="lane">VARIANTE 2</span>
+        <span class="tname">Royal-Parks-Rad- &amp; Lauftag</span>
+        <span class="tcost">Hyde Park &amp; Regent's Park · 4–10 £</span>
+      </button>
+      <button class="tab" role="tab" id="tab-3" aria-controls="panelHost" aria-selected="false" tabindex="-1">
+        <span class="lane">VARIANTE 3</span>
+        <span class="tname">Hallensport-Tag</span>
+        <span class="tcost">Copper Box / Aquatics · 8–12 £</span>
+      </button>
+    </div>
+
+    <div class="panel" id="panelHost"></div>
+  </section>
+
+  <!-- BUDGET -->
+  <section id="budget">
+    <div class="sec-head">
+      <h2>Was kostet der Tag wirklich?</h2>
+      <p>Aktivitäten anklicken, Anreise wählen – der Rechner zeigt sofort, ob das 15-£-Limit hält und was die Gruppe insgesamt zahlt.</p>
+    </div>
+
+    <div class="calc">
+      <div class="card">
+        <div class="field">
+          <span class="flabel">Aktivitäten vor Ort</span>
+          <div class="opts" id="actOpts"></div>
+        </div>
+
+        <div class="inline-fields">
+          <div class="field">
+            <label for="trainSel">Zug Eastbourne ⇄ Victoria</label>
+            <select id="trainSel">
+              <option value="10">Advance, vorab gebucht — 10,00 £</option>
+              <option value="15">Gruppen-/Mischpreis — 15,00 £</option>
+              <option value="20">Am Reisetag gekauft — 20,00 £</option>
+              <option value="0">Separat kalkulieren — 0,00 £</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="transitSel">ÖPNV in London</label>
+            <select id="transitSel">
+              <option value="8.9">Tube-Tagescap — 8,90 £</option>
+              <option value="5.6">2 Einzelfahrten — 5,60 £</option>
+              <option value="0">Zu Fuß / nur Leihrad — 0,00 £</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="inline-fields" style="margin-top:17px">
+          <div class="field">
+            <label for="peopleInp">Teilnehmende</label>
+            <input type="number" id="peopleInp" min="1" max="60" step="1" value="15">
+          </div>
+          <div class="field">
+            <span class="flabel">Rabatt</span>
+            <label class="opt" style="display:inline-block">
+              <input type="checkbox" id="studentChk">
+              <span>Student-Rabatt Santander <span class="p">1,75 £ statt 3,50 £</span></span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="card readout">
+        <div class="meter">
+          <div class="meter-top">
+            <span class="ml">Aktivitätskosten p. P.</span>
+            <span class="mv mono" id="actVal">7,90 £</span>
+          </div>
+          <div class="meter-bar">
+            <div class="meter-fill good" id="actFill" style="width:39.5%"></div>
+            <div class="meter-limit" style="left:75%"></div>
+          </div>
+          <div class="meter-foot"><span>0 £</span><span>Limit 15 £</span><span>20 £</span></div>
+        </div>
+
+        <div class="totals">
+          <div class="row"><span class="k">Aktivitäten</span><span class="v" id="sumAct">7,90 £</span></div>
+          <div class="row"><span class="k">Zug Eastbourne ⇄ London</span><span class="v" id="sumTrain">10,00 £</span></div>
+          <div class="row"><span class="k">ÖPNV London</span><span class="v" id="sumTransit">8,90 £</span></div>
+          <div class="row big"><span class="k">Pro Person</span><span class="v" id="sumPerson">26,80 £</span></div>
+          <div class="row"><span class="k" id="groupLabel">Gruppe (15 Personen)</span><span class="v" id="sumGroup">402,00 £</span></div>
+        </div>
+
+        <div class="verdict good" id="verdict"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- AKTIVITÄTEN -->
+  <section id="aktivitaeten">
+    <div class="sec-head">
+      <h2>Preisvergleich der Aktivitäten</h2>
+      <p>Alle Preise pro Person. Die gestrichelte Linie markiert das 15-£-Limit.</p>
+      <button class="table-toggle" id="tableToggle" aria-expanded="false">Als Tabelle anzeigen</button>
+    </div>
+
+    <div class="chart" id="chart">
+      <div class="legend" style="margin:0 0 14px">
+        <span class="legend item"><span class="sw" style="background:var(--good)"></span>Puffer bis 12 £</span>
+        <span class="legend item"><span class="sw" style="background:var(--warn)"></span>Knapp: 12–15 £</span>
+        <span class="legend item"><span class="sw" style="background:var(--crit)"></span>Über dem Limit</span>
+      </div>
+      <div class="bars" id="bars" role="list"></div>
+      <div class="bar-row" aria-hidden="true" style="margin-top:8px; cursor:default">
+        <div></div>
+        <div class="axis-scale" id="axisScale"></div>
+        <div></div>
+      </div>
+      <div class="tip" id="tip" role="status"></div>
+    </div>
+
+    <div class="table-scroll" id="tableWrap" hidden>
+      <table class="data-table" id="dataTable">
+        <caption class="eyebrow" style="text-align:left; padding:8px 0">Aktivitäten, Preise pro Person</caption>
+        <thead><tr><th>Aktivität</th><th>Ort</th><th>Dauer</th><th style="text-align:right">Preis p. P.</th><th>Budget</th></tr></thead>
+        <tbody id="dataBody"></tbody>
+      </table>
+    </div>
+
+    <div class="sec-head" style="margin-top:38px">
+      <h2>Alle Optionen im Detail</h2>
+      <p>Gefiltert nach dem, was für den Kurs zählt.</p>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Aktivitäten filtern">
+      <button class="filter" data-f="all" aria-pressed="true">Alle</button>
+      <button class="filter" data-f="free" aria-pressed="false">Gratis</button>
+      <button class="filter" data-f="olympic" aria-pressed="false">Olympia-Erbe</button>
+      <button class="filter" data-f="indoor" aria-pressed="false">Wetterfest (indoor)</button>
+      <button class="filter" data-f="central" aria-pressed="false">Zentral ab Victoria</button>
+      <button class="filter" data-f="cheap" aria-pressed="false">≤ 8 £</button>
+    </div>
+    <div class="grid-cards" id="cards"></div>
+  </section>
+
+  <!-- BUCHUNG -->
+  <section id="buchung">
+    <div class="sec-head">
+      <h2>Was jetzt zu tun ist</h2>
+      <p>Abhaken bleibt im Browser gespeichert – für die Planungsrunde im Kurs.</p>
+    </div>
+    <div class="checklist" id="checklist"></div>
+    <button class="reset-btn" id="resetChecks" type="button">Alle Haken zurücksetzen</button>
+
+    <div class="sec-head" style="margin-top:38px">
+      <h2>Wo die Planung kippen kann</h2>
+      <p>Offene Punkte, die vor der Buchung geklärt gehören.</p>
+    </div>
+    <div class="caveats">
+      <div class="caveat"><b>Schwimmpreis nicht offiziell bestätigt</b><p>Das Aquatics Centre veröffentlicht keine statische Preistabelle mehr. 7,90 £ (Peak) / 7,30 £ (Off-Peak) stammen aus Sekundärquellen; eine andere nennt „ab 5,50 £". Live über Everyone Active oder telefonisch prüfen: 0208 536 3150.</p></div>
+      <div class="caveat"><b>Jugendtarif greift nicht</b><p>Der ermäßigte Tarif im Aquatics Centre gilt nur bis 15 Jahre. Ein Leistungskurs mit 17–18-Jährigen zahlt den Erwachsenenpreis.</p></div>
+      <div class="caveat"><b>Altersgrenzen und Formulare</b><p>Santander Cycles setzt teils 18 Jahre voraus (für den Studentenrabatt bestätigt) – für Unter-18 vorab bei TfL klären. Helme werden nicht gestellt. Im VeloPark sind für Unter-18 unterschriebene Einverständniserklärungen Pflicht.</p></div>
+      <div class="caveat"><b>Gruppengröße 15</b><p>Der Velodrome-Taster ist auf 6 Plätze pro Buchung begrenzt und kostet 46 £ – als Standardbuchung ausgeschlossen. Größere Gruppen nur als Sonderbuchung (LVvelopark@gll.org).</p></div>
+      <div class="caveat"><b>Saison und Sanierung</b><p>Serpentine Lido und die Hampstead-Teiche sind im Wesentlichen Juni bis Mitte September geöffnet. Die 400-m-Bahn im Battersea Park (Millennium Arena) ist Juli–September 2026 wegen Sanierung geschlossen.</p></div>
+      <div class="caveat"><b>parkrun nur samstags</b><p>Gratis, 5 km, Start 9:00 – aber Voranmeldung nötig und nur am Samstag. Achtung: Der gleichnamige „Queen Elizabeth parkrun" liegt in Hampshire, nicht im Olympic Park. Im Park selbst gibt es RunThrough-Events und die London Marathon Community Track.</p></div>
+    </div>
+  </section>
+
+  <footer>
+    <p><strong>Budgetabgrenzung:</strong> Das 15-£-Limit gilt für die Aktivität. Zug (~10–20 £) und Londoner ÖPNV kommen zusätzlich hinzu – nur mit Santander Cycles lässt sich der innerstädtische ÖPNV weitgehend einsparen.</p>
+    <p>Preisstand der Recherche: 14.09.2026. Better/GLL hat zum 1. April 2026 Preise erhöht. Copper-Box-Courtpreise sind Richtwerte aus den Better-Standardtarifen und über die Better-App zu bestätigen.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var nf = new Intl.NumberFormat("de-DE", {minimumFractionDigits:2, maximumFractionDigits:2});
+  function gbp(v){ return nf.format(v) + " £"; }
+
+  /* ---------------- data ---------------- */
+
+  var ACTIVITIES = [
+    { id:"run",    name:"Laufrunde & Outdoor-Gym", where:"Olympic Park / Royal Parks", price:0,
+      dur:"60–90 Min", book:"keine Buchung", pe:"Ausdauer, Grundlagentraining",
+      free:true, indoor:false, olympic:true, central:true },
+    { id:"parkrun", name:"parkrun (5 km)", where:"nächstgelegenes Londoner Event", price:0,
+      dur:"Start 9:00 Uhr, samstags", book:"Voranmeldung nötig", pe:"Wettkampfnahe 5-km-Erfahrung",
+      free:true, indoor:false, olympic:false, central:false,
+      note:"Nur samstags. Der gleichnamige „Queen Elizabeth parkrun“ liegt in Hampshire – nicht im Olympic Park.", flag:true },
+    { id:"santander", name:"Santander Cycles Tagespass", where:"Stationen ab Victoria, Royal Parks", price:3.5,
+      dur:"24 h, jede Fahrt < 60 Min", book:"keine – App oder Terminal", pe:"Ausdauer, aktive Mobilität, Streckenplanung",
+      free:false, indoor:false, olympic:false, central:true,
+      note:"Studierende ab 18 zahlen 1,75 £. Teils 18+ vorausgesetzt, Helme werden nicht gestellt.", flag:true },
+    { id:"lido", name:"Serpentine Lido", where:"Hyde Park", price:3.25, priceNote:"Konzession 16–17 J. · Erwachsene 5,95 £ · Volltag 7,50 £",
+      dur:"1 Session", book:"vor Ort", pe:"Open-Water-Erfahrung, Ausdauer",
+      free:false, indoor:false, olympic:false, central:true,
+      note:"Nur Sommer (Juni bis Mitte September), Wasser unbeheizt bei ca. 17–20 °C.", flag:true },
+    { id:"tt", name:"Tischtennis (Park Sports)", where:"Hyde Park / Regent's Park", price:7, priceNote:"pro Tisch und Stunde, inkl. Ausleihe",
+      dur:"1 Stunde", book:"vor Ort", pe:"Rückschlagspiele, Reaktion",
+      free:false, indoor:false, olympic:false, central:true },
+    { id:"velo", name:"VeloPark Pay-and-Ride", where:"Lee Valley VeloPark, Olympic Park", price:7.6, priceNote:"mit eigenem Rad, Straßenrundkurs",
+      dur:"Session vor Ort", book:"am Tag oder bis 7 Tage vorher", pe:"Radsport, Trainingslehre, Olympia-Erbe",
+      free:false, indoor:false, olympic:true, central:false,
+      note:"Unter-18 müssen eine unterschriebene Einverständniserklärung mitbringen.", flag:true },
+    { id:"swim", name:"Schwimmen im Olympia-Becken", where:"London Aquatics Centre, Olympic Park", price:7.9, priceNote:"Peak · Off-Peak 7,30 £ · Erwachsenentarif ab 16 J.",
+      dur:"ca. 1 h + Umkleide", book:"Everyone-Active-Karte + Gruppenbuchung vorab", pe:"Schwimmtechnik, Ausdauer, Olympia-Erbe",
+      free:false, indoor:true, olympic:true, central:false,
+      note:"Preis nicht offiziell bestätigt – live über Everyone Active oder unter 0208 536 3150 prüfen.", flag:true },
+    { id:"copper", name:"Copper Box Arena – Court", where:"Copper Box Arena, Olympic Park", price:8, priceNote:"Richtwert 6–10 £/Std, auf die Gruppe verteilt günstiger",
+      dur:"1 Stunde", book:"Better-App, Registrierung nötig", pe:"Badminton, Basketball, Tischtennis – Mannschaftssport",
+      free:false, indoor:true, olympic:true, central:false,
+      note:"Court-Preise sind Richtwerte aus den Better-Standardtarifen – in der Better-App bestätigen.", flag:true },
+    { id:"wimb", name:"Wassersport Wimbledon Park", where:"Wimbledon Park, SW London", price:10, priceNote:"80 £ je 8 Personen/Stunde, min. 8 TN",
+      dur:"1 Stunde", book:"vorab anfragen", pe:"Paddeltechnik, Teamkoordination",
+      free:false, indoor:false, olympic:false, central:false },
+    { id:"lvtennis", name:"Lee Valley Tennis (outdoor)", where:"Hockey & Tennis Centre, Olympic Park", price:10.4, priceNote:"unter 18 J./Std · Erwachsene 13,00 £ · Indoor 25,90–32,50 £",
+      dur:"1 Stunde pro Court", book:"Better-App", pe:"Tennis, Hockey auf Olympia-Kunstrasen",
+      free:false, indoor:false, olympic:true, central:false },
+    { id:"batter", name:"Tennisplatz Battersea Park", where:"Battersea Park, 1 Station ab Victoria", price:11.6, priceNote:"pro Court und Stunde, Nicht-Mitglieder",
+      dur:"1 Stunde pro Court", book:"Enable Leisure", pe:"Tennis; 400-m-Bahn im Park",
+      free:false, indoor:false, olympic:false, central:true,
+      note:"Die 400-m-Leichtathletikbahn (Millennium Arena) ist Juli–September 2026 wegen Sanierung geschlossen.", flag:true },
+    { id:"velohire", name:"VeloPark inkl. Leihrad (U18)", where:"Lee Valley VeloPark, Olympic Park", price:16.9, priceNote:"7,60 £ Eintritt + 9,30 £ Rad und Helm",
+      dur:"Session vor Ort", book:"am Tag oder bis 7 Tage vorher", pe:"Radsport ohne eigenes Rad",
+      free:false, indoor:false, olympic:true, central:false,
+      note:"Knapp über dem 15-£-Limit. Mit eigenem oder ohne Leihrad bleibt es bei 7,60 £.", flag:true },
+    { id:"velodrome", name:"Velodrome-Taster (Bahnrad)", where:"Lee Valley VeloPark, Olympic Park", price:46, priceNote:"ab 12 J., Mindestgröße 145 cm",
+      dur:"Taster-Session", book:"max. 6 Plätze pro Buchung", pe:"Bahnradsport im Olympia-Velodrom",
+      free:false, indoor:true, olympic:true, central:false, offChart:true,
+      note:"Für 15 Personen und das Budget ungeeignet. Größere Gruppen nur als Sonderbuchung über LVvelopark@gll.org.", flag:true }
+  ];
+
+  var VARIANTS = {
+    1: {
+      name:"Olympia-Tag im Queen Elizabeth Olympic Park",
+      rec:true,
+      where:"Queen Elizabeth Olympic Park, Stratford E20",
+      whereSub:"Aquatics Centre, VeloPark, Copper Box und Parkland auf einem Gelände. Ab Victoria 30–45 Min mit Tube oder Bahn.",
+      dur:"ca. 6 h vor Ort",
+      durSub:"11:00 bis 17:00 im Park. Tür zu Tür ab Eastbourne rund 12 Stunden.",
+      cost:"~8,00 £ p. P.",
+      costSub:"Nur die eine bezahlte Aktivität: Schwimmen 7,90 £ oder VeloPark 7,60 £. Laufblock und Park sind gratis.",
+      day:[
+        {t:"train", h:1.75, l:"Bahn"},
+        {t:"transit", h:0.75, l:"Tube"},
+        {t:"activity", h:1.5, l:"Laufblock"},
+        {t:"pause", h:1, l:"Picknick"},
+        {t:"activity", h:3.5, l:"Schwimmen / VeloPark + Venues"},
+        {t:"transit", h:0.75, l:"Tube"},
+        {t:"train", h:1.75, l:"Bahn"}
+      ],
+      start:"8:15", end:"20:30",
+      schedule:[
+        ["8:15","Abfahrt Eastbourne","Southern, direkt nach London Victoria"],
+        ["10:00","Ankunft Victoria","weiter mit Tube oder Bahn nach Stratford"],
+        ["11:00","Ankunft Olympic Park","Aufwärmen, Laufrunde entlang der Kanäle und um die Venues, Outdoor-Gym – kostenlos"],
+        ["12:30","Picknick im Park","mitgebracht, spart Budget"],
+        ["13:30","Hauptaktivität","Schwimmen im London Aquatics Centre (~7,90 £) oder Pay-and-Ride im VeloPark (7,60 £)"],
+        ["15:30","Freie Zeit","Park, Venues, optional Court in der Copper Box"],
+        ["17:00","Rückweg nach Stratford","Bahn oder Tube nach Victoria"],
+        ["18:00","Rückfahrt nach Eastbourne","Ankunft ca. 19:30–20:30"]
+      ],
+      pe:"Olympia-Erbe am Originalschauplatz, Trainingslehre und Ausdauer im Grundlagenbereich, Schwimmtechnik im Wettkampfbecken oder Radsport auf der Olympia-Strecke.",
+      weather:"Der Laufblock ist outdoor, die Hauptaktivität wahlweise indoor. Bei Regen: Schwimmen statt VeloPark und Copper Box dazunehmen – dasselbe Gelände, kein neuer Weg."
+    },
+    2: {
+      name:"Royal-Parks-Rad- und Lauftag",
+      rec:false,
+      where:"Hyde Park, Kensington Gardens, Regent's Park",
+      whereSub:"Zu Fuß von London Victoria: Hyde Park Corner und Green Park in 10–15 Min. Kein ÖPNV nötig.",
+      dur:"ca. 5,5 h vor Ort",
+      durSub:"10:30 bis 16:00 in den Parks. Der kürzeste Tag der drei Varianten.",
+      cost:"4,00–10,00 £ p. P.",
+      costSub:"Santander-Tagespass 3,50 £ (Studierende 1,75 £), dazu optional Tischtennis 7 £/Tisch oder Lido 3,25 £ Konzession.",
+      day:[
+        {t:"train", h:1.75, l:"Bahn"},
+        {t:"transit", h:0.5, l:"zu Fuß"},
+        {t:"activity", h:2, l:"Radtour"},
+        {t:"pause", h:1.5, l:"Picknick"},
+        {t:"activity", h:2, l:"Lauf / Tischtennis / Lido"},
+        {t:"transit", h:0.5, l:""},
+        {t:"train", h:1.75, l:"Bahn"}
+      ],
+      start:"8:15", end:"20:00",
+      schedule:[
+        ["8:15","Abfahrt Eastbourne","Southern, direkt nach London Victoria"],
+        ["10:00","Ankunft Victoria","zu Fuß in den Hyde Park, 10–15 Min"],
+        ["10:30","Santander Cycles","Tagespass 3,50 £ – selbst geplante Radtour Hyde Park → Kensington Gardens → Regent's Park"],
+        ["12:30","Picknick","danach Laufrunde oder Circuittraining an der Serpentine, kostenlos"],
+        ["14:00","Spielblock","Tischtennis 7 £/Tisch oder im Sommer Serpentine Lido (~3,25 £ Konzession für 16–17-Jährige)"],
+        ["16:00","Räder zurückgeben","Freizeit rund um Victoria"],
+        ["18:00","Rückfahrt nach Eastbourne","Ankunft ca. 19:30–20:00"]
+      ],
+      pe:"Ausdauer und Herz-Kreislauf, aktive Mobilität und Streckenplanung, Intervall- und Circuittraining auf den Wiesen, Serpentine-Runde rund 4,5 km.",
+      weather:"Komplett outdoor und damit stark wetterabhängig. Dafür entfallen ÖPNV-Kosten und Fahrzeit – die flexibelste und günstigste Variante."
+    },
+    3: {
+      name:"Hallensport-Tag (Schlechtwetterplan)",
+      rec:false,
+      where:"Copper Box Arena und London Aquatics Centre, Stratford",
+      whereSub:"Beide im Olympic Park, wenige Gehminuten auseinander. Ab Victoria 30–45 Min.",
+      dur:"ca. 5,5 h vor Ort",
+      durSub:"11:30 bis 17:00 in den Hallen. Rückfahrt etwas später als Variante 1.",
+      cost:"8,00–12,00 £ p. P.",
+      costSub:"Court-Hire ~6–10 £/Std, auf die Gruppe verteilt deutlich günstiger, plus Schwimmen 7,90 £.",
+      day:[
+        {t:"train", h:1.75, l:"Bahn"},
+        {t:"transit", h:1.25, l:"Tube"},
+        {t:"activity", h:2, l:"Halle 1"},
+        {t:"pause", h:1, l:"Mittag"},
+        {t:"activity", h:2.5, l:"Halle 2 / Schwimmen"},
+        {t:"transit", h:0.75, l:"Tube"},
+        {t:"train", h:1.75, l:"Bahn"}
+      ],
+      start:"8:15", end:"21:00",
+      schedule:[
+        ["8:15","Abfahrt Eastbourne","Southern, direkt nach London Victoria"],
+        ["10:00","Ankunft Victoria","weiter nach Stratford"],
+        ["11:30","Copper Box Arena","Badminton, Basketball oder Tischtennis – Court-Hire ~6–10 £/Std, oder direkt Schwimmen"],
+        ["13:30","Mittag","im Park oder in Stratford"],
+        ["14:30","Zweiter Block","zweite Hallenaktivität oder Schwimmen im Aquatics Centre"],
+        ["17:00","Rückweg","Stratford → Victoria"],
+        ["18:30","Rückfahrt nach Eastbourne","Ankunft ca. 20:00–21:00"]
+      ],
+      pe:"Rückschlag- und Mannschaftsspiele in einer Olympia-Halle, Schwimmtechnik im Wettkampfbecken – vollständig wetterunabhängig.",
+      weather:"Der verlässliche Plan B. Beide Venues sind indoor; bei Regen ohne Umplanung aus Variante 1 oder 2 hierher wechseln."
+    }
+  };
+
+  var CHECKS = [
+    { when:"Sofort", items:[
+      ["Zugtickets als Gruppe buchen","Advance-Tickets Eastbourne–Victoria sichern, Ankunft bis ca. 10 Uhr"],
+      ["GroupSave anfragen","Bei Southern nach Gruppenrabatt für 15 Personen fragen"],
+      ["Termin festlegen","Samstag nur wählen, wenn parkrun eingeplant ist"]
+    ]},
+    { when:"2–4 Wochen vorher", items:[
+      ["Everyone-Active-Karten anlegen","Kostenlos, Voraussetzung für die Online-Buchung im Aquatics Centre"],
+      ["Gruppenbuchung Aquatics Centre","Club Booking Procedure nutzen, Aufsichtsratios für Minderjährige erfragen"],
+      ["Einverständniserklärungen U18","Pflicht für den VeloPark, unterschrieben mitbringen"],
+      ["Schwimmpreis verifizieren","Live über Everyone Active oder telefonisch: 0208 536 3150"]
+    ]},
+    { when:"Letzte Woche", items:[
+      ["VeloPark Pay-and-Ride buchen","Nur am Tag selbst oder bis 7 Tage vorher möglich"],
+      ["Copper-Box-Preise bestätigen","Aktuelle Court-Tarife über die Better-App prüfen"],
+      ["Wetterprognose checken","Bei Regen auf Variante 3 umschwenken – beide Venues indoor"],
+      ["Packliste an den Kurs","Badesachen, Sportzeug, Picknick, Regenjacke, Oyster/kontaktlose Karte"]
+    ]}
+  ];
+
+  /* ---------------- helpers ---------------- */
+
+  function el(tag, cls, html){
+    var n = document.createElement(tag);
+    if (cls) n.className = cls;
+    if (html != null) n.innerHTML = html;
+    return n;
+  }
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];
+    });
+  }
+  function status(p){
+    if (p > 15) return {k:"crit", label:"über Limit"};
+    if (p > 12) return {k:"warn", label:"knapp"};
+    return {k:"good", label:"im Budget"};
+  }
+
+  /* ---------------- variant panels ---------------- */
+
+  var host = document.getElementById("panelHost");
+  var tabs = Array.prototype.slice.call(document.querySelectorAll(".tab"));
+  var current = 1;
+  var weather = "dry";
+
+  function renderPanel(n){
+    var v = VARIANTS[n];
+    host.setAttribute("role","tabpanel");
+    host.setAttribute("aria-labelledby","tab-" + n);
+
+    var total = v.day.reduce(function(a,b){ return a + b.h; }, 0);
+
+    var segs = v.day.map(function(s){
+      var pct = (s.h / total * 100);
+      var lab = pct > 9 && s.l ? "<span>" + esc(s.l) + "</span>" : "";
+      return '<div class="seg ' + s.t + '" style="flex:0 0 ' + pct.toFixed(2) + '%" title="' +
+             esc(s.l || "") + " · " + esc(String(s.h).replace(".", ",")) + ' h">' + lab + "</div>";
+    }).join("");
+
+    var rows = v.schedule.map(function(r){
+      return "<li><span class=\"t\">" + esc(r[0]) + "</span><span class=\"d\">" + esc(r[1]) +
+             "<small>" + esc(r[2]) + "</small></span></li>";
+    }).join("");
+
+    host.innerHTML =
+      '<div style="display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-bottom:18px">' +
+        '<h3 style="font-size:1.6rem">' + esc(v.name) + "</h3>" +
+        (v.rec ? '<span class="chip gold"><span class="dot"></span>Empfehlung</span>' : "") +
+        (weather === "wet" && n !== 3 ? '<span class="chip warn"><span class="dot"></span>bei Regen eingeschränkt</span>' : "") +
+        (weather === "wet" && n === 3 ? '<span class="chip accent"><span class="dot"></span>wetterunabhängig</span>' : "") +
+      "</div>" +
+
+      '<div class="q3">' +
+        '<div class="cell"><div class="k">Wo ist es?</div><div class="v"><b>' + esc(v.where) + "</b><br>" + esc(v.whereSub) + "</div></div>" +
+        '<div class="cell"><div class="k">Wie lange dauert es?</div><div class="v"><b>' + esc(v.dur) + "</b><br>" + esc(v.durSub) + "</div></div>" +
+        '<div class="cell"><div class="k">Was kostet es?</div><div class="v"><b>' + esc(v.cost) + "</b><br>" + esc(v.costSub) + "</div></div>" +
+      "</div>" +
+
+      '<div class="daybar-wrap">' +
+        '<p class="eyebrow" style="margin:0 0 7px">Tagesverlauf ' + esc(v.start) + "–" + esc(v.end) + " &middot; " + String(total).replace(".", ",") + " Stunden Tür zu Tür</p>" +
+        '<div class="daybar">' + segs + "</div>" +
+        '<div class="daybar-scale"><span>' + esc(v.start) + "</span><span>" + esc(v.end) + "</span></div>" +
+        '<div class="legend">' +
+          '<span class="item"><span class="sw" style="background:var(--s1)"></span>Bahn Eastbourne ⇄ London</span>' +
+          '<span class="item"><span class="sw" style="background:var(--s2)"></span>Transfer in London</span>' +
+          '<span class="item"><span class="sw" style="background:var(--s3)"></span>Aktivität</span>' +
+          '<span class="item"><span class="sw" style="background:var(--s4)"></span>Pause / Picknick</span>' +
+        "</div>" +
+      "</div>" +
+
+      '<ul class="schedule">' + rows + "</ul>" +
+
+      '<div class="panel-foot">' +
+        "<div><h4>Bezug zum Sportunterricht</h4><p>" + esc(v.pe) + "</p></div>" +
+        "<div><h4>Wetter und Plan B</h4><p>" + esc(v.weather) + "</p></div>" +
+      "</div>";
+  }
+
+  function selectTab(n, focus){
+    current = n;
+    tabs.forEach(function(t){
+      var on = t.id === "tab-" + n;
+      t.setAttribute("aria-selected", on ? "true" : "false");
+      t.tabIndex = on ? 0 : -1;
+      if (on && focus) t.focus();
+    });
+    renderPanel(n);
+  }
+
+  tabs.forEach(function(t, i){
+    t.addEventListener("click", function(){ selectTab(i + 1); });
+    t.addEventListener("keydown", function(e){
+      var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!d) return;
+      e.preventDefault();
+      selectTab(((i + d + tabs.length) % tabs.length) + 1, true);
+    });
+  });
+
+  /* ---------------- weather ---------------- */
+
+  var wDry = document.getElementById("wDry");
+  var wWet = document.getElementById("wWet");
+  var wNote = document.getElementById("weatherNote");
+
+  function setWeather(w){
+    weather = w;
+    wDry.setAttribute("aria-pressed", w === "dry" ? "true" : "false");
+    wWet.setAttribute("aria-pressed", w === "wet" ? "true" : "false");
+    if (w === "wet"){
+      wNote.innerHTML = "Bei Regen führt kein Weg an <strong>Variante 3</strong> vorbei – Copper Box und Aquatics Centre sind indoor. Variante 1 bleibt möglich, wenn der Laufblock entfällt und stattdessen geschwommen wird.";
+      tabs[2].setAttribute("data-rec","1");
+      tabs[0].removeAttribute("data-rec");
+    } else {
+      wNote.innerHTML = "Bei trockenem Wetter ist <strong>Variante 1</strong> die Empfehlung – Outdoor-Blöcke und Olympia-Venue lassen sich voll ausspielen.";
+      tabs[0].setAttribute("data-rec","1");
+      tabs[2].removeAttribute("data-rec");
+    }
+    renderPanel(current);
+  }
+  wDry.addEventListener("click", function(){ setWeather("dry"); });
+  wWet.addEventListener("click", function(){ setWeather("wet"); });
+
+  /* ---------------- calculator ---------------- */
+
+  var CALC_IDS = ["run","parkrun","santander","lido","tt","velo","swim","copper","lvtennis","velohire"];
+  var picked = { swim:true };
+  var optHost = document.getElementById("actOpts");
+
+  function santanderPrice(){ return document.getElementById("studentChk").checked ? 1.75 : 3.5; }
+  function priceOf(a){ return a.id === "santander" ? santanderPrice() : a.price; }
+
+  function buildOpts(){
+    optHost.innerHTML = "";
+    CALC_IDS.forEach(function(id){
+      var a = ACTIVITIES.filter(function(x){ return x.id === id; })[0];
+      var wrap = el("label","opt");
+      var inp = el("input");
+      inp.type = "checkbox";
+      inp.id = "opt-" + id;
+      inp.checked = !!picked[id];
+      inp.addEventListener("change", function(){
+        picked[id] = inp.checked;
+        update();
+      });
+      var span = el("span");
+      span.innerHTML = esc(a.name) + ' <span class="p" data-p="' + id + '">' +
+        (a.price === 0 ? "gratis" : gbp(priceOf(a))) + "</span>";
+      wrap.appendChild(inp);
+      wrap.appendChild(span);
+      optHost.appendChild(wrap);
+    });
+  }
+
+  function update(){
+    var actSum = 0;
+    CALC_IDS.forEach(function(id){
+      if (!picked[id]) return;
+      var a = ACTIVITIES.filter(function(x){ return x.id === id; })[0];
+      actSum += priceOf(a);
+    });
+
+    var train = parseFloat(document.getElementById("trainSel").value);
+    var transit = parseFloat(document.getElementById("transitSel").value);
+    var people = Math.max(1, Math.min(60, parseInt(document.getElementById("peopleInp").value, 10) || 1));
+    var perPerson = actSum + train + transit;
+    var st = status(actSum);
+
+    document.querySelector('[data-p="santander"]').textContent = gbp(santanderPrice());
+
+    document.getElementById("actVal").textContent = gbp(actSum);
+    var fill = document.getElementById("actFill");
+    fill.style.width = Math.min(100, actSum / 20 * 100).toFixed(1) + "%";
+    fill.className = "meter-fill " + st.k;
+
+    document.getElementById("sumAct").textContent = gbp(actSum);
+    document.getElementById("sumTrain").textContent = gbp(train);
+    document.getElementById("sumTransit").textContent = gbp(transit);
+    document.getElementById("sumPerson").textContent = gbp(perPerson);
+    document.getElementById("groupLabel").textContent = "Gruppe (" + people + " Personen)";
+    document.getElementById("sumGroup").textContent = gbp(perPerson * people);
+
+    var v = document.getElementById("verdict");
+    v.className = "verdict " + st.k;
+    if (st.k === "crit"){
+      v.innerHTML = "<b>Über dem Limit.</b> Die Aktivitätskosten liegen " + gbp(actSum - 15) +
+        " über den 15 £. Leihrad streichen, Schwimmen statt Radfahren wählen oder eine Aktivität weglassen.";
+    } else if (st.k === "warn"){
+      v.innerHTML = "<b>Im Limit, aber knapp.</b> Noch " + gbp(15 - actSum) +
+        " Luft bis zur 15-£-Grenze – kein Puffer für spontane Zusatzkosten.";
+    } else {
+      v.innerHTML = "<b>Im Budget.</b> " + gbp(15 - actSum) +
+        " Puffer bis zur 15-£-Grenze. Unter 12 £ bleibt Spielraum für ÖPNV oder ein Leihrad.";
+    }
+  }
+
+  ["trainSel","transitSel","peopleInp","studentChk"].forEach(function(id){
+    document.getElementById(id).addEventListener("input", update);
+    document.getElementById(id).addEventListener("change", update);
+  });
+
+  /* ---------------- price chart ---------------- */
+
+  var MAX = 20;
+  var tip = document.getElementById("tip");
+  var chart = document.getElementById("chart");
+
+  function renderChart(){
+    var bars = document.getElementById("bars");
+    var list = ACTIVITIES.filter(function(a){ return !a.offChart; })
+      .slice().sort(function(a,b){ return a.price - b.price; });
+
+    bars.innerHTML = list.map(function(a){
+      var st = status(a.price);
+      var w = Math.min(100, a.price / MAX * 100);
+      var inside = w > 24;
+      return '<div class="bar-row" role="listitem" tabindex="0" data-id="' + a.id + '" ' +
+        'aria-label="' + esc(a.name) + ", " + (a.price === 0 ? "kostenlos" : esc(gbp(a.price))) + ", " + st.label + '">' +
+          '<div class="bar-label">' + esc(a.name) + "<small>" + esc(a.where) + "</small></div>" +
+          '<div class="bar-track">' +
+            '<div class="bar-fill ' + st.k + '" style="width:' + w.toFixed(2) + '%"></div>' +
+            '<span class="bar-val" style="left:' + w.toFixed(2) + '%; color:var(--ink)">' +
+              (a.price === 0 ? "gratis" : gbp(a.price)) + "</span>" +
+          "</div>" +
+          '<div class="bar-status"><span class="chip ' + st.k + '"><span class="dot"></span>' + st.label + "</span></div>" +
+        "</div>";
+    }).join("");
+
+    var scale = document.getElementById("axisScale");
+    scale.innerHTML = [0,5,10,15,20].map(function(v){
+      var left = v / MAX * 100;
+      var isLimit = v === 15;
+      return '<span style="left:' + left + '%' + (isLimit ? "; color:var(--ink-2); font-weight:600" : "") + '">' +
+        (isLimit ? "15 £ Limit" : v + " £") + "</span>";
+    }).join("");
+
+    bars.querySelectorAll(".bar-row").forEach(function(row){
+      row.addEventListener("mouseenter", function(e){ showTip(row, e); });
+      row.addEventListener("mousemove", function(e){ moveTip(e); });
+      row.addEventListener("mouseleave", hideTip);
+      row.addEventListener("focus", function(){ showTip(row, null); });
+      row.addEventListener("blur", hideTip);
+    });
+  }
+
+  function showTip(row, e){
+    var a = ACTIVITIES.filter(function(x){ return x.id === row.dataset.id; })[0];
+    if (!a) return;
+    tip.innerHTML = "<b>" + esc(a.name) + "</b>" +
+      '<div class="tr"><span>Ort</span><span>' + esc(a.where) + "</span></div>" +
+      '<div class="tr"><span>Dauer</span><span>' + esc(a.dur) + "</span></div>" +
+      '<div class="tr"><span>Buchung</span><span>' + esc(a.book) + "</span></div>" +
+      (a.priceNote ? '<div class="tr" style="margin-top:4px"><span>' + esc(a.priceNote) + "</span></div>" : "");
+    tip.dataset.show = "1";
+    if (e) moveTip(e);
+    else {
+      var r = row.getBoundingClientRect(), c = chart.getBoundingClientRect();
+      tip.style.left = Math.min(c.width - 260, 20) + "px";
+      tip.style.top = (r.top - c.top + r.height + 6) + "px";
+    }
+  }
+  function moveTip(e){
+    var c = chart.getBoundingClientRect();
+    var x = e.clientX - c.left + 14;
+    var y = e.clientY - c.top + 14;
+    tip.style.left = Math.max(6, Math.min(c.width - tip.offsetWidth - 6, x)) + "px";
+    tip.style.top = Math.min(c.height - tip.offsetHeight - 6, y) + "px";
+  }
+  function hideTip(){ tip.dataset.show = "0"; }
+
+  /* table view */
+  var tableToggle = document.getElementById("tableToggle");
+  var tableWrap = document.getElementById("tableWrap");
+  document.getElementById("dataBody").innerHTML = ACTIVITIES.slice()
+    .sort(function(a,b){ return a.price - b.price; })
+    .map(function(a){
+      var st = status(a.price);
+      return "<tr><td>" + esc(a.name) + "</td><td>" + esc(a.where) + "</td><td>" + esc(a.dur) +
+        '</td><td class="num">' + (a.price === 0 ? "gratis" : gbp(a.price)) +
+        '</td><td><span class="chip ' + st.k + '"><span class="dot"></span>' + st.label + "</span></td></tr>";
+    }).join("");
+
+  tableToggle.addEventListener("click", function(){
+    var open = tableWrap.hidden;
+    tableWrap.hidden = !open;
+    tableToggle.setAttribute("aria-expanded", open ? "true" : "false");
+    tableToggle.textContent = open ? "Tabelle ausblenden" : "Als Tabelle anzeigen";
+  });
+
+  /* ---------------- activity cards ---------------- */
+
+  var cards = document.getElementById("cards");
+  function renderCards(filter){
+    var list = ACTIVITIES.filter(function(a){
+      if (filter === "all") return true;
+      if (filter === "free") return a.free;
+      if (filter === "olympic") return a.olympic;
+      if (filter === "indoor") return a.indoor;
+      if (filter === "central") return a.central;
+      if (filter === "cheap") return a.price <= 8;
+      return true;
+    });
+    cards.innerHTML = list.map(function(a){
+      var st = status(a.price);
+      return '<article class="acard">' +
+        '<div class="top"><h4>' + esc(a.name) + "</h4>" +
+          '<span class="price" style="color:var(--' + (a.price === 0 ? "good" : st.k === "crit" ? "crit" : "ink") + ')">' +
+            (a.price === 0 ? "gratis" : gbp(a.price)) + "</span></div>" +
+        (a.priceNote ? '<p style="margin:-4px 0 0; font-size:.78rem; color:var(--ink-3)">' + esc(a.priceNote) + "</p>" : "") +
+        "<dl>" +
+          "<dt>Wo</dt><dd>" + esc(a.where) + "</dd>" +
+          "<dt>Dauer</dt><dd>" + esc(a.dur) + "</dd>" +
+          "<dt>Buchung</dt><dd>" + esc(a.book) + "</dd>" +
+          "<dt>LK-Bezug</dt><dd>" + esc(a.pe) + "</dd>" +
+        "</dl>" +
+        (a.note ? '<p class="note' + (a.flag ? " flag" : "") + '">' + esc(a.note) + "</p>" : "") +
+        '<div class="tags">' +
+          '<span class="chip ' + st.k + '"><span class="dot"></span>' + st.label + "</span>" +
+          (a.olympic ? '<span class="chip gold"><span class="dot"></span>Olympia-Erbe</span>' : "") +
+          '<span class="chip neutral">' + (a.indoor ? "indoor" : "outdoor") + "</span>" +
+          (a.central ? '<span class="chip neutral">zentral</span>' : "") +
+        "</div>" +
+      "</article>";
+    }).join("");
+  }
+
+  var filterBtns = Array.prototype.slice.call(document.querySelectorAll(".filter"));
+  filterBtns.forEach(function(b){
+    b.addEventListener("click", function(){
+      filterBtns.forEach(function(x){ x.setAttribute("aria-pressed", x === b ? "true" : "false"); });
+      renderCards(b.dataset.f);
+    });
+  });
+
+  /* ---------------- checklist ---------------- */
+
+  var KEY = "sporttag-london-checks-v1";
+  function loadChecks(){
+    try { return JSON.parse(localStorage.getItem(KEY) || "{}") || {}; }
+    catch (err) { return {}; }
+  }
+  function saveChecks(obj){
+    try { localStorage.setItem(KEY, JSON.stringify(obj)); } catch (err) { /* storage unavailable */ }
+  }
+  var checkState = loadChecks();
+
+  function renderChecks(){
+    var host2 = document.getElementById("checklist");
+    host2.innerHTML = CHECKS.map(function(ph, pi){
+      var items = ph.items.map(function(it, ii){
+        var id = "chk-" + pi + "-" + ii;
+        return "<li><label for=\"" + id + "\"><input type=\"checkbox\" id=\"" + id + "\"" +
+          (checkState[id] ? " checked" : "") + "><span>" + esc(it[0]) +
+          "<small>" + esc(it[1]) + "</small></span></label></li>";
+      }).join("");
+      return '<div class="phase"><div class="when">' + esc(ph.when) + "</div><ul>" + items + "</ul></div>";
+    }).join("");
+
+    host2.querySelectorAll("input[type=checkbox]").forEach(function(c){
+      c.addEventListener("change", function(){
+        checkState[c.id] = c.checked;
+        saveChecks(checkState);
+      });
+    });
+  }
+  document.getElementById("resetChecks").addEventListener("click", function(){
+    checkState = {};
+    saveChecks(checkState);
+    renderChecks();
+  });
+
+  /* ---------------- boot ---------------- */
+
+  buildOpts();
+  update();
+  renderChart();
+  renderCards("all");
+  renderChecks();
+  selectTab(1);
+})();
+</script>
+</body>
+</html>
