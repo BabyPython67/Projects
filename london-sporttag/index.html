@@ -1081,6 +1081,51 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     flyTo(z, vw() / 2 - p.x * z, vh() / 2 - p.y * z);
   }
 
+  /* Opening an area promises to show its offers, so the zoom is derived from
+     them instead of being a fixed step. The labels do not scale, so the span
+     they cover is not proportional to the zoom — hence a search for the
+     largest zoom at which every label of the area still fits on screen. */
+  function fitCluster(id){
+    var list = [];
+    SPOTS.forEach(function(s){ if (s.cl === id) list.push(s); });
+    if (!list.length){ centerOn(id, 1.6); return; }
+
+    var m = list.map(function(s){
+      var el = stage.querySelector('[data-spot="' + s.id + '"]');
+      var o = s.off || [0, 0], p = POS[s.id];
+      return { x:p.x, y:p.y, dx:o[0], dy:o[1],
+               hw:(el ? el.offsetWidth : 190) / 2 + 8,
+               hh:(el ? el.offsetHeight : 40) / 2 + 8 };
+    });
+
+    /* the HUD sits in the corners, so the offers stay out of those bands */
+    var narrow = vw() < 760;
+    var L = 26, T = narrow ? 132 : 114, B = narrow ? 162 : 98;
+    var availW = Math.max(160, vw() - L * 2), availH = Math.max(160, vh() - T - B);
+
+    function span(z, vertical){
+      var lo = Infinity, hi = -Infinity;
+      for (var i = 0; i < m.length; i++){
+        var c = vertical ? m[i].y * z + m[i].dy : m[i].x * z + m[i].dx;
+        var h = vertical ? m[i].hh : m[i].hw;
+        if (c - h < lo) lo = c - h;
+        if (c + h > hi) hi = c + h;
+      }
+      return { lo:lo, hi:hi, len:hi - lo };
+    }
+    function fits(z){ return span(z, 0).len <= availW && span(z, 1).len <= availH; }
+
+    /* floor above the level threshold so the area always opens in detail */
+    var lo = Z_IN + 0.04, hi = 1.9, z = lo;
+    if (fits(hi)) z = hi;
+    else for (var k = 0; k < 22; k++){
+      var mid = (lo + hi) / 2;
+      if (fits(mid)){ z = mid; lo = mid; } else hi = mid;
+    }
+    var sx = span(z, 0), sy = span(z, 1);
+    flyTo(z, L + availW / 2 - (sx.lo + sx.hi) / 2, T + availH / 2 - (sy.lo + sy.hi) / 2);
+  }
+
   /* On a narrow screen the whole world only fits at a zoom where the area
      cards would overlap, so phones frame London and pan to the rail tail. */
   var BOX_ALL = { x:0, y:0, w:W, h:H };
@@ -1299,7 +1344,7 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     /* a drag, a pinch or a double tap must not also count as a tap on a node */
     if (swallow){ swallow = false; return; }
     var cl = e.target.closest("[data-cluster]");
-    if (cl){ centerOn(cl.dataset.cluster, 1.6); return; }
+    if (cl){ fitCluster(cl.dataset.cluster); return; }
     if (e.target.closest("[data-close]")){ closeCard(); return; }
     var sp = e.target.closest("[data-spot]");
     if (sp) openSpot(sp.dataset.spot);

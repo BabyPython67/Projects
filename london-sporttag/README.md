@@ -14,8 +14,8 @@ Externe Abhängigkeiten: nur die Schriften von Google Fonts.
 | Zwei Finger (Pinch) | zoomen und im selben Zug verschieben |
 | Doppeltippen, Doppelklick | eine Stufe hinein (mit Alt hinaus) |
 | Mausrad | zoomt auf den Cursor; darf während des Ziehens laufen |
-| Gebiet antippen | zoomt hinein, das Gebiet zerfällt in seine einzelnen Angebote |
-| Angebot antippen | Karte öffnet sich mit Ort, Dauer, Kosten, Buchung, LK-Bezug, offenen Punkten |
+| Gebiet antippen | zoomt so weit hinein, dass alle Angebote des Gebiets ins Bild passen |
+| Angebot antippen | Karte öffnet sich mit Beschreibung, Ort, Dauer, Kosten, Buchung, LK-Bezug, offenen Punkten und Quelle |
 | A / B / C | blendet eine Tagesvariante als Route samt Zeitleiste ein |
 | Übersicht, +, −, Tasten 0 + − | Zoomsteuerung; Pfeiltasten bewegen; Esc schließt Karte bzw. Variante |
 
@@ -29,7 +29,16 @@ Finger mittendrin abhebt, läuft die Bewegung mit dem verbliebenen ohne Sprung w
 Zwei Ebenen. Herausgezoomt zeigt die Karte drei Gebiete — Queen Elizabeth Olympic Park,
 Royal Parks und die verstreuten weiteren Standorte. Hineingezoomt zerfallen sie in die
 14 einzelnen Angebote, jedes mit einem Punkt an seiner tatsächlichen Lage und einem
-versetzten Label.
+versetzten Label. Das Label nennt nicht nur den Namen, sondern auch die Tätigkeit
+(„Radrunden auf Asphalt", „Hallenfeld mieten"), damit die Detailebene ohne einen
+einzigen Klick lesbar ist.
+
+Ein Gebiet anzutippen setzt keinen festen Zoomschritt, sondern sucht die größte
+Zoomstufe, bei der alle Labels dieses Gebiets noch auf den Schirm passen — die Labels
+skalieren nicht mit, ihr Platzbedarf ist also nicht proportional zum Zoom. Untergrenze
+ist die Detailschwelle, damit ein Gebiet nie in der Übersicht aufgeht. Die drei
+„weiteren Optionen" liegen 13 km auseinander und passen im Hochformat trotzdem nicht
+gemeinsam ins Bild.
 
 Die Geografie ist echt (äquidistante Zylinderprojektion um 51,505° N / 0,105° W, Themse
 und Parks als Polylinien und Flächen). Zwei bewusste Ausnahmen: Eastbourne sitzt als
@@ -91,9 +100,18 @@ Schirm bleiben. Die Trias Blau/Grün/Orange ist gegen Farbfehlsichtigkeit geprü
 (CVD-ΔE ≥ 9,2 in beiden Modi); jede Farbe hat zusätzlich eine dunklere Textvariante,
 damit Beschriftungen die 4,5:1-Schwelle halten.
 
-## Datenstand
+## Quellen und Datenstand
 
-Recherchestand 14.09.2026. Preise sind vor der Buchung zu verifizieren — insbesondere der
-Schwimmpreis im London Aquatics Centre (keine offizielle Preistabelle mehr veröffentlicht)
-und die Court-Tarife der Copper Box Arena (Richtwerte aus den Better-Standardpreisen).
-Jede Karte führt ihre offenen Punkte selbst auf.
+Recherchestand 14.09.2026, Quellen nachgetragen und zwei Preise korrigiert am 17.09.2026.
+Jede der 14 Karten verlinkt am Ende die Seite des Betreibers für genau diese Aktivität —
+die Preisseite, nicht die Startseite des Standorts: Better für VeloPark-Rundkurs und die
+Lee-Valley-Plätze, Copper Box Arena für die Hallenpreise, Everyone Actives London Aquatics
+Centre, TfL für Santander Cycles, The Royal Parks für Hyde Park und Regent's Park, Park
+Sports für Tischtennis, Enable Leisure für Battersea, DSWC und Merton Council für die
+beiden Wassersportzentren.
+
+Preise sind vor der Buchung trotzdem zu verifizieren. Zwei Fälle sind ausdrücklich offen:
+der Schwimmpreis im London Aquatics Centre — die Angaben reichen von „ab 3,50 £ off-peak"
+(Queen Elizabeth Olympic Park) über „ab 5,50 £" bis 7,90 £; die Karte führt den teuersten
+Wert — und die Court-Tarife der Copper Box Arena, die Richtwerte aus den
+Better-Standardpreisen sind. Jede Karte führt ihre offenen Punkte selbst auf.
