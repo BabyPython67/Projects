@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Olympia-Tag London</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* The base map stays near-neutral so the three day-variant hues are the only
+   saturated things on screen; each hue also carries a text-safe variant. */
+:root{
+  color-scheme:light;
+  --land:#eae9e6; --grid:#dbd9d3;
+  --water:#ccd7dd; --water-l:#b6c5cd;
+  --park:#dde2d4; --park-l:#c9d0bb;
+  --road:#dad8d1; --urban:#e3e1dc; --urban-l:#d3d0c9;
+  --ink:#14161a; --ink-2:#454a52; --ink-3:#62686f;
+  --card:#ffffff; --card-2:#f4f3f0; --line:#d4d2cc; --line-2:#c2bfb8;
+  --A:#2a78d6; --B:#1baf7a; --C:#eb6834;
+  --At:#1f5fae; --Bt:#0d7a57; --Ct:#b0491d;
+  --Abg:#1f5fae; --Bbg:#0d7a57; --Cbg:#b0491d; --Vfg:#ffffff;
+  --over:#bf3a2b;
+  --shadow:0 1px 2px rgba(20,22,26,.10), 0 10px 26px -14px rgba(20,22,26,.40);
+  --shadow-lg:0 2px 8px rgba(20,22,26,.14), 0 26px 56px -22px rgba(20,22,26,.50);
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --land:#16181d; --grid:#24272e;
+    --water:#1e2a32; --water-l:#2e404b;
+    --park:#1f251d; --park-l:#2e382a;
+    --road:#262a32; --urban:#1b1e25; --urban-l:#272b34;
+    --ink:#eef0f4; --ink-2:#b0b6c0; --ink-3:#868c96;
+    --card:#1c1f26; --card-2:#242832; --line:#313640; --line-2:#3f4551;
+    --A:#3987e5; --B:#199e70; --C:#d95926;
+    --At:#7fb6f2; --Bt:#4fc79b; --Ct:#f08a5c;
+    --Abg:#3987e5; --Bbg:#199e70; --Cbg:#d95926; --Vfg:#14161a;
+    --over:#f08878;
+    --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 26px -14px rgba(0,0,0,.8);
+    --shadow-lg:0 2px 8px rgba(0,0,0,.6), 0 26px 56px -22px rgba(0,0,0,.95);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --land:#16181d; --grid:#24272e;
+  --water:#1e2a32; --water-l:#2e404b;
+  --park:#1f251d; --park-l:#2e382a;
+  --road:#262a32; --urban:#1b1e25; --urban-l:#272b34;
+  --ink:#eef0f4; --ink-2:#b0b6c0; --ink-3:#868c96;
+  --card:#1c1f26; --card-2:#242832; --line:#313640; --line-2:#3f4551;
+  --A:#3987e5; --B:#199e70; --C:#d95926;
+  --At:#7fb6f2; --Bt:#4fc79b; --Ct:#f08a5c;
+  --Abg:#3987e5; --Bbg:#199e70; --Cbg:#d95926; --Vfg:#14161a;
+  --over:#f08878;
+  --shadow:0 1px 2px rgba(0,0,0,.5), 0 10px 26px -14px rgba(0,0,0,.8);
+  --shadow-lg:0 2px 8px rgba(0,0,0,.6), 0 26px 56px -22px rgba(0,0,0,.95);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; overflow:hidden; background:var(--land); color:var(--ink);
+  font-family:Archivo,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
+  font-size:15px; line-height:1.5; -webkit-font-smoothing:antialiased;
+}
+button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; padding:0}
+:focus-visible{outline:2px solid var(--ink); outline-offset:2px}
+.mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
+
+#app{position:relative; height:100%; overflow:hidden; background:var(--land)}
+#viewport{position:absolute; inset:0; overflow:hidden; cursor:grab; touch-action:none}
+#viewport.drag{cursor:grabbing}
+
+/* One transform for the whole geography; nothing inside it carries text. */
+#world{
+  position:absolute; top:0; left:0; transform-origin:0 0; will-change:transform;
+  background-image:radial-gradient(var(--grid) 1.6px, transparent 1.6px);
+  background-size:64px 64px;
+}
+#geo{display:block}
+#rings{transition:opacity .25s ease}
+#world.detail #rings{opacity:0}
+
+/* Everything readable lives in screen space and only ever translates, so it
+   never re-rasterises while zooming. */
+#stage{position:absolute; inset:0; pointer-events:none}
+.sn{position:absolute; left:0; top:0}
+#stage.moving .sn{will-change:transform}
+.hit{pointer-events:auto}
+.lvl-over, .lvl-detail{transition:opacity .2s ease}
+#stage.over .lvl-detail{opacity:0; pointer-events:none}
+#stage.detail .lvl-over{opacity:0; pointer-events:none}
+#stage.detail .hub .sub{opacity:0}
+#stage.over .under-card{opacity:0}
+@media (prefers-reduced-motion:reduce){
+  .lvl-over,.lvl-detail{transition:none}
+}
+
+/* ------------------------------------------------- orientation lettering */
+.district{
+  font-family:Archivo,sans-serif; font-size:.7rem; font-weight:500; letter-spacing:.22em;
+  text-transform:uppercase; color:var(--ink-3); opacity:.62; white-space:nowrap;
+  user-select:none; transition:opacity .2s ease;
+}
+.district.major{font-size:.76rem; opacity:.8; letter-spacing:.26em}
+#stage.over .district.minor{opacity:0}
+.ringlab{
+  font-family:"IBM Plex Mono",monospace; font-size:.64rem; letter-spacing:.1em;
+  color:var(--ink-3); white-space:nowrap; user-select:none;
+  background:var(--land); padding:1px 6px; border-radius:100px;
+  transition:opacity .2s ease;
+}
+#stage.detail .ringlab{opacity:0}
+
+/* ---------------------------------------------------------- map lettering */
+.maplabel{
+  font-family:"IBM Plex Mono",monospace; font-size:.68rem; letter-spacing:.16em;
+  text-transform:uppercase; color:var(--ink-3); white-space:nowrap; user-select:none;
+  transition:opacity .2s ease;
+}
+.maplabel.water{color:var(--water-l); letter-spacing:.3em; font-size:.72rem}
+.maplabel.area{
+  font-size:.62rem; letter-spacing:.18em; color:var(--ink-2); opacity:.75;
+  transition:font-size .2s ease, opacity .2s ease;
+}
+#stage.detail .maplabel.area{font-size:.96rem; letter-spacing:.3em; opacity:1}
+.maplabel.faint{
+  color:var(--ink-3); letter-spacing:.12em; text-transform:none; font-size:.66rem;
+  background:var(--land); padding:2px 8px; border-radius:100px;
+}
+
+/* ---------------------------------------------------------------- markers */
+.hub{display:flex; flex-direction:column; align-items:center; gap:4px}
+.hub .ring{
+  width:15px; height:15px; border-radius:50%; background:var(--card);
+  border:4px solid var(--ink); box-shadow:var(--shadow);
+}
+.hub .lb{
+  font-family:"IBM Plex Mono",monospace; font-size:.66rem; font-weight:600; letter-spacing:.06em;
+  text-transform:uppercase; background:var(--card); padding:2px 7px; border-radius:5px;
+  border:1px solid var(--line); white-space:nowrap; color:var(--ink);
+}
+.hub .sub{
+  font-family:"IBM Plex Mono",monospace; font-size:.62rem; color:var(--ink-3);
+  white-space:nowrap; transition:opacity .2s ease;
+}
+
+.anchor{
+  width:11px; height:11px; border-radius:50%; background:var(--card);
+  border:3px solid var(--ink-3); box-shadow:var(--shadow);
+}
+.anchor.A{border-color:var(--A)} .anchor.B{border-color:var(--B)} .anchor.C{border-color:var(--C)}
+.anchor.excl{opacity:.5}
+
+.pin{
+  display:flex; align-items:center; gap:8px; white-space:nowrap;
+  background:var(--card); border:1px solid var(--line); border-radius:100px;
+  padding:5px 12px 5px 8px; box-shadow:var(--shadow); cursor:pointer;
+  transition:border-color .14s, box-shadow .14s;
+}
+.pin:hover{border-color:var(--ink); box-shadow:var(--shadow-lg)}
+.pin .dot{width:9px; height:9px; border-radius:50%; background:var(--ink-3); flex:none}
+.pin .nm{font-size:.83rem; font-weight:600; letter-spacing:-.01em; color:var(--ink)}
+.pin .pr{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-2); font-variant-numeric:tabular-nums}
+.pin .pr.free{color:var(--Bt)}
+.excl .pin{border-style:dashed; background:transparent; box-shadow:none}
+.excl .pin .pr{text-decoration:line-through; color:var(--ink-3)}
+.sn.dim{opacity:.3}
+.sn:hover{z-index:20}
+
+.cl{
+  width:206px; text-align:left; background:var(--card); border:1px solid var(--line);
+  border-radius:12px; padding:10px 13px; box-shadow:var(--shadow); cursor:pointer;
+  transition:border-color .14s, box-shadow .14s;
+}
+.cl:hover{box-shadow:var(--shadow-lg); border-color:var(--ink)}
+.cl .kick{
+  font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-3); display:block; margin-bottom:3px;
+}
+.cl .nm{font-size:.95rem; font-weight:700; letter-spacing:-.02em; line-height:1.15; display:block; color:var(--ink)}
+.cl .meta{
+  font-family:"IBM Plex Mono",monospace; font-size:.68rem; color:var(--ink-2);
+  margin-top:4px; display:block; font-variant-numeric:tabular-nums;
+}
+.cl .vtags{display:flex; gap:5px; margin-top:7px}
+
+.vtag{
+  display:inline-flex; align-items:center; gap:4px; font-family:"IBM Plex Mono",monospace;
+  font-size:.62rem; font-weight:600; letter-spacing:.06em; padding:2px 7px;
+  border-radius:100px; border:1px solid currentColor;
+}
+.vtag.A{color:var(--At)} .vtag.B{color:var(--Bt)} .vtag.C{color:var(--Ct)}
+.vtag.off{color:var(--over)}
+.vtag .d{width:5px; height:5px; border-radius:50%; background:currentColor}
+
+/* ------------------------------------------------------------------- card */
+.cardwrap{z-index:40}
+.card{
+  width:min(430px,88vw); background:var(--card); border:1px solid var(--line-2);
+  border-radius:14px; box-shadow:var(--shadow-lg); overflow:hidden;
+  display:flex; flex-direction:column; max-height:min(74vh,620px); cursor:default;
+}
+.card .hd{padding:16px 18px 13px; border-bottom:1px solid var(--line); position:relative}
+.card .kick{
+  font-family:"IBM Plex Mono",monospace; font-size:.63rem; letter-spacing:.13em;
+  text-transform:uppercase; color:var(--ink-3);
+}
+.card h2{
+  margin:4px 0 0; font-size:1.3rem; font-weight:700; letter-spacing:-.025em;
+  line-height:1.15; padding-right:30px; text-wrap:balance;
+}
+.card .x{
+  position:absolute; top:12px; right:12px; width:26px; height:26px; border-radius:7px;
+  display:grid; place-items:center; color:var(--ink-3); font-size:1.05rem; line-height:1;
+}
+.card .x:hover{background:var(--card-2); color:var(--ink)}
+.card .tags{display:flex; gap:5px; flex-wrap:wrap; margin-top:10px}
+.card .bd{overflow-y:auto; padding:15px 18px 18px; -webkit-overflow-scrolling:touch}
+
+.hero{display:flex; gap:16px; flex-wrap:wrap; padding-bottom:14px; border-bottom:1px solid var(--line)}
+.hero div{min-width:74px}
+.hero dt{
+  font-family:"IBM Plex Mono",monospace; font-size:.6rem; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--ink-3); margin-bottom:2px;
+}
+.hero dd{margin:0; font-size:1.18rem; font-weight:700; letter-spacing:-.02em; line-height:1.15; font-variant-numeric:tabular-nums}
+.hero dd small{display:block; font-size:.72rem; font-weight:400; color:var(--ink-2); letter-spacing:0; margin-top:1px}
+.hero dd.free{color:var(--Bt)}
+.hero dd.over{color:var(--over)}
+
+.card h3{
+  margin:16px 0 7px; font-family:"IBM Plex Mono",monospace; font-size:.62rem;
+  letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3); font-weight:500;
+}
+.facts{margin:0; font-size:.86rem}
+.facts div{display:flex; gap:12px; padding:5px 0; border-top:1px solid var(--line)}
+.facts div:first-child{border-top:0; padding-top:0}
+.facts dt{flex:0 0 92px; color:var(--ink-3); font-size:.78rem}
+.facts dd{margin:0; flex:1; color:var(--ink-2)}
+.card p.pe{margin:0; font-size:.87rem; color:var(--ink-2)}
+.risks{margin:0; padding-left:16px; font-size:.83rem; color:var(--ink-2)}
+.risks li{margin-bottom:5px}
+.risks li::marker{color:var(--ink-3)}
+
+/* -------------------------------------------------------------------- HUD */
+.hud{position:absolute; inset:0; pointer-events:none; z-index:60}
+.hud > *{pointer-events:auto}
+.panel{
+  position:absolute; background:var(--card); border:1px solid var(--line-2);
+  border-radius:12px; box-shadow:var(--shadow);
+}
+.tl{top:14px; left:14px; padding:12px 15px; max-width:290px}
+.tl .ttl{font-size:1.02rem; font-weight:700; letter-spacing:-.025em; line-height:1.1}
+.tl .sb{font-family:"IBM Plex Mono",monospace; font-size:.63rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-top:3px}
+.tl .budget{
+  margin-top:9px; padding-top:9px; border-top:1px solid var(--line);
+  font-size:.76rem; color:var(--ink-2); line-height:1.4;
+}
+.tl .budget b{color:var(--ink); font-weight:600}
+.lvlrow{
+  margin-top:9px; padding-top:8px; border-top:1px solid var(--line);
+  display:flex; align-items:baseline; gap:9px; flex-wrap:wrap;
+}
+.lvlrow .lvl{
+  font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.11em;
+  text-transform:uppercase; color:var(--ink); font-weight:600;
+}
+.lvlrow .hint{font-size:.72rem; color:var(--ink-3)}
+
+.tr{top:14px; right:14px; padding:9px 10px; display:flex; flex-direction:column; gap:8px; align-items:stretch}
+.vrow{display:flex; gap:5px}
+.vbtn{
+  display:flex; align-items:center; gap:6px; border:1px solid var(--line); border-radius:8px;
+  padding:6px 9px; font-size:.78rem; font-weight:500; color:var(--ink-2); white-space:nowrap;
+  transition:background .14s, color .14s, border-color .14s;
+}
+.vbtn .d{width:8px; height:8px; border-radius:50%; background:var(--ink-3)}
+.vbtn.A .d{background:var(--A)} .vbtn.B .d{background:var(--B)} .vbtn.C .d{background:var(--C)}
+.vbtn:hover{background:var(--card-2); color:var(--ink)}
+.vbtn[aria-pressed="true"]{border-color:var(--ink); background:var(--ink); color:var(--card); font-weight:600}
+.vbtn[aria-pressed="true"].A{border-color:var(--Abg); background:var(--Abg); color:var(--Vfg)}
+.vbtn[aria-pressed="true"].B{border-color:var(--Bbg); background:var(--Bbg); color:var(--Vfg)}
+.vbtn[aria-pressed="true"].C{border-color:var(--Cbg); background:var(--Cbg); color:var(--Vfg)}
+.vbtn[aria-pressed="true"] .d{background:currentColor}
+.zrow{display:flex; gap:5px; justify-content:flex-end}
+.zbtn{
+  width:32px; height:30px; border:1px solid var(--line); border-radius:8px;
+  display:grid; place-items:center; font-size:1rem; color:var(--ink-2);
+}
+.zbtn.wide{width:auto; padding:0 11px; font-size:.78rem; font-weight:500}
+.zbtn:hover{background:var(--card-2); color:var(--ink)}
+
+.bl{bottom:14px; left:14px; padding:9px 12px; display:flex; align-items:center; gap:13px}
+.compass{
+  position:relative; width:30px; height:30px; border-radius:50%;
+  border:1px solid var(--line); display:grid; place-items:center; flex:none;
+}
+.compass .arrow{
+  width:0; height:0; border-left:4px solid transparent; border-right:4px solid transparent;
+  border-bottom:10px solid var(--ink); position:absolute; top:4px;
+}
+.compass .n{
+  position:absolute; bottom:3px; font-family:"IBM Plex Mono",monospace;
+  font-size:.56rem; font-weight:600; color:var(--ink-3); letter-spacing:.06em;
+}
+.scale{display:flex; flex-direction:column; gap:3px}
+.scale .lbl{font-size:.68rem; color:var(--ink-2); letter-spacing:.04em}
+.ringkey{
+  font-size:.66rem; line-height:1.3; color:var(--ink-3); padding-left:12px;
+  border-left:1px solid var(--line); display:flex; flex-direction:column; justify-content:center;
+}
+.scale .bar{
+  height:7px; border:1px solid var(--ink-2); border-top:0; width:80px;
+  transition:width .12s linear;
+}
+
+.mini{
+  bottom:14px; right:14px; padding:0; overflow:hidden; width:150px;
+  display:block; cursor:pointer; line-height:0;
+}
+.mini svg{display:block; width:100%; height:auto}
+.mini .cap{
+  display:block; line-height:1.3; text-align:left; padding:5px 8px 6px;
+  border-top:1px solid var(--line); font-family:"IBM Plex Mono",monospace;
+  font-size:.58rem; letter-spacing:.11em; text-transform:uppercase; color:var(--ink-3);
+}
+.mini:hover .cap{color:var(--ink)}
+
+.strip{
+  position:absolute; left:50%; bottom:14px; transform:translateX(-50%);
+  max-width:min(880px, calc(100vw - 640px)); display:flex; align-items:stretch;
+  background:var(--card); border:1px solid var(--line-2); border-radius:12px;
+  box-shadow:var(--shadow); overflow:hidden;
+}
+.strip .lead{
+  padding:10px 14px; border-right:1px solid var(--line); flex:none;
+  display:flex; flex-direction:column; justify-content:center; min-width:132px;
+}
+.strip .lead .k{font-family:"IBM Plex Mono",monospace; font-size:.62rem; letter-spacing:.12em; text-transform:uppercase}
+.strip .lead .n{font-size:.92rem; font-weight:700; letter-spacing:-.02em; line-height:1.15}
+.strip .lead .c{font-family:"IBM Plex Mono",monospace; font-size:.7rem; color:var(--ink-2); margin-top:2px}
+.stops{display:flex; overflow-x:auto; scrollbar-width:thin}
+.stop{
+  flex:none; padding:9px 13px; border-right:1px solid var(--line); text-align:left;
+  min-width:124px; display:flex; flex-direction:column; align-items:flex-start;
+  transition:background .14s;
+}
+.stop:last-child{border-right:0}
+.stop:hover{background:var(--card-2)}
+.stop .t{font-family:"IBM Plex Mono",monospace; font-size:.72rem; font-weight:600; font-variant-numeric:tabular-nums}
+.stop .l{font-size:.78rem; color:var(--ink-2); line-height:1.3; margin-top:1px}
+
+@media (max-width:760px){
+  .tl{max-width:none; right:14px; padding:10px 12px}
+  .tl .budget{display:none}
+  .lvlrow .hint{display:none}
+  .tr{top:auto; bottom:64px; right:10px; left:10px; flex-direction:row; justify-content:space-between; align-items:center; padding:8px}
+  .vrow{flex-wrap:wrap}
+  .vbtn{padding:5px 8px; font-size:.74rem}
+  .strip{left:10px; right:10px; bottom:106px; transform:none; max-width:none}
+  .mini{display:none}
+  .bl{bottom:10px; left:10px; padding:6px 9px; gap:9px}
+  .scale .bar{width:60px}
+  .ringkey{display:none}
+  .cl{width:136px; padding:8px 10px}
+  .cl .nm{font-size:.85rem}
+  .cl .kick{font-size:.56rem; letter-spacing:.1em}
+  .cl .meta{display:none}
+  .cl .vtags{margin-top:5px}
+}
+</style>
+</head>
+<body>
+
+<div id="app">
+  <div id="viewport">
+    <div id="world"><svg id="geo" aria-hidden="true"></svg></div>
+    <div id="stage" class="over"></div>
+  </div>
+
+  <div class="hud">
+    <div class="panel tl">
+      <div class="ttl">Olympia-Tag London</div>
+      <div class="sb">LK Sport · Tagesausflug ab Eastbourne</div>
+      <div class="budget"><b>Limit 15 £ pro Person</b> für die Aktivität. Zug (~10–20 £) und Londoner ÖPNV (Tagescap 8,90 £) kommen zusätzlich dazu.</div>
+      <div class="lvlrow"><span class="lvl" id="lvl">Übersicht</span><span class="hint" id="where">ganz London</span></div>
+    </div>
+
+    <div class="panel tr">
+      <div class="vrow" role="group" aria-label="Tagesvariante">
+        <button class="vbtn" id="vAll" aria-pressed="true"><span class="d"></span>Alle</button>
+        <button class="vbtn A" id="vA" aria-pressed="false"><span class="d"></span>A</button>
+        <button class="vbtn B" id="vB" aria-pressed="false"><span class="d"></span>B</button>
+        <button class="vbtn C" id="vC" aria-pressed="false"><span class="d"></span>C</button>
+      </div>
+      <div class="zrow">
+        <button class="zbtn wide" id="fitBtn">Übersicht</button>
+        <button class="zbtn" id="zOut" aria-label="Rauszoomen">−</button>
+        <button class="zbtn" id="zIn" aria-label="Reinzoomen">+</button>
+      </div>
+    </div>
+
+    <div class="panel bl">
+      <div class="compass" aria-hidden="true"><span class="arrow"></span><span class="n">N</span></div>
+      <div class="scale"><span class="lbl mono" id="scaleLbl">1 km</span><div class="bar" id="scaleBar"></div></div>
+      <div class="ringkey"><span class="rings" aria-hidden="true"></span>Ringe 2 · 5 · 10 km<br>Luftlinie ab Victoria</div>
+    </div>
+
+    <button class="panel mini" id="mini" aria-label="Zur Gesamtübersicht">
+      <svg id="miniSvg" viewBox="0 0 2360 1950" preserveAspectRatio="xMidYMid meet" aria-hidden="true"></svg>
+      <span class="cap">Gesamtkarte</span>
+    </button>
+
+    <div class="strip" id="strip" hidden></div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ============================================================== geo base */
+
+  /* ============================================================== geo base */
+
+  var LAT0 = 51.505, LON0 = -0.105, K = 15000;
+  var COS = Math.cos(LAT0 * Math.PI / 180);
+  var OX = 1150, OY = 800, W = 2360, H = 1950;
+  var KM = K / 111.32;                       /* world px per kilometre */
+  function X(lon){ return (lon - LON0) * COS * K + OX; }
+  function Y(lat){ return -(lat - LAT0) * K + OY; }
+
+  /* Built-up inner London — the shape that separates city from nowhere. */
+  var INNER = [[51.5540,-0.1900],[51.5545,-0.1150],[51.5500,-0.0450],[51.5360,0.0040],
+               [51.5120,0.0170],[51.4880,0.0150],[51.4670,-0.0250],[51.4560,-0.0900],
+               [51.4545,-0.1500],[51.4625,-0.2000],[51.4830,-0.2210],[51.5190,-0.2210]];
+
+  var THAMES = [[51.4870,-0.2270],[51.4715,-0.2080],[51.4660,-0.1780],[51.4820,-0.1480],
+                [51.4890,-0.1230],[51.5010,-0.1190],[51.5080,-0.0990],[51.5075,-0.0780],
+                [51.5030,-0.0540],[51.5070,-0.0280],[51.4880,-0.0180],[51.4930,0.0050],
+                [51.5050,0.0130]];
+  var LEA = [[51.5600,-0.0230],[51.5480,-0.0190],[51.5380,-0.0110],[51.5200,-0.0030],[51.5070,-0.0060]];
+  var CANAL = [[51.5330,-0.1600],[51.5355,-0.1420],[51.5370,-0.1180],[51.5350,-0.0900],
+               [51.5320,-0.0620],[51.5300,-0.0400],[51.5240,-0.0300],[51.5150,-0.0270]];
+  var SERP = [[51.5072,-0.1748],[51.5058,-0.1692],[51.5042,-0.1646],[51.5028,-0.1598]];
+
+  /* Hand-traced outlines — close enough that the parks read as themselves. */
+  var PARKS = [
+    { n:"Hyde Park & Kensington Gardens", card:1, lab:[51.4990,-0.1690],
+      pts:[[51.5127,-0.1895],[51.5124,-0.1508],[51.5030,-0.1487],[51.5015,-0.1560],
+           [51.5002,-0.1655],[51.5012,-0.1795],[51.5030,-0.1880]] },
+    { n:"Queen Elizabeth Olympic Park", card:1, lab:[51.5332,-0.0150],
+      pts:[[51.5522,-0.0225],[51.5498,-0.0092],[51.5420,-0.0055],[51.5352,-0.0118],
+           [51.5378,-0.0232],[51.5450,-0.0272]] },
+    { n:"Regent's Park", lab:[51.5238,-0.1530],
+      pts:[[51.5365,-0.1600],[51.5358,-0.1443],[51.5270,-0.1437],[51.5252,-0.1520],[51.5265,-0.1625]] },
+    { n:"Green Park & St James's", minor:1, lab:[51.4998,-0.1285],
+      pts:[[51.5062,-0.1478],[51.5048,-0.1275],[51.5010,-0.1285],[51.5008,-0.1420],[51.5030,-0.1472]] },
+    { n:"Battersea Park", lab:[51.4756,-0.1610],
+      pts:[[51.4832,-0.1700],[51.4830,-0.1522],[51.4772,-0.1525],[51.4775,-0.1700]] },
+    { n:"Victoria Park", lab:[51.5316,-0.0390],
+      pts:[[51.5402,-0.0482],[51.5392,-0.0288],[51.5332,-0.0298],[51.5342,-0.0488]] },
+    { n:"Greenwich Park", lab:[51.4703,0.0015],
+      pts:[[51.4802,-0.0030],[51.4800,0.0062],[51.4722,0.0060],[51.4722,-0.0028]] },
+    { n:"Wimbledon Park", lab:[51.4320,-0.2076],
+      pts:[[51.4402,-0.2122],[51.4400,-0.2030],[51.4338,-0.2032],[51.4340,-0.2122]] }
+  ];
+
+  /* Neighbourhood names are what actually anchors a reader on a city map. */
+  var DISTRICTS = [
+    { n:"Westminster",     lat:51.4900, lon:-0.1120, major:1 },
+    { n:"City of London",  lat:51.5152, lon:-0.0910, major:1 },
+    { n:"Canary Wharf",    lat:51.5035, lon:-0.0235, major:1 },
+    { n:"Camden",          lat:51.5412, lon:-0.1440, major:1 },
+    { n:"Chelsea",         lat:51.4872, lon:-0.1690, major:1 },
+    { n:"Greenwich",       lat:51.4835, lon:0.0040,  major:1 },
+    { n:"Soho",            lat:51.5132, lon:-0.1330 },
+    { n:"Shoreditch",      lat:51.5262, lon:-0.0778 },
+    { n:"Hackney",         lat:51.5470, lon:-0.0560 },
+    { n:"Islington",       lat:51.5365, lon:-0.1035 },
+    { n:"Southwark",       lat:51.5012, lon:-0.0905 },
+    { n:"Bermondsey",      lat:51.4972, lon:-0.0640 },
+    { n:"Kensington",      lat:51.4998, lon:-0.1930 },
+    { n:"Notting Hill",    lat:51.5142, lon:-0.2050 },
+    { n:"Fulham",          lat:51.4790, lon:-0.2010 },
+    { n:"Clapham",         lat:51.4625, lon:-0.1385 },
+    { n:"Isle of Dogs",    lat:51.4888, lon:-0.0148 },
+    { n:"Wimbledon",       lat:51.4222, lon:-0.2060 }
+  ];
+
+  /* Air-line rings around Victoria — every trip starts there. */
+  var RINGS = [2, 5, 10];
+
+  var HUBS = [
+    { id:"victoria", lat:51.4952, lon:-0.1441, name:"London Victoria", sub:"Ankunft ~10:00" },
+    { id:"stratford", lat:51.5416, lon:-0.0042, name:"Stratford", sub:"30–45 Min ab Victoria" },
+    { id:"greenpark", lat:51.5067, lon:-0.1428, name:"Green Park", sub:"Umstieg Jubilee", quiet:true }
+  ];
+
+  var EASTBOURNE = { id:"eastbourne", x:X(-0.0300), y:1620, name:"Eastbourne",
+                     sub:"1 h 27–1 h 40 · Southern · ab ~9–11 £" };
+
+  var SPOTS = [
+    /* ---- Queen Elizabeth Olympic Park ---- */
+    { id:"swim", cl:"qeop", lat:51.5404, lon:-0.0119, v:["A","C"], short:"Aquatics Centre", off:[70,14],
+      name:"Schwimmen im Olympia-Becken", venue:"London Aquatics Centre",
+      price:7.90, priceL:"7,90 £", priceSub:"Peak · Off-Peak 7,30 £",
+      dur:"ca. 1 h", durSub:"plus Umkleide",
+      where:"Olympic Park, Stratford E20 — 10 Min zu Fuß vom Bahnhof",
+      travel:"Victoria → Green Park → Jubilee → Stratford, 30–45 Min",
+      booking:"Everyone-Active-Karte anlegen, dann Club Booking Procedure",
+      lead:"2–4 Wochen vorher",
+      pe:"Schwimmtechnik und Ausdauer im Wettkampfbecken von 2012 — Zaha-Hadid-Bau, echtes Olympia-Venue.",
+      risks:["Preis nicht offiziell bestätigt: 7,90 £ / 7,30 £ stammen aus Sekundärquellen, eine andere nennt „ab 5,50 £“. Live prüfen unter 0208 536 3150.",
+             "Der Jugendtarif gilt nur bis 15 Jahre — 17–18-Jährige zahlen den Erwachsenenpreis.",
+             "Aufsichtsratios für Minderjährige vorab erfragen."] },
+    { id:"velo", cl:"qeop", lat:51.5488, lon:-0.0163, v:["A"], short:"VeloPark", off:[128,-2],
+      name:"VeloPark Pay-and-Ride", venue:"Lee Valley VeloPark",
+      price:7.60, priceL:"7,60 £", priceSub:"mit eigenem Rad",
+      dur:"Session", durSub:"Straßenrundkurs",
+      where:"Olympic Park — Hackney Wick oder Stratford",
+      travel:"wie Aquatics Centre, 10–15 Min Fußweg im Park",
+      booking:"Pay-and-Ride: am Tag selbst oder bis 7 Tage vorher",
+      lead:"max. 7 Tage vorher",
+      pe:"Radsport und Trainingslehre auf den Olympia-Strecken von 2012.",
+      risks:["Unter-18 müssen eine unterschriebene Einverständniserklärung mitbringen.",
+             "Mit Leihrad kostet es 16,90 £ (U18: 7,60 £ + 9,30 £) und reißt damit das 15-£-Limit.",
+             "Outdoor — bei Regen auf Schwimmen oder Copper Box ausweichen."] },
+    { id:"velodrome", cl:"qeop", lat:51.5478, lon:-0.0140, v:[], excl:true, short:"Velodrome-Taster", off:[146,30],
+      name:"Velodrome-Taster (Bahnrad)", venue:"Lee Valley VeloPark",
+      price:46, priceL:"46,00 £", priceSub:"pro Person",
+      dur:"Taster-Session", durSub:"ab 12 J., min. 145 cm",
+      where:"Olympic Park, im Velodrom",
+      travel:"wie VeloPark",
+      booking:"max. 6 Plätze pro Buchung",
+      lead:"Sonderbuchung nötig",
+      pe:"Bahnradsport im Olympia-Velodrom — fachlich das Highlight, praktisch nicht machbar.",
+      risks:["Dreifach über dem Budget.",
+             "Auf 6 Plätze pro Buchung begrenzt — für 15 Personen nicht als Standardbuchung möglich.",
+             "Größere Gruppen nur als Sonderbuchung über LVvelopark@gll.org."] },
+    { id:"copper", cl:"qeop", lat:51.5462, lon:-0.0233, v:["C","A"], short:"Copper Box", off:[-138,-6],
+      name:"Copper Box Arena", venue:"Hallensport im Olympia-Bau",
+      price:8, priceL:"6–10 £", priceSub:"pro Stunde, Richtwert",
+      dur:"1 Stunde", durSub:"pro Court",
+      where:"Olympic Park — Hackney Wick oder Stratford",
+      travel:"wie Aquatics Centre",
+      booking:"Better-App, Registrierung nötig",
+      lead:"kurzfristig möglich",
+      pe:"Badminton, Basketball und Tischtennis in der Olympia-Halle von 2012 — Rückschlag- und Mannschaftsspiele.",
+      risks:["Court-Preise sind Richtwerte aus den Better-Standardtarifen — in der App bestätigen.",
+             "Auf die Gruppe verteilt wird es pro Kopf deutlich günstiger.",
+             "Better/GLL hat zum 1. April 2026 die Preise erhöht."] },
+    { id:"lvtennis", cl:"qeop", lat:51.5497, lon:-0.0208, v:[], short:"Hockey & Tennis", off:[-126,-24],
+      name:"Hockey & Tennis Centre", venue:"Lee Valley, Olympia-Kunstrasen",
+      price:10.40, priceL:"10,40 £", priceSub:"U18/Std · Erwachsene 13,00 £",
+      dur:"1 Stunde", durSub:"pro Court",
+      where:"Olympic Park, Nordseite",
+      travel:"wie VeloPark",
+      booking:"Better-App",
+      lead:"kurzfristig möglich",
+      pe:"Tennis und Hockey auf dem Kunstrasen olympischen Standards.",
+      risks:["Indoor deutlich teurer: 25,90–32,50 £ pro Stunde.",
+             "Auf mehrere Spieler pro Court verteilt günstig, allein gerechnet knapp."] },
+    { id:"parkland", cl:"qeop", lat:51.5432, lon:-0.0125, v:["A"], short:"Laufrunde Parkland", off:[56,-30],
+      name:"Laufrunde im Parkland", venue:"Kanäle und Venues, Outdoor-Gym",
+      price:0, priceL:"gratis", priceSub:"",
+      dur:"60–90 Min", durSub:"selbst organisiert",
+      where:"Queen Elizabeth Olympic Park, frei zugänglich",
+      travel:"direkt ab Stratford, 10 Min zu Fuß",
+      booking:"keine",
+      lead:"—",
+      pe:"Grundlagenausdauer, Staffel- und Intervallformen entlang der Kanäle, dazu Outdoor-Gym und die London Marathon Community Track.",
+      risks:["parkrun wäre gratis, geht aber nur samstags und braucht Voranmeldung.",
+             "Achtung: Der gleichnamige „Queen Elizabeth parkrun“ liegt in Hampshire, nicht im Olympic Park — für echte Teilnahme das nächstgelegene Londoner Event prüfen.",
+             "Outdoor und damit wetterabhängig."] },
+
+    /* ---- Royal Parks ---- */
+    { id:"santander", cl:"royal", lat:51.4975, lon:-0.1490, v:["B"], short:"Santander Cycles", off:[4,34],
+      name:"Santander Cycles", venue:"Tagespass ab Victoria",
+      price:3.50, priceL:"3,50 £", priceSub:"Studierende ab 18: 1,75 £",
+      dur:"24 Stunden", durSub:"Fahrten je unter 60 Min",
+      where:"Docking-Stationen rund um Victoria, Hyde Park, Green Park",
+      travel:"zu Fuß ab Victoria, 5–10 Min",
+      booking:"keine — App oder Terminal mit Bankkarte",
+      lead:"—",
+      pe:"Ausdauer, Herz-Kreislauf, aktive Mobilität und eigene Streckenplanung durch die Royal Parks.",
+      risks:["Die Nutzungsbedingungen setzen teils 18 Jahre voraus — für Unter-18 vorab bei TfL klären.",
+             "Helme werden nicht gestellt.",
+             "Jede Einzelfahrt muss unter 60 Minuten bleiben und eingedockt werden, sonst Zusatzkosten.",
+             "E-Bikes nur über die App."] },
+    { id:"serpentine", cl:"royal", lat:51.5065, lon:-0.1655, v:["B"], short:"Serpentine-Runde", off:[-96,-34],
+      name:"Serpentine-Laufrunde", venue:"Hyde Park",
+      price:0, priceL:"gratis", priceSub:"",
+      dur:"45–75 Min", durSub:"Runde ca. 4,5 km",
+      where:"Hyde Park, 10–15 Min zu Fuß ab Victoria",
+      travel:"kein ÖPNV nötig",
+      booking:"keine",
+      lead:"—",
+      pe:"Ausdauerläufe und Intervalltraining, Circuit- und Staffelformen auf den Wiesen.",
+      risks:["Outdoor und wetterabhängig.",
+             "Keine Umkleiden oder Duschen."] },
+    { id:"lido", cl:"royal", lat:51.5049, lon:-0.1672, v:["B"], short:"Serpentine Lido", off:[86,34],
+      name:"Serpentine Lido", venue:"Freibad im Hyde Park",
+      price:3.25, priceL:"3,25 £", priceSub:"Konzession · Erwachsene 5,95 £",
+      dur:"1 Session", durSub:"Volltag 7,50 £",
+      where:"Südufer der Serpentine, Hyde Park",
+      travel:"zu Fuß ab Victoria",
+      booking:"vor Ort",
+      lead:"—",
+      pe:"Open-Water-Erfahrung und Ausdauer im unbeheizten Wasser — ein Thema, das ein Hallenbad nicht liefert.",
+      risks:["Nur Sommer: in der Regel Juni bis Mitte September, Wochenendbetrieb ab Mitte Mai.",
+             "Wasser unbeheizt, ca. 17–20 °C.",
+             "Konzession gilt laut The Royal Parks für 16- und 17-Jährige mit Ausweis — der Kurs ist damit berechtigt."] },
+    { id:"tt", cl:"royal", lat:51.5096, lon:-0.1585, v:["B"], short:"Tischtennis", off:[78,-30],
+      name:"Tischtennis (Park Sports)", venue:"Hyde Park / Regent's Park",
+      price:7, priceL:"7,00 £", priceSub:"pro Tisch und Stunde",
+      dur:"1 Stunde", durSub:"inkl. Ausleihe",
+      where:"Park Sports, Hyde Park und Regent's Park",
+      travel:"zu Fuß oder mit dem Leihrad",
+      booking:"vor Ort",
+      lead:"—",
+      pe:"Rückschlagspiele, Reaktion und Koordination — auf mehrere Spieler pro Tisch verteilt sehr günstig.",
+      risks:["Preis gilt pro Tisch, nicht pro Person.",
+             "In King's Cross gibt es kostenlose Tische als Alternative."] },
+    { id:"regents", cl:"royal", lat:51.5313, lon:-0.1570, v:["B"], short:"Regent's Park", off:[0,0],
+      name:"Regent's Park", venue:"Ziel der Radtour",
+      price:0, priceL:"gratis", priceSub:"",
+      dur:"Wendepunkt", durSub:"ca. 5 km ab Hyde Park",
+      where:"Regent's Park, nördlicher Endpunkt der Route",
+      travel:"mit dem Santander-Rad ab Hyde Park, ca. 25 Min",
+      booking:"keine",
+      lead:"—",
+      pe:"Streckenplanung und Belastungssteuerung über eine längere Radetappe; Park Sports betreibt hier ebenfalls Tischtennis.",
+      risks:["Die Route führt durch dichten Stadtverkehr — Streckenführung vorher festlegen."] },
+
+    /* ---- weitere geprüfte Optionen ---- */
+    { id:"battersea", cl:"other", lat:51.4795, lon:-0.1590, v:[], short:"Battersea Park", off:[0,26],
+      name:"Battersea Park", venue:"400-m-Bahn und Tennisplätze",
+      price:11.60, priceL:"11,60 £", priceSub:"Court pro Stunde",
+      dur:"1 Stunde", durSub:"pro Court",
+      where:"Südlich der Themse — Battersea Park Station, 1 Station ab Victoria",
+      travel:"~5 Min mit dem Zug oder 25–30 Min zu Fuß",
+      booking:"Enable Leisure",
+      lead:"vorab buchen",
+      pe:"Leichtathletik auf einer 400-m-8-Bahnen-Anlage (Millennium Arena) — Sprint, Bahntraining, Ausdauer.",
+      risks:["Die Leichtathletikbahn ist Juli bis September 2026 wegen Sanierung geschlossen — genau das, was den Standort fachlich interessant gemacht hätte.",
+             "Tennis mit 11,60 £ pro Court und Stunde knapp im Limit.",
+             "Tret- und Ruderboote ca. 8–10 £ pro Stunde."] },
+    { id:"docklands", cl:"other", lat:51.4923, lon:-0.0210, v:[], short:"Docklands Watersports", off:[0,26],
+      name:"Docklands Watersports", venue:"Isle of Dogs",
+      price:16, priceL:"> 15 £", priceSub:"Preis auf Anfrage",
+      dur:"Halber Tag", durSub:"Taster oder Multi-Activity",
+      where:"Docklands Sailing & Watersports Centre, Isle of Dogs",
+      travel:"DLR Crossharbour oder Canary Wharf, 40–50 Min ab Victoria",
+      booking:"direkt anfragen, min. 8 Teilnehmende",
+      lead:"deutlich vorher",
+      pe:"Kajak, Kanu, SUP und Segeln — Paddeltechnik, Teamkoordination, Kraftausdauer.",
+      risks:["Betreute Sessions liegen voraussichtlich über 15 £ pro Person — Preise sind nicht öffentlich.",
+             "Preise werden in Vierergruppen kalkuliert, Minimum 8 Teilnehmende.",
+             "Weite Anfahrt und zusätzlicher ÖPNV."] },
+    { id:"wimbledon", cl:"other", lat:51.4360, lon:-0.2070, v:[], short:"Wimbledon Watersports", off:[0,26],
+      name:"Wimbledon Park Watersports", venue:"SW London",
+      price:10, priceL:"10,00 £", priceSub:"pro Person und Stunde",
+      dur:"1 Stunde", durSub:"min. 8 Teilnehmende",
+      where:"Wimbledon Park, Südwest-London",
+      travel:"weit von Victoria — zusätzlicher ÖPNV und Zeit",
+      booking:"vorab anfragen",
+      lead:"vorab",
+      pe:"Wassersport als Vergleichsangebot: 80 £ je 8 Personen und Stunde.",
+      risks:["Im Budget möglich, aber die Anfahrt frisst die Zeit vor Ort.",
+             "Mindestgruppe 8 Personen pro Slot."] }
+  ];
+
+  var CLUSTERS = [
+    { id:"qeop", lat:51.5450, lon:-0.0175, name:"Queen Elizabeth Olympic Park",
+      kick:"Stratford E20 · Osten", v:["A","C"],
+      meta:"6 Angebote · ab gratis · 30–45 Min ab Victoria" },
+    { id:"royal", lat:51.5090, lon:-0.1610, name:"Royal Parks",
+      kick:"West · zu Fuß ab Victoria", v:["B"],
+      meta:"5 Angebote · ab gratis · 10–15 Min zu Fuß" },
+    { id:"other", lat:51.4700, lon:-0.1600, name:"Weitere geprüfte Optionen",
+      kick:"verstreut im Süden & Osten", v:[], leads:["battersea","docklands","wimbledon"],
+      meta:"3 Standorte · nicht empfohlen" }
+  ];
+
+  var VAR = {
+    A:{ name:"Olympia-Tag", cost:"~8 £ Aktivität · ~27 £ Tag", color:"var(--A)",
+        route:["eastbourne","victoria","stratford","parkland","swim","copper","stratford","victoria","eastbourne"],
+        stops:[["8:15","Abfahrt Eastbourne","eastbourne"],["10:00","Ankunft Victoria","victoria"],
+               ["11:00","Laufrunde im Parkland","parkland"],["12:30","Picknick im Park","parkland"],
+               ["13:30","Schwimmen oder VeloPark","swim"],["15:30","Venues, Copper Box","copper"],
+               ["17:00","Rückweg nach Victoria","victoria"],["18:00","Rückfahrt","eastbourne"]] },
+    B:{ name:"Royal Parks", cost:"~4 £ Aktivität · ~14 £ Tag", color:"var(--B)",
+        route:["eastbourne","victoria","santander","regents","serpentine","tt","victoria","eastbourne"],
+        stops:[["8:15","Abfahrt Eastbourne","eastbourne"],["10:00","Ankunft Victoria","victoria"],
+               ["10:30","Santander Cycles","santander"],["11:30","Regent's Park","regents"],
+               ["12:30","Picknick, Laufrunde","serpentine"],["14:00","Tischtennis oder Lido","tt"],
+               ["16:00","Räder zurück","victoria"],["18:00","Rückfahrt","eastbourne"]] },
+    C:{ name:"Hallensport", cost:"~8–12 £ Aktivität · ~27–31 £ Tag", color:"var(--C)",
+        route:["eastbourne","victoria","stratford","copper","swim","stratford","victoria","eastbourne"],
+        stops:[["8:15","Abfahrt Eastbourne","eastbourne"],["10:00","Ankunft Victoria","victoria"],
+               ["11:30","Copper Box Arena","copper"],["13:30","Mittag","copper"],
+               ["14:30","Schwimmen","swim"],["17:00","Rückweg","victoria"],
+               ["18:30","Rückfahrt","eastbourne"]] }
+  };
+
+  /* ============================================================== position */
+
+  var POS = {};
+  HUBS.forEach(function(h){ POS[h.id] = { x:X(h.lon), y:Y(h.lat) }; });
+  SPOTS.forEach(function(s){ POS[s.id] = { x:X(s.lon), y:Y(s.lat) }; });
+  CLUSTERS.forEach(function(c){ POS[c.id] = { x:X(c.lon), y:Y(c.lat) }; });
+  POS.eastbourne = { x:EASTBOURNE.x, y:EASTBOURNE.y };
+
+  /* anchors the "where am I" readout snaps to */
+  var LANDMARKS = [];
+
+  function esc(s){
+    return String(s).replace(/[&<>"]/g, function(c){
+      return { "&":"&amp;", "<":"&lt;", ">":"&gt;", "\"":"&quot;" }[c];
+    });
+  }
+
+  /* ========================================================= geography svg */
+  /* Shapes only — no text lives inside the transformed layer, so zooming is a
+     single composited transform instead of a text re-layout per frame.        */
+
+  function path(pts){
+    return pts.map(function(p, i){
+      return (i ? "L" : "M") + X(p[1]).toFixed(1) + " " + Y(p[0]).toFixed(1);
+    }).join(" ");
+  }
+
+  function smooth(pts){
+    var n = pts.length, d = "", i;
+    var P = pts.map(function(p){ return [X(p[1]), Y(p[0])]; });
+    for (i = 0; i < n; i++){
+      var p0 = P[(i - 1 + n) % n], p1 = P[i], p2 = P[(i + 1) % n], p3 = P[(i + 2) % n];
+      if (i === 0) d += "M" + p1[0].toFixed(1) + " " + p1[1].toFixed(1);
+      d += "C" + (p1[0] + (p2[0] - p0[0]) / 6).toFixed(1) + " " + (p1[1] + (p2[1] - p0[1]) / 6).toFixed(1) +
+           "," + (p2[0] - (p3[0] - p1[0]) / 6).toFixed(1) + " " + (p2[1] - (p3[1] - p1[1]) / 6).toFixed(1) +
+           "," + p2[0].toFixed(1) + " " + p2[1].toFixed(1);
+    }
+    return d + "Z";
+  }
+
+  function poly(pts){
+    return pts.map(function(p, i){
+      return (i ? "L" : "M") + X(p[1]).toFixed(1) + " " + Y(p[0]).toFixed(1);
+    }).join(" ") + "Z";
+  }
+
+  function buildGeo(){
+    var g = document.getElementById("geo");
+    g.setAttribute("width", W);
+    g.setAttribute("height", H);
+    g.setAttribute("viewBox", "0 0 " + W + " " + H);
+
+    var vx = X(-0.1441), vy = Y(51.4952);
+
+    var rings = RINGS.map(function(km){
+      return '<circle cx="' + vx.toFixed(1) + '" cy="' + vy.toFixed(1) + '" r="' + (km * KM).toFixed(1) +
+        '" fill="none" stroke="var(--ink-3)" stroke-width="1.25" stroke-dasharray="5 10" ' +
+        'vector-effect="non-scaling-stroke" opacity=".55"/>';
+    }).join("");
+
+    var parks = PARKS.map(function(p){
+      return '<path d="' + poly(p.pts) + '" fill="var(--park)" stroke="var(--park-l)" stroke-width="1.5"/>';
+    }).join("");
+
+    var water =
+      '<path d="' + path(THAMES) + '" fill="none" stroke="var(--water)" stroke-width="52" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<path d="' + path(LEA) + '" fill="none" stroke="var(--water)" stroke-width="15" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<path d="' + path(CANAL) + '" fill="none" stroke="var(--water)" stroke-width="9" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>' +
+      '<path d="' + path(SERP) + '" fill="none" stroke="var(--water)" stroke-width="13" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>';
+
+    var rail = '<path d="M' + POS.eastbourne.x + " " + POS.eastbourne.y +
+      "L" + POS.victoria.x + " " + POS.victoria.y +
+      '" fill="none" stroke="var(--ink-3)" stroke-width="2.5" stroke-dasharray="11 8" ' +
+      'vector-effect="non-scaling-stroke" opacity=".6"/>';
+
+    var tubeD = "M" + POS.victoria.x + " " + POS.victoria.y +
+      "L" + POS.greenpark.x + " " + POS.greenpark.y +
+      "L" + POS.stratford.x + " " + POS.stratford.y;
+    var tube = '<path d="' + tubeD + '" fill="none" stroke="var(--road)" stroke-width="6" ' +
+      'stroke-linecap="round" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>' +
+      '<path d="' + tubeD + '" fill="none" stroke="var(--ink-3)" stroke-width="2.5" ' +
+      'stroke-dasharray="2 9" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".6"/>';
+
+    g.innerHTML =
+      '<path d="' + smooth(INNER) + '" fill="var(--urban)" stroke="var(--urban-l)" stroke-width="1.5" ' +
+        'vector-effect="non-scaling-stroke"/>' +
+      water + parks +
+      '<g id="rings">' + rings + "</g>" +
+      rail + tube + '<g id="routes"></g>';
+
+    /* the locator uses the same geometry, drawn once */
+    document.getElementById("miniSvg").innerHTML =
+      '<rect x="0" y="0" width="' + W + '" height="' + H + '" fill="var(--land)"/>' +
+      '<path d="' + smooth(INNER) + '" fill="var(--urban)"/>' +
+      '<path d="' + path(THAMES) + '" fill="none" stroke="var(--water)" stroke-width="46" ' +
+        'stroke-linejoin="round" stroke-linecap="round"/>' +
+      PARKS.map(function(p){ return '<path d="' + poly(p.pts) + '" fill="var(--park)"/>'; }).join("") +
+      CLUSTERS.map(function(c){
+        return '<circle cx="' + POS[c.id].x + '" cy="' + POS[c.id].y + '" r="46" fill="var(--ink)"/>';
+      }).join("") +
+      '<circle cx="' + vx + '" cy="' + vy + '" r="34" fill="var(--card)" stroke="var(--ink)" stroke-width="18"/>' +
+      '<rect id="miniBox" x="0" y="0" width="100" height="100" fill="var(--ink)" ' +
+        'fill-opacity=".10" stroke="var(--ink)" stroke-width="34" rx="24"/>';
+  }
+
+  /* ================================================================ camera */
+
+  var vpEl = document.getElementById("viewport");
+  var world = document.getElementById("world");
+  var stage = document.getElementById("stage");
+  var lvlEl = document.getElementById("lvl");
+
+  var ZMIN = 0.12, ZMAX = 2.4, Z_IN = 0.70, Z_OUT = 0.60;
+  var st = { z:0.3, tx:0, ty:0 };
+  var cam = { z:0.3, tx:0, ty:0, anchor:null };
+  var reg = [];
+  var level = "over";
+  var variant = null;
+  var openId = null;
+  var rafId = null, lastT = 0;
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  function vw(){ return vpEl.clientWidth; }
+  function vh(){ return vpEl.clientHeight; }
+  function clamp(v, lo, hi){ return v < lo ? lo : v > hi ? hi : v; }
+
+  function apply(){
+    world.style.transform = "translate3d(" + st.tx.toFixed(2) + "px," + st.ty.toFixed(2) +
+      "px,0) scale(" + st.z.toFixed(4) + ")";
+    var z = st.z, tx = st.tx, ty = st.ty;
+    for (var i = 0; i < reg.length; i++){
+      var r = reg[i];
+      r.el.style.transform = "translate3d(" + (r.x * z + tx + r.dx).toFixed(1) + "px," +
+        (r.y * z + ty + r.dy).toFixed(1) + "px,0) translate(-50%,-50%)";
+    }
+    syncLevel();
+    updateScale();
+    updateLocator();
+    updateWhere();
+  }
+
+  /* -------------------------------------------------- orientation readouts */
+
+  var scaleBar = document.getElementById("scaleBar");
+  var scaleLbl = document.getElementById("scaleLbl");
+  var miniBox = null;
+  var whereEl = document.getElementById("where");
+  var lastScale = -1, lastWhere = "";
+
+  function updateScale(){
+    /* pick 1/2/5 x 10^n kilometres so the bar lands near 90 px */
+    var km = 90 / (KM * st.z);
+    var p = Math.pow(10, Math.floor(Math.log10(km))), m = km / p;
+    var v = (m < 1.5 ? 1 : m < 3.5 ? 2 : m < 7.5 ? 5 : 10) * p;
+    if (v === lastScale) { scaleBar.style.width = (v * KM * st.z).toFixed(1) + "px"; return; }
+    lastScale = v;
+    scaleBar.style.width = (v * KM * st.z).toFixed(1) + "px";
+    scaleLbl.textContent = v >= 1 ? (v % 1 ? v.toFixed(1).replace(".", ",") : v) + " km"
+                                  : Math.round(v * 1000) + " m";
+  }
+
+  function updateLocator(){
+    if (!miniBox) miniBox = document.getElementById("miniBox");
+    if (!miniBox) return;
+    miniBox.setAttribute("x", ((0 - st.tx) / st.z).toFixed(0));
+    miniBox.setAttribute("y", ((0 - st.ty) / st.z).toFixed(0));
+    miniBox.setAttribute("width", (vw() / st.z).toFixed(0));
+    miniBox.setAttribute("height", (vh() / st.z).toFixed(0));
+  }
+
+  var COMPASS = ["nördlich", "nordöstlich", "östlich", "südöstlich",
+                 "südlich", "südwestlich", "westlich", "nordwestlich"];
+
+  /* what the centre of the screen is looking at, in words */
+  function updateWhere(){
+    var cx = (vw() / 2 - st.tx) / st.z, cy = (vh() / 2 - st.ty) / st.z;
+    var best = null, bestD = Infinity;
+    LANDMARKS.forEach(function(l){
+      var d = Math.hypot(l.x - cx, l.y - cy);
+      if (d < bestD){ bestD = d; best = l; }
+    });
+    var v = POS.victoria;
+    var km = Math.hypot(cx - v.x, cy - v.y) / KM;
+    var txt;
+    if (bestD / KM < 0.35 && best.id === "victoria") txt = "bei London Victoria";
+    else if (km < 0.6) txt = "Zentrum · London Victoria";
+    else {
+      var ang = (Math.atan2(cx - v.x, v.y - cy) * 180 / Math.PI + 360) % 360;
+      txt = (bestD / KM < 2.2 ? best.name + " · " : "") +
+        km.toFixed(km < 10 ? 1 : 0).replace(".", ",") + " km " +
+        COMPASS[Math.round(ang / 45) % 8] + " von Victoria";
+    }
+    if (txt === lastWhere) return;
+    lastWhere = txt;
+    whereEl.textContent = txt;
+  }
+
+  /* a dead band around the switch keeps the two layers from flickering when
+     the wheel lands right on the threshold */
+  function syncLevel(){
+    var next = level === "over" ? (st.z > Z_IN ? "detail" : "over")
+                                : (st.z < Z_OUT ? "over" : "detail");
+    if (next === level) return;
+    level = next;
+    stage.classList.toggle("over", level === "over");
+    stage.classList.toggle("detail", level === "detail");
+    world.classList.toggle("detail", level === "detail");
+    lvlEl.textContent = level === "over" ? "Übersicht" : "Detail";
+  }
+
+  function kick(){
+    if (rafId === null){ lastT = 0; rafId = requestAnimationFrame(frame); }
+  }
+
+  function frame(now){
+    rafId = null;
+    var dt = lastT ? Math.min(64, now - lastT) : 16.7;
+    lastT = now;
+    var k = reduce ? 1 : 1 - Math.pow(1 - 0.26, dt / 16.667);
+    var moving = false;
+
+    if (Math.abs(cam.z - st.z) > 0.0004){ st.z += (cam.z - st.z) * k; moving = true; }
+    else st.z = cam.z;
+
+    if (cam.anchor){
+      /* hold the point under the cursor while the zoom eases in */
+      st.tx = cam.anchor.sx - cam.anchor.wx * st.z;
+      st.ty = cam.anchor.sy - cam.anchor.wy * st.z;
+      cam.tx = st.tx; cam.ty = st.ty;
+      if (!moving) cam.anchor = null;
+    } else {
+      if (Math.abs(cam.tx - st.tx) > 0.06){ st.tx += (cam.tx - st.tx) * k; moving = true; }
+      else st.tx = cam.tx;
+      if (Math.abs(cam.ty - st.ty) > 0.06){ st.ty += (cam.ty - st.ty) * k; moving = true; }
+      else st.ty = cam.ty;
+    }
+
+    apply();
+    if (moving) kick();
+    else stage.classList.remove("moving");
+  }
+
+  function zoomTo(nz, sx, sy){
+    if (sx == null){ sx = vw() / 2; sy = vh() / 2; }
+    cam.anchor = { sx:sx, sy:sy, wx:(sx - st.tx) / st.z, wy:(sy - st.ty) / st.z };
+    cam.z = clamp(nz, ZMIN, ZMAX);
+    stage.classList.add("moving");
+    kick();
+  }
+
+  function flyTo(nz, tx, ty){
+    cam.anchor = null;
+    cam.z = clamp(nz, ZMIN, ZMAX);
+    cam.tx = tx; cam.ty = ty;
+    stage.classList.add("moving");
+    kick();
+  }
+
+  function centerOn(id, nz){
+    var p = POS[id]; if (!p) return;
+    var z = clamp(nz || Math.max(st.z, 1.0), ZMIN, ZMAX);
+    flyTo(z, vw() / 2 - p.x * z, vh() / 2 - p.y * z);
+  }
+
+  /* On a narrow screen the whole world only fits at a zoom where the area
+     cards would overlap, so phones frame London and pan to the rail tail. */
+  var BOX_ALL = { x:0, y:0, w:W, h:H };
+  var BOX_LDN = { x:250, y:40, w:2070, h:1290 };
+
+  function fitTarget(){
+    var narrow = vw() < 760;
+    var box = narrow ? BOX_LDN : BOX_ALL;
+    var insetT = narrow ? 120 : 104, insetB = narrow ? 150 : 78, insetX = narrow ? 12 : 24;
+    var aw = Math.max(200, vw() - insetX * 2), ah = Math.max(200, vh() - insetT - insetB);
+    var z = clamp(Math.min(aw / box.w, ah / box.h), ZMIN, 1);
+    return { z:z,
+             tx:insetX + (aw - box.w * z) / 2 - box.x * z,
+             ty:insetT + (ah - box.h * z) / 2 - box.y * z };
+  }
+
+  function fit(animate){
+    var t = fitTarget();
+    if (animate) flyTo(t.z, t.tx, t.ty);
+    else { st.z = cam.z = t.z; st.tx = cam.tx = t.tx; st.ty = cam.ty = t.ty; cam.anchor = null; apply(); }
+  }
+
+  function clampPan(){
+    var pad = 140, lo, hi;
+    lo = Math.min(pad, vw() - W * st.z - pad); hi = Math.max(pad, vw() - W * st.z - pad);
+    st.tx = clamp(st.tx, lo, hi);
+    lo = Math.min(pad, vh() - H * st.z - pad); hi = Math.max(pad, vh() - H * st.z - pad);
+    st.ty = clamp(st.ty, lo, hi);
+    cam.tx = st.tx; cam.ty = st.ty;
+  }
+
+  /* ================================================================= stage */
+
+  function put(cls, html, x, y, dx, dy){
+    var el = document.createElement("div");
+    el.className = "sn " + cls;
+    if (html) el.innerHTML = html;
+    stage.appendChild(el);
+    reg.push({ el:el, x:x, y:y, dx:dx || 0, dy:dy || 0 });
+    return el;
+  }
+
+  function vtags(list){
+    return list.map(function(k){
+      return '<span class="vtag ' + k + '"><span class="d"></span>' + k + "</span>";
+    }).join("");
+  }
+
+  function clusterHTML(c){
+    return '<button class="cl" data-cluster="' + c.id + '">' +
+      '<span class="kick">' + esc(c.kick) + "</span>" +
+      '<span class="nm">' + esc(c.name) + "</span>" +
+      '<span class="meta">' + esc(c.meta) + "</span>" +
+      (c.v.length ? '<span class="vtags">' + vtags(c.v) + "</span>" : "") +
+      "</button>";
+  }
+
+  function pinHTML(s){
+    var vk = s.v.length ? s.v[0] : "";
+    return '<button class="pin" data-spot="' + s.id + '">' +
+      '<span class="dot" style="background:' + (vk ? "var(--" + vk + ")" : "var(--ink-3)") + '"></span>' +
+      '<span class="nm">' + esc(s.short || s.name) + "</span>" +
+      '<span class="pr' + (s.price === 0 ? " free" : "") + '">' + esc(s.priceL) + "</span>" +
+      "</button>";
+  }
+
+  function cardHTML(s){
+    var over = s.price > 15;
+    return '<div class="card">' +
+      '<div class="hd">' +
+        '<button class="x" data-close="1" aria-label="Schließen">✕</button>' +
+        '<div class="kick">' + esc(s.venue) + "</div>" +
+        "<h2>" + esc(s.name) + "</h2>" +
+        '<div class="tags">' + (s.v.length ? vtags(s.v) : "") +
+          (s.excl ? '<span class="vtag off">ausgeschlossen</span>' : "") +
+        "</div>" +
+      "</div>" +
+      '<div class="bd">' +
+        '<dl class="hero">' +
+          '<div><dt>Kosten p. P.</dt><dd class="' + (s.price === 0 ? "free" : over ? "over" : "") + '">' +
+            esc(s.priceL) + (s.priceSub ? "<small>" + esc(s.priceSub) + "</small>" : "") + "</dd></div>" +
+          "<div><dt>Dauer</dt><dd>" + esc(s.dur) +
+            (s.durSub ? "<small>" + esc(s.durSub) + "</small>" : "") + "</dd></div>" +
+        "</dl>" +
+        "<h3>Wo &amp; wie hin</h3>" +
+        '<dl class="facts">' +
+          "<div><dt>Ort</dt><dd>" + esc(s.where) + "</dd></div>" +
+          "<div><dt>Anfahrt</dt><dd>" + esc(s.travel) + "</dd></div>" +
+          "<div><dt>Buchung</dt><dd>" + esc(s.booking) + "</dd></div>" +
+          "<div><dt>Vorlauf</dt><dd>" + esc(s.lead) + "</dd></div>" +
+        "</dl>" +
+        "<h3>Bezug zum LK Sport</h3><p class=\"pe\">" + esc(s.pe) + "</p>" +
+        (s.risks && s.risks.length
+          ? "<h3>Offene Punkte</h3><ul class=\"risks\">" +
+            s.risks.map(function(r){ return "<li>" + esc(r) + "</li>"; }).join("") + "</ul>"
+          : "") +
+      "</div></div>";
+  }
+
+  /* Rebuilt only on discrete actions — never while zooming or panning. */
+  function buildStage(){
+    stage.textContent = "";
+    reg = [];
+
+    DISTRICTS.forEach(function(d){
+      put("district " + (d.major ? "major" : "minor"), esc(d.n), X(d.lon), Y(d.lat));
+    });
+
+    PARKS.forEach(function(p){
+      put("maplabel" + (p.card ? " under-card area" : "") + (p.minor ? " lvl-detail" : ""),
+          esc(p.n).toUpperCase(),
+          X(p.lab[1]), Y(p.lab[0]));
+    });
+    put("maplabel water", "Thames", X(-0.0700), Y(51.5040));
+    put("maplabel faint", "Bahn nicht maßstäblich",
+        (POS.eastbourne.x + POS.victoria.x) / 2, (POS.eastbourne.y + POS.victoria.y) / 2);
+
+    HUBS.forEach(function(h){
+      put("hit" + (h.quiet ? " lvl-detail" : ""),
+        '<div class="hub"><span class="ring"></span><span class="lb">' + esc(h.name) +
+        '</span><span class="sub">' + esc(h.sub) + "</span></div>", POS[h.id].x, POS[h.id].y);
+    });
+    put("hit", '<div class="hub"><span class="ring"></span><span class="lb">' + esc(EASTBOURNE.name) +
+      '</span><span class="sub">' + esc(EASTBOURNE.sub) + "</span></div>",
+      POS.eastbourne.x, POS.eastbourne.y);
+
+    CLUSTERS.forEach(function(c){
+      var dim = variant && (c.v.indexOf(variant) < 0);
+      put("hit lvl-over" + (dim ? " dim" : ""), clusterHTML(c), POS[c.id].x, POS[c.id].y);
+    });
+
+    SPOTS.forEach(function(s){
+      var vk = s.v.length ? s.v[0] : "";
+      var dim = variant && s.v.indexOf(variant) < 0;
+      var p = POS[s.id];
+      put("lvl-detail anchor " + vk + (s.excl ? " excl" : "") + (dim ? " dim" : ""), "", p.x, p.y);
+      if (openId === s.id){
+        put("hit cardwrap", cardHTML(s), p.x, p.y);
+      } else {
+        var o = s.off || [0, 0];
+        put("hit lvl-detail" + (s.excl ? " excl" : "") + (dim ? " dim" : ""),
+            pinHTML(s), p.x, p.y, o[0], o[1]);
+      }
+    });
+
+    apply();
+  }
+
+  function renderRoutes(){
+    var g = document.getElementById("routes");
+    if (!g) return;
+    var out = "";
+    CLUSTERS.forEach(function(c){
+      if (!c.leads) return;
+      var a = POS[c.id];
+      c.leads.forEach(function(id){
+        var b = POS[id]; if (!b) return;
+        out += '<path class="lead-line" d="M' + a.x.toFixed(1) + " " + a.y.toFixed(1) +
+          "L" + b.x.toFixed(1) + " " + b.y.toFixed(1) +
+          '" stroke="var(--ink-3)" stroke-width="1.5" stroke-dasharray="5 7" fill="none" ' +
+          'vector-effect="non-scaling-stroke" opacity=".5"/>';
+      });
+    });
+    if (variant){
+      var v = VAR[variant];
+      var pts = v.route.map(function(id){ return POS[id]; }).filter(Boolean);
+      var d = pts.map(function(p, i){
+        return (i ? "L" : "M") + p.x.toFixed(1) + " " + p.y.toFixed(1);
+      }).join(" ");
+      out += '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="7" ' +
+        'stroke-linejoin="round" stroke-linecap="round" vector-effect="non-scaling-stroke" opacity=".22"/>' +
+        '<path d="' + d + '" fill="none" stroke="' + v.color + '" stroke-width="2.5" ' +
+        'stroke-linejoin="round" stroke-linecap="round" stroke-dasharray="1 11" ' +
+        'vector-effect="non-scaling-stroke"/>';
+    }
+    g.innerHTML = out;
+  }
+
+  function renderStrip(){
+    var el = document.getElementById("strip");
+    if (!variant){ el.hidden = true; return; }
+    var v = VAR[variant];
+    el.hidden = false;
+    el.innerHTML =
+      '<div class="lead"><span class="k" style="color:var(--' + variant + 't)">VARIANTE ' + variant + "</span>" +
+        '<span class="n">' + esc(v.name) + '</span><span class="c">' + esc(v.cost) + "</span></div>" +
+      '<div class="stops">' + v.stops.map(function(s){
+        return '<button class="stop" data-goto="' + s[2] + '"><span class="t" style="color:var(--' +
+          variant + 't)">' + esc(s[0]) + '</span><span class="l">' + esc(s[1]) + "</span></button>";
+      }).join("") + "</div>";
+  }
+
+  function setVariant(k){
+    variant = k;
+    if (k && openId){
+      var s = SPOTS.filter(function(x){ return x.id === openId; })[0];
+      if (s && s.v.indexOf(k) < 0) openId = null;
+    }
+    ["All", "A", "B", "C"].forEach(function(n){
+      document.getElementById("v" + n).setAttribute("aria-pressed",
+        (n === "All" ? variant === null : variant === n) ? "true" : "false");
+    });
+    buildStage();
+    renderRoutes();
+    renderStrip();
+  }
+
+  function openSpot(id){
+    openId = id;
+    buildStage();
+    centerOn(id, Math.max(st.z, 1.0));
+  }
+  function closeCard(){ if (openId){ openId = null; buildStage(); } }
+
+  /* ================================================================ events */
+
+  stage.addEventListener("click", function(e){
+    var cl = e.target.closest("[data-cluster]");
+    if (cl){ centerOn(cl.dataset.cluster, 1.6); return; }
+    if (e.target.closest("[data-close]")){ closeCard(); return; }
+    var sp = e.target.closest("[data-spot]");
+    if (sp) openSpot(sp.dataset.spot);
+  });
+
+  document.getElementById("strip").addEventListener("click", function(e){
+    var b = e.target.closest("[data-goto]");
+    if (!b) return;
+    var id = b.dataset.goto;
+    if (SPOTS.some(function(s){ return s.id === id; })) openSpot(id);
+    else centerOn(id, Math.max(st.z, 0.8));
+  });
+
+  document.getElementById("vAll").addEventListener("click", function(){ setVariant(null); });
+  ["A", "B", "C"].forEach(function(k){
+    document.getElementById("v" + k).addEventListener("click", function(){
+      setVariant(variant === k ? null : k);
+    });
+  });
+  document.getElementById("fitBtn").addEventListener("click", function(){ closeCard(); fit(true); });
+  document.getElementById("zIn").addEventListener("click", function(){ zoomTo(cam.z * 1.6); });
+  document.getElementById("zOut").addEventListener("click", function(){ zoomTo(cam.z / 1.6); });
+
+  vpEl.addEventListener("wheel", function(e){
+    e.preventDefault();
+    var r = vpEl.getBoundingClientRect();
+    /* a trackpad pinch arrives as ctrl+wheel with much smaller deltas */
+    var f = e.ctrlKey ? 0.012 : 0.0022;
+    zoomTo(cam.z * Math.exp(-e.deltaY * f), e.clientX - r.left, e.clientY - r.top);
+  }, { passive:false });
+
+  vpEl.addEventListener("dblclick", function(e){
+    if (e.target.closest(".card")) return;
+    var r = vpEl.getBoundingClientRect();
+    zoomTo(cam.z * (e.altKey ? 1 / 1.9 : 1.9), e.clientX - r.left, e.clientY - r.top);
+  });
+
+  /* Capture is claimed only once a drag really starts — capturing on
+     pointerdown would retarget the following click away from the marker. */
+  var pts = new Map(), last = null, pinch = null, dragging = false, captured = null;
+
+  vpEl.addEventListener("pointerdown", function(e){
+    if (e.target.closest(".card")) return;
+    pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+    if (pts.size === 1){ last = { x:e.clientX, y:e.clientY }; dragging = false; }
+    if (pts.size === 2){
+      var a = Array.from(pts.values());
+      pinch = { d:Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y), z:st.z };
+    }
+  });
+
+  vpEl.addEventListener("pointermove", function(e){
+    if (!pts.has(e.pointerId)) return;
+    pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+
+    if (pts.size === 2 && pinch){
+      var a = Array.from(pts.values());
+      var d = Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y);
+      var r = vpEl.getBoundingClientRect();
+      var mx = (a[0].x + a[1].x) / 2 - r.left, my = (a[0].y + a[1].y) / 2 - r.top;
+      var nz = clamp(pinch.z * (d / pinch.d), ZMIN, ZMAX);
+      /* fingers track 1:1, so no easing here */
+      st.tx = mx - (mx - st.tx) * (nz / st.z);
+      st.ty = my - (my - st.ty) * (nz / st.z);
+      st.z = nz;
+      cam.z = st.z; cam.tx = st.tx; cam.ty = st.ty; cam.anchor = null;
+      stage.classList.add("moving");
+      apply();
+      return;
+    }
+
+    if (!last) return;
+    var dx = e.clientX - last.x, dy = e.clientY - last.y;
+    if (!dragging){
+      if (Math.abs(dx) + Math.abs(dy) < 5) return;
+      dragging = true;
+      captured = e.pointerId;
+      vpEl.setPointerCapture(e.pointerId);
+      vpEl.classList.add("drag");
+      stage.classList.add("moving");
+    }
+    last = { x:e.clientX, y:e.clientY };
+    cam.anchor = null;
+    cam.z = st.z;
+    st.tx += dx; st.ty += dy;
+    clampPan();
+    apply();
+  });
+
+  function up(e){
+    pts.delete(e.pointerId);
+    if (pts.size < 2) pinch = null;
+    if (captured === e.pointerId){
+      if (vpEl.hasPointerCapture(e.pointerId)) vpEl.releasePointerCapture(e.pointerId);
+      captured = null;
+    }
+    if (pts.size === 0){
+      last = null; dragging = false;
+      vpEl.classList.remove("drag");
+      if (rafId === null) stage.classList.remove("moving");
+    }
+  }
+  vpEl.addEventListener("pointerup", up);
+  vpEl.addEventListener("pointercancel", up);
+
+  document.addEventListener("keydown", function(e){
+    var t = (e.target.tagName || "").toLowerCase();
+    if (t === "input" || t === "textarea") return;
+    if (e.key === "Escape"){ if (openId) closeCard(); else if (variant) setVariant(null); }
+    else if (e.key === "+" || e.key === "=") zoomTo(cam.z * 1.6);
+    else if (e.key === "-") zoomTo(cam.z / 1.6);
+    else if (e.key === "0"){ closeCard(); fit(true); }
+    else if (e.key === "a" || e.key === "A") setVariant(variant === "A" ? null : "A");
+    else if (e.key === "b" || e.key === "B") setVariant(variant === "B" ? null : "B");
+    else if (e.key === "c" || e.key === "C") setVariant(variant === "C" ? null : "C");
+  });
+
+  var rt = null;
+  window.addEventListener("resize", function(){
+    clearTimeout(rt);
+    rt = setTimeout(function(){ apply(); }, 120);
+  });
+
+  /* ================================================================== boot */
+
+  CLUSTERS.forEach(function(c){ LANDMARKS.push({ id:c.id, name:c.name, x:POS[c.id].x, y:POS[c.id].y }); });
+  HUBS.forEach(function(h){ if (!h.quiet) LANDMARKS.push({ id:h.id, name:h.name, x:POS[h.id].x, y:POS[h.id].y }); });
+  DISTRICTS.forEach(function(d){ LANDMARKS.push({ id:"d", name:d.n, x:X(d.lon), y:Y(d.lat) }); });
+  LANDMARKS.push({ id:"eastbourne", name:"Eastbourne", x:POS.eastbourne.x, y:POS.eastbourne.y });
+
+  document.getElementById("mini").addEventListener("click", function(){ closeCard(); fit(true); });
+
+  buildGeo();
+  world.style.width = W + "px";
+  world.style.height = H + "px";
+  buildStage();
+  renderRoutes();
+  fit(false);
+})();
+</script>
+</body>
+</html>
