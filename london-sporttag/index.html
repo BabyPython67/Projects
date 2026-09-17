@@ -159,13 +159,16 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
 .anchor.excl{opacity:.5}
 
 .pin{
-  display:flex; align-items:center; gap:8px; white-space:nowrap;
+  display:flex; align-items:center; gap:9px; white-space:nowrap;
   background:var(--card); border:1px solid var(--line); border-radius:100px;
-  padding:5px 12px 5px 8px; box-shadow:var(--shadow); cursor:pointer;
+  padding:5px 13px 6px 9px; box-shadow:var(--shadow); cursor:pointer;
   transition:border-color .14s, box-shadow .14s;
 }
 .pin:hover{border-color:var(--ink); box-shadow:var(--shadow-lg)}
 .pin .dot{width:9px; height:9px; border-radius:50%; background:var(--ink-3); flex:none}
+/* the name alone is a guessing game, so every pin carries what it actually is */
+.pin .txt{display:flex; flex-direction:column; align-items:flex-start; line-height:1.18}
+.pin .tag{font-size:.65rem; font-weight:500; color:var(--ink-3); letter-spacing:.005em}
 .pin .nm{font-size:.83rem; font-weight:600; letter-spacing:-.01em; color:var(--ink)}
 .pin .pr{font-family:"IBM Plex Mono",monospace; font-size:.75rem; color:var(--ink-2); font-variant-numeric:tabular-nums}
 .pin .pr.free{color:var(--Bt)}
@@ -223,6 +226,14 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
 .card .x:hover{background:var(--card-2); color:var(--ink)}
 .card .tags{display:flex; gap:5px; flex-wrap:wrap; margin-top:10px}
 .card .bd{overflow-y:auto; padding:15px 18px 18px; -webkit-overflow-scrolling:touch}
+.card .what{margin:0 0 15px; font-size:.92rem; line-height:1.45; color:var(--ink-2)}
+.card .src{margin-top:17px; padding-top:11px; border-top:1px solid var(--line)}
+.card .src .lbl{
+  display:block; margin-bottom:3px; font-family:"IBM Plex Mono",monospace;
+  font-size:.6rem; letter-spacing:.13em; text-transform:uppercase; color:var(--ink-3);
+}
+.card .src a{font-size:.78rem; color:var(--ink-2); text-decoration:underline; text-underline-offset:2px}
+.card .src a:hover{color:var(--ink)}
 
 .hero{display:flex; gap:16px; flex-wrap:wrap; padding-bottom:14px; border-bottom:1px solid var(--line)}
 .hero div{min-width:74px}
@@ -511,6 +522,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     /* ---- Queen Elizabeth Olympic Park ---- */
     { id:"swim", cl:"qeop", lat:51.5404, lon:-0.0119, v:["A","C"], short:"Aquatics Centre", off:[70,14],
       name:"Schwimmen im Olympia-Becken", venue:"London Aquatics Centre",
+      tag:"Bahnenschwimmen",
+      what:"Öffentliches Bahnenschwimmen im 50-m-Wettkampfbecken der Spiele 2012. Man schwimmt selbst und auf eigene Faust — keine geführte Session, kein Trainer.",
+      src:{ t:"London Aquatics Centre · Preise", u:"https://www.londonaquaticscentre.org/about/prices" },
       price:7.90, priceL:"7,90 £", priceSub:"Peak · Off-Peak 7,30 £",
       dur:"ca. 1 h", durSub:"plus Umkleide",
       where:"Olympic Park, Stratford E20 — 10 Min zu Fuß vom Bahnhof",
@@ -518,11 +532,14 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
       booking:"Everyone-Active-Karte anlegen, dann Club Booking Procedure",
       lead:"2–4 Wochen vorher",
       pe:"Schwimmtechnik und Ausdauer im Wettkampfbecken von 2012 — Zaha-Hadid-Bau, echtes Olympia-Venue.",
-      risks:["Preis nicht offiziell bestätigt: 7,90 £ / 7,30 £ stammen aus Sekundärquellen, eine andere nennt „ab 5,50 £“. Live prüfen unter 0208 536 3150.",
+      risks:["Preis nicht offiziell bestätigt. Die Angaben gehen weit auseinander: 7,90 £ / 7,30 £ aus Sekundärquellen, „ab 5,50 £“ aus einer anderen, „ab 3,50 £ off-peak / 4,50 £ peak“ laut Queen Elizabeth Olympic Park. Hier steht der teuerste Wert — auf der Preisseite oder unter 0208 536 3150 verifizieren.",
              "Der Jugendtarif gilt nur bis 15 Jahre — 17–18-Jährige zahlen den Erwachsenenpreis.",
              "Aufsichtsratios für Minderjährige vorab erfragen."] },
     { id:"velo", cl:"qeop", lat:51.5488, lon:-0.0163, v:["A"], short:"VeloPark", off:[128,-2],
       name:"VeloPark Pay-and-Ride", venue:"Lee Valley VeloPark",
+      tag:"Radrunden auf Asphalt",
+      what:"Ein 1,6 km langer, autofreier und beleuchteter Asphaltrundkurs um das Velodrom. In den offenen Pay-and-Ride-Sessions dreht man mit dem eigenen Rad frei seine Runden.",
+      src:{ t:"Better · VeloPark Road Cycling", u:"https://www.better.org.uk/leisure-centre/lee-valley/velopark/road-cycling" },
       price:7.60, priceL:"7,60 £", priceSub:"mit eigenem Rad",
       dur:"Session", durSub:"Straßenrundkurs",
       where:"Olympic Park — Hackney Wick oder Stratford",
@@ -535,18 +552,24 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
              "Outdoor — bei Regen auf Schwimmen oder Copper Box ausweichen."] },
     { id:"velodrome", cl:"qeop", lat:51.5478, lon:-0.0140, v:[], excl:true, short:"Velodrome-Taster", off:[146,30],
       name:"Velodrome-Taster (Bahnrad)", venue:"Lee Valley VeloPark",
-      price:46, priceL:"46,00 £", priceSub:"pro Person",
-      dur:"Taster-Session", durSub:"ab 12 J., min. 145 cm",
+      tag:"Bahnrad mit Trainer",
+      what:"Geführte Einführung ins Bahnradfahren auf der steilen Holzbahn im Olympia-Velodrom — mit einem Rad ohne Freilauf und ohne Bremsen, unter Anleitung.",
+      src:{ t:"Better · Track Cycling Sessions", u:"https://www.better.org.uk/leisure-centre/lee-valley/velopark/track-cycling/sessions" },
+      price:59, priceL:"59,00 £", priceSub:"pro Person",
+      dur:"80 Minuten", durSub:"ab 12 J., min. 145 cm",
       where:"Olympic Park, im Velodrom",
       travel:"wie VeloPark",
       booking:"max. 6 Plätze pro Buchung",
       lead:"Sonderbuchung nötig",
       pe:"Bahnradsport im Olympia-Velodrom — fachlich das Highlight, praktisch nicht machbar.",
-      risks:["Dreifach über dem Budget.",
+      risks:["Fast das Vierfache des Budgets.",
              "Auf 6 Plätze pro Buchung begrenzt — für 15 Personen nicht als Standardbuchung möglich.",
              "Größere Gruppen nur als Sonderbuchung über LVvelopark@gll.org."] },
     { id:"copper", cl:"qeop", lat:51.5462, lon:-0.0233, v:["C","A"], short:"Copper Box", off:[-138,-6],
       name:"Copper Box Arena", venue:"Hallensport im Olympia-Bau",
+      tag:"Hallenfeld mieten",
+      what:"Die Olympia-Halle von 2012 ist heute eine öffentliche Sporthalle: Man mietet stundenweise ein Feld und spielt selbst — Badminton, Basketball, Volleyball oder Tischtennis. Nebeneinander passen bis zu zehn Badmintonfelder hinein.",
+      src:{ t:"Copper Box Arena · Activity Prices", u:"https://copperboxarena.org.uk/memberships-and-prices/activity-prices" },
       price:8, priceL:"6–10 £", priceSub:"pro Stunde, Richtwert",
       dur:"1 Stunde", durSub:"pro Court",
       where:"Olympic Park — Hackney Wick oder Stratford",
@@ -559,6 +582,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
              "Better/GLL hat zum 1. April 2026 die Preise erhöht."] },
     { id:"lvtennis", cl:"qeop", lat:51.5497, lon:-0.0208, v:[], short:"Hockey & Tennis", off:[-126,-24],
       name:"Hockey & Tennis Centre", venue:"Lee Valley, Olympia-Kunstrasen",
+      tag:"Tennis- oder Hockeyplatz",
+      what:"Platzmiete auf der Anlage, auf der 2012 das olympische Hockeyturnier lief. Man bucht einen Platz pro Stunde und spielt selbst; Schläger gibt es gegen Gebühr dazu.",
+      src:{ t:"Better · Pay As You Go Tennis", u:"https://www.better.org.uk/leisure-centre/lee-valley/hockey-and-tennis-centre/tennis/pay-and-play" },
       price:10.40, priceL:"10,40 £", priceSub:"U18/Std · Erwachsene 13,00 £",
       dur:"1 Stunde", durSub:"pro Court",
       where:"Olympic Park, Nordseite",
@@ -570,6 +596,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
              "Auf mehrere Spieler pro Court verteilt günstig, allein gerechnet knapp."] },
     { id:"parkland", cl:"qeop", lat:51.5432, lon:-0.0125, v:["A"], short:"Laufrunde Parkland", off:[56,-30],
       name:"Laufrunde im Parkland", venue:"Kanäle und Venues, Outdoor-Gym",
+      tag:"Laufen im Park",
+      what:"Frei zugängliche Wege, Brücken und Kanalufer im Olympiapark, dazu ein Outdoor-Gym. Laufeinheiten ohne Anmeldung, ohne Kosten und komplett selbst gestaltet — Dauerlauf, Intervalle oder Staffeln.",
+      src:{ t:"Queen Elizabeth Olympic Park · Laufstrecken", u:"https://www.queenelizabetholympicpark.co.uk/our-stories/running-routes-and-events-park" },
       price:0, priceL:"gratis", priceSub:"",
       dur:"60–90 Min", durSub:"selbst organisiert",
       where:"Queen Elizabeth Olympic Park, frei zugänglich",
@@ -578,12 +607,15 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
       lead:"—",
       pe:"Grundlagenausdauer, Staffel- und Intervallformen entlang der Kanäle, dazu Outdoor-Gym und die London Marathon Community Track.",
       risks:["parkrun wäre gratis, geht aber nur samstags und braucht Voranmeldung.",
-             "Achtung: Der gleichnamige „Queen Elizabeth parkrun“ liegt in Hampshire, nicht im Olympic Park — für echte Teilnahme das nächstgelegene Londoner Event prüfen.",
+             "Achtung: Der gleichnamige „Queen Elizabeth parkrun“ läuft im Queen Elizabeth Country Park in Horndean, Hampshire — nicht im Olympic Park (parkrun.org.uk/queenelizabeth/course). Für echte Teilnahme das nächstgelegene Londoner Event prüfen.",
              "Outdoor und damit wetterabhängig."] },
 
     /* ---- Royal Parks ---- */
     { id:"santander", cl:"royal", lat:51.4975, lon:-0.1490, v:["B"], short:"Santander Cycles", off:[4,34],
       name:"Santander Cycles", venue:"Tagespass ab Victoria",
+      tag:"Leihrad, Tagespass",
+      what:"Londons öffentliches Leihradsystem: Mit einem Tagespass nimmt man an jeder Station ein Rad, fährt und dockt es wieder ein. Hier als selbst geplante Radtour durch die Royal Parks.",
+      src:{ t:"Transport for London · Santander Cycles", u:"https://tfl.gov.uk/modes/cycling/santander-cycles" },
       price:3.50, priceL:"3,50 £", priceSub:"Studierende ab 18: 1,75 £",
       dur:"24 Stunden", durSub:"Fahrten je unter 60 Min",
       where:"Docking-Stationen rund um Victoria, Hyde Park, Green Park",
@@ -597,6 +629,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
              "E-Bikes nur über die App."] },
     { id:"serpentine", cl:"royal", lat:51.5065, lon:-0.1655, v:["B"], short:"Serpentine-Runde", off:[-96,-34],
       name:"Serpentine-Laufrunde", venue:"Hyde Park",
+      tag:"Laufrunde am See",
+      what:"Die Runde um den Serpentine-See im Hyde Park — flach, durchgehend befestigt und frei zugänglich. Daneben Wiesen für Circuit- und Staffelformen.",
+      src:{ t:"The Royal Parks · Hyde Park", u:"https://sportsandleisure.royalparks.org.uk/hyde-park" },
       price:0, priceL:"gratis", priceSub:"",
       dur:"45–75 Min", durSub:"Runde ca. 4,5 km",
       where:"Hyde Park, 10–15 Min zu Fuß ab Victoria",
@@ -608,6 +643,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
              "Keine Umkleiden oder Duschen."] },
     { id:"lido", cl:"royal", lat:51.5049, lon:-0.1672, v:["B"], short:"Serpentine Lido", off:[86,34],
       name:"Serpentine Lido", venue:"Freibad im Hyde Park",
+      tag:"Freiwasser-Schwimmen",
+      what:"Ein abgetrennter, beaufsichtigter Bereich im Serpentine-See: echtes Freiwasser, nur eingezäunt. Geschwommen wird ohne Bahnen und bei Außentemperatur.",
+      src:{ t:"The Royal Parks · Schwimmen im Hyde Park", u:"https://sportsandleisure.royalparks.org.uk/hyde-park/swimming" },
       price:3.25, priceL:"3,25 £", priceSub:"Konzession · Erwachsene 5,95 £",
       dur:"1 Session", durSub:"Volltag 7,50 £",
       where:"Südufer der Serpentine, Hyde Park",
@@ -620,6 +658,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
              "Konzession gilt laut The Royal Parks für 16- und 17-Jährige mit Ausweis — der Kurs ist damit berechtigt."] },
     { id:"tt", cl:"royal", lat:51.5096, lon:-0.1585, v:["B"], short:"Tischtennis", off:[78,-30],
       name:"Tischtennis (Park Sports)", venue:"Hyde Park / Regent's Park",
+      tag:"Outdoor-Platte mieten",
+      what:"Öffentliche Tischtennisplatten im Park, stundenweise gebucht. Schläger und Bälle sind im Preis enthalten; gespielt wird draußen, im Wechsel an einem Tisch.",
+      src:{ t:"Park Sports · Pay & Play Tischtennis", u:"https://parksports.co.uk/activities/pay-and-play-table-tennis/hyde-park" },
       price:7, priceL:"7,00 £", priceSub:"pro Tisch und Stunde",
       dur:"1 Stunde", durSub:"inkl. Ausleihe",
       where:"Park Sports, Hyde Park und Regent's Park",
@@ -631,6 +672,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
              "In King's Cross gibt es kostenlose Tische als Alternative."] },
     { id:"regents", cl:"royal", lat:51.5313, lon:-0.1570, v:["B"], short:"Regent's Park", off:[0,0],
       name:"Regent's Park", venue:"Ziel der Radtour",
+      tag:"Wendepunkt der Radtour",
+      what:"Kein eigenes Angebot, sondern das nördliche Ziel der Radetappe: ein großer Park mit Rundweg, Sportwiesen und ebenfalls einer Tischtennisplatte von Park Sports.",
+      src:{ t:"The Royal Parks · The Regent's Park", u:"https://sportsandleisure.royalparks.org.uk/regents-park/sports-activities" },
       price:0, priceL:"gratis", priceSub:"",
       dur:"Wendepunkt", durSub:"ca. 5 km ab Hyde Park",
       where:"Regent's Park, nördlicher Endpunkt der Route",
@@ -643,6 +687,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     /* ---- weitere geprüfte Optionen ---- */
     { id:"battersea", cl:"other", lat:51.4795, lon:-0.1590, v:[], short:"Battersea Park", off:[0,26],
       name:"Battersea Park", venue:"400-m-Bahn und Tennisplätze",
+      tag:"400-m-Bahn, Tennis",
+      what:"Eine 400-m-Rundbahn mit acht Bahnen samt Wurf- und Sprunganlagen (Millennium Arena), dazu 19 Tennisplätze mit Flutlicht direkt an der Themse.",
+      src:{ t:"Enable Leisure · Battersea Park Millennium Arena", u:"https://enablelc.org/bpma" },
       price:11.60, priceL:"11,60 £", priceSub:"Court pro Stunde",
       dur:"1 Stunde", durSub:"pro Court",
       where:"Südlich der Themse — Battersea Park Station, 1 Station ab Victoria",
@@ -655,6 +702,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
              "Tret- und Ruderboote ca. 8–10 £ pro Stunde."] },
     { id:"docklands", cl:"other", lat:51.4923, lon:-0.0210, v:[], short:"Docklands Watersports", off:[0,26],
       name:"Docklands Watersports", venue:"Isle of Dogs",
+      tag:"Kajak, SUP, Segeln",
+      what:"Betreute Wassersport-Sessions im alten Hafenbecken: Kajak, Kanu, Stand-up-Paddling und Segeln, mit Ausrüstung und Anleitung — gebucht als Halbtag für die ganze Gruppe.",
+      src:{ t:"Docklands Sailing & Watersports Centre", u:"https://www.dswc.org/" },
       price:16, priceL:"> 15 £", priceSub:"Preis auf Anfrage",
       dur:"Halber Tag", durSub:"Taster oder Multi-Activity",
       where:"Docklands Sailing & Watersports Centre, Isle of Dogs",
@@ -667,6 +717,9 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
              "Weite Anfahrt und zusätzlicher ÖPNV."] },
     { id:"wimbledon", cl:"other", lat:51.4360, lon:-0.2070, v:[], short:"Wimbledon Watersports", off:[0,26],
       name:"Wimbledon Park Watersports", venue:"SW London",
+      tag:"Kajak, Segeln, Surfen",
+      what:"Betreute Sessions auf dem See im Wimbledon Park: Kajak, Kanu, Segeln und Windsurfen, Ausrüstung und Anleitung inklusive. Gebucht wird pro Achtergruppe und Stunde.",
+      src:{ t:"Merton Council · Wimbledon Park Watersports", u:"https://merton.gov.uk/leisure-recreation-and-culture/wimbledon-park-watersports-centre/watersports-schools" },
       price:10, priceL:"10,00 £", priceSub:"pro Person und Stunde",
       dur:"1 Stunde", durSub:"min. 8 Teilnehmende",
       where:"Wimbledon Park, Südwest-London",
@@ -1080,7 +1133,8 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     var vk = s.v.length ? s.v[0] : "";
     return '<button class="pin" data-spot="' + s.id + '">' +
       '<span class="dot" style="background:' + (vk ? "var(--" + vk + ")" : "var(--ink-3)") + '"></span>' +
-      '<span class="nm">' + esc(s.short || s.name) + "</span>" +
+      '<span class="txt"><span class="nm">' + esc(s.short || s.name) + "</span>" +
+        (s.tag ? '<span class="tag">' + esc(s.tag) + "</span>" : "") + "</span>" +
       '<span class="pr' + (s.price === 0 ? " free" : "") + '">' + esc(s.priceL) + "</span>" +
       "</button>";
   }
@@ -1097,6 +1151,7 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
         "</div>" +
       "</div>" +
       '<div class="bd">' +
+        (s.what ? '<p class="what">' + esc(s.what) + "</p>" : "") +
         '<dl class="hero">' +
           '<div><dt>Kosten p. P.</dt><dd class="' + (s.price === 0 ? "free" : over ? "over" : "") + '">' +
             esc(s.priceL) + (s.priceSub ? "<small>" + esc(s.priceSub) + "</small>" : "") + "</dd></div>" +
@@ -1114,6 +1169,11 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
         (s.risks && s.risks.length
           ? "<h3>Offene Punkte</h3><ul class=\"risks\">" +
             s.risks.map(function(r){ return "<li>" + esc(r) + "</li>"; }).join("") + "</ul>"
+          : "") +
+        (s.src
+          ? '<div class="src"><span class="lbl">Quelle</span>' +
+            '<a href="' + esc(s.src.u) + '" target="_blank" rel="noopener noreferrer">' +
+            esc(s.src.t) + "</a></div>"
           : "") +
       "</div></div>";
   }
