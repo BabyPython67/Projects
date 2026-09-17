@@ -10,11 +10,19 @@ Externe Abhängigkeiten: nur die Schriften von Google Fonts.
 
 | Aktion | Wirkung |
 |---|---|
-| Ziehen, Scrollen, Pinch | Karte bewegen und zoomen |
-| Gebiet anklicken | zoomt hinein, das Gebiet zerfällt in seine einzelnen Angebote |
-| Angebot anklicken | Karte öffnet sich mit Ort, Dauer, Kosten, Buchung, LK-Bezug, offenen Punkten |
+| Ein Finger ziehen, Maus ziehen | Karte bewegen |
+| Zwei Finger (Pinch) | zoomen und im selben Zug verschieben |
+| Doppeltippen, Doppelklick | eine Stufe hinein (mit Alt hinaus) |
+| Mausrad | zoomt auf den Cursor; darf während des Ziehens laufen |
+| Gebiet antippen | zoomt hinein, das Gebiet zerfällt in seine einzelnen Angebote |
+| Angebot antippen | Karte öffnet sich mit Ort, Dauer, Kosten, Buchung, LK-Bezug, offenen Punkten |
 | A / B / C | blendet eine Tagesvariante als Route samt Zeitleiste ein |
-| Übersicht, +, −, Tasten 0 + − | Zoomsteuerung; Esc schließt Karte bzw. Variante |
+| Übersicht, +, −, Tasten 0 + − | Zoomsteuerung; Pfeiltasten bewegen; Esc schließt Karte bzw. Variante |
+
+Für die Präsentation vom Tablet aus ist der Pinch der Hauptweg: Finger spreizen und
+gleichzeitig über das Glas schieben zoomt und bewegt die Karte in denselben Frames.
+Der Punkt, den die Finger beim Aufsetzen greifen, bleibt unter ihnen — auch wenn ein
+Finger mittendrin abhebt, läuft die Bewegung mit dem verbliebenen ohne Sprung weiter.
 
 ## Aufbau
 
@@ -55,11 +63,25 @@ system und wird pro Frame nur verschoben, nie skaliert. Zoomen kostet damit eine
 composited Transform plus rund 35 `translate3d`-Schreibvorgänge statt einer Neuberechnung
 der Textlayouts; gemessener Median 16,7 ms pro Frame.
 
-Das Zoomen läuft über eine exponentielle Glättung in einer rAF-Schleife: Mausrad und
-Buttons setzen ein Ziel, der Punkt unter dem Cursor bleibt währenddessen fixiert. Ziehen
-und Pinch greifen ohne Glättung direkt durch, damit sie 1:1 am Finger hängen. Der Wechsel
-zwischen Übersicht und Detail hat eine Hysterese (rein ab 0,70, raus unter 0,60) und
-blendet beide Ebenen per Opacity über, statt DOM neu zu bauen.
+Zoom und Verschiebung sind eine einzige Kamera aus Maßstab und Versatz, kein Sonderfall
+für den Zoom. Mausrad, Buttons und Tasten setzen ein Ziel, das in einer rAF-Schleife
+exponentiell eingeholt wird; weil Maßstab und Versatz denselben Faktor benutzen, gilt
+`tx(t) = sx − wx·z(t)` in jedem Zwischenschritt und der Punkt unter dem Cursor bleibt
+ohne festgenagelten Anker fixiert. Genau deshalb bleibt der Versatz frei beschreibbar:
+Ziehen addiert seinen Weg auf beide Seiten und greift damit 1:1 durch, ohne den
+laufenden Zoom abzuwürgen. Der Pinch leitet Maßstab und Versatz in jedem Schritt aus
+dem einen Weltpunkt ab, der beim Aufsetzen unter der Fingermitte lag — Spreizen und
+Schieben wirken zusammen statt gegeneinander, und es sammelt sich keine Drift an
+(gemessen 0,06 px Abweichung über einen Pinch auf das Doppelte).
+
+Eingaben ändern nur den Zustand; geschrieben wird einmal pro Frame. Zwei Finger melden
+zwei `pointermove` pro Frame, erzeugen aber einen DOM-Durchlauf statt zweier (gemessen
+12 Transform-Schreibvorgänge für 12 Gesten-Schritte, Median 16,7 ms). Die Maße des
+Viewports werden beim Gestenstart und bei Resize gelesen statt pro Frame, weil ein
+`clientWidth` nach einem Transform-Schreibvorgang ein synchrones Layout erzwingt.
+
+Der Wechsel zwischen Übersicht und Detail hat eine Hysterese (rein ab 0,70, raus unter
+0,60) und blendet beide Ebenen per Opacity über, statt DOM neu zu bauen.
 
 ## Farben
 

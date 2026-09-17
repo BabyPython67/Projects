@@ -59,7 +59,7 @@
 }
 
 *{box-sizing:border-box}
-html,body{height:100%}
+html,body{height:100%; overscroll-behavior:none}
 body{
   margin:0; overflow:hidden; background:var(--land); color:var(--ink);
   font-family:Archivo,-apple-system,BlinkMacSystemFont,"Segoe UI",system-ui,sans-serif;
@@ -70,7 +70,11 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
 .mono{font-family:"IBM Plex Mono",ui-monospace,Menlo,monospace; font-variant-numeric:tabular-nums}
 
 #app{position:relative; height:100%; overflow:hidden; background:var(--land)}
-#viewport{position:absolute; inset:0; overflow:hidden; cursor:grab; touch-action:none}
+#viewport{
+  position:absolute; inset:0; overflow:hidden; cursor:grab;
+  touch-action:none; -webkit-user-select:none; user-select:none;
+  -webkit-touch-callout:none;
+}
 #viewport.drag{cursor:grabbing}
 
 /* One transform for the whole geography; nothing inside it carries text. */
@@ -824,18 +828,30 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   var lvlEl = document.getElementById("lvl");
 
   var ZMIN = 0.12, ZMAX = 2.4, Z_IN = 0.70, Z_OUT = 0.60;
-  var st = { z:0.3, tx:0, ty:0 };
-  var cam = { z:0.3, tx:0, ty:0, anchor:null };
+  var st  = { z:0.3, tx:0, ty:0 };   /* what is on screen this frame */
+  var cam = { z:0.3, tx:0, ty:0 };   /* where the camera is heading  */
   var reg = [];
   var level = "over";
   var variant = null;
   var openId = null;
-  var rafId = null, lastT = 0;
+  var rafId = null, lastT = 0, dirty = false, live = false, settle = null;
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-  function vw(){ return vpEl.clientWidth; }
-  function vh(){ return vpEl.clientHeight; }
+  /* Reading clientWidth after a transform has been written forces a synchronous
+     layout, so the viewport box is measured on resize and at the start of a
+     gesture rather than once per frame. */
+  var VP = { w:0, h:0, l:0, t:0 };
+  function measure(){
+    var r = vpEl.getBoundingClientRect();
+    VP.w = r.width; VP.h = r.height; VP.l = r.left; VP.t = r.top;
+  }
+  function vw(){ return VP.w; }
+  function vh(){ return VP.h; }
   function clamp(v, lo, hi){ return v < lo ? lo : v > hi ? hi : v; }
+  var now = (window.performance && performance.now)
+    ? function(){ return performance.now(); }
+    : function(){ return Date.now(); };
+  measure();
 
   function apply(){
     world.style.transform = "translate3d(" + st.tx.toFixed(2) + "px," + st.ty.toFixed(2) +
@@ -925,48 +941,85 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     if (rafId === null){ lastT = 0; rafId = requestAnimationFrame(frame); }
   }
 
-  function frame(now){
+  /* will-change gives every label its own layer, so the class goes on for the
+     whole gesture and comes off once, late — never flipped per frame. */
+  function busy(){
+    if (settle){ clearTimeout(settle); settle = null; }
+    stage.classList.add("moving");
+  }
+  function idle(){
+    if (settle || live) return;
+    settle = setTimeout(function(){
+      settle = null;
+      if (!live && rafId === null) stage.classList.remove("moving");
+    }, 240);
+  }
+
+  function frame(ts){
     rafId = null;
-    var dt = lastT ? Math.min(64, now - lastT) : 16.7;
-    lastT = now;
+    var dt = lastT ? Math.min(64, ts - lastT) : 16.7;
+    lastT = ts;
     var k = reduce ? 1 : 1 - Math.pow(1 - 0.26, dt / 16.667);
     var moving = false;
 
+    /* Scale and offset ease with the same factor, and that alone pins the point
+       under the finger while a zoom runs: tx(t) = sx - wx*z(t) holds for every
+       t when both sides use the same interpolation. Because the offset stays a
+       plain target instead of a locked anchor, a drag can move the map in the
+       very frames the zoom is still converging. */
     if (Math.abs(cam.z - st.z) > 0.0004){ st.z += (cam.z - st.z) * k; moving = true; }
     else st.z = cam.z;
+    if (Math.abs(cam.tx - st.tx) > 0.06){ st.tx += (cam.tx - st.tx) * k; moving = true; }
+    else st.tx = cam.tx;
+    if (Math.abs(cam.ty - st.ty) > 0.06){ st.ty += (cam.ty - st.ty) * k; moving = true; }
+    else st.ty = cam.ty;
 
-    if (cam.anchor){
-      /* hold the point under the cursor while the zoom eases in */
-      st.tx = cam.anchor.sx - cam.anchor.wx * st.z;
-      st.ty = cam.anchor.sy - cam.anchor.wy * st.z;
-      cam.tx = st.tx; cam.ty = st.ty;
-      if (!moving) cam.anchor = null;
-    } else {
-      if (Math.abs(cam.tx - st.tx) > 0.06){ st.tx += (cam.tx - st.tx) * k; moving = true; }
-      else st.tx = cam.tx;
-      if (Math.abs(cam.ty - st.ty) > 0.06){ st.ty += (cam.ty - st.ty) * k; moving = true; }
-      else st.ty = cam.ty;
-    }
-
-    apply();
-    if (moving) kick();
-    else stage.classList.remove("moving");
+    /* one DOM pass per frame, however many pointers reported in between */
+    if (moving || dirty){ apply(); dirty = false; }
+    if (moving || live) kick();
+    else idle();
   }
 
+  /* how far the offset may travel before the world would leave the screen */
+  function bounds(z){
+    var pad = 140;
+    var xb = vw() - W * z - pad, yb = vh() - H * z - pad;
+    return { x0:Math.min(pad, xb), x1:Math.max(pad, xb),
+             y0:Math.min(pad, yb), y1:Math.max(pad, yb) };
+  }
+
+  /* Zoom to nz keeping the world point under (sx,sy) put. The anchor is read
+     off the camera target, so rapid repeated steps compose instead of fighting. */
   function zoomTo(nz, sx, sy){
     if (sx == null){ sx = vw() / 2; sy = vh() / 2; }
-    cam.anchor = { sx:sx, sy:sy, wx:(sx - st.tx) / st.z, wy:(sy - st.ty) / st.z };
-    cam.z = clamp(nz, ZMIN, ZMAX);
-    stage.classList.add("moving");
-    kick();
+    nz = clamp(nz, ZMIN, ZMAX);
+    var wx = (sx - cam.tx) / cam.z, wy = (sy - cam.ty) / cam.z;
+    cam.z = nz; cam.tx = sx - wx * nz; cam.ty = sy - wy * nz;
+    busy(); kick();
   }
 
   function flyTo(nz, tx, ty){
-    cam.anchor = null;
     cam.z = clamp(nz, ZMIN, ZMAX);
     cam.tx = tx; cam.ty = ty;
-    stage.classList.add("moving");
-    kick();
+    busy(); kick();
+  }
+
+  /* A drag shifts what is drawn and where the camera is heading by the same
+     amount: it tracks the finger 1:1 and leaves an easing zoom intact. */
+  function panBy(dx, dy){
+    var b = bounds(st.z);
+    var tx = clamp(st.tx + dx, b.x0, b.x1), ty = clamp(st.ty + dy, b.y0, b.y1);
+    cam.tx += tx - st.tx; cam.ty += ty - st.ty;
+    st.tx = tx; st.ty = ty;
+    dirty = true; busy(); kick();
+  }
+
+  /* keyboard pan: moves the target, so it eases and may overlap a zoom */
+  function nudge(dx, dy){
+    var b = bounds(cam.z);
+    cam.tx = clamp(cam.tx + dx, b.x0, b.x1);
+    cam.ty = clamp(cam.ty + dy, b.y0, b.y1);
+    busy(); kick();
   }
 
   function centerOn(id, nz){
@@ -994,16 +1047,7 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   function fit(animate){
     var t = fitTarget();
     if (animate) flyTo(t.z, t.tx, t.ty);
-    else { st.z = cam.z = t.z; st.tx = cam.tx = t.tx; st.ty = cam.ty = t.ty; cam.anchor = null; apply(); }
-  }
-
-  function clampPan(){
-    var pad = 140, lo, hi;
-    lo = Math.min(pad, vw() - W * st.z - pad); hi = Math.max(pad, vw() - W * st.z - pad);
-    st.tx = clamp(st.tx, lo, hi);
-    lo = Math.min(pad, vh() - H * st.z - pad); hi = Math.max(pad, vh() - H * st.z - pad);
-    st.ty = clamp(st.ty, lo, hi);
-    cam.tx = st.tx; cam.ty = st.ty;
+    else { st.z = cam.z = t.z; st.tx = cam.tx = t.tx; st.ty = cam.ty = t.ty; apply(); }
   }
 
   /* ================================================================= stage */
@@ -1192,6 +1236,8 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   /* ================================================================ events */
 
   stage.addEventListener("click", function(e){
+    /* a drag, a pinch or a double tap must not also count as a tap on a node */
+    if (swallow){ swallow = false; return; }
     var cl = e.target.closest("[data-cluster]");
     if (cl){ centerOn(cl.dataset.cluster, 1.6); return; }
     if (e.target.closest("[data-close]")){ closeCard(); return; }
@@ -1218,86 +1264,171 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
   document.getElementById("zOut").addEventListener("click", function(){ zoomTo(cam.z / 1.6); });
 
   vpEl.addEventListener("wheel", function(e){
+    if (e.target.closest(".card")) return;   /* let a long card scroll itself */
     e.preventDefault();
-    var r = vpEl.getBoundingClientRect();
     /* a trackpad pinch arrives as ctrl+wheel with much smaller deltas */
     var f = e.ctrlKey ? 0.012 : 0.0022;
-    zoomTo(cam.z * Math.exp(-e.deltaY * f), e.clientX - r.left, e.clientY - r.top);
+    zoomTo(cam.z * Math.exp(-e.deltaY * f), e.clientX - VP.l, e.clientY - VP.t);
   }, { passive:false });
+
+  /* iPadOS would otherwise answer a two-finger pinch with a page zoom */
+  ["gesturestart", "gesturechange", "gestureend"].forEach(function(n){
+    vpEl.addEventListener(n, function(e){ e.preventDefault(); }, { passive:false });
+  });
+
+  var lastTapZoom = 0;
+  function tapZoom(sx, sy, out){
+    lastTapZoom = now();
+    zoomTo(cam.z * (out ? 1 / 1.9 : 1.9), sx, sy);
+  }
 
   vpEl.addEventListener("dblclick", function(e){
     if (e.target.closest(".card")) return;
-    var r = vpEl.getBoundingClientRect();
-    zoomTo(cam.z * (e.altKey ? 1 / 1.9 : 1.9), e.clientX - r.left, e.clientY - r.top);
+    if (now() - lastTapZoom < 450) return;   /* already handled as a double tap */
+    tapZoom(e.clientX - VP.l, e.clientY - VP.t, e.altKey);
   });
 
   /* Capture is claimed only once a drag really starts — capturing on
      pointerdown would retarget the following click away from the marker. */
-  var pts = new Map(), last = null, pinch = null, dragging = false, captured = null;
+  var pts = new Map(), last = null, pinch = null, dragging = false;
+  var captured = null, swallow = false, tapT = 0, tapX = 0, tapY = 0;
+
+  function firstTwo(){
+    var a = [];
+    pts.forEach(function(v){ if (a.length < 2) a.push(v); });
+    return a;
+  }
+
+  /* Remember which world point sits under the midpoint of the two fingers.
+     Every later move re-derives the camera from that one point, so the pinch
+     never accumulates drift and survives a finger joining or leaving. */
+  function startPinch(){
+    var a = firstTwo();
+    if (a.length < 2){ pinch = null; return; }
+    var mx = (a[0].x + a[1].x) / 2 - VP.l, my = (a[0].y + a[1].y) / 2 - VP.t;
+    pinch = {
+      d:Math.max(24, Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y)),
+      z:st.z,
+      wx:(mx - st.tx) / st.z,
+      wy:(my - st.ty) / st.z
+    };
+    dragging = false; last = null;
+  }
 
   vpEl.addEventListener("pointerdown", function(e){
     if (e.target.closest(".card")) return;
+    if (!pts.size) measure();
     pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
+    live = true; swallow = false;
     if (pts.size === 1){ last = { x:e.clientX, y:e.clientY }; dragging = false; }
-    if (pts.size === 2){
-      var a = Array.from(pts.values());
-      pinch = { d:Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y), z:st.z };
-    }
+    else startPinch();
+    /* no busy() and no frame here: a plain tap should not promote every label
+       to its own layer, and the first real move starts the loop itself */
   });
 
   vpEl.addEventListener("pointermove", function(e){
     if (!pts.has(e.pointerId)) return;
     pts.set(e.pointerId, { x:e.clientX, y:e.clientY });
 
-    if (pts.size === 2 && pinch){
-      var a = Array.from(pts.values());
+    if (pts.size > 1){
+      if (!pinch) startPinch();
+      var a = firstTwo();
       var d = Math.hypot(a[0].x - a[1].x, a[0].y - a[1].y);
-      var r = vpEl.getBoundingClientRect();
-      var mx = (a[0].x + a[1].x) / 2 - r.left, my = (a[0].y + a[1].y) / 2 - r.top;
+      var mx = (a[0].x + a[1].x) / 2 - VP.l, my = (a[0].y + a[1].y) / 2 - VP.t;
       var nz = clamp(pinch.z * (d / pinch.d), ZMIN, ZMAX);
-      /* fingers track 1:1, so no easing here */
-      st.tx = mx - (mx - st.tx) * (nz / st.z);
-      st.ty = my - (my - st.ty) * (nz / st.z);
+      /* The world point that was under the midpoint stays under it, so
+         spreading the fingers and sliding them across the glass zoom and pan
+         in the same frame — neither cancels the other. */
       st.z = nz;
-      cam.z = st.z; cam.tx = st.tx; cam.ty = st.ty; cam.anchor = null;
-      stage.classList.add("moving");
-      apply();
+      st.tx = mx - pinch.wx * nz;
+      st.ty = my - pinch.wy * nz;
+      var b = bounds(nz);
+      st.tx = clamp(st.tx, b.x0, b.x1); st.ty = clamp(st.ty, b.y0, b.y1);
+      cam.z = st.z; cam.tx = st.tx; cam.ty = st.ty;
+      dragging = true; swallow = true;
+      dirty = true; busy(); kick();
       return;
     }
 
     if (!last) return;
     var dx = e.clientX - last.x, dy = e.clientY - last.y;
     if (!dragging){
-      if (Math.abs(dx) + Math.abs(dy) < 5) return;
-      dragging = true;
+      /* a finger wobbles far more than a mouse, so a tap needs room */
+      var slop = e.pointerType === "mouse" ? 5 : 11;
+      if (Math.abs(dx) + Math.abs(dy) < slop) return;
+      dragging = true; swallow = true;
       captured = e.pointerId;
-      vpEl.setPointerCapture(e.pointerId);
+      try { vpEl.setPointerCapture(e.pointerId); } catch (err){}
       vpEl.classList.add("drag");
-      stage.classList.add("moving");
     }
     last = { x:e.clientX, y:e.clientY };
-    cam.anchor = null;
-    cam.z = st.z;
-    st.tx += dx; st.ty += dy;
-    clampPan();
-    apply();
+    panBy(dx, dy);
   });
 
   function up(e){
     pts.delete(e.pointerId);
-    if (pts.size < 2) pinch = null;
     if (captured === e.pointerId){
       if (vpEl.hasPointerCapture(e.pointerId)) vpEl.releasePointerCapture(e.pointerId);
       captured = null;
     }
-    if (pts.size === 0){
-      last = null; dragging = false;
-      vpEl.classList.remove("drag");
-      if (rafId === null) stage.classList.remove("moving");
+
+    if (pts.size > 1){ startPinch(); return; }       /* a third finger left */
+
+    if (pts.size === 1){
+      /* Lifting one finger of a pinch must not jerk the map: carry on panning
+         from wherever the remaining finger actually is. */
+      var r = null;
+      pts.forEach(function(v){ r = v; });
+      last = { x:r.x, y:r.y };
+      pinch = null; dragging = true;
+      return;
     }
+
+    live = false; pinch = null;
+    vpEl.classList.remove("drag");
+
+    /* Double tap to zoom — iPadOS does not reliably raise dblclick here. */
+    if (!dragging && e.pointerType !== "mouse" &&
+        !e.target.closest(".card") && !e.target.closest(".hit")){
+      var t = now();
+      if (t - tapT < 330 && Math.abs(e.clientX - tapX) < 32 && Math.abs(e.clientY - tapY) < 32){
+        tapT = 0; swallow = true;
+        tapZoom(e.clientX - VP.l, e.clientY - VP.t, false);
+      } else { tapT = t; tapX = e.clientX; tapY = e.clientY; }
+    }
+
+    last = null; dragging = false;
+    idle(); kick();
   }
   vpEl.addEventListener("pointerup", up);
   vpEl.addEventListener("pointercancel", up);
+
+  /* Depending on the engine, touch-action:none on the viewport also switches
+     off native scrolling inside an open card. This scrolls the card body by
+     hand, but only where the engine demonstrably does not — the moment the box
+     moves on its own, the takeover steps aside instead of doubling it. */
+  (function(){
+    var sc = null;
+    stage.addEventListener("pointerdown", function(e){
+      var bd = e.target.closest(".card .bd");
+      if (!bd || bd.scrollHeight <= bd.clientHeight + 1) return;
+      sc = { el:bd, y:e.clientY, id:e.pointerId, top:bd.scrollTop, own:false };
+    });
+    stage.addEventListener("pointermove", function(e){
+      if (!sc || sc.id !== e.pointerId) return;
+      if (sc.el.scrollTop !== sc.top){ sc = null; return; }   /* the engine has it */
+      if (!sc.own){
+        if (Math.abs(e.clientY - sc.y) < 8) return;           /* give it the chance */
+        sc.own = true; sc.y = e.clientY; return;
+      }
+      sc.el.scrollTop -= e.clientY - sc.y;
+      sc.y = e.clientY;
+      sc.top = sc.el.scrollTop;
+    });
+    function end(e){ if (sc && sc.id === e.pointerId) sc = null; }
+    stage.addEventListener("pointerup", end);
+    stage.addEventListener("pointercancel", end);
+  })();
 
   document.addEventListener("keydown", function(e){
     var t = (e.target.tagName || "").toLowerCase();
@@ -1306,16 +1437,22 @@ button{font:inherit; color:inherit; background:none; border:0; cursor:pointer; p
     else if (e.key === "+" || e.key === "=") zoomTo(cam.z * 1.6);
     else if (e.key === "-") zoomTo(cam.z / 1.6);
     else if (e.key === "0"){ closeCard(); fit(true); }
+    else if (e.key === "ArrowLeft"){ nudge(140, 0); e.preventDefault(); }
+    else if (e.key === "ArrowRight"){ nudge(-140, 0); e.preventDefault(); }
+    else if (e.key === "ArrowUp"){ nudge(0, 140); e.preventDefault(); }
+    else if (e.key === "ArrowDown"){ nudge(0, -140); e.preventDefault(); }
     else if (e.key === "a" || e.key === "A") setVariant(variant === "A" ? null : "A");
     else if (e.key === "b" || e.key === "B") setVariant(variant === "B" ? null : "B");
     else if (e.key === "c" || e.key === "C") setVariant(variant === "C" ? null : "C");
   });
 
   var rt = null;
-  window.addEventListener("resize", function(){
+  function relayout(){
     clearTimeout(rt);
-    rt = setTimeout(function(){ apply(); }, 120);
-  });
+    rt = setTimeout(function(){ measure(); dirty = true; kick(); }, 120);
+  }
+  window.addEventListener("resize", relayout);
+  window.addEventListener("orientationchange", relayout);
 
   /* ================================================================== boot */
 
