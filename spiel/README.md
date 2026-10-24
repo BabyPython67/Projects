@@ -15,6 +15,19 @@ Braucht nur Python 3 (ab 3.8), keine Pakete, kein Internet, keine Konten.
 Optionen: `--seed 42` (wiederholbare Partie), `--autoplay` (der Autopilot
 spielt vor), `--ascii` (ohne Blockgrafik, falls das Terminal sie nicht kann).
 
+## Auf dem Handy spielen
+
+Die Browser-Fassung liegt in `spiel/index.html` und wird über GitHub Pages ausgeliefert:
+
+**https://babypython67.github.io/Projects/spiel/**
+
+Gleiche Regeln, Touch-Steuerung: Knöpfe für links, Sandsack, rechts und
+„Stunde abwarten“; ein Tipp auf einen Deichabschnitt lässt den Deichgrafen
+dorthin laufen. Über „Zum Home-Bildschirm“ wird daraus eine App. Die Seite hat
+keine externen Abhängigkeiten und läuft auch direkt aus der Datei. Anhängsel:
+`?seed=7` macht die Partie wiederholbar, `?autoplay=1` lässt den Autopiloten
+vorspielen. Am Rechner geht auch die Tastatur (siehe unten).
+
 ## Steuerung
 
 | Taste | Wirkung |
@@ -52,6 +65,18 @@ Schwierigkeit, Neustart), `tests/test_smoke.py` startet das Spiel als eigenen
 Prozess und spielt eine komplette Partie über die Tasteneingabe durch, inklusive
 Neustart; außerdem spielt der Autopilot zwei Partien am Stück.
 
+Die Browser-Fassung hat ihre eigene Suite (Node ab Version 18, keine Pakete):
+
+```
+node --test spiel/tests/*.test.js
+```
+
+`tests/engine.test.js` prüft dieselben Regeln in `web/engine.js`.
+`tests/browser.test.js` öffnet die Seite in einem Handy-Viewport, spielt eine
+komplette Partie über die Touch-Knöpfe und startet neu. Dafür muss Playwright
+installiert sein (`npm install playwright && npx playwright install chromium`),
+sonst wird dieser eine Test übersprungen.
+
 ## Entscheidungen
 
 * **Terminal statt Browser, nur Standardbibliothek:** ein Befehl zum Starten,
@@ -61,6 +86,10 @@ Neustart; außerdem spielt der Autopilot zwei Partien am Stück.
   stdin fernsteuern.
 * **Logik und Darstellung getrennt:** `deich/engine.py` kennt keine Ein-/Ausgabe,
   `deich/render.py` malt den Deich-Querschnitt, `deich/ui.py` liest Tasten.
+* **Zwei Fassungen, ein Regelwerk:** `web/engine.js` spiegelt `deich/engine.py`
+  Regel für Regel, und beide Testsuiten prüfen dieselben Fälle. Die Browser-
+  Fassung ist eine einzelne Seite ohne Build-Schritt, damit GitHub Pages sie
+  direkt ausliefert.
 * **Balance per Simulation:** der Autopilot (`deich/bot.py`) gewinnt mit den
   Standardwerten rund 85 % seiner Partien, verliert dabei aber Häuser. Ein
   aufmerksamer Mensch kann gewinnen, muss sich aber anstrengen.
