@@ -14,8 +14,8 @@ ASCII: Dict[str, str] = dict(
     marker="v", arrow=">", dot="o", dot_off=".", keeper="@", bar="-",
 )
 
-HELP = (" [a]/[←] links   [d]/[→] rechts   [s]/[Leertaste] Sandsack   "
-        "[w]/[Enter] Stunde abwarten   [n] neues Spiel   [q] beenden")
+HELP = (" [a]/[←] links   [d]/[→] rechts   [s]/[Leertaste] Sandsack\n"
+        " [w]/[Enter] Stunde abwarten   [n] neues Spiel   [q] beenden")
 
 
 def supports_unicode(stream) -> bool:
