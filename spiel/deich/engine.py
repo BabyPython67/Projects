@@ -29,21 +29,24 @@ KEYS = (LEFT, RIGHT, BUILD, WAIT, NEW)
 
 @dataclass(frozen=True)
 class Config:
-    length: int = 10        # Deichabschnitte
+    length: int = 8         # Deichabschnitte
     nights: int = 7         # Nächte der Sturmwoche
     hours: int = 6          # Stunden pro Nacht
-    actions: int = 5        # Aktionen pro Stunde
+    actions: int = 7        # Aktionen pro Stunde
     houses: int = 3         # Häuser im Dorf ("Leben")
     max_height: int = 12    # höher lässt sich nicht stapeln
-    start_min: int = 4      # Anfangshöhe der Abschnitte (von ... bis)
-    start_max: int = 6
+    start_min: int = 5      # Anfangshöhe der Abschnitte (von ... bis)
+    start_max: int = 7
     ebb: int = 1            # Pegel bei Ebbe, zu Beginn jeder Nacht
     bonus_dry_night: int = 25   # mal Nachtnummer, wenn kein Abschnitt brach
     bonus_house: int = 100      # je gerettetem Haus beim Sieg
+    peak_base: int = 4          # Höchstpegel = peak_base + Nachtnummer
+    waves_every: int = 3        # alle so viele Nächte ein Brecher mehr pro Stunde
+    max_waves: int = 3          # höchstens so viele Brecher pro Stunde
 
     def peak(self, night: int) -> int:
         """Höchstpegel einer Nacht – steigt jede Nacht um eins."""
-        return 4 + night
+        return self.peak_base + night
 
     def tide(self, night: int) -> List[int]:
         """Pegel am Ende jeder Stunde: steigt bis zur Mitte der Nacht, fällt dann."""
@@ -52,8 +55,8 @@ class Config:
         return [max(self.ebb, p - abs(h - crest)) for h in range(self.hours)]
 
     def waves_per_hour(self, night: int) -> int:
-        """Brecher pro Stunde – alle drei Nächte einer mehr, höchstens drei."""
-        return min(3, 1 + (night - 1) // 3)
+        """Brecher pro Stunde – alle paar Nächte einer mehr, mit Obergrenze."""
+        return min(self.max_waves, 1 + (night - 1) // self.waves_every)
 
 
 def _liste(nummern: List[int]) -> str:
