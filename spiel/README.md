@@ -1,95 +1,110 @@
-# DEICHGRAF – ein Sturmflut-Spiel fürs Terminal
+# BRÜCKENWÄRTER – ein Klappbrücken-Spiel für den Browser
 
-Du bist der Deichgraf eines kleinen Dorfs an der Nordsee. Eine Sturmwoche mit
-sieben Nächten steht bevor, und jede Nacht läuft die Flut höher auf als die davor.
-Du läufst auf dem Deich hin und her, stapelst Sandsäcke und hältst das Wasser
-draußen, während Brecher immer wieder Löcher in den Deich schlagen.
+Du bist Brückenwärter im Hafen. Eine Straße kreuzt den Kanal über eine
+Klappbrücke, und du bist das Gegengewicht: Solange du den Knopf hältst, hebt
+sich die Brücke, lässt du los, senkt sie sich. Autos brauchen die Brücke unten,
+Segler brauchen sie oben, flache Kähne passen immer drunter durch. Wer zu lange
+wartet, hupt, und nach drei Hupen bist du deinen Posten los. Schaff die Schicht
+von 6 bis 18 Uhr, in der der Verkehr immer dichter wird.
 
-## Start
+## Spielen
+
+Auf jedem Gerät mit Browser, ohne Konto, ohne Installation, auch offline:
+
+**https://babypython67.github.io/Projects/spiel/brueckenwaerter/**
+
+Nach dem ersten Besuch liegt die Seite im Browser-Speicher (Service Worker)
+und startet auch ohne Netz. Über „Zum Home-Bildschirm hinzufügen“ wird daraus
+eine App mit eigenem Icon.
+
+Lokal aus dem Repo mit einem Befehl, dann http://localhost:8000 öffnen:
 
 ```
-python3 spiel/deichgraf.py
+python3 -m http.server 8000 -d spiel/brueckenwaerter
 ```
 
-Braucht nur Python 3 (ab 3.8), keine Pakete, kein Internet, keine Konten.
-Optionen: `--seed 42` (wiederholbare Partie), `--autoplay` (der Autopilot
-spielt vor), `--ascii` (ohne Blockgrafik, falls das Terminal sie nicht kann).
-
-## Auf dem Handy spielen
-
-Die Browser-Fassung liegt in `spiel/index.html` und wird über GitHub Pages ausgeliefert:
-
-**https://babypython67.github.io/Projects/spiel/**
-
-Gleiche Regeln, Touch-Steuerung: Knöpfe für links, Sandsack, rechts und
-„Stunde abwarten“; ein Tipp auf einen Deichabschnitt lässt den Deichgrafen
-dorthin laufen. Über „Zum Home-Bildschirm“ wird daraus eine App. Die Seite hat
-keine externen Abhängigkeiten und läuft auch direkt aus der Datei. Anhängsel:
-`?seed=7` macht die Partie wiederholbar, `?autoplay=1` lässt den Autopiloten
-vorspielen. Am Rechner geht auch die Tastatur (siehe unten).
+Die Seite läuft auch direkt aus der Datei (`spiel/brueckenwaerter/index.html`
+im Browser öffnen), dann nur ohne Offline-Speicher. Keine Abhängigkeiten, kein
+Build-Schritt, keine API-Keys. Anhängsel an die Adresse: `?seed=7` macht die
+Schicht wiederholbar, `?autoplay=1` lässt den Autopiloten spielen, `?tempo=3`
+lässt die Zeit dreimal so schnell laufen.
 
 ## Steuerung
 
-| Taste | Wirkung |
+| Eingabe | Wirkung |
 |---|---|
-| `a` / `←` | einen Abschnitt nach links gehen |
-| `d` / `→` | einen Abschnitt nach rechts gehen |
-| `s` / Leertaste | Sandsack auf den Abschnitt legen, auf dem du stehst |
-| `w` / Enter | Stunde abwarten (restliche Aktionen verfallen) |
-| `n` | neues Spiel, jederzeit |
-| `q` | beenden |
+| Knopf „Brücke heben“ oder Spielfeld gedrückt halten | Brücke hebt sich; loslassen senkt sie |
+| `Leertaste`, `↑` oder `W` gedrückt halten | dasselbe mit der Tastatur |
+| „Neu“ oder `N` | neue Schicht, jederzeit, ohne die Seite neu zu laden |
+| „?“ oder `H` | Regeln anzeigen (Spiel pausiert) |
 
 ## Regeln
 
-* Die Sturmwoche hat 7 Nächte zu je 6 Stunden. Pro Stunde hast du 7 Aktionen:
-  gehen oder einen Sandsack legen (jeweils eine Aktion).
-* Am Ende jeder Stunde treffen Brecher die angezeigten Abschnitte und senken sie
-  um 1. Danach springt der Pegel auf den Wert der Flutkurve.
-* Jeder Abschnitt, der niedriger als der Pegel ist, bricht. Ein Deichbruch
-  kostet ein Haus, höchstens eines pro Stunde. Ohne Häuser ist das Spiel
-  verloren.
-* Punkte: pro gehaltener Stunde `Pegel × Nacht`, pro Nacht ohne Bruch `25 × Nacht`
-  Bonus, beim Sieg 100 je gerettetem Haus.
-* Schwierigkeit: Der Höchstpegel steigt jede Nacht um 1 (von 5 auf 11), und ab
-  Nacht 4 bzw. 7 schlagen pro Stunde zwei bzw. drei Brecher ein.
-* Gewonnen hast du, wenn die siebte Nacht vorbei ist und noch ein Haus steht.
+* Eine Schicht dauert 120 Sekunden, von 6 bis 18 Uhr (10 Sekunden je Stunde).
+* Die Brücke braucht 1,4 Sekunden zum Heben oder Senken. Sie hebt nicht,
+  solange ein Auto auf ihr ist, und senkt nicht, solange ein Segler darunter ist.
+* Autos (10 Punkte) brauchen die Brücke ganz unten, Segler (40) ganz oben,
+  Kähne (15) kommen immer durch. Wer nie anhalten musste, bekommt Bonus:
+  Auto +5, Segler +20, Kahn +5, Rettungswagen +10.
+* Geduld: Autos hupen nach 9 Sekunden Warten, Segler nach 12, Rettungswagen
+  schon nach 4, und ein Rettungswagen zählt wie zwei Hupen. Wer gehupt hat,
+  dreht ab.
+* Verloren: drei Hupen, der Hafenmeister feuert dich.
+* Gewonnen: 18 Uhr erreicht. Feierabend bringt 50 Punkte je übriger Hupe.
+* Schwierigkeit: Der Abstand zwischen Autos sinkt über die Schicht von 3,2 auf
+  1,3 Sekunden, zwischen Booten von 11 auf 6. Der Anteil Segler unter den Booten
+  steigt von 50 auf 80 Prozent, und ab 8:24 Uhr kommen Rettungswagen.
+* Der Rekord bleibt auf dem Gerät gespeichert.
 
 ## Tests
 
-```
-python3 -m unittest discover -s spiel/tests -v
-```
-
-`tests/test_engine.py` prüft die Spiellogik (Punkte, Sieg/Niederlage,
-Schwierigkeit, Neustart), `tests/test_smoke.py` startet das Spiel als eigenen
-Prozess und spielt eine komplette Partie über die Tasteneingabe durch, inklusive
-Neustart; außerdem spielt der Autopilot zwei Partien am Stück.
-
-Die Browser-Fassung hat ihre eigene Suite (Node ab Version 18, keine Pakete):
+Braucht Node ab Version 18, keine Pakete:
 
 ```
-node --test spiel/tests/*.test.js
+node --test spiel/brueckenwaerter/tests/engine.test.js
 ```
 
-`tests/engine.test.js` prüft dieselben Regeln in `web/engine.js`.
-`tests/browser.test.js` öffnet die Seite in einem Handy-Viewport, spielt eine
-komplette Partie über die Touch-Knöpfe und startet neu. Dafür muss Playwright
-installiert sein (`npm install playwright && npx playwright install chromium`),
-sonst wird dieser eine Test übersprungen.
+`tests/engine.test.js` prüft die Spiellogik: Punkte und Bonus, Hupen, Sieg
+und Niederlage, Blockieren der Brücke, steigende Schwierigkeit, Neustart,
+Determinismus und die Balance des Autopiloten.
+
+```
+node --test spiel/brueckenwaerter/tests/smoke.test.js
+```
+
+`tests/smoke.test.js` öffnet die Seite in einem Handy-Viewport und spielt
+über die echte Oberfläche: eine komplette Schicht mit dem Autopiloten samt
+Endbildschirm und Neustart, den Hebel per Finger und Tastatur, eine Schicht,
+die durch Nichtstun mit drei Hupen endet, und den Offline-Start aus dem
+Service Worker bei abgeschaltetem Server. Dafür muss Playwright installiert
+sein (`npm install playwright && npx playwright install chromium`), sonst
+werden diese Tests übersprungen.
 
 ## Entscheidungen
 
-* **Terminal statt Browser, nur Standardbibliothek:** ein Befehl zum Starten,
-  nichts zu installieren, läuft auf Linux, macOS und Windows.
-* **Rundenbasiert statt Echtzeit:** jede Taste ist ein Zug. So lässt sich die
-  Logik ohne Terminal testen, und der Smoke-Test kann das echte Programm über
-  stdin fernsteuern.
-* **Logik und Darstellung getrennt:** `deich/engine.py` kennt keine Ein-/Ausgabe,
-  `deich/render.py` malt den Deich-Querschnitt, `deich/ui.py` liest Tasten.
-* **Zwei Fassungen, ein Regelwerk:** `web/engine.js` spiegelt `deich/engine.py`
-  Regel für Regel, und beide Testsuiten prüfen dieselben Fälle. Die Browser-
-  Fassung ist eine einzelne Seite ohne Build-Schritt, damit GitHub Pages sie
-  direkt ausliefert.
-* **Balance per Simulation:** der Autopilot (`deich/bot.py`) gewinnt mit den
-  Standardwerten rund 85 % seiner Partien, verliert dabei aber Häuser. Ein
-  aufmerksamer Mensch kann gewinnen, muss sich aber anstrengen.
+* **Browser statt Terminal, eine Seite, kein Build:** `index.html` plus
+  `engine.js` werden von GitHub Pages unverändert ausgeliefert und laufen auch
+  aus der Datei. So ist das Spiel auf Handy, Tablet und Rechner erreichbar.
+* **Offline über Service Worker und Manifest:** `sw.js` legt die sieben
+  Dateien beim ersten Besuch ab und lädt im Hintergrund nach, falls es etwas
+  Neues gibt. Das Manifest macht die Seite installierbar.
+* **Halten statt Umschalten:** Der Spieler ist das Gegengewicht. Ein einziger
+  Knopf, den man gedrückt hält, funktioniert mit Daumen, Maus und Tastatur
+  gleich gut und erzeugt die Spannung: Jede Sekunde oben ist eine Sekunde, in
+  der sich Autos stauen.
+* **Logik getrennt von Darstellung, deterministisch:** `engine.js` kennt weder
+  Canvas noch Eingabe und läuft mit festen Zeitschritten und einer Startzahl.
+  Dadurch lässt sich jede Regel in Node testen, und `?seed=` macht Schichten
+  vergleichbar.
+* **Balance per Simulation:** Der Autopilot (`choose` in `engine.js`) gewinnt
+  rund 90 Prozent seiner Schichten, hört dabei aber im Schnitt eine Hupe. Wer
+  nie hebt, verliert nach etwa 90 Sekunden, wer immer hebt, nach 17.
+* **Ordner `spiel/brueckenwaerter/`:** `spiel/` enthielt bereits Deichgraf
+  (siehe unten) mit fester Pages-Adresse. Das neue Spiel liegt daneben, damit
+  alte Links weiter funktionieren.
+
+## Außerdem in diesem Ordner: Deichgraf
+
+Das Sturmflut-Spiel fürs Terminal und Handy ist in [DEICHGRAF.md](DEICHGRAF.md)
+beschrieben. Es läuft unter https://babypython67.github.io/Projects/spiel/ und
+mit `python3 spiel/deichgraf.py`.

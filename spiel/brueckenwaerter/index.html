@@ -82,6 +82,16 @@
   .hint { font-size: .82rem; color: var(--muted); margin-top: 10px; }
   .kbd { display: inline-block; border: 1px solid var(--panel-2); border-bottom-width: 2px; border-radius: 5px; padding: 0 6px; font-size: .85em; color: var(--text); background: var(--bg); }
   @media (min-width: 700px) { #app { padding-top: 18px; } .lift { min-height: 72px; } }
+  /* Querformat mit wenig Höhe (Handy quer): Spielfeld links, Anzeige und Knöpfe rechts */
+  @media (orientation: landscape) and (max-height: 560px) {
+    #app { max-width: none; grid-template-columns: minmax(0, 1fr) minmax(230px, 340px); grid-template-rows: 1fr auto;
+           grid-template-areas: "stage header" "stage controls"; column-gap: 16px; padding-top: 8px; }
+    header { grid-area: header; align-content: start; }
+    #stage { grid-area: stage; }
+    .controls { grid-area: controls; }
+    .lift { min-height: 84px; }
+    .legend { font-size: .72rem; }
+  }
 </style>
 </head>
 <body>
