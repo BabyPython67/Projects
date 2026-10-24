@@ -3,6 +3,8 @@
 // ohne Playwright wird der Test übersprungen.
 const { test } = require("node:test");
 const assert = require("node:assert/strict");
+const fs = require("fs");
+const http = require("http");
 const path = require("path");
 
 let playwright = null;
@@ -50,5 +52,48 @@ test("komplette Partie auf dem Handy, dann Neustart", { skip: playwright ? false
     assert.deepEqual(fehler, []);
   } finally {
     await browser.close();
+  }
+});
+
+/* Kleiner statischer Server, der wie GitHub Pages aus dem Repo-Wurzelverzeichnis ausliefert. */
+function serve(root) {
+  const types = { ".html": "text/html; charset=utf-8", ".js": "text/javascript", ".css": "text/css" };
+  const server = http.createServer((req, res) => {
+    let p = decodeURIComponent(new URL(req.url, "http://x").pathname);
+    if (p.endsWith("/")) p += "index.html";
+    const file = path.join(root, p);
+    if (!file.startsWith(root) || !fs.existsSync(file) || fs.statSync(file).isDirectory()) { res.writeHead(404); res.end("404"); return; }
+    res.writeHead(200, { "content-type": types[path.extname(file)] || "application/octet-stream" });
+    fs.createReadStream(file).pipe(res);
+  });
+  return new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve({ server, url: `http://127.0.0.1:${server.address().port}` })));
+}
+
+test("Startseite verlinkt beide Spiele, jedes unter eigener Adresse", { skip: playwright ? false : "Playwright nicht installiert" }, async () => {
+  const root = path.resolve(__dirname, "..", "..");
+  const { server, url } = await serve(root);
+  const browser = await playwright.chromium.launch();
+  try {
+    const page = await browser.newPage({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true });
+    const fehler = [];
+    page.on("pageerror", (e) => fehler.push(String(e)));
+    await page.goto(url + "/");
+    const hrefs = await page.$$eval("a.card", (as) => as.map((a) => a.getAttribute("href")));
+    assert.deepEqual(hrefs, ["johannisnacht/", "spiel/"]);
+    for (const href of hrefs) {
+      assert.ok(fs.existsSync(path.join(root, href, "index.html")), `${href}index.html fehlt`);
+      const antwort = await page.request.get(url + "/" + href);
+      assert.equal(antwort.status(), 200, href);
+    }
+    await page.tap("a.card[href='spiel/']");
+    await page.waitForSelector("#btn-build");
+    assert.equal(page.url(), url + "/spiel/");
+    assert.equal(await page.title(), "Deichgraf");
+    await page.goto(url + "/johannisnacht/");
+    assert.equal(await page.title(), "Johannisnacht");
+    assert.deepEqual(fehler, []);
+  } finally {
+    await browser.close();
+    server.close();
   }
 });
