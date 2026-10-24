@@ -60,7 +60,8 @@ test("Auto wartet vor gehobener Brücke, verliert Geduld und hupt; dann ist es w
   const auto = g.addUnit("auto", 1, 0.35);
   laufen(g, 1, true);
   assert.ok(auto.waiting, "Auto müsste warten");
-  assert.ok(auto.s <= 0.5 - g.config.deck + 1e-9, "Auto hat die Haltelinie überfahren");
+  assert.ok(auto.s <= g.stopLine + 1e-9, "Auto hat die Haltelinie überfahren");
+  assert.ok(auto.s > g.stopLine - 0.01, "Auto ist nicht bis zur Haltelinie vorgefahren");
   assert.equal(g.strikes, 0);
   const events = laufen(g, B.KINDS.auto.patience + 0.2, true);
   const hupe = events.find((e) => e.type === "hupe");
@@ -88,7 +89,7 @@ test("Segler braucht die Brücke oben: wartet unten, fährt oben, wird sonst ung
   const s = g.addUnit("segler", 1, 0.3);
   laufen(g, 3, false);
   assert.ok(s.waiting);
-  assert.ok(s.s <= 0.5 - g.config.deck + 1e-9);
+  assert.ok(s.s <= g.stopLine + 1e-9);
   const events = laufen(g, 6, true);
   const pass = events.find((e) => e.type === "passiert");
   assert.ok(pass, "Segler kam nicht durch");
@@ -114,7 +115,8 @@ test("Kahn passt unter der Brücke durch, egal wie sie steht", () => {
 
 test("Brücke hebt nicht, solange ein Auto auf dem Deck ist, und senkt nicht über einem Segler", () => {
   const g = leer();
-  g.addUnit("auto", 1, 0.5);               // mitten auf der Brücke
+  const auto = g.addUnit("auto", 1, 0.5);  // mitten auf der Brücke
+  auto.entered = true;
   laufen(g, 0.1, true);
   assert.equal(g.bridge, 0);
   assert.equal(g.blocked, "auto");
@@ -124,10 +126,22 @@ test("Brücke hebt nicht, solange ein Auto auf dem Deck ist, und senkt nicht üb
 
   const g2 = leer();
   laufen(g2, 1.5, true);
-  g2.addUnit("segler", 1, 0.5);
+  g2.addUnit("segler", 1, 0.5).entered = true;
   laufen(g2, 0.1, false);
   assert.equal(g2.bridge, 1);
   assert.equal(g2.blocked, "schiff");
+});
+
+test("Kaum über die Haltelinie, bleibt die Brücke stehen, bis das Auto drüben ist", () => {
+  const g = leer();
+  const auto = g.addUnit("auto", 1, g.stopLine - 0.01);
+  laufen(g, 0.1, false);                   // Auto fährt bei gesenkter Brücke über die Linie
+  assert.ok(auto.entered);
+  laufen(g, 0.05, true);
+  assert.equal(g.bridge, 0);
+  assert.equal(g.blocked, "auto");
+  laufen(g, 1.5, true);
+  assert.ok(g.bridge > 0.5);
 });
 
 test("Rettungswagen hat wenig Geduld und zählt doppelt", () => {

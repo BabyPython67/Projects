@@ -26,6 +26,7 @@
     strikesToLose: 3,      // so viele Hupen, und der Wärter ist seinen Posten los
     liftTime: 1.4,         // Sekunden für volles Heben oder Senken
     deck: 0.07,            // halbe Breite der Brückenzone auf jeder Strecke
+    stopMargin: 0.02,      // Haltelinie so weit vor dem Deck (dort steht die Schranke)
     gap: 0.015,            // Mindestabstand zwischen zwei Einheiten
     roadGap: [3.2, 1.3],   // mittlerer Abstand zweier Ankünfte in Sekunden: Schichtbeginn, Schichtende
     waterGap: [11, 6],
@@ -117,10 +118,16 @@
     kindOf(unit) { return this.config.kinds[unit.kind]; }
     front(unit) { return unit.s; }
     back(unit) { return unit.s - this.kindOf(unit).length; }
+    /* Haltelinie vor der Brücke, in Streckenanteilen. */
+    get stopLine() { return 0.5 - this.config.deck - this.config.stopMargin; }
     /* Berührt die Einheit die Brückenzone? */
     onDeck(unit) {
       const d = this.config.deck;
       return this.front(unit) > 0.5 - d && this.back(unit) < 0.5 + d;
+    }
+    /* Hat die Einheit die Haltelinie passiert und die Brücke noch nicht hinter sich? Dann bewegt sich die Brücke nicht. */
+    committed(unit) {
+      return unit.entered && this.back(unit) < 0.5 + this.config.deck;
     }
     allowed(unit) {
       const needs = this.kindOf(unit).needs;
@@ -188,8 +195,8 @@
 
     moveBridge(dt) {
       const c = this.config;
-      const carOnDeck = this.units.some((u) => this.kindOf(u).lane === ROAD && this.onDeck(u));
-      const shipUnder = this.units.some((u) => this.kindOf(u).needs === UP && this.onDeck(u));
+      const carOnDeck = this.units.some((u) => this.kindOf(u).lane === ROAD && this.committed(u));
+      const shipUnder = this.units.some((u) => this.kindOf(u).needs === UP && this.committed(u));
       this.blocked = null;
       if (this.held && this.bridge < 1) {
         if (carOnDeck) this.blocked = "auto";
@@ -202,7 +209,7 @@
 
     moveUnits(dt, events) {
       const c = this.config;
-      const line = 0.5 - c.deck;  // Haltelinie vor der Brücke
+      const line = this.stopLine;
       for (const lane of [ROAD, WATER]) {
         for (const dir of [1, -1]) {
           const queue = this.units.filter((u) => this.kindOf(u).lane === lane && u.dir === dir).sort((a, b) => b.s - a.s);
@@ -242,7 +249,7 @@
 
   /* Autopilot: hält den Hebel, wenn ein Segler kommt, lässt Rettungswagen und lange Autoschlangen vor. */
   function choose(game) {
-    const c = game.config, line = 0.5 - c.deck;
+    const line = game.stopLine;
     const seglerUnder = game.units.some((u) => u.kind === "segler" && game.onDeck(u));
     if (seglerUnder) return true;
     const rettungNah = game.units.some((u) => u.kind === "rettung" && !u.passed && u.s > line - 0.30);
