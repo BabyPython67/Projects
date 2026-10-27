@@ -75,18 +75,22 @@ Build, Logik getrennt von Darstellung, Service Worker, Autopilot für Balance un
 ## Recherche
 
 Websuche war verfügbar und hat die Links geliefert. Die Seiten selbst ließen sich aus der
-Arbeitsumgebung nicht öffnen (Netzsperre für alle fremden Hosts; per WebFetch und curl an
-zehn der Adressen geprüft, alle abgewiesen), deshalb stützen sich die Sätze auf die Suchzusammenfassungen und auf mein
-Vorwissen zu den Werken; die Links sind zum Nachprüfen da. Als Anregung genutzt, nicht als
-Vorgabe:
+Arbeitsumgebung nicht direkt öffnen (Netzsperre für alle fremden Hosts; per WebFetch und
+curl an zehn der Adressen geprüft, alle abgewiesen). Jede Aussage unten wurde deshalb in
+einem zweiten Suchdurchgang gegen die Seitenauszüge der Suchmaschine geprüft; eine
+Angabe (Epic, „Sitzungen von 1 bis 5 Minuten“) hielt der Prüfung nicht stand und wurde
+durch das ersetzt, was die Seite tatsächlich sagt (40-Sekunden-Regel). Als Anregung
+genutzt, nicht als Vorgabe:
 
-1. **Sid Meier, „a game is a series of interesting decisions“** – Interview
-   [„Just one more turn“ bei Game Developer](https://www.gamedeveloper.com/game-platforms/just-one-more-turn---game-development-tips-and-tricks-from-the-creator-of-civilization-sid-meier-),
-   die [GDC-2012-Sitzung „Interesting Decisions“](https://www.engadget.com/2012-01-24-sid-meier-keiji-inafune-and-riot-games-folks-added-to-gdc-semin.html)
-   und das Kapitel dazu in [„Sid Meier's Memoir!“](https://www.sidmeiersmemoir.com/).
-   Übernommen: Jede Runde ist eine Zuordnung mit sichtbarem Preis (dieser Würfel auf
-   Schlag oder auf Schutz?), und jeder Schritt auf der Karte eine Wahl zwischen ungleichen
-   Dingen; nichts ist reine Ausführung.
+1. **Sid Meier, „Interesting Decisions“** (GDC 2012) –
+   [Bericht vom Vortrag bei Game Developer](https://www.gamedeveloper.com/design/gdc-2012-sid-meier-on-how-to-see-games-as-sets-of-interesting-decisions),
+   [Video dazu](https://www.gamedeveloper.com/design/video-sid-meier-explores-interesting-decisions-in-gameplay),
+   das Kapitel in [„Sid Meier's Memoir!“](https://www.sidmeiersmemoir.com/). Meiers Prüfstein:
+   Wählt der Spieler von drei Möglichkeiten immer die erste oder würfelt er, ist die
+   Entscheidung nicht interessant; gute Entscheidungen sind Abwägungen und hängen von der
+   Lage ab. Übernommen: Jede Runde ist eine Zuordnung mit sichtbarem Preis (dieser Würfel
+   auf Schlag oder auf Schutz?), die vom angekündigten Gegnerzug abhängt, und jeder Schritt
+   auf der Karte eine Wahl zwischen ungleichen Dingen; nichts ist reine Ausführung.
 2. **Game Maker's Toolkit, „The Two Types of Random“** (Input- gegen Output-Zufall) –
    [Video](https://amara.org/en-gb/videos/C3IIn1JRUBXt), [Zusammenfassung bei Kotaku](https://kotaku.com/randomness-in-video-games-is-not-all-the-same-1841049263).
    Übernommen: Der Zufall kommt vor der Entscheidung (die Würfel liegen, bevor du
@@ -102,18 +106,23 @@ Vorgabe:
    Übernommen: Wucht nach Größe des Treffers: Bildschirm-Schütteln, Blitz, rote Vignette,
    fliegende Zahlen, Vibration, tieferer Ton bei härteren Schlägen; der Gegner stößt vor,
    bevor er trifft.
-5. **„Replayability in Roguelike Games“** (Masterarbeit, HAW Hamburg 2025) –
+5. **Nils Behrens, „Replayability in Roguelike Games“** (Masterarbeit, HAW Hamburg 2025;
+   Literaturanalyse zu Wiederspielwert, dann vier Roguelikes daraufhin untersucht) –
    [Volltext](https://reposit.haw-hamburg.de/handle/20.500.12738/19131). Übernommen: Die
    Lauf-Struktur (eine Nacht ist ein Lauf), zufällige Karte und Belohnungen aus einem
    wachsenden Vorrat, und dass Freischaltungen vor allem *Möglichkeiten* öffnen
    (Gegenstände mit neuen Regeln, Gefährten mit anderer Startausrüstung), nicht nur Stärke.
-6. **Game-Wisdom, „The Danger of Forced Failure in Game Design“** –
+6. **Game-Wisdom, „The Danger of Forced Failure in Game Design“** (erzwungenes Scheitern:
+   Balance, bei der man ohne eigene Schuld verliert, bis die Meta-Progression reicht) und
+   dessen [Besprechung von Rogue Legacy](https://game-wisdom.com/analysis/rogue-legacy-genealogical-rogue-like)
+   (Läufe verschwimmen, sobald die Dauer-Aufwertungen reichen) –
    [Artikel](https://game-wisdom.com/critical/forced-failure-game-design). Übernommen:
    Keine Nacht ist absichtlich unschaffbar: Schon mit dem Grundvorrat gewinnt der
    Autopilot rund 41 % seiner Nächte (Simulation über 300 Startzahlen), Freischaltungen
    sind Abkürzungen, kein Grind, und wer gewinnt, bekommt mit der Springflut mehr
    Schwierigkeit statt mehr Stärke.
-7. **„There is No Escape“, First Person Scholar, zu Hades** –
+7. **„There is No Escape“, First Person Scholar, zu Hades** (der Tod als Erzählmittel, das
+   Zagreus erlebt und kommentiert) –
    [Essay](https://www.firstpersonscholar.com/there-is-no-escape/). Übernommen: Die
    Geschichte ist hinter Fortschritt *und* Scheitern einsortiert: Jedes Ende hat einen
    eigenen Text, Blätter der Chronik kommen bei Meilensteinen, und die Figuren der Welt
@@ -125,13 +134,19 @@ Vorgabe:
    durchschauen muss (Spiegel liebt die Eins, Harpune die Sechs, Zähl-Gegenstände wollen
    Geduld), Gegner feste Muster, und die Springflut gibt denen, die alles beherrschen,
    ein neues.
-9. **Epic Games, „Designing for mobile in Fortnite“** –
+9. **Epic Games, „Designing for mobile in Fortnite“** (40-Sekunden-Regel: alle 40 Sekunden
+   eine Entscheidung; kurze, lohnende Sitzungen; die wichtigsten Knöpfe für durchschnittliche
+   Daumen erreichbar) –
    [Richtlinien](https://dev.epicgames.com/documentation/fortnite/designing-for-mobile-in-fortnite).
-   Übernommen: Alles Tippen, kein Ziehen, Knöpfe mindestens 48 Pixel hoch, die wichtigsten
-   unten im Daumenbereich; ein Schritt der Karte dauert eine bis zwei Minuten, eine ganze
-   Nacht zehn bis fünfzehn, und man kann jederzeit aufhören, weil nichts in Echtzeit läuft.
-10. **Abatangelo, „Environmental Storytelling and Active Spectatorship“** (DiGRA 2025) –
-    [Paper](https://dl.digra.org/index.php/dl/article/view/2696). Übernommen: Die
+   Übernommen: Alles Tippen, kein Ziehen, Knöpfe mindestens 44 Pixel, die wichtigsten unten
+   im Daumenbereich; jede Runde und jeder Schritt der Karte ist eine Entscheidung in unter
+   einer Minute, und man kann jederzeit aufhören, weil nichts in Echtzeit läuft.
+10. **Romi Sofia Abatangelo, „Environmental Storytelling and Active Spectatorship in
+    Walking Simulators and Exploration Theatre“** (DiGRA 2025; zwei Strategien: Spuren mit
+    Ursache und Wirkung machen den Spieler zum Detektiv, atmosphärische Erzählung wird
+    gefühlt statt gelöst) – [Paper](https://dl.digra.org/index.php/dl/article/view/2696),
+    [PDF](https://iris.unito.it/bitstream/2318/2128392/1/DIGRA2025+-+Camera+Ready+-+Environmental+Storytelling+and+Active+Spectatorship+in+Walking+Simulators+and+Exploration+Theatre+(1).pdf).
+    Übernommen: Die
     atmosphärische Erzählung, die man fühlt statt löst: Himmel, Skyline und Nebel ändern
     sich mit der Strecke, ab den Prielen schlägt alle Weile eine ferne Glocke, jeder
     Gegner und jeder Gegenstand hat einen Satz Hintergrund, kein Tutorial-Text.
