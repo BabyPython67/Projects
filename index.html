@@ -21,6 +21,8 @@
   a.card .go { display: block; margin-top: 10px; font-weight: 600; }
   .j { border-left: 6px solid #d4f26a; } .j .go { color: #d4f26a; }
   .d { border-left: 6px solid #f6c955; } .d .go { color: #f6c955; }
+  .b { border-left: 6px solid #f2b544; } .b .go { color: #f2b544; }
+  .r { border-left: 6px solid #cfd8ff; } .r .go { color: #cfd8ff; }
   footer { margin-top: 22px; color: #7f91a9; font-size: .85rem; line-height: 1.6; }
   footer a { color: #b9c7d8; }
 </style>
@@ -28,7 +30,13 @@
 <body>
 <main>
   <h1>Spiele zum Zeitvertreib</h1>
-  <p class="sub">Zwei kleine Spiele, jedes mit eigener Adresse.</p>
+  <p class="sub">Kleine Spiele für Finger und Maus, jedes mit eigener Adresse.</p>
+
+  <a class="card r" href="rungholt/">
+    <h2>Rungholt</h2>
+    <p>Eine Nacht durchs Watt zur versunkenen Stadt: Würfel setzen, Wege wählen, die Flut im Nacken. Jede Nacht anders, und was du erreichst, bleibt.</p>
+    <span class="go">Spielen ›</span>
+  </a>
 
   <a class="card j" href="johannisnacht/">
     <h2>Johannisnacht</h2>
@@ -36,22 +44,29 @@
     <span class="go">Spielen ›</span>
   </a>
 
-  <a class="card d" href="spiel/">
+  <a class="card d" href="deichgraf/">
     <h2>Deichgraf</h2>
-    <p>Halte den Deich durch sieben Nächte Sturmflut: laufen, Sandsäcke stapeln, Brecher abwehren.</p>
+    <p>Halte den Deich durch sieben Nächte Sturmflut: laufen, Sandsäcke stapeln, Brecher abwehren. Rundenbasiert.</p>
+    <span class="go">Spielen ›</span>
+  </a>
+
+  <a class="card b" href="brueckenwaerter/">
+    <h2>Brückenwärter</h2>
+    <p>Halte den Knopf, und die Klappbrücke hebt sich: Segler brauchen sie oben, Autos unten. Eine Schicht von 6 bis 18 Uhr, läuft auch offline.</p>
     <span class="go">Spielen ›</span>
   </a>
 
   <footer>
     Direkte Links zum Teilen:<br>
-    <a id="link-j" href="johannisnacht/">…/johannisnacht/</a><br>
-    <a id="link-d" href="spiel/">…/spiel/</a>
+    <a class="link" href="rungholt/">…/rungholt/</a><br>
+    <a class="link" href="johannisnacht/">…/johannisnacht/</a><br>
+    <a class="link" href="deichgraf/">…/deichgraf/</a><br>
+    <a class="link" href="brueckenwaerter/">…/brueckenwaerter/</a>
   </footer>
 </main>
 <script>
   // Absolute Adressen anzeigen, damit sie sich direkt kopieren lassen.
-  for (const id of ["link-j", "link-d"]) {
-    const a = document.getElementById(id);
+  for (const a of document.querySelectorAll("footer a.link")) {
     if (location.protocol.startsWith("http")) a.textContent = a.href;
   }
 </script>

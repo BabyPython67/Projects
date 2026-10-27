@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b1a2b">
+<meta name="description" content="Deichgraf: halte den Deich durch die Sturmwoche. Ein kleines Spiel fürs Handy.">
+<title>Deichgraf</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230b1a2b'/%3E%3Ctext y='.9em' font-size='80' x='10'%3E%F0%9F%8C%8A%3C/text%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #0b1a2b; --panel: #15304b; --panel-2: #1d3f63; --text: #eaf0f7; --muted: #9db2c8;
+    --sand: #e0bd6f; --sand-dark: #a7843c; --sand-wet: #8a6a44; --water: rgba(48, 128, 214, .58);
+    --danger: #ef6b5e; --accent: #f6c955; --sky: #7fd0ff;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%; touch-action: manipulation;
+    user-select: none; -webkit-user-select: none; overscroll-behavior: none;
+  }
+  #app {
+    height: 100vh; height: 100dvh; max-width: 560px; margin: 0 auto;
+    display: grid; grid-template-rows: auto auto 1fr auto auto auto; gap: 8px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  }
+  header { display: flex; justify-content: space-between; align-items: baseline; }
+  h1 { font-size: 1.2rem; margin: 0; letter-spacing: .12em; }
+  .hearts { color: var(--danger); font-size: 1.15rem; letter-spacing: 2px; }
+  .stats { display: flex; gap: 14px; flex-wrap: wrap; color: var(--muted); font-size: .92rem; margin-top: 2px; }
+  .stats b { color: var(--text); font-variant-numeric: tabular-nums; }
+  .info { display: grid; gap: 5px; font-size: .9rem; color: var(--muted); }
+  .row { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+  .tide { display: inline-flex; gap: 5px; }
+  .chip { min-width: 26px; text-align: center; padding: 2px 0; border-radius: 6px; background: var(--panel); color: var(--text); font-variant-numeric: tabular-nums; }
+  .chip.past { opacity: .4; }
+  .chip.now { background: var(--accent); color: #1a1a1a; font-weight: 700; }
+  .dots { letter-spacing: 2px; color: var(--accent); }
+  .right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+  #help-btn { width: 34px; height: 34px; padding: 0; border-radius: 50%; font-weight: 700; }
+  #chart-wrap { display: flex; flex-direction: column; min-height: 0; }
+
+  #chart { position: relative; flex: 1; border-radius: 12px; overflow: hidden; min-height: 180px;
+           background: linear-gradient(#0f2440, #0b1a2b 70%, #081320); }
+  #chart.shake { animation: shake .4s; }
+  @keyframes shake { 20% { transform: translateX(-4px); } 40% { transform: translateX(4px); } 60% { transform: translateX(-3px); } 80% { transform: translateX(3px); } }
+  #water { position: absolute; left: 0; right: 0; bottom: 0; z-index: 1; background: var(--water); transition: height .6s ease; pointer-events: none;
+           box-shadow: 0 -2px 10px rgba(120, 190, 255, .5); }
+  #nextline { position: absolute; left: 0; right: 0; z-index: 2; border-top: 2px dashed rgba(127, 208, 255, .75); pointer-events: none; transition: bottom .4s; }
+  #nextline span { position: absolute; right: 6px; top: -1.5em; font-size: .72rem; color: var(--sky); background: rgba(11, 26, 43, .8); padding: 1px 6px; border-radius: 6px; }
+  #cols { position: absolute; inset: 0; display: flex; }
+  .col { flex: 1; position: relative; cursor: pointer; }
+  .col.hit { background: rgba(127, 208, 255, .07); }
+  .block { position: absolute; left: 10%; right: 10%; background: var(--sand); border: 1px solid var(--sand-dark); border-radius: 3px; }
+  .col.broken .block { background: var(--sand-wet); border-color: #5c4630; }
+  .keeper, .wave { position: absolute; left: 0; right: 0; display: flex; justify-content: center; align-items: flex-end; line-height: 1; pointer-events: none; }
+  .keeper { font-size: clamp(18px, 6.5vw, 30px); }
+  .wave { top: 3px; font-size: clamp(16px, 5.5vw, 26px); animation: bob 1.2s ease-in-out infinite; }
+  @keyframes bob { 50% { transform: translateY(3px); } }
+  #labels { display: flex; margin-top: -4px; }
+  #labels span { flex: 1; text-align: center; color: var(--muted); font-size: .85rem; }
+  #labels span.hit { color: var(--sky); font-weight: 700; }
+  #labels span.here { color: var(--accent); font-weight: 700; }
+
+  #log { font-size: .86rem; color: var(--muted); line-height: 1.25; min-height: 3.8em; }
+  #log div:last-child { color: var(--text); }
+
+  .controls { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 8px; }
+  .controls2 { display: grid; grid-template-columns: 2fr 1fr; gap: 8px; }
+  button { font: inherit; font-size: 1.02rem; padding: 14px 6px; border: 0; border-radius: 12px;
+           background: var(--panel); color: var(--text); touch-action: manipulation; cursor: pointer; }
+  button:active { transform: scale(.97); background: var(--panel-2); }
+  button.primary { background: var(--accent); color: #1a1a1a; font-weight: 700; }
+  button:disabled { opacity: .4; }
+
+  #overlay, #rules { position: fixed; inset: 0; background: rgba(4, 11, 20, .88); display: none; place-items: center; padding: 20px; z-index: 10; }
+  #overlay.show, #rules.show { display: grid; }
+  .card { background: var(--panel); border-radius: 16px; padding: 22px; max-width: 380px; width: 100%; }
+  .card h2 { margin: 0 0 6px; font-size: 1.5rem; }
+  .card p { margin: 6px 0; color: var(--muted); }
+  .card .score { font-size: 2.2rem; font-weight: 700; color: var(--accent); margin: 8px 0; text-align: center; }
+  .card ul { padding-left: 18px; margin: 8px 0; color: var(--muted); font-size: .92rem; line-height: 1.35; }
+  .card button { width: 100%; margin-top: 10px; }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div>
+      <h1>DEICHGRAF</h1>
+      <div class="stats">
+        <span>Nacht <b id="night"></b></span>
+        <span>Stunde <b id="hour"></b></span>
+        <span>Punkte <b id="score"></b></span>
+      </div>
+    </div>
+    <div class="right">
+      <div class="hearts" id="hearts" aria-label="Häuser"></div>
+      <button id="help-btn" aria-label="Regeln">?</button>
+    </div>
+  </header>
+
+  <div class="info">
+    <div class="row">
+      <span>Flutkurve</span><span class="tide" id="tide"></span>
+      <span>Pegel jetzt <b id="pegel"></b></span>
+    </div>
+    <div class="row">
+      <span>Brecher auf <b id="waves"></b></span>
+      <span>· Aktionen <span class="dots" id="dots"></span></span>
+    </div>
+  </div>
+
+  <div id="chart-wrap">
+    <div id="chart">
+      <div id="water"></div>
+      <div id="nextline"><span>nächster Pegel</span></div>
+      <div id="cols"></div>
+    </div>
+    <div id="labels"></div>
+  </div>
+
+  <div id="log" aria-live="polite"></div>
+
+  <div class="controls">
+    <button id="btn-left">◀ Links</button>
+    <button id="btn-build" class="primary">Sandsack</button>
+    <button id="btn-right">Rechts ▶</button>
+  </div>
+  <div class="controls2">
+    <button id="btn-wait">Stunde abwarten</button>
+    <button id="btn-new">Neu</button>
+  </div>
+</div>
+
+<div id="overlay">
+  <div class="card">
+    <h2 id="ov-title"></h2>
+    <p id="ov-text"></p>
+    <div class="score" id="ov-score"></div>
+    <p>Bestleistung: <b id="ov-best"></b></p>
+    <button id="ov-new" class="primary">Neues Spiel</button>
+  </div>
+</div>
+
+<div id="rules">
+  <div class="card">
+    <h2>So geht's</h2>
+    <ul>
+      <li>Sieben Nächte Sturmflut, jede Nacht läuft die Flut höher auf. Halte alle acht Deichabschnitte über dem Pegel.</li>
+      <li>Pro Stunde hast du 7 Aktionen: einen Abschnitt gehen oder einen Sandsack legen. Tippe auf einen Abschnitt, um hinzulaufen.</li>
+      <li>Am Stundenende schlagen Brecher auf die markierten Abschnitte (−1) und der Pegel springt auf den nächsten Wert der Flutkurve.</li>
+      <li>Jeder Abschnitt unter dem Pegel bricht. Das kostet ein Haus, höchstens eins pro Stunde. Ohne Häuser ist es vorbei.</li>
+      <li>Punkte: gehaltene Stunde = Pegel × Nacht, trockene Nacht = 25 × Nacht, beim Sieg 100 je Haus.</li>
+      <li>Tastatur: A/D oder Pfeile, S oder Leertaste, W oder Enter, N für neu.</li>
+    </ul>
+    <button id="rules-close">Weiter</button>
+    <p style="text-align:center;margin:12px 0 0"><a href="../" style="color:var(--muted)">Weitere Spiele</a></p>
+  </div>
+</div>
+
+<script src="web/engine.js"></script>
+<script>
+(function () {
+  "use strict";
+  const D = window.Deichgraf;
+  const params = new URLSearchParams(location.search);
+  const seedParam = params.get("seed");
+  const game = new D.Game(seedParam === null ? undefined : Number(seedParam));
+  const c = game.config;
+  const ROWS = c.maxHeight + 2;          // Blöcke + Deichgraf + Zeile für die Brecher-Symbole
+  const unit = 100 / ROWS;
+  const $ = (id) => document.getElementById(id);
+  const esc = (s) => s.replace(/[&<>]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" }[ch]));
+  let walker = null;
+
+  function bestScore(update) {
+    let best = 0;
+    try {
+      best = Number(localStorage.getItem("deichgraf.best") || 0);
+      if (update !== undefined && update > best) { best = update; localStorage.setItem("deichgraf.best", String(best)); }
+    } catch (e) { /* ohne Speicher geht es auch */ }
+    return best;
+  }
+
+  function draw(newEvents) {
+    $("night").textContent = `${game.night}/${c.nights}`;
+    $("hour").textContent = `${game.hour}/${c.hours}`;
+    $("score").textContent = game.score;
+    $("hearts").textContent = "♥".repeat(game.houses) + "♡".repeat(c.houses - game.houses);
+    $("tide").innerHTML = game.tide.map((p, i) =>
+      `<span class="chip ${i < game.hour - 1 ? "past" : i === game.hour - 1 ? "now" : ""}">${p}</span>`).join("");
+    $("pegel").textContent = game.pegel;
+    $("waves").textContent = D.liste(game.nextWaves);
+    $("dots").textContent = "●".repeat(game.actionsLeft) + "○".repeat(c.actions - game.actionsLeft);
+
+    $("water").style.height = `${game.pegel * unit}%`;
+    $("nextline").style.bottom = `${game.nextPegel * unit}%`;
+    const hit = new Set(game.nextWaves);
+    $("cols").innerHTML = game.heights.map((h, i) => {
+      let s = `<div class="col${h < game.pegel ? " broken" : ""}${hit.has(i) ? " hit" : ""}" data-i="${i}">`;
+      for (let b = 1; b <= h; b++) s += `<div class="block" style="bottom:${(b - 1) * unit}%;height:calc(${unit}% - 2px)"></div>`;
+      if (i === game.pos) s += `<div class="keeper" style="bottom:${h * unit}%;height:${unit}%">🧍</div>`;
+      if (hit.has(i)) s += `<div class="wave">🌊</div>`;
+      return s + "</div>";
+    }).join("");
+    $("labels").innerHTML = game.heights.map((h, i) =>
+      `<span class="${i === game.pos ? "here" : hit.has(i) ? "hit" : ""}">${i + 1}</span>`).join("");
+    $("log").innerHTML = game.events.slice(-3).map((t) => `<div>${esc(t)}</div>`).join("");
+
+    for (const id of ["btn-left", "btn-right", "btn-build", "btn-wait"]) $(id).disabled = game.over;
+    if (newEvents && newEvents.some((t) => t.startsWith("DEICHBRUCH"))) {
+      const chart = $("chart");
+      chart.classList.remove("shake"); void chart.offsetWidth; chart.classList.add("shake");
+    }
+  }
+
+  function showOverlay() {
+    if (!game.over) return;
+    const won = game.phase === D.WON;
+    $("ov-title").textContent = won ? "Sieg!" : "Verloren";
+    $("ov-text").textContent = won
+      ? `Die Sturmwoche ist überstanden. ${game.houses} ${game.houses === 1 ? "Haus steht" : "Häuser stehen"} noch.`
+      : `Das Dorf ist in Nacht ${game.night} überflutet worden.`;
+    $("ov-score").textContent = `${game.score} Punkte`;
+    $("ov-best").textContent = bestScore(game.score);
+    $("overlay").classList.add("show");
+  }
+
+  /* Eine Taste ausführen. Liefert true, wenn dabei eine Stunde zu Ende ging. */
+  function press(key) {
+    if (key === D.NEW) {
+      clearTimeout(walker);
+      game.newGame();
+      $("overlay").classList.remove("show");
+      draw();
+      return false;
+    }
+    if (game.over) return false;
+    const before = game.night * 100 + game.hour;
+    const events = game.step(key);
+    draw(events);
+    if (game.over) setTimeout(showOverlay, 800);
+    return before !== game.night * 100 + game.hour;
+  }
+
+  /* Tipp auf einen Abschnitt: Schritt für Schritt hinlaufen, bis die Stunde endet. */
+  function walkTo(target) {
+    clearTimeout(walker);
+    const stepOnce = () => {
+      if (game.over || game.pos === target) return;
+      if (press(game.pos < target ? D.RIGHT : D.LEFT)) return;
+      walker = setTimeout(stepOnce, 140);
+    };
+    stepOnce();
+  }
+
+  const buttons = { "btn-left": D.LEFT, "btn-right": D.RIGHT, "btn-build": D.BUILD, "btn-wait": D.WAIT, "btn-new": D.NEW, "ov-new": D.NEW };
+  for (const id in buttons) $(id).addEventListener("click", () => { clearTimeout(walker); press(buttons[id]); });
+  $("cols").addEventListener("click", (e) => {
+    const col = e.target.closest(".col");
+    if (col) walkTo(Number(col.dataset.i));
+  });
+  $("help-btn").addEventListener("click", () => $("rules").classList.add("show"));
+  $("rules-close").addEventListener("click", () => $("rules").classList.remove("show"));
+
+  const keymap = { a: D.LEFT, arrowleft: D.LEFT, d: D.RIGHT, arrowright: D.RIGHT, s: D.BUILD, " ": D.BUILD, arrowup: D.BUILD,
+                   w: D.WAIT, enter: D.WAIT, arrowdown: D.WAIT, n: D.NEW };
+  document.addEventListener("keydown", (e) => {
+    const key = keymap[e.key.toLowerCase()];
+    if (key === undefined) return;
+    e.preventDefault();
+    clearTimeout(walker);
+    press(key);
+  });
+
+  if (params.get("autoplay")) {
+    const tick = () => { if (!game.over) { press(D.choose(game)); setTimeout(tick, 220); } };
+    setTimeout(tick, 400);
+  }
+
+  window.deichgraf = { game, press };   // für den Browser-Smoke-Test
+  draw();
+  try { if (!localStorage.getItem("deichgraf.seen")) { $("rules").classList.add("show"); localStorage.setItem("deichgraf.seen", "1"); } }
+  catch (e) { /* kein Speicher: Regeln über ? erreichbar */ }
+})();
+</script>
+</body>
+</html>

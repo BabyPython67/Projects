@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#060b14">
+<meta name="description" content="Rungholt: eine Nacht durchs Watt zur versunkenen Stadt. Ein Würfel-Roguelike für Finger und Maus, läuft offline.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Rungholt">
+<title>Rungholt</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+  :root {
+    --bg: #060b14; --panel: rgba(14, 24, 40, .82); --panel-2: rgba(24, 40, 62, .9); --line: #24405c;
+    --text: #e9e4d3; --muted: #93a3b8; --gold: #f0c35a; --gold-2: #ffe08a; --mut: #7ed37a; --danger: #e9604f;
+    --shield: #6fb6ff; --fog: #b9c7d8; --dur: 1;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg); color: var(--text); font-family: Georgia, "Iowan Old Style", "Palatino Linotype", serif;
+    -webkit-text-size-adjust: 100%; overscroll-behavior: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  }
+  #app { position: relative; height: 100vh; height: 100dvh; max-width: 720px; margin: 0 auto; display: grid; grid-template-rows: auto 1fr auto; overflow: hidden; }
+  #bg { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+  #vignette { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; background: radial-gradient(ellipse at center, transparent 45%, rgba(233, 96, 79, .55)); transition: opacity calc(.5s * var(--dur)); }
+  #vignette.on { opacity: 1; transition: none; }
+  #fogflash { position: absolute; inset: 0; z-index: 1; pointer-events: none; opacity: 0; background: rgba(185, 199, 216, .35); transition: opacity calc(.8s * var(--dur)); }
+  #fogflash.on { opacity: 1; transition: none; }
+  header, main, footer { position: relative; z-index: 2; }
+  header { padding: calc(8px + env(safe-area-inset-top)) 12px 6px; display: grid; gap: 5px; background: linear-gradient(rgba(6, 11, 20, .9), rgba(6, 11, 20, 0)); }
+  #app[data-screen="title"] header, #app[data-screen="chronik"] header { visibility: hidden; }
+  .hud-row { display: flex; justify-content: space-between; align-items: baseline; font-size: .9rem; color: var(--muted); }
+  .hud-row b { color: var(--text); font-variant-numeric: tabular-nums; }
+  #hud-stretch { color: var(--gold); letter-spacing: .12em; text-transform: uppercase; font-size: .8rem; }
+  .mutbar { position: relative; height: 22px; border-radius: 11px; background: rgba(0, 0, 0, .45); border: 1px solid var(--line); overflow: hidden; }
+  #mut-fill { position: absolute; inset: 0; width: 100%; background: linear-gradient(90deg, #4f9b4c, var(--mut)); transition: width calc(.35s * var(--dur)); transform-origin: left; }
+  #mut-fill.low { background: linear-gradient(90deg, #a8402f, var(--danger)); }
+  .mutbar span { position: absolute; left: 10px; top: 0; line-height: 22px; font-size: .85rem; font-weight: bold; text-shadow: 0 1px 2px #000; }
+  #shield-badge { left: auto; right: 10px; color: var(--shield); opacity: 0; transition: opacity calc(.2s * var(--dur)); }
+  #shield-badge.on { opacity: 1; }
+  #shield-badge.pulse { animation: pulse calc(.4s * var(--dur)); }
+  @keyframes pulse { 50% { transform: scale(1.25); } }
+
+  main { min-height: 0; position: relative; }
+  .screen { position: absolute; inset: 0; display: none; flex-direction: column; padding: 8px 12px; gap: 8px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+  #app[data-screen="title"] #s-title, #app[data-screen="map"] #s-map, #app[data-screen="fight"] #s-fight, #app[data-screen="event"] #s-event,
+  #app[data-screen="rest"] #s-event, #app[data-screen="reward"] #s-pick, #app[data-screen="upgrade"] #s-pick, #app[data-screen="drop"] #s-pick,
+  #app[data-screen="over"] #s-over, #app[data-screen="chronik"] #s-chronik { display: flex; }
+
+  h1 { font-size: 2.4rem; letter-spacing: .2em; margin: 10px 0 0; text-align: center; color: var(--gold-2); text-shadow: 0 0 24px rgba(240, 195, 90, .5); font-weight: normal; }
+  h2 { font-size: 1.15rem; margin: 0; font-weight: normal; letter-spacing: .06em; }
+  .sub { text-align: center; color: var(--muted); margin: 0 0 6px; font-style: italic; }
+  .box { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+  .text { line-height: 1.5; font-size: .98rem; }
+  .muted { color: var(--muted); }
+  button {
+    font: inherit; color: var(--text); background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px;
+    cursor: pointer; touch-action: manipulation; -webkit-tap-highlight-color: transparent; text-align: left; min-height: 48px; line-height: 1.3;
+  }
+  button:active { background: #2c4d70; }
+  button:disabled { opacity: .45; cursor: default; }
+  button.primary { background: linear-gradient(#f4cf6f, #c8962a); color: #1a1206; border-color: #ffe08a; font-weight: bold; text-align: center; letter-spacing: .06em; }
+  button.primary:active { background: #ffe08a; }
+  .row { display: flex; gap: 8px; flex-wrap: wrap; }
+  .row > * { flex: 1 1 auto; }
+  .center { text-align: center; }
+
+  /* Titel */
+  #stats { text-align: center; color: var(--muted); font-size: .85rem; }
+  .kits { display: grid; gap: 8px; }
+  .kit { display: grid; gap: 2px; }
+  .kit.sel { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset; }
+  .kit small, .node small, .pick small { color: var(--muted); display: block; font-size: .82rem; }
+  .modes button.sel { border-color: var(--gold); color: var(--gold-2); }
+  .flut { display: flex; align-items: center; gap: 10px; justify-content: space-between; }
+  .flut button { min-width: 48px; text-align: center; flex: 0 0 auto; }
+  #title-foot { margin-top: auto; display: flex; justify-content: space-between; gap: 8px; font-size: .85rem; color: var(--muted); }
+  #title-foot a { color: var(--muted); }
+
+  /* Karte */
+  .path { display: flex; gap: 4px; justify-content: center; align-items: center; }
+  .path i { width: 9px; height: 9px; border-radius: 50%; background: #2a4260; display: block; }
+  .path i.guard { width: 13px; height: 13px; border-radius: 3px; transform: rotate(45deg); background: #3a4f6b; }
+  .path i.done { background: var(--gold); }
+  .path i.now { background: var(--gold-2); box-shadow: 0 0 10px var(--gold-2); }
+  .nodes { display: grid; gap: 10px; }
+  .node { display: grid; grid-template-columns: 44px 1fr; gap: 10px; align-items: center; min-height: 72px; }
+  .node .ico { width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; font-size: 1.3rem; background: rgba(0, 0, 0, .35); border: 1px solid var(--line); }
+  .node.fight .ico { color: var(--danger); } .node.guardian .ico { color: var(--gold); border-color: var(--gold); } .node.rest .ico { color: var(--mut); }
+  .node.event .ico { color: var(--fog); } .node.find .ico { color: var(--gold-2); }
+
+  /* Kampf */
+  #enemy { display: grid; grid-template-columns: 120px 1fr; gap: 10px; align-items: center; }
+  #enemy-fig { width: 120px; height: 120px; display: grid; place-items: center; transition: opacity calc(.6s * var(--dur)), transform calc(.6s * var(--dur)); }
+  #enemy-fig svg { width: 110px; height: 110px; overflow: visible; }
+  #enemy-fig.hurt { animation: eshake calc(.4s * var(--dur)); }
+  #enemy-fig.lunge { animation: lunge calc(.45s * var(--dur)); }
+  #enemy-fig.gone { opacity: 0; transform: scale(1.4); filter: blur(6px); }
+  #enemy-fig.stunned svg { animation: wobble calc(1.2s * var(--dur)) infinite; }
+  @keyframes eshake { 20% { transform: translate(-6px, 2px); filter: brightness(2.5); } 45% { transform: translate(6px, -2px); } 70% { transform: translate(-3px, 1px); } }
+  @keyframes lunge { 35% { transform: translate(14px, 10px) scale(1.12); } }
+  @keyframes wobble { 50% { transform: rotate(4deg); } }
+  #enemy-name { font-size: 1.15rem; color: var(--gold-2); }
+  #enemy-text { font-size: .85rem; color: var(--muted); font-style: italic; }
+  .hpbar { position: relative; height: 16px; border-radius: 8px; background: rgba(0, 0, 0, .45); border: 1px solid var(--line); overflow: hidden; margin-top: 6px; }
+  #enemy-fill { position: absolute; inset: 0; background: linear-gradient(90deg, #8a2c25, var(--danger)); transition: width calc(.35s * var(--dur)); }
+  .hpbar span { position: absolute; left: 8px; top: 0; line-height: 16px; font-size: .75rem; font-weight: bold; text-shadow: 0 1px 2px #000; }
+  #enemy-shield { left: auto; right: 8px; color: var(--shield); }
+  #intent { margin-top: 6px; display: inline-flex; gap: 6px; align-items: center; padding: 4px 10px; border-radius: 999px; background: rgba(0, 0, 0, .4); border: 1px solid var(--line); font-size: .9rem; }
+  #intent.hit { border-color: var(--danger); }
+  #intent.flash { animation: pulse calc(.3s * var(--dur)); }
+  .dice { display: flex; gap: 10px; justify-content: center; min-height: 64px; align-items: center; flex-wrap: wrap; }
+  .die {
+    width: 58px; height: 58px; border-radius: 12px; background: linear-gradient(#fff8e6, #e8dcc0); border: 2px solid #a08e62; padding: 7px;
+    display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); gap: 2px; min-height: 0; box-shadow: 0 4px 10px rgba(0, 0, 0, .5);
+  }
+  .die i { border-radius: 50%; background: #1a1206; opacity: 0; display: block; margin: auto; width: 10px; height: 10px; }
+  .die i.on { opacity: 1; }
+  .die.sel { border-color: var(--gold-2); box-shadow: 0 0 0 3px var(--gold), 0 4px 14px rgba(240, 195, 90, .5); transform: translateY(-4px); }
+  .die.roll { animation: roll calc(.5s * var(--dur)); }
+  .die.nope { animation: nope calc(.3s * var(--dur)); }
+  @keyframes roll { 0% { transform: rotate(-200deg) scale(.4); opacity: 0; } 60% { transform: rotate(20deg) scale(1.1); opacity: 1; } 100% { transform: none; } }
+  @keyframes nope { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }
+  .gears { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .gear { position: relative; display: grid; gap: 2px; padding: 8px 10px; min-height: 66px; overflow: hidden; }
+  .gear b { font-size: .95rem; }
+  .gear .rule { font-size: .75rem; color: var(--gold); letter-spacing: .04em; }
+  .gear .eff { font-size: .82rem; color: var(--muted); }
+  .gear.fits { border-color: var(--gold); box-shadow: 0 0 0 1px var(--gold) inset, 0 0 14px rgba(240, 195, 90, .35); }
+  .gear.fits .eff { color: var(--text); }
+  .gear.used, .gear.passive { opacity: .55; }
+  .gear.sel { border-color: var(--gold-2); }
+  .gear.pop { animation: pulse calc(.35s * var(--dur)); }
+  .gear .uses { position: absolute; top: 8px; right: 10px; display: flex; gap: 3px; }
+  .gear .uses i { width: 7px; height: 7px; border-radius: 50%; background: var(--gold); display: block; }
+  .gear .uses i.off { background: #3a4f6b; }
+  .gear .count { position: absolute; left: 0; right: 0; bottom: 0; height: 5px; background: rgba(0, 0, 0, .4); }
+  .gear .count i { display: block; height: 100%; background: var(--gold); transition: width calc(.3s * var(--dur)); }
+  #btn-end { text-align: center; }
+  #log { font-size: .85rem; color: var(--muted); min-height: 1.3em; text-align: center; font-style: italic; }
+  .float { position: absolute; z-index: 5; font-weight: bold; font-size: 1.5rem; pointer-events: none; text-shadow: 0 2px 4px #000; animation: float calc(1s * var(--dur)) forwards; }
+  .float.hurt { color: var(--danger); } .float.heal { color: var(--mut); } .float.shield { color: var(--shield); } .float.gold { color: var(--gold-2); } .float.fog { color: var(--fog); }
+  @keyframes float { 0% { transform: translateY(0) scale(.7); opacity: 0; } 15% { opacity: 1; transform: translateY(-8px) scale(1.15); } 100% { transform: translateY(-60px) scale(1); opacity: 0; } }
+  #app.shake { animation: shake calc(.45s * var(--dur)); }
+  @keyframes shake { 20% { transform: translate(-7px, 3px); } 40% { transform: translate(7px, -3px); } 60% { transform: translate(-5px, 2px); } 80% { transform: translate(5px, -1px); } }
+
+  /* Ereignis, Auswahl */
+  .choices { display: grid; gap: 8px; }
+  .picks { display: grid; gap: 8px; }
+  .pick { display: grid; gap: 2px; }
+  .pick.plus b { color: var(--gold-2); }
+
+  /* Ende */
+  #ov-score { font-size: 2rem; text-align: center; color: var(--gold-2); margin: 4px 0; }
+  #ov-neu { display: grid; gap: 6px; }
+  #ov-neu div { padding: 8px 12px; border-radius: 10px; background: rgba(240, 195, 90, .12); border: 1px solid var(--gold); font-size: .9rem; }
+  .fragment { animation: fadein calc(1.2s * var(--dur)); }
+  .fragment h2 { color: var(--gold); margin-bottom: 6px; }
+  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } }
+
+  /* Chronik */
+  .chronik-list { display: grid; gap: 8px; }
+  .chronik-list details { background: var(--panel); border: 1px solid var(--line); border-radius: 12px; padding: 10px 14px; }
+  .chronik-list summary { cursor: pointer; color: var(--gold); min-height: 28px; line-height: 28px; }
+  .chronik-list .locked { color: var(--muted); font-style: italic; opacity: .6; }
+
+  footer { display: flex; gap: 8px; padding: 6px 12px calc(8px + env(safe-area-inset-bottom)); justify-content: flex-end; }
+  footer button { min-height: 44px; min-width: 44px; padding: 6px 12px; font-size: .85rem; }
+  #app[data-screen="title"] footer #btn-help { display: none; }
+
+  #help { position: absolute; inset: 0; z-index: 20; background: rgba(6, 11, 20, .96); display: none; flex-direction: column; padding: 16px; gap: 10px; overflow-y: auto; }
+  #help.show { display: flex; }
+  #help h2 { color: var(--gold); }
+  #help ul { margin: 0; padding-left: 18px; line-height: 1.5; }
+
+  /* Breite Bildschirme (iPad quer): Gegner links, Würfel und Gegenstände rechts */
+  @media (min-aspect-ratio: 5/4) and (min-width: 700px) {
+    #app { max-width: 1100px; }
+    #s-fight { display: grid !important; grid-template-columns: 1fr 1.2fr; grid-template-areas: "enemy dice" "enemy gears" "log end"; align-content: start; column-gap: 16px; }
+    #app:not([data-screen="fight"]) #s-fight { display: none !important; }
+    #s-fight #enemy { grid-area: enemy; grid-template-columns: 180px 1fr; }
+    #s-fight #enemy-fig { width: 180px; height: 180px; } #s-fight #enemy-fig svg { width: 160px; height: 160px; }
+    #s-fight .dice { grid-area: dice; } #s-fight .gears { grid-area: gears; grid-template-columns: 1fr 1fr 1fr; }
+    #s-fight #log { grid-area: log; } #s-fight #btn-end { grid-area: end; }
+    .nodes, .picks, .choices { grid-template-columns: 1fr 1fr; }
+    .kits { grid-template-columns: 1fr 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+<div id="app" data-screen="title">
+  <canvas id="bg"></canvas>
+  <div id="vignette"></div>
+  <div id="fogflash"></div>
+
+  <header id="hud">
+    <div class="hud-row">
+      <span id="hud-stretch">Salzwiesen</span>
+      <span>Schritt <b id="hud-step">0</b>/12</span>
+      <span>Flut <b id="hud-tide">0</b>/15</span>
+      <span>Punkte <b id="hud-score">0</b></span>
+    </div>
+    <div class="mutbar"><div id="mut-fill"></div><span id="mut-text">Mut 30/30</span><span id="shield-badge">Schutz 0</span></div>
+  </header>
+
+  <main id="stage">
+    <section id="s-title" class="screen">
+      <h1>RUNGHOLT</h1>
+      <p class="sub">Eine Nacht durchs Watt zur versunkenen Stadt</p>
+      <div class="box text" id="title-intro" style="font-size:.9rem;padding:10px 12px"></div>
+      <div class="box">
+        <h2 class="muted">Wer geht?</h2>
+        <div class="kits" id="kits"></div>
+      </div>
+      <div class="box">
+        <div class="row modes">
+          <button id="mode-daily">Tagesnacht<small class="muted" id="daily-sub"></small></button>
+          <button id="mode-free">Freie Nacht<small class="muted">Jede Nacht eine andere</small></button>
+        </div>
+        <div class="flut" id="flut-row" hidden>
+          <span>Springflut <b id="flut-val">0</b> <small class="muted">(schwerer, mehr Punkte)</small></span>
+          <span><button id="flut-minus">−</button> <button id="flut-plus">+</button></span>
+        </div>
+      </div>
+      <button class="primary" id="btn-start">Laterne nehmen</button>
+      <div id="stats"></div>
+      <div id="title-foot"><span>Nacht vor Allerheiligen</span><a href="#" id="reset">Fortschritt löschen</a></div>
+    </section>
+
+    <section id="s-map" class="screen">
+      <div class="path" id="path"></div>
+      <p class="sub" id="map-text"></p>
+      <div class="nodes" id="nodes"></div>
+    </section>
+
+    <section id="s-fight" class="screen">
+      <div class="box" id="enemy">
+        <div id="enemy-fig"></div>
+        <div>
+          <div id="enemy-name"></div>
+          <div id="enemy-text"></div>
+          <div class="hpbar"><div id="enemy-fill"></div><span id="enemy-hp"></span><span id="enemy-shield"></span></div>
+          <div id="intent"></div>
+        </div>
+      </div>
+      <div class="dice" id="dice"></div>
+      <div class="gears" id="gears"></div>
+      <div id="log"></div>
+      <button class="primary" id="btn-end">Runde beenden</button>
+    </section>
+
+    <section id="s-event" class="screen">
+      <div class="box">
+        <h2 id="ev-title"></h2>
+        <p class="text" id="ev-text"></p>
+      </div>
+      <div class="choices" id="choices"></div>
+    </section>
+
+    <section id="s-pick" class="screen">
+      <div class="box">
+        <h2 id="pick-title"></h2>
+        <p class="text muted" id="pick-text"></p>
+      </div>
+      <div class="picks" id="picks"></div>
+      <button id="btn-skip">Liegen lassen</button>
+    </section>
+
+    <section id="s-over" class="screen">
+      <div class="box center">
+        <h2 id="ov-title"></h2>
+        <div id="ov-score"></div>
+        <div class="muted" id="ov-sub"></div>
+      </div>
+      <div class="box text" id="ov-text"></div>
+      <div id="ov-neu"></div>
+      <div class="box text fragment" id="ov-fragment" hidden></div>
+      <div class="row">
+        <button class="primary" id="btn-again">Noch eine Nacht</button>
+        <button id="btn-title">Zum Anfang</button>
+      </div>
+    </section>
+
+    <section id="s-chronik" class="screen">
+      <h2 class="center" style="color:var(--gold)">Die Chronik</h2>
+      <p class="sub">Blätter, die du dir erwandert hast</p>
+      <div class="chronik-list" id="chronik-list"></div>
+      <button id="chronik-close">Zurück</button>
+    </section>
+
+    <div id="help">
+      <h2>So geht die Nacht</h2>
+      <div class="text">
+        <ul>
+          <li><b>Zwölf Schritte</b> bis zur Kirche von Rungholt, drei Strecken mit je einem Wächter am Ende. Auf jedem Schritt wählst du einen von zwei oder drei Wegen.</li>
+          <li><b>Die Flut</b> kommt nach 15 Schritten zurück. Jeder Weg kostet einen, manche Entscheidungen mehr. Wer dann noch im Watt steht, hat verloren.</li>
+          <li><b>Begegnung:</b> Du würfelst drei Würfel. Tippe einen Würfel, dann einen Gegenstand, der ihn nimmt (die Regel steht gelb darauf: jeder, gerade, ungerade, ab 4, bis 3, sammelt N). Jeder Gegenstand nimmt je Runde nur so viele Würfel, wie Punkte oben rechts stehen.</li>
+          <li><b>Der Gegner</b> zeigt an, was er als Nächstes tut. Schutz fängt seinen Schlag ab, verfällt aber am Ende der Runde. Betäubt setzt er aus, geschwächt schlägt er für einen Zug leiser.</li>
+          <li><b>Mut</b> ist dein Leben. Bei null kehrst du um. Rast und Fläschchen füllen ihn, höchstens bis zum Höchstwert.</li>
+          <li><b>Gegenstände</b> findest du nach jeder Begegnung, höchstens fünf; Wächter geben verbesserte. Bei der Rast kannst du einen verbessern.</li>
+          <li><b>Zwischen den Nächten</b> bleibt, was du erreicht hast: neue Gegenstände am Weg, neue Gefährten, Blätter der Chronik, die Springflut.</li>
+        </ul>
+      </div>
+      <button class="primary" id="help-close">Weiter</button>
+    </div>
+  </main>
+
+  <footer>
+    <button id="btn-chronik">Chronik</button>
+    <button id="btn-help">?</button>
+    <button id="btn-sound" aria-pressed="true">♪ Ton</button>
+  </footer>
+</div>
+
+<script src="engine.js"></script>
+<script>
+(() => {
+  "use strict";
+  const R = window.Rungholt;
+  const params = new URLSearchParams(location.search);
+  const schnell = params.get("schnell") === "1";
+  if (schnell) document.documentElement.style.setProperty("--dur", "0");
+  const wait = (ms) => new Promise((r) => setTimeout(r, schnell ? 0 : ms));
+  const $ = (s) => document.querySelector(s);
+  const app = $("#app");
+
+  /* ---------- Profil (bleibt im Browser) ---------- */
+  const KEY = "rungholt.v1";
+  let profile = null;
+  try { profile = JSON.parse(localStorage.getItem(KEY)); } catch (e) { /* kein Speicher */ }
+  if (!profile || !profile.gear) profile = R.newProfile();
+  for (const k of Object.keys(R.newProfile())) if (profile[k] === undefined) profile[k] = R.newProfile()[k];
+  const save = () => { try { localStorage.setItem(KEY, JSON.stringify(profile)); } catch (e) { /* dann eben nicht */ } };
+  const heute = () => { const d = new Date(); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); };
+  const heuteSchoen = () => { const [y, m, d] = heute().split("-"); return `${d}.${m}.${y}`; };
+
+  /* ---------- Ton: alles aus Web Audio, nichts geladen ---------- */
+  const sfx = (() => {
+    let ctx = null, master = null, wind = null, windGain = null, bellTimer = null, stretch = 1;
+    const enabled = () => profile.sound !== false;
+    function ensure() {
+      if (ctx) return true;
+      const AC = window.AudioContext || window.webkitAudioContext;
+      if (!AC) return false;
+      ctx = new AC();
+      master = ctx.createGain(); master.gain.value = 0.7; master.connect(ctx.destination);
+      return true;
+    }
+    function ok() { if (!enabled() || !ensure()) return false; if (ctx.state !== "running") ctx.resume(); return true; }
+    function tone(f, dur, type, vol, t0, decay) {
+      const t = ctx.currentTime + (t0 || 0);
+      const o = ctx.createOscillator(), g = ctx.createGain();
+      o.type = type || "sine"; o.frequency.value = f;
+      g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol || 0.3, t + 0.01);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      o.connect(g); g.connect(master); o.start(t); o.stop(t + dur + 0.05);
+      return o;
+    }
+    function noiseBuf() {
+      const b = ctx.createBuffer(1, ctx.sampleRate, ctx.sampleRate), d = b.getChannelData(0);
+      for (let i = 0; i < d.length; i++) d[i] = Math.random() * 2 - 1;
+      return b;
+    }
+    let nb = null;
+    function noise(dur, freq, vol, t0, type) {
+      const t = ctx.currentTime + (t0 || 0);
+      nb = nb || noiseBuf();
+      const s = ctx.createBufferSource(); s.buffer = nb; s.loop = true;
+      const f = ctx.createBiquadFilter(); f.type = type || "bandpass"; f.frequency.value = freq; f.Q.value = 0.8;
+      const g = ctx.createGain(); g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      s.connect(f); f.connect(g); g.connect(master); s.start(t); s.stop(t + dur + 0.05);
+    }
+    /* Glocke: Grundton mit zwei unharmonischen Teiltönen, lang ausklingend */
+    function bell(f, vol, dur, t0) {
+      tone(f, dur, "sine", vol, t0); tone(f * 2.76, dur * 0.6, "sine", vol * 0.35, t0); tone(f * 5.4, dur * 0.3, "sine", vol * 0.15, t0);
+    }
+    const PENTA = [293.66, 329.63, 369.99, 440, 493.88, 587.33, 659.25];
+    return {
+      toggle() { profile.sound = !enabled(); save(); if (enabled()) { if (ok()) this.ambient(stretch); } else this.quiet(); return enabled(); },
+      enabled,
+      roll(n) { if (!ok()) return; for (let i = 0; i < Math.max(2, n); i++) { noise(0.06, 1800 + Math.random() * 1200, 0.25, i * 0.07); tone(600 + Math.random() * 500, 0.04, "triangle", 0.05, i * 0.07); } },
+      place() { if (!ok()) return; tone(880, 0.06, "triangle", 0.12); noise(0.03, 3000, 0.1); },
+      nope() { if (!ok()) return; tone(160, 0.12, "square", 0.06); },
+      hit(n) { if (!ok()) return; const big = Math.min(1, n / 10); noise(0.12 + big * 0.1, 500 - big * 250, 0.35 + big * 0.25); const o = tone(120 + big * 40, 0.18, "sine", 0.4 + big * 0.3); o.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + 0.18); if (navigator.vibrate) navigator.vibrate(15 + big * 30); },
+      hurt(n) { if (!ok()) return; const big = Math.min(1, n / 12); const o = tone(90, 0.3, "sine", 0.5 + big * 0.3); o.frequency.exponentialRampToValueAtTime(35, ctx.currentTime + 0.3); noise(0.2, 300, 0.3, 0, "lowpass"); if (navigator.vibrate) navigator.vibrate([30, 30, 30 + big * 40]); },
+      shield() { if (!ok()) return; tone(220, 0.09, "triangle", 0.25); tone(330, 0.12, "triangle", 0.15, 0.04); },
+      heal() { if (!ok()) return; tone(PENTA[3], 0.4, "sine", 0.18); tone(PENTA[5], 0.5, "sine", 0.14, 0.12); },
+      chime() { if (!ok()) return; const a = PENTA[Math.floor(Math.random() * 4)]; tone(a, 0.5, "sine", 0.16); tone(a * 2, 0.4, "sine", 0.06, 0.03); tone(PENTA[4 + Math.floor(Math.random() * 3)], 0.6, "sine", 0.12, 0.15); },
+      stun() { if (!ok()) return; bell(660, 0.35, 1.6); },
+      weaken() { if (!ok()) return; noise(0.3, 900, 0.2); tone(300, 0.25, "sawtooth", 0.05); },
+      fog() { if (!ok()) return; noise(0.9, 700, 0.22, 0, "lowpass"); },
+      tick() { if (!ok()) return; tone(1200, 0.03, "square", 0.05); },
+      defeat() { if (!ok()) return; bell(440, 0.3, 1.2); bell(330, 0.25, 1.4, 0.25); noise(0.8, 400, 0.15, 0, "lowpass"); },
+      win() { if (!ok()) return; bell(196, 0.5, 4); bell(293.66, 0.4, 3.5, 0.9); bell(392, 0.4, 3, 1.8); },
+      lose() { if (!ok()) return; const o = tone(110, 2.5, "sine", 0.35); o.frequency.exponentialRampToValueAtTime(45, ctx.currentTime + 2.5); noise(2, 250, 0.2, 0, "lowpass"); },
+      start() { if (!ok()) return; this.chime(); },
+      ambient(s) {
+        stretch = s;
+        if (!ok()) return;
+        if (!wind) {
+          nb = nb || noiseBuf();
+          const src = ctx.createBufferSource(); src.buffer = nb; src.loop = true;
+          const f = ctx.createBiquadFilter(); f.type = "lowpass"; f.frequency.value = 320; f.Q.value = 0.5;
+          const lfo = ctx.createOscillator(); lfo.type = "sine"; lfo.frequency.value = 0.09;
+          const lg = ctx.createGain(); lg.gain.value = 180; lfo.connect(lg); lg.connect(f.frequency);
+          windGain = ctx.createGain(); windGain.gain.value = 0.0001;
+          src.connect(f); f.connect(windGain); windGain.connect(master); src.start(); lfo.start();
+          wind = src;
+        }
+        windGain.gain.cancelScheduledValues(ctx.currentTime);
+        windGain.gain.setTargetAtTime(0.05 + s * 0.015, ctx.currentTime, 1.5);
+        clearInterval(bellTimer);
+        bellTimer = setInterval(() => { if (enabled() && stretch >= 2 && Math.random() < 0.5) bell(98, 0.05 + stretch * 0.01, 3.5); }, 14000);
+      },
+      quiet() { if (windGain) windGain.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.5); clearInterval(bellTimer); bellTimer = null; },
+    };
+  })();
+
+  /* ---------- Hintergrund: Nacht, Watt, Nebel, Laternenschein ---------- */
+  const bg = (() => {
+    const canvas = $("#bg"), ctx = canvas.getContext("2d");
+    const stars = [];
+    for (let i = 0; i < 90; i++) stars.push({ x: Math.random(), y: Math.random() * 0.55, r: Math.random() * 1.3 + 0.3, p: Math.random() * 7 });
+    const PAL = [
+      { top: "#070d1b", mid: "#0c1a2c", low: "#0b1a1a", land: "#071209" },
+      { top: "#050a16", mid: "#0a1526", low: "#0c1c2c", land: "#06101a" },
+      { top: "#0a0a18", mid: "#15122a", low: "#101a2c", land: "#0a0912" },
+    ];
+    let w = 0, h = 0, stretch = 0, mutFrac = 1, frame = 0, fogLevel = 0;
+    function resize() { const r = canvas.getBoundingClientRect(); w = canvas.width = Math.max(1, r.width * devicePixelRatio); h = canvas.height = Math.max(1, r.height * devicePixelRatio); }
+    function skyline(t) {
+      ctx.fillStyle = PAL[stretch].land;
+      const hy = h * 0.58;
+      ctx.beginPath(); ctx.moveTo(0, h); ctx.lineTo(0, hy);
+      if (stretch === 0) { for (let x = 0; x <= w; x += 12 * devicePixelRatio) ctx.lineTo(x, hy - (Math.sin(x * 0.03 / devicePixelRatio) * 4 + Math.sin(x * 0.11 / devicePixelRatio) * 3) * devicePixelRatio); }
+      else if (stretch === 1) { for (let x = 0; x <= w; x += 40 * devicePixelRatio) { ctx.lineTo(x, hy); if ((x / devicePixelRatio) % 160 < 1) { ctx.lineTo(x, hy - 26 * devicePixelRatio); ctx.lineTo(x + 2 * devicePixelRatio, hy - 26 * devicePixelRatio); ctx.lineTo(x + 2 * devicePixelRatio, hy); } } }
+      else {
+        const dp = devicePixelRatio; let x = 0;
+        const parts = [[30, 18], [22, 26], [18, 12], [40, 34], [16, 60], [26, 22], [34, 16], [20, 30], [28, 20], [24, 14], [36, 28], [20, 16]];
+        for (const [bw, bh] of parts) { ctx.lineTo(x * dp, hy); ctx.lineTo(x * dp, hy - bh * dp); ctx.lineTo((x + bw / 2) * dp, hy - (bh + bw * 0.5) * dp); ctx.lineTo((x + bw) * dp, hy - bh * dp); ctx.lineTo((x + bw) * dp, hy); x += bw + 10; if (x * dp > w) break; }
+        ctx.lineTo(w, hy);
+      }
+      ctx.lineTo(w, h); ctx.closePath(); ctx.fill();
+      // Fenster, hinter denen etwas glimmt
+      if (stretch === 2) { ctx.fillStyle = `rgba(240,195,90,${0.25 + 0.1 * Math.sin(t / 700)})`; for (let i = 0; i < 7; i++) { const x = ((i * 97 + 40) % Math.max(1, w / devicePixelRatio)) * devicePixelRatio; ctx.fillRect(x, hy - (10 + (i % 3) * 7) * devicePixelRatio, 3 * devicePixelRatio, 4 * devicePixelRatio); } }
+    }
+    function draw(t) {
+      if (!w) resize();
+      const p = PAL[stretch];
+      const g = ctx.createLinearGradient(0, 0, 0, h); g.addColorStop(0, p.top); g.addColorStop(0.55, p.mid); g.addColorStop(1, p.low);
+      ctx.fillStyle = g; ctx.fillRect(0, 0, w, h);
+      for (const s of stars) { ctx.fillStyle = `rgba(255,250,230,${0.35 + 0.35 * Math.sin(t / 900 + s.p)})`; ctx.beginPath(); ctx.arc(s.x * w, s.y * h, s.r * devicePixelRatio, 0, 7); ctx.fill(); }
+      const mx = w * 0.88, my = h * 0.055, mr = 15 * devicePixelRatio;
+      const mg = ctx.createRadialGradient(mx, my, mr * 0.6, mx, my, mr * 5); mg.addColorStop(0, "rgba(255,245,210,.25)"); mg.addColorStop(1, "rgba(255,245,210,0)");
+      ctx.fillStyle = mg; ctx.fillRect(mx - mr * 5, my - mr * 5, mr * 10, mr * 10);
+      ctx.fillStyle = "#f3ebc9"; ctx.beginPath(); ctx.arc(mx, my, mr, 0, 7); ctx.fill();
+      ctx.fillStyle = p.top; ctx.beginPath(); ctx.arc(mx - mr * 0.45, my - mr * 0.2, mr * 0.85, 0, 7); ctx.fill();
+      // Wasser: Schimmer
+      for (let i = 0; i < 9; i++) {
+        const y = h * (0.62 + i * 0.04), a = 0.05 + 0.04 * Math.sin(t / 1300 + i);
+        ctx.strokeStyle = `rgba(190,215,235,${a})`; ctx.lineWidth = devicePixelRatio; ctx.beginPath();
+        for (let x = 0; x <= w; x += 8 * devicePixelRatio) ctx.lineTo(x, y + Math.sin(x / (40 * devicePixelRatio) + t / 900 + i) * 2 * devicePixelRatio);
+        ctx.stroke();
+      }
+      skyline(t);
+      // Nebel
+      for (let i = 0; i < 3; i++) {
+        const fx = ((t / (9000 + i * 3000) + i * 0.4) % 1.4 - 0.2) * w, fy = h * (0.5 + i * 0.12);
+        const fg = ctx.createRadialGradient(fx, fy, 0, fx, fy, w * 0.35); fg.addColorStop(0, `rgba(185,199,216,${0.07 + fogLevel * 0.08})`); fg.addColorStop(1, "rgba(185,199,216,0)");
+        ctx.fillStyle = fg; ctx.fillRect(0, 0, w, h);
+      }
+      // Laternenschein: so groß wie dein Mut
+      const lx = w / 2, ly = h * 0.98, lr = h * (0.22 + 0.4 * mutFrac) * (1 + 0.02 * Math.sin(t / 90) + 0.01 * Math.sin(t / 37));
+      const lg = ctx.createRadialGradient(lx, ly, 0, lx, ly, lr); lg.addColorStop(0, "rgba(240,195,90,.28)"); lg.addColorStop(0.5, "rgba(240,195,90,.08)"); lg.addColorStop(1, "rgba(240,195,90,0)");
+      ctx.fillStyle = lg; ctx.fillRect(0, 0, w, h);
+    }
+    function loop(t) { if (!document.hidden && (frame++ % 2 === 0)) draw(t); requestAnimationFrame(loop); }
+    addEventListener("resize", resize);
+    requestAnimationFrame(loop);
+    return { set(s, m, f) { stretch = Math.max(0, Math.min(2, s)); mutFrac = m; fogLevel = f || 0; } };
+  })();
+
+  /* ---------- Gestalten der Gegner (SVG) ---------- */
+  const FIG = {
+    irrlicht: '<circle cx="50" cy="50" r="14" fill="#d8f0a0" opacity=".9"/><circle cx="34" cy="38" r="7" fill="#d8f0a0" opacity=".6"/><circle cx="66" cy="60" r="5" fill="#d8f0a0" opacity=".5"/>',
+    kriecher: '<ellipse cx="50" cy="72" rx="40" ry="14" fill="#1d2a1f"/><ellipse cx="38" cy="62" rx="14" ry="10" fill="#1d2a1f"/><ellipse cx="62" cy="64" rx="12" ry="9" fill="#1d2a1f"/><path d="M20 80 l-4 12 M50 86 l0 10 M78 80 l4 12" stroke="#1d2a1f" stroke-width="3"/>',
+    moewen: '<g fill="none" stroke="#cfd6dc" stroke-width="3" stroke-linecap="round"><path d="M20 40 q10 -12 20 0 q10 -12 20 0"/><path d="M45 60 q8 -10 16 0 q8 -10 16 0"/><path d="M28 75 q7 -9 14 0 q7 -9 14 0"/><path d="M60 28 q6 -8 12 0 q6 -8 12 0"/></g>',
+    grauermann: '<path d="M50 6 c-14 0 -20 14 -20 30 l-6 60 h52 l-6 -60 c0 -16 -6 -30 -20 -30z" fill="#4b5563" opacity=".92"/><path d="M38 34 q12 10 24 0" stroke="#2b3240" stroke-width="2" fill="none"/>',
+    ertrunkener: '<circle cx="50" cy="22" r="11" fill="#2f4a5e"/><path d="M34 36 h32 l6 50 h-44z" fill="#2f4a5e"/><path d="M34 40 l-8 44 M66 40 l8 44" stroke="#2f4a5e" stroke-width="8" stroke-linecap="round"/><path d="M40 86 q-3 10 2 14 M60 86 q3 10 -2 14 M50 30 q-10 20 -14 30" stroke="#3f7a5a" stroke-width="2" fill="none"/>',
+    nebelweib: '<path d="M50 10 c-8 0 -12 8 -12 18 l-8 40 q20 16 40 0 l-8 -40 c0 -10 -4 -18 -12 -18z" fill="#aab6c4" opacity=".8"/><ellipse cx="50" cy="78" rx="30" ry="10" fill="#aab6c4" opacity=".35"/><ellipse cx="42" cy="88" rx="22" ry="7" fill="#aab6c4" opacity=".25"/>',
+    klabauter: '<rect x="34" y="44" width="32" height="36" rx="6" fill="#5a3b2a"/><circle cx="50" cy="34" r="12" fill="#5a3b2a"/><path d="M36 24 h28 l-4 -10 h-20z" fill="#2a1a12"/><rect x="66" y="30" width="6" height="40" fill="#8a7a66"/><rect x="60" y="24" width="18" height="10" fill="#6b6b6b"/>',
+    gloecknerin: '<path d="M50 48 c-9 0 -13 8 -13 18 l-6 30 h38 l-6 -30 c0 -10 -4 -18 -13 -18z" fill="#6b5f7a"/><circle cx="50" cy="40" r="9" fill="#6b5f7a"/><path d="M50 2 v14" stroke="#9a8a6a" stroke-width="2"/><path d="M38 30 q0 -16 12 -16 q12 0 12 16 q4 2 4 4 h-32 q0 -2 4 -4z" fill="#c9a24a"/>',
+    buerger: '<rect x="36" y="42" width="28" height="42" rx="5" fill="#3b2f3f"/><circle cx="50" cy="32" r="10" fill="#3b2f3f"/><path d="M30 24 h40 l-6 -6 h-28z" fill="#2a2030"/><circle cx="72" cy="70" r="10" fill="#5a4a3a"/><circle cx="72" cy="70" r="5" fill="#c9a24a" opacity=".6"/>',
+    ratten: '<g fill="#3a2f2a"><ellipse cx="30" cy="70" rx="16" ry="9"/><ellipse cx="62" cy="58" rx="16" ry="9"/><ellipse cx="50" cy="84" rx="16" ry="9"/></g><g stroke="#3a2f2a" stroke-width="2" fill="none"><path d="M46 72 q14 -4 20 6"/><path d="M78 60 q12 -2 14 8"/><path d="M66 86 q14 -2 16 8"/></g><g fill="#e85"><circle cx="20" cy="68" r="1.5"/><circle cx="52" cy="56" r="1.5"/><circle cx="40" cy="82" r="1.5"/></g>',
+    pfarrer: '<path d="M50 30 c-10 0 -14 8 -14 18 l-6 42 h40 l-6 -42 c0 -10 -4 -18 -14 -18z" fill="#1b1b22"/><circle cx="50" cy="24" r="9" fill="#2a2a33"/><ellipse cx="50" cy="16" rx="22" ry="5" fill="#101014"/><rect x="42" y="56" width="16" height="12" fill="#6b5a3a"/><path d="M50 58 v8 M46 62 h8" stroke="#c9a24a" stroke-width="1.5"/>',
+    blankehans: '<path d="M0 90 q20 -60 50 -40 q10 6 8 -14 q-2 -20 -16 -26 q30 2 40 40 q6 24 18 40z" fill="#2a4d6e" opacity=".95"/><g fill="#e6f0f6" opacity=".85"><circle cx="40" cy="12" r="5"/><circle cx="30" cy="20" r="3"/><circle cx="54" cy="8" r="3"/><circle cx="48" cy="22" r="2"/></g><ellipse cx="58" cy="60" rx="5" ry="3" fill="#0c1a2c"/><ellipse cx="74" cy="62" rx="5" ry="3" fill="#0c1a2c"/>',
+  };
+  const figure = (id) => `<svg viewBox="0 0 100 100"><defs><filter id="glow"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g filter="url(#glow)">${FIG[id] || ""}</g></svg>`;
+
+  /* ---------- Texte ---------- */
+  const ruleText = (r) => r.kind === "any" ? "jeder Würfel" : r.kind === "even" ? "gerade" : r.kind === "odd" ? "ungerade" : r.kind === "min" ? `ab ${r.n}` : r.kind === "max" ? `bis ${r.n}` : r.kind === "count" ? `sammelt ${r.n}` : "passiv";
+  function effectText(d) {
+    if (d.rule.kind === "passive") return d.passive === "extraDie" ? `+${d.amount} Würfel je Runde` : d.passive === "shieldStart" ? `Schutz ${d.amount} zu Rundenbeginn` : `hält dich ${d.amount}× bei null Mut`;
+    const e = d.effect;
+    const base = e.value === "die" ? "Augen" : e.value === "inv" ? "7 − Augen" : String(e.value);
+    const mult = e.mult ? ` ×${e.mult}` : "", add = e.add ? ` +${e.add}` : "";
+    if (e.kind === "hit") return `Schlag ${base}${mult}${add}`;
+    if (e.kind === "shield") return `Schutz ${base}${add}`;
+    if (e.kind === "heal") return `Mut +${base}${add}`;
+    if (e.kind === "stun") return "Gegner setzt aus";
+    if (e.kind === "weaken") return `Gegner schlägt ${e.value} schwächer`;
+    if (e.kind === "reroll") return "Würfel neu werfen";
+    if (e.kind === "split") return "Würfel in zwei teilen";
+    if (e.kind === "plus") return "Würfel +1";
+    return "";
+  }
+  const partText = (p) => p.kind === "hit" ? `Schlag ${p.n}${p.times > 1 ? ` ×${p.times}` : ""}` : p.kind === "shield" ? `Schutz ${p.n}` : p.kind === "heal" ? `Heilt ${p.n}` : "Nebel";
+  const NODE = { fight: ["✦", "Begegnung"], guardian: ["◆", "Wächter"], rest: ["⌂", "Warft"], event: ["?", "Etwas am Weg"], find: ["✧", "Fund"] };
+  const OVER = {
+    flut: ["Die Flut", "Das Wasser ist schneller als du. Es kommt nicht als Welle, es kommt als Gewissheit: erst bis zum Knöchel, dann bis zum Knie, dann drehst du um. Hinter dir versinkt Rungholt, Fenster für Fenster. Die Alten auf der Hallig nicken, als du kommst. Sie haben Tee gemacht."],
+    mut1: ["Umkehr", "Die Salzwiesen behalten dich nicht. Du findest den Weg zurück zur Hallig mit weichen Knien und ohne Laterne. Morgen kaufst du eine neue. Der Krämer hat immer welche."],
+    mut2: ["Umkehr", "Im Priel geht das Licht aus. Als du wieder zu dir kommst, liegst du auf der Warft, und jemand hat dir eine Decke übergelegt. Niemand sagt, wer. Die Decke riecht nach Salz und nach sehr langer Zeit."],
+    mut3: ["Umkehr", "Rungholt hat dich nicht behalten wollen. Die Gassen haben dich hinausgeschoben, sanft, wie man einen Fremden hinausschiebt. Als du dich umdrehst, ist da nur Watt. Und ganz tief: ein Schlag."],
+  };
+
+  /* ---------- Zustand ---------- */
+  let game = null, busy = false, sel = { die: null, gear: null };
+  const mode = { daily: params.get("tag") !== "0" && !params.has("seed"), kit: params.get("kit") || profile.kits[profile.kits.length - 1] || "wattlaeuferin", springflut: Math.min(profile.springflut, parseInt(params.get("springflut") || "0", 10) || 0), seed: null };
+  if (!profile.kits.includes(mode.kit)) mode.kit = "wattlaeuferin";
+
+  const show = (s) => { app.dataset.screen = s; };
+  function el(tag, cls, html) { const e = document.createElement(tag); if (cls) e.className = cls; if (html !== undefined) e.innerHTML = html; return e; }
+  function float(target, text, cls) {
+    const r = target.getBoundingClientRect(), a = app.getBoundingClientRect();
+    const f = el("div", "float " + cls, text);
+    f.style.left = (r.left - a.left + r.width / 2 - 20 + (Math.random() * 30 - 15)) + "px";
+    f.style.top = (r.top - a.top + r.height * 0.3) + "px";
+    app.appendChild(f);
+    setTimeout(() => f.remove(), schnell ? 0 : 1100);
+  }
+  function flash(node, cls, ms) { node.classList.remove(cls); void node.offsetWidth; node.classList.add(cls); setTimeout(() => node.classList.remove(cls), schnell ? 0 : ms); }
+
+  /* ---------- Titel ---------- */
+  function renderTitle() {
+    $("#title-intro").textContent = R.CHRONIK[0].text;
+    const kits = $("#kits"); kits.innerHTML = "";
+    for (const [id, k] of Object.entries(R.KITS)) {
+      const frei = profile.kits.includes(id);
+      const b = el("button", "kit" + (mode.kit === id ? " sel" : ""), `<b>${k.name}</b><small>${frei ? k.text : "Noch nicht frei: " + (id === "fischer" ? "erreiche Rungholt." : "schlag die Glocke.")}</small>`);
+      b.dataset.kit = id; b.disabled = !frei;
+      b.addEventListener("click", () => { mode.kit = id; sfx.place(); renderTitle(); });
+      kits.appendChild(b);
+    }
+    const d = profile.daily[heute()];
+    $("#daily-sub").textContent = heuteSchoen() + (d ? `, bisher ${d.score} Punkte` : ", für alle dieselbe");
+    $("#mode-daily").classList.toggle("sel", mode.daily);
+    $("#mode-free").classList.toggle("sel", !mode.daily);
+    $("#flut-row").hidden = profile.springflut < 1;
+    $("#flut-val").textContent = mode.springflut;
+    $("#flut-minus").disabled = mode.springflut <= 0; $("#flut-plus").disabled = mode.springflut >= profile.springflut;
+    $("#stats").textContent = profile.runs ? `${profile.runs} ${profile.runs === 1 ? "Nacht" : "Nächte"}, ${profile.wins} ${profile.wins === 1 ? "Sieg" : "Siege"}, Rekord ${profile.bestScore} Punkte, ${profile.gear.length} von ${Object.keys(R.GEAR).length} Gegenständen, ${profile.chronik.length} von ${R.CHRONIK.length} Blättern` : "Noch keine Nacht gegangen.";
+    show("title");
+    bg.set(0, 1, 0);
+  }
+  $("#mode-daily").addEventListener("click", () => { mode.daily = true; sfx.place(); renderTitle(); });
+  $("#mode-free").addEventListener("click", () => { mode.daily = false; sfx.place(); renderTitle(); });
+  $("#flut-minus").addEventListener("click", () => { mode.springflut = Math.max(0, mode.springflut - 1); sfx.place(); renderTitle(); });
+  $("#flut-plus").addEventListener("click", () => { mode.springflut = Math.min(profile.springflut, mode.springflut + 1); sfx.place(); renderTitle(); });
+  $("#reset").addEventListener("click", (e) => { e.preventDefault(); if (confirm("Alles vergessen: Gegenstände, Chronik, Rekorde?")) { profile = R.newProfile(); save(); renderTitle(); } });
+  $("#btn-start").addEventListener("click", () => newNight());
+
+  function newNight() {
+    let seed;
+    if (params.has("seed") && !game) seed = parseInt(params.get("seed"), 10) >>> 0;
+    else if (mode.daily) seed = R.dailySeed(heute());
+    else seed = (Math.random() * 4294967295) >>> 0;
+    mode.seed = seed;
+    game = new R.Game({ seed, kit: mode.kit, unlocked: profile.gear, springflut: mode.springflut });
+    game.takeEvents();
+    sel = { die: null, gear: null };
+    sfx.start();
+    sfx.ambient(1);
+    render();
+  }
+
+  /* ---------- Alles zeichnen, was der Zustand hergibt ---------- */
+  function renderHud() {
+    const low = game.mut <= game.maxMut * 0.3;
+    $("#hud-stretch").textContent = R.STRETCHES[Math.min(2, Math.floor(Math.max(0, game.step - (game.screen === "map" ? 0 : 1)) / R.STEPS_PER_STRETCH))].name;
+    $("#hud-step").textContent = game.step;
+    $("#hud-tide").textContent = game.tide;
+    $("#hud-tide").parentElement.style.color = game.tide >= R.TIDE_MAX - 2 ? "var(--danger)" : "";
+    $("#hud-score").textContent = game.over ? game.score : game.computeScore();
+    const f = $("#mut-fill"); f.style.width = (100 * game.mut / game.maxMut) + "%"; f.classList.toggle("low", low);
+    $("#mut-text").textContent = `Mut ${game.mut}/${game.maxMut}`;
+    const sb = $("#shield-badge"); sb.textContent = `Schutz ${game.shield}`; sb.classList.toggle("on", game.screen === "fight" && game.shield > 0);
+    bg.set(Math.min(2, Math.floor(Math.max(0, game.step - 1) / R.STEPS_PER_STRETCH)), game.mut / game.maxMut, game.fog);
+  }
+  function render() {
+    if (!game) { renderTitle(); return; }
+    renderHud();
+    const s = game.screen;
+    if (s === "map") renderMap();
+    else if (s === "fight") renderFight();
+    else if (s === "event") renderEvent();
+    else if (s === "rest") renderRest();
+    else if (s === "reward" || s === "upgrade" || s === "drop") renderPick();
+    else if (s === "over") renderOver();
+    show(s);
+  }
+  function renderMap() {
+    const path = $("#path"); path.innerHTML = "";
+    for (let i = 0; i < game.map.length; i++) {
+      const dot = el("i", (i % R.STEPS_PER_STRETCH === 3 ? "guard" : "") + (i < game.step ? " done" : i === game.step ? " now" : ""));
+      path.appendChild(dot);
+    }
+    const st = R.STRETCHES[Math.min(2, Math.floor(game.step / R.STEPS_PER_STRETCH))];
+    $("#map-text").textContent = game.step === 0 ? "Die Laterne brennt. Wohin?" : `${st.name}, Schritt ${game.step + 1} von 12. Wohin?`;
+    const nodes = $("#nodes"); nodes.innerHTML = "";
+    game.options.forEach((n, i) => {
+      const [ico, label] = NODE[n.type];
+      let sub = "";
+      if (n.type === "fight" || n.type === "guardian") { const e = R.ENEMIES[n.enemy]; sub = `${e.name}: ${e.text}`; }
+      else if (n.type === "rest") sub = "Verschnaufen oder einen Gegenstand verbessern.";
+      else if (n.type === "event") sub = "Du weißt erst, was es ist, wenn du da bist.";
+      else if (n.type === "find") sub = "Etwas liegt im Schlick. Such dir eins aus.";
+      const b = el("button", "node " + n.type, `<span class="ico">${ico}</span><span><b>${label}</b><small>${sub}</small></span>`);
+      b.dataset.node = i;
+      b.addEventListener("click", () => onNode(i));
+      nodes.appendChild(b);
+    });
+  }
+  function renderEnemy() {
+    const e = game.enemy; if (!e) return;
+    const fig = $("#enemy-fig");
+    if (fig.dataset.id !== e.id) { fig.innerHTML = figure(e.id); fig.dataset.id = e.id; fig.classList.remove("gone"); }
+    fig.classList.toggle("stunned", e.stunned);
+    $("#enemy-name").textContent = e.name;
+    $("#enemy-text").textContent = e.def.text;
+    $("#enemy-fill").style.width = (100 * e.hp / e.maxHp) + "%";
+    $("#enemy-hp").textContent = `${e.hp}/${e.maxHp}`;
+    $("#enemy-shield").textContent = e.shield ? `Schutz ${e.shield}` : "";
+    const it = game.intent, box = $("#intent");
+    box.className = it.stunned ? "" : it.damage > 0 ? "hit" : "";
+    box.innerHTML = it.stunned ? "Setzt aus" : "Nächster Zug: <b>" + it.parts.map(partText).join(" + ") + "</b>" + (game.escalation() ? " <small class=\"muted\">(die Flut steigt)</small>" : "");
+  }
+  function pips(v) { const on = { 1: [4], 2: [2, 6], 3: [2, 4, 6], 4: [0, 2, 6, 8], 5: [0, 2, 4, 6, 8], 6: [0, 2, 3, 5, 6, 8] }[v] || []; let h = ""; for (let i = 0; i < 9; i++) h += `<i class="${on.includes(i) ? "on" : ""}"></i>`; return h; }
+  function renderDice(rolling) {
+    const box = $("#dice"); box.innerHTML = "";
+    game.dice.forEach((d, i) => {
+      const b = el("button", "die" + (sel.die === i ? " sel" : "") + (rolling ? " roll" : ""), pips(d.v));
+      b.dataset.die = i; b.dataset.value = d.v; b.setAttribute("aria-label", `Würfel ${d.v}`);
+      if (rolling) b.style.animationDelay = (i * 60) + "ms";
+      b.addEventListener("click", () => onDie(i));
+      box.appendChild(b);
+    });
+    if (!game.dice.length && game.screen === "fight") box.appendChild(el("div", "muted", "Keine Würfel mehr. Runde beenden."));
+  }
+  function renderGears() {
+    const box = $("#gears"); box.innerHTML = "";
+    const die = sel.die !== null ? game.dice[sel.die] : null;
+    game.gear.forEach((g, i) => {
+      const d = game.gearDef(g);
+      const passive = d.rule.kind === "passive";
+      const used = !passive && g.uses >= (d.uses || 1);
+      const fits = die && game.fits(die, g);
+      const uses = passive ? "" : `<span class="uses">${Array.from({ length: Math.min(d.uses || 1, 3) }, (_, k) => `<i class="${k < g.uses ? "off" : ""}"></i>`).join("")}</span>`;
+      const count = d.rule.kind === "count" ? `<span class="count"><i style="width:${100 * g.count / d.rule.n}%"></i></span>` : "";
+      const b = el("button", "gear" + (fits ? " fits" : "") + (used ? " used" : "") + (passive ? " passive" : "") + (sel.gear === i ? " sel" : ""),
+        `<b>${d.name}</b><span class="rule">${ruleText(d.rule)}${d.rule.kind === "count" ? ` (${g.count}/${d.rule.n})` : ""}</span><span class="eff">${effectText(d)}</span>${uses}${count}`);
+      b.dataset.gear = i; b.title = d.flavor;
+      b.disabled = passive;
+      b.addEventListener("click", () => onGear(i));
+      box.appendChild(b);
+    });
+  }
+  function renderFight(rolling) { renderEnemy(); renderDice(rolling); renderGears(); $("#btn-end").disabled = busy; $("#log").textContent = game.log[game.log.length - 1] || ""; }
+  function renderEvent() {
+    const ev = R.EVENTS[game.event];
+    $("#ev-title").textContent = ev.title; $("#ev-text").textContent = ev.text;
+    const c = $("#choices"); c.innerHTML = "";
+    ev.choices.forEach((ch, i) => { const b = el("button", "choice", ch.label); b.dataset.choice = i; b.addEventListener("click", () => onChoice(i)); c.appendChild(b); });
+    show("event");
+  }
+  function renderRest() {
+    $("#ev-title").textContent = "Die Warft"; $("#ev-text").textContent = "Ein Hügel aus Erde, den jemand vor langer Zeit aufgeschüttet hat, damit ein Haus darauf steht. Das Haus ist weg. Der Hügel trägt noch.";
+    const c = $("#choices"); c.innerHTML = "";
+    game.restOptions.forEach((o, i) => { const b = el("button", "choice", o.label); b.dataset.choice = i; b.disabled = !!o.disabled; b.addEventListener("click", () => onRest(i)); c.appendChild(b); });
+    show("event");
+  }
+  function gearCard(def, plus) {
+    const d = plus ? Object.assign({}, def, def.plus || {}, { name: def.name + "+" }) : def;
+    return `<b>${d.name}</b><small><span style="color:var(--gold)">${ruleText(d.rule)}</span>: ${effectText(d)}</small><small><i>${d.flavor}</i></small>`;
+  }
+  function renderPick() {
+    const s = game.screen, picks = $("#picks"); picks.innerHTML = "";
+    $("#btn-skip").hidden = s !== "reward";
+    if (s === "reward") {
+      const k = game.rewardKind;
+      $("#pick-title").textContent = k === "guardian" ? "Der Wächter lässt etwas zurück" : k === "find" ? "Fund im Schlick" : k === "event" ? "Der Krämer breitet aus" : "Es bleibt etwas liegen";
+      $("#pick-text").textContent = game.gear.length >= R.MAX_GEAR ? "Du trägst schon fünf Dinge. Nimmst du eins, musst du ein anderes zurücklassen." : "Nimm eins oder lass es liegen.";
+      game.rewardOptions.forEach((o, i) => { const b = el("button", "pick" + (o.plus ? " plus" : ""), gearCard(R.GEAR[o.id], o.plus)); b.dataset.pick = i; b.addEventListener("click", () => onPick(i)); picks.appendChild(b); });
+    } else if (s === "upgrade") {
+      $("#pick-title").textContent = "Was soll besser werden?"; $("#pick-text").textContent = "Ein Gegenstand wird zur Plus-Fassung: härter, weiter, öfter.";
+      game.gear.forEach((g, i) => { const d = R.GEAR[g.id]; const b = el("button", "pick", gearCard(d, true)); b.dataset.pick = i; b.disabled = g.plus; b.addEventListener("click", () => onPick(i)); picks.appendChild(b); });
+    } else {
+      $("#pick-title").textContent = "Eins muss zurückbleiben"; $("#pick-text").textContent = "Fünf Dinge trägst du, nicht mehr. Welches bleibt im Watt?";
+      game.gear.forEach((g, i) => { const b = el("button", "pick", gearCard(R.GEAR[g.id], g.plus)); b.dataset.pick = i; b.addEventListener("click", () => onPick(i)); picks.appendChild(b); });
+    }
+  }
+  function renderOver() {
+    const s = game.summary();
+    const key = s.won ? "sieg" : s.cause === "flut" ? "flut" : "mut" + s.stretch;
+    const [title, text] = s.won ? ["Die Glocke", R.CHRONIK.find((c) => c.id === "sieg").text] : OVER[key];
+    $("#ov-title").textContent = title;
+    $("#ov-score").textContent = `${s.score} Punkte`;
+    $("#ov-sub").textContent = (mode.daily ? `Tagesnacht ${heuteSchoen()}` : "Freie Nacht") + (s.springflut ? `, Springflut ${s.springflut}` : "") + ` · ${s.defeated} Schatten vertrieben, Strecke ${s.stretch} von 3` + (s.score >= profile.bestScore && s.score > 0 ? " · Rekord!" : "");
+    $("#ov-text").textContent = text;
+    const neu = $("#ov-neu"); neu.innerHTML = "";
+    for (const u of game.neu.unlocks) neu.appendChild(el("div", "", R.UNLOCKS.find((x) => x.id === u).text));
+    if (game.neu.springflut) neu.appendChild(el("div", "", `Springflut ${game.neu.springflut} ist frei: schwerer, mehr Punkte.`));
+    const frag = $("#ov-fragment");
+    const neueBlaetter = game.neu.chronik.filter((id) => id !== "sieg" || !s.won);
+    if (neueBlaetter.length) { const c = R.CHRONIK.find((x) => x.id === neueBlaetter[neueBlaetter.length - 1]); frag.hidden = false; frag.innerHTML = `<h2>Neues Blatt der Chronik: ${c.title}</h2><div>${c.text}</div>`; }
+    else frag.hidden = true;
+    $("#btn-again").textContent = mode.daily && profile.daily[heute()] && profile.daily[heute()].runs > 0 ? "Noch einmal (Tagesnacht)" : "Noch eine Nacht";
+  }
+
+  /* ---------- Eingaben ---------- */
+  async function run(fn) {
+    if (busy || !game || game.over) return false;
+    busy = true;
+    try { const ok = fn(); if (ok) await play(game.takeEvents()); else { game.takeEvents(); } return ok; }
+    finally { busy = false; if (game) render(); }
+  }
+  function onNode(i) { run(() => game.chooseNode(i)); }
+  function onChoice(i) { run(() => game.chooseEvent(i)); }
+  function onRest(i) { run(() => game.chooseRest(i)); }
+  function onPick(i) { run(() => game.screen === "reward" ? game.chooseReward(i) : game.screen === "upgrade" ? game.chooseUpgrade(i) : game.chooseDrop(i)); }
+  $("#btn-skip").addEventListener("click", () => run(() => game.skipReward()));
+  $("#btn-end").addEventListener("click", () => { if (busy) return; sel = { die: null, gear: null }; run(() => game.endTurn()); });
+  function onDie(i) {
+    if (busy) return;
+    sel.die = sel.die === i ? null : i;
+    if (sel.die !== null && sel.gear !== null) return tryPlace();
+    sfx.place();
+    renderFight();
+  }
+  function onGear(i) {
+    if (busy) return;
+    const g = game.gear[i], d = game.gearDef(g);
+    if (d.rule.kind === "passive") return;
+    if (sel.die !== null) { sel.gear = i; return tryPlace(); }
+    // Erst Gegenstand, dann Würfel: wenn nur ein Würfel passt, nimm den gleich.
+    const passend = game.dice.map((x, k) => game.fits(x, g) ? k : -1).filter((k) => k >= 0);
+    if (passend.length === 1) { sel.die = passend[0]; sel.gear = i; return tryPlace(); }
+    sel.gear = sel.gear === i ? null : i;
+    sfx.place();
+    renderFight();
+  }
+  async function tryPlace() {
+    const di = sel.die, gi = sel.gear;
+    const die = game.dice[di], g = game.gear[gi];
+    if (!die || !g || !game.fits(die, g)) {
+      sfx.nope();
+      const b = $(`.gear[data-gear="${gi}"]`); if (b) flash(b, "nope", 300);
+      const d = $(`.die[data-die="${di}"]`); if (d) flash(d, "nope", 300);
+      sel.gear = null; renderFight();
+      return;
+    }
+    sel = { die: null, gear: null };
+    await run(() => game.placeDie(di, gi));
+  }
+
+  /* ---------- Was passiert ist, sichtbar und hörbar machen ---------- */
+  async function play(events) {
+    let rolled = false;
+    for (const e of events) {
+      if (e.type === "node") { if (e.node.type === "guardian") sfx.stun(); else sfx.place(); sfx.ambient(Math.min(3, Math.floor((e.step - 1) / R.STEPS_PER_STRETCH) + 1)); }
+      else if (e.type === "fight") { render(); const fig = $("#enemy-fig"); fig.classList.add("gone"); void fig.offsetWidth; fig.classList.remove("gone"); sfx.fog(); await wait(250); }
+      else if (e.type === "roll") { if (game.screen === "fight") { renderHud(); renderFight(true); } sfx.roll(e.dice.length); rolled = true; await wait(420); }
+      else if (e.type === "hit" && e.who === "enemy") {
+        sfx.hit(e.n); renderEnemy(); renderGears(); renderDice();
+        flash($("#enemy-fig"), "hurt", 400);
+        float($("#enemy-fig"), e.n > 0 ? `−${e.n}` : "abgefangen", e.n > 0 ? "hurt" : "shield");
+        if (e.blocked && e.n > 0) float($("#enemy-shield"), `Schutz −${e.blocked}`, "shield");
+        await wait(220);
+      }
+      else if (e.type === "hit" && e.who === "player") {
+        flash($("#enemy-fig"), "lunge", 450); flash($("#intent"), "flash", 300);
+        await wait(180);
+        if (e.n > 0) { sfx.hurt(e.n); flash(app, "shake", 450); flash($("#vignette"), "on", 60); float($(".mutbar"), `−${e.n}`, "hurt"); }
+        else { sfx.shield(); float($(".mutbar"), e.blocked ? "abgefangen" : "nichts", "shield"); }
+        renderHud();
+        await wait(380);
+      }
+      else if (e.type === "shield" && e.who === "player") { sfx.shield(); renderHud(); flash($("#shield-badge"), "pulse", 400); float($("#shield-badge"), `+${e.n}`, "shield"); renderGears(); renderDice(); await wait(120); }
+      else if (e.type === "shield" && e.who === "enemy") { sfx.shield(); renderEnemy(); float($("#enemy-fig"), `Schutz ${e.n}`, "shield"); await wait(300); }
+      else if (e.type === "heal" && e.who === "enemy") { sfx.heal(); renderEnemy(); float($("#enemy-fig"), `+${e.n}`, "heal"); await wait(300); }
+      else if (e.type === "heal") { sfx.heal(); renderHud(); float($(".mutbar"), `+${e.n}`, "heal"); if (game.screen === "fight") { renderGears(); renderDice(); } await wait(120); }
+      else if (e.type === "hurt") { sfx.hurt(e.n); flash(app, "shake", 450); flash($("#vignette"), "on", 60); renderHud(); float($(".mutbar"), `−${e.n}`, "hurt"); await wait(300); }
+      else if (e.type === "stun") { sfx.stun(); renderEnemy(); renderGears(); renderDice(); float($("#enemy-fig"), "betäubt", "gold"); await wait(300); }
+      else if (e.type === "enemySkip") { sfx.tick(); float($("#enemy-fig"), "setzt aus", "gold"); await wait(300); }
+      else if (e.type === "weaken") { sfx.weaken(); renderEnemy(); renderGears(); renderDice(); float($("#enemy-fig"), `−${e.n} Schlag`, "fog"); await wait(200); }
+      else if (e.type === "fog") { sfx.fog(); flash($("#fogflash"), "on", 80); float($(".dice"), "Nebel: ein Würfel weniger", "fog"); await wait(400); }
+      else if (e.type === "count") { sfx.tick(); renderGears(); renderDice(); const b = $(`.gear[data-gear="${e.gear}"]`); if (b) flash(b, "pop", 350); await wait(80); }
+      else if (e.type === "reroll" || e.type === "split" || e.type === "plus") { sfx.roll(1); renderDice(true); renderGears(); await wait(300); }
+      else if (e.type === "lifeline") { sfx.stun(); renderHud(); float($(".mutbar"), "Der Ring hält!", "gold"); await wait(500); }
+      else if (e.type === "defeat") { sfx.defeat(); $("#enemy-fig").classList.add("gone"); float($("#enemy-fig"), "zerfließt", "gold"); await wait(650); }
+      else if (e.type === "gain") { sfx.chime(); }
+      else if (e.type === "upgrade") { sfx.chime(); }
+      else if (e.type === "drop") { sfx.place(); }
+      else if (e.type === "event") { sfx.place(); }
+      else if (e.type === "chronik") { sfx.chime(); }
+      else if (e.type === "over") { await finish(e); }
+    }
+    if (rolled && game.screen === "fight" && !game.over) renderFight(false);
+  }
+  async function finish(e) {
+    const s = game.summary();
+    const r = R.updateProfile(profile, s, mode.daily ? heute() : null);
+    const alt = profile.springflut;
+    profile = r.profile; save();
+    game.neu = r.neu; game.neu.springflut = profile.springflut > alt ? profile.springflut : 0;
+    if (e.won) { sfx.win(); flash($("#fogflash"), "on", 1200); await wait(900); }
+    else { sfx.lose(); flash($("#vignette"), "on", 700); await wait(700); }
+    sfx.quiet();
+  }
+  $("#btn-again").addEventListener("click", () => { if (busy) return; newNight(); });
+  $("#btn-title").addEventListener("click", () => { if (busy) return; game = null; sfx.quiet(); renderTitle(); });
+
+  /* ---------- Chronik, Hilfe, Ton ---------- */
+  let vorher = "title";
+  $("#btn-chronik").addEventListener("click", () => {
+    if (busy) return;
+    vorher = app.dataset.screen === "chronik" ? vorher : app.dataset.screen;
+    const list = $("#chronik-list"); list.innerHTML = "";
+    const offen = new Set(profile.chronik.concat(game ? game.chronikUnlocked : []));
+    for (const c of R.CHRONIK) {
+      if (offen.has(c.id)) { const d = el("details", "", `<summary>${c.title}</summary><div class="text">${c.text}</div>`); list.appendChild(d); }
+      else list.appendChild(el("div", "box locked", c.id === "sieg" ? "… (schlag die Glocke)" : "… (noch nicht erwandert)"));
+    }
+    show("chronik");
+  });
+  $("#chronik-close").addEventListener("click", () => show(vorher === "chronik" ? "title" : vorher));
+  $("#btn-help").addEventListener("click", () => $("#help").classList.add("show"));
+  $("#help-close").addEventListener("click", () => $("#help").classList.remove("show"));
+  const soundBtn = $("#btn-sound");
+  const renderSound = () => { soundBtn.textContent = sfx.enabled() ? "♪ Ton" : "♪ aus"; soundBtn.setAttribute("aria-pressed", String(sfx.enabled())); };
+  soundBtn.addEventListener("click", () => { sfx.toggle(); renderSound(); });
+  renderSound();
+  document.addEventListener("pointerdown", () => { if (sfx.enabled() && game && !game.over) sfx.ambient(Math.min(3, Math.floor(Math.max(0, game.step - 1) / R.STEPS_PER_STRETCH) + 1)); }, { passive: true });
+  document.addEventListener("keydown", (e) => {
+    if (!game || busy) return;
+    if (e.key === "Enter" || e.key === " ") { if (game.screen === "fight") { e.preventDefault(); $("#btn-end").click(); } }
+    const n = parseInt(e.key, 10);
+    if (n >= 1 && n <= 9) {
+      if (game.screen === "fight") { if (sel.die === null) onDie(n - 1); else onGear(n - 1); }
+      else if (game.screen === "map") onNode(n - 1);
+      else if (game.screen === "event" || game.screen === "rest") (game.screen === "event" ? onChoice : onRest)(n - 1);
+      else if (["reward", "upgrade", "drop"].includes(game.screen)) onPick(n - 1);
+    }
+  });
+
+  /* ---------- Autopilot (?autoplay=1): spielt über die echte Oberfläche ---------- */
+  async function autoplay() {
+    while (game && !game.over) {
+      if (busy) { await new Promise((r) => setTimeout(r, 30)); continue; }
+      const a = R.choose(game);
+      if (!a) break;
+      await new Promise((r) => setTimeout(r, schnell ? 5 : 450));
+      if (a.type === "node") onNode(a.i);
+      else if (a.type === "event") onChoice(a.i);
+      else if (a.type === "rest") onRest(a.i);
+      else if (["upgrade", "reward", "drop"].includes(a.type)) onPick(a.i);
+      else if (a.type === "place") { sel = { die: a.die, gear: null }; onGear(a.gear); }
+      else if (a.type === "end") $("#btn-end").click();
+      await new Promise((r) => setTimeout(r, 30));
+    }
+  }
+
+  /* ---------- Offline ---------- */
+  if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && params.get("nosw") !== "1") {
+    navigator.serviceWorker.register("sw.js").catch(() => { /* dann eben nur online */ });
+  }
+
+  window.rungholt = { get game() { return game; }, get busy() { return busy; }, get profile() { return profile; }, mode, newNight, autoplay, R };
+  renderTitle();
+  if (params.get("autoplay") === "1") { newNight(); autoplay(); }
+})();
+</script>
+</body>
+</html>

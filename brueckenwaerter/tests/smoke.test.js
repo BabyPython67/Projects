@@ -98,7 +98,8 @@ test("Hebel halten hebt die Brücke, Nichtstun endet mit drei Hupen und 'Gefeuer
     const neu = await zustand(page);
     assert.equal(neu.status, "läuft");
     assert.equal(neu.strikes, 0);
-    assert.equal(await page.$$eval(".horn.used", (els) => els.length), 0);
+    // Die Hupen werden erst im nächsten Bild neu gezeichnet: darauf warten statt sofort zu prüfen.
+    await page.waitForFunction(() => document.querySelectorAll(".horn.used").length === 0, null, { timeout: 5000 });
     // Leertaste halten hebt die Brücke genauso.
     await page.keyboard.down("Space");
     await page.waitForFunction(() => window.brueckenwaerter.game.bridge > 0.3, null, { timeout: 10000 });
@@ -124,14 +125,14 @@ function serve(root) {
 }
 
 test("läuft offline: nach dem ersten Besuch liefert der Service Worker die Seite ohne Netz", { skip }, async () => {
-  const root = path.resolve(DIR, "..", "..");
+  const root = path.resolve(DIR, "..");
   const { server, url } = await serve(root);
   const browser = await playwright.chromium.launch();
   try {
     const context = await browser.newContext(HANDY);
     const page = await context.newPage();
     const fehler = beobachten(page);
-    const adresse = url + "/spiel/brueckenwaerter/";
+    const adresse = url + "/brueckenwaerter/";
     await page.goto(adresse);
     await page.evaluate(() => navigator.serviceWorker.ready);
     await page.waitForFunction(async () => {
