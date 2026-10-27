@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#10212f">
+<meta name="description" content="Brückenwärter: bediene die Klappbrücke im Hafen. Autos brauchen sie unten, Segler oben. Ein kleines Spiel für Finger und Maus, läuft offline.">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Brücke">
+<title>Brückenwärter</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+  :root {
+    --bg: #10212f; --panel: #1a3245; --panel-2: #22405a; --text: #eef3f7; --muted: #9fb4c8;
+    --accent: #f2b544; --accent-dark: #c98d1c; --danger: #e9604f; --ok: #7ed37a;
+    color-scheme: dark;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-text-size-adjust: 100%; overscroll-behavior: none;
+    user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  }
+  #app {
+    height: 100vh; height: 100dvh; max-width: 640px; margin: 0 auto;
+    display: grid; grid-template-rows: auto 1fr auto; gap: 8px;
+    padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  }
+  header { display: grid; gap: 4px; }
+  .top { display: flex; justify-content: space-between; align-items: baseline; }
+  h1 { font-size: 1.15rem; margin: 0; letter-spacing: .14em; }
+  .clock { font-variant-numeric: tabular-nums; font-size: 1.2rem; font-weight: 700; color: var(--accent); }
+  .hud { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; color: var(--muted); font-size: .92rem; }
+  .hud b { color: var(--text); font-variant-numeric: tabular-nums; font-size: 1.05rem; }
+  .horns { display: inline-flex; gap: 5px; align-items: center; }
+  .horn { width: 14px; height: 14px; border-radius: 50%; border: 2px solid var(--danger); display: inline-block; }
+  .horn.used { background: var(--danger); box-shadow: 0 0 8px var(--danger); }
+  .traffic { letter-spacing: 2px; color: var(--accent); }
+  .traffic span { opacity: .3; } .traffic span.on { opacity: 1; }
+  .legend { display: flex; gap: 6px; flex-wrap: wrap; font-size: .78rem; color: var(--muted); }
+  .legend span { background: var(--panel); border-radius: 999px; padding: 2px 9px; white-space: nowrap; }
+  .legend i { display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; vertical-align: 0; }
+
+  #stage { position: relative; min-height: 0; display: grid; place-items: center; touch-action: none; }
+  #stage.shake { animation: shake .45s; }
+  @keyframes shake { 20% { transform: translate(-5px, 2px); } 40% { transform: translate(5px, -2px); } 60% { transform: translate(-4px, 1px); } 80% { transform: translate(4px, -1px); } }
+  canvas { display: block; border-radius: 14px; box-shadow: 0 10px 40px rgba(0, 0, 0, .45); background: #5f8f4a; cursor: pointer; }
+
+  .controls { display: grid; grid-template-columns: 64px 1fr 64px; gap: 10px; align-items: stretch; }
+  button {
+    font: inherit; color: var(--text); background: var(--panel); border: 1px solid var(--panel-2);
+    border-radius: 14px; padding: 10px 12px; cursor: pointer; touch-action: none; -webkit-tap-highlight-color: transparent;
+  }
+  button:active { background: var(--panel-2); }
+  .lift {
+    min-height: 64px; font-size: 1.15rem; font-weight: 800; letter-spacing: .06em;
+    background: linear-gradient(#ffd37a, var(--accent)); color: #241a04; border-color: var(--accent-dark);
+    box-shadow: 0 6px 0 var(--accent-dark); transform: translateY(0); transition: transform .06s, box-shadow .06s;
+  }
+  .lift small { display: block; font-weight: 500; letter-spacing: 0; font-size: .78rem; opacity: .8; }
+  .lift.held, .lift:active { transform: translateY(5px); box-shadow: 0 1px 0 var(--accent-dark); background: linear-gradient(#f5c25a, #e0a62e); }
+  .lift.blocked { background: linear-gradient(#f0b7ad, #e58a7c); border-color: #b0493b; box-shadow: 0 1px 0 #b0493b; transform: translateY(5px); }
+
+  #overlay { position: fixed; inset: 0; display: none; place-items: center; padding: 18px; background: rgba(6, 14, 22, .78); backdrop-filter: blur(3px); z-index: 10; }
+  #overlay.show { display: grid; }
+  .card { width: 100%; max-width: 440px; background: var(--panel); border: 1px solid var(--panel-2); border-radius: 18px; padding: 22px 22px 18px; box-shadow: 0 20px 60px rgba(0, 0, 0, .5); }
+  .card h2 { margin: 0 0 8px; font-size: 1.5rem; letter-spacing: .08em; }
+  .card p { margin: 8px 0; line-height: 1.45; color: var(--muted); }
+  .card p b { color: var(--text); }
+  .card .big { font-size: 1.6rem; color: var(--accent); font-weight: 800; margin: 12px 0 4px; }
+  .card .record { color: var(--ok); font-weight: 700; }
+  .card ul { margin: 6px 0 10px; padding-left: 18px; color: var(--muted); line-height: 1.45; }
+  .card ul b { color: var(--text); }
+  .card button.primary { width: 100%; margin-top: 10px; min-height: 52px; font-size: 1.1rem; font-weight: 800;
+    background: linear-gradient(#ffd37a, var(--accent)); color: #241a04; border-color: var(--accent-dark); }
+  .hint { font-size: .82rem; color: var(--muted); margin-top: 10px; }
+  .kbd { display: inline-block; border: 1px solid var(--panel-2); border-bottom-width: 2px; border-radius: 5px; padding: 0 6px; font-size: .85em; color: var(--text); background: var(--bg); }
+  @media (min-width: 700px) { #app { padding-top: 18px; } .lift { min-height: 72px; } }
+  /* Querformat mit wenig Höhe (Handy quer): Spielfeld links, Anzeige und Knöpfe rechts */
+  @media (orientation: landscape) and (max-height: 560px) {
+    #app { max-width: none; grid-template-columns: minmax(0, 1fr) minmax(230px, 340px); grid-template-rows: 1fr auto;
+           grid-template-areas: "stage header" "stage controls"; column-gap: 16px; padding-top: 8px; }
+    header { grid-area: header; align-content: start; }
+    #stage { grid-area: stage; }
+    .controls { grid-area: controls; }
+    .lift { min-height: 84px; }
+    .legend { font-size: .72rem; }
+  }
+</style>
+</head>
+<body>
+<div id="app">
+  <header>
+    <div class="top">
+      <h1>BRÜCKENWÄRTER</h1>
+      <span class="clock" id="clock">06:00</span>
+    </div>
+    <div class="hud">
+      <span><b id="score">0</b> Punkte</span>
+      <span class="horns" aria-label="Hupen">Hupen <i class="horn" id="horn-0"></i><i class="horn" id="horn-1"></i><i class="horn" id="horn-2"></i></span>
+      <span class="traffic" id="traffic" aria-label="Verkehr">Verkehr <span>●</span><span>●</span><span>●</span><span>●</span><span>●</span></span>
+    </div>
+    <div class="legend" aria-label="Legende">
+      <span><i style="background:#e0a23c"></i>Auto: Brücke unten</span>
+      <span><i style="background:#f4f4f4"></i>Segler: Brücke oben</span>
+      <span><i style="background:#8d5a2b"></i>Kahn: egal</span>
+      <span><i style="background:#e14b3b"></i>Rettungswagen: eilig, zählt doppelt</span>
+    </div>
+  </header>
+
+  <div id="stage"><canvas id="canvas" width="300" height="300" aria-label="Hafen von oben: Straße, Kanal und Klappbrücke"></canvas></div>
+
+  <div class="controls">
+    <button id="btn-new" title="Neue Schicht (Taste N)">Neu</button>
+    <button id="btn-lift" class="lift" aria-pressed="false">BRÜCKE HEBEN<small id="lift-hint">halten, loslassen senkt</small></button>
+    <button id="btn-help" title="Regeln (Taste H)">?</button>
+  </div>
+
+  <div id="overlay" class="show" role="dialog" aria-modal="true">
+    <div class="card">
+      <h2 id="ov-title">Brückenwärter</h2>
+      <div id="ov-body">
+        <p>Du bedienst die Klappbrücke im Hafen. <b>Autos</b> brauchen die Brücke unten, <b>Segler</b> brauchen sie oben, flache <b>Kähne</b> passen immer drunter durch.</p>
+        <ul>
+          <li><b>Knopf halten</b> (oder <span class="kbd">Leertaste</span>): die Brücke hebt sich. Loslassen: sie senkt sich wieder.</li>
+          <li>Wer zu lange wartet, <b>hupt</b>. Nach drei Hupen bist du deinen Posten los.</li>
+          <li><b>Rettungswagen</b> sind ungeduldig und zählen doppelt. Wer frei durchkommt, bringt Bonus.</li>
+          <li>Schaff die Schicht von <b>6 bis 18 Uhr</b>. Je später, desto dichter der Verkehr.</li>
+        </ul>
+      </div>
+      <p class="big" id="ov-score" hidden></p>
+      <p id="ov-best" hidden></p>
+      <button class="primary" id="ov-start">Schicht beginnen</button>
+      <p class="hint" id="ov-hint">Läuft offline. Über „Zum Home-Bildschirm“ wird daraus eine App.</p>
+    </div>
+  </div>
+</div>
+
+<script src="engine.js"></script>
+<script>
+(function () {
+  "use strict";
+  const B = window.Brueckenwaerter;
+  const params = new URLSearchParams(location.search);
+  const tempo = Math.min(50, Math.max(0.1, parseFloat(params.get("tempo")) || 1));
+  const autoplay = params.get("autoplay") === "1";
+  const seedParam = params.get("seed");
+  const game = new B.Game({ seed: seedParam === null || seedParam === "" ? undefined : Number(seedParam) });
+
+  const $ = (id) => document.getElementById(id);
+  const canvas = $("canvas"), ctx = canvas.getContext("2d"), stage = $("stage");
+  const lift = $("btn-lift"), overlay = $("overlay");
+  const ui = { paused: true, mode: "start", effects: [], last: 0, acc: 0, endTimer: 0, time: 0, size: 300, dpr: 1, best: 0 };
+  const STEP = 1 / 60;
+  const ROAD_Y = [0.465, 0.535], WATER_X = [0.465, 0.535];   // Spurmitten je Richtung
+  const HOUSES = [
+    [0.05, 0.06, 0.09, 0.07, 18], [0.17, 0.05, 0.08, 0.09, 350], [0.28, 0.08, 0.1, 0.07, 30], [0.06, 0.2, 0.1, 0.08, 200],
+    [0.2, 0.22, 0.12, 0.09, 40], [0.63, 0.06, 0.1, 0.08, 10], [0.76, 0.05, 0.08, 0.1, 210], [0.86, 0.18, 0.09, 0.08, 25],
+    [0.65, 0.22, 0.12, 0.08, 345], [0.06, 0.66, 0.1, 0.09, 30], [0.2, 0.7, 0.09, 0.08, 15], [0.1, 0.84, 0.12, 0.08, 205],
+    [0.28, 0.85, 0.08, 0.07, 40], [0.64, 0.66, 0.1, 0.08, 20], [0.8, 0.7, 0.1, 0.09, 350], [0.66, 0.84, 0.12, 0.08, 215], [0.86, 0.86, 0.08, 0.08, 30],
+  ];
+  const TREES = [[0.4, 0.07], [0.38, 0.33], [0.6, 0.35], [0.62, 0.1], [0.4, 0.66], [0.6, 0.64], [0.38, 0.92], [0.6, 0.9], [0.14, 0.36], [0.86, 0.34], [0.14, 0.62], [0.86, 0.62], [0.5, 0.06], [0.5, 0.94]];
+
+  try { ui.best = Number(localStorage.getItem("brueckenwaerter.best")) || 0; } catch (e) { /* kein Speicher */ }
+
+  /* ---------- Größe ---------- */
+  function resize() {
+    const r = stage.getBoundingClientRect();
+    const size = Math.max(200, Math.floor(Math.min(r.width, r.height)));
+    ui.dpr = Math.min(3, window.devicePixelRatio || 1);
+    ui.size = size;
+    canvas.style.width = canvas.style.height = size + "px";
+    canvas.width = canvas.height = Math.round(size * ui.dpr);
+    draw();
+  }
+  if (window.ResizeObserver) new ResizeObserver(resize).observe(stage); else window.addEventListener("resize", resize);
+
+  /* ---------- Steuerung ---------- */
+  function hold(on) {
+    if (autoplay) return;
+    game.setHeld(on);
+  }
+  const holdTargets = [lift, canvas];
+  for (const el of holdTargets) {
+    el.addEventListener("pointerdown", (e) => { e.preventDefault(); if (el.setPointerCapture) try { el.setPointerCapture(e.pointerId); } catch (x) {} hold(true); });
+    el.addEventListener("pointerup", (e) => { e.preventDefault(); hold(false); });
+    el.addEventListener("pointercancel", () => hold(false));
+    el.addEventListener("contextmenu", (e) => e.preventDefault());
+  }
+  window.addEventListener("blur", () => hold(false));
+  document.addEventListener("visibilitychange", () => { if (document.hidden) hold(false); });
+  window.addEventListener("keydown", (e) => {
+    if (e.repeat) return;
+    if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyW") { e.preventDefault(); if (!ui.paused) hold(true); }
+    else if (e.key === "n" || e.key === "N") newGame();
+    else if (e.key === "h" || e.key === "H" || e.key === "?") toggleHelp();
+    else if (e.key === "Enter" && overlay.classList.contains("show")) $("ov-start").click();
+  });
+  window.addEventListener("keyup", (e) => { if (e.code === "Space" || e.code === "ArrowUp" || e.code === "KeyW") hold(false); });
+
+  $("btn-new").addEventListener("click", newGame);
+  $("btn-help").addEventListener("click", toggleHelp);
+  $("ov-start").addEventListener("click", () => {
+    if (ui.mode === "end") { game.reset(); ui.effects = []; }
+    showOverlay(null);
+    ui.paused = false;
+  });
+
+  /* ---------- Spielfluss ---------- */
+  function newGame() {
+    game.reset();
+    ui.effects = [];
+    ui.endTimer = 0;
+    showOverlay(null);
+    ui.paused = false;
+  }
+  function toggleHelp() {
+    if (ui.mode === "help") { showOverlay(ui.before === "running" ? null : ui.before); if (ui.before === "running") ui.paused = false; return; }
+    if (ui.mode === "end") return;
+    ui.before = ui.mode === null ? "running" : ui.mode;
+    ui.paused = true;
+    showOverlay("help");
+  }
+  function showOverlay(mode) {
+    ui.mode = mode;
+    overlay.classList.toggle("show", mode !== null);
+    const body = $("ov-body"), score = $("ov-score"), best = $("ov-best"), start = $("ov-start"), hint = $("ov-hint");
+    if (mode === null) return;
+    score.hidden = best.hidden = true;
+    body.hidden = false;
+    hint.hidden = false;
+    if (mode === "start") { $("ov-title").textContent = "Brückenwärter"; start.textContent = "Schicht beginnen"; }
+    if (mode === "help") { $("ov-title").textContent = "So geht's"; start.textContent = "Weiter"; hint.hidden = true; }
+    if (mode === "end") {
+      const won = game.status === B.WON;
+      $("ov-title").textContent = won ? "Feierabend!" : "Gefeuert!";
+      body.hidden = true;
+      score.hidden = false;
+      score.textContent = `${game.score} Punkte`;
+      best.hidden = false;
+      const neu = game.score > ui.best;
+      if (neu) { ui.best = game.score; try { localStorage.setItem("brueckenwaerter.best", String(ui.best)); } catch (e) { /* egal */ } }
+      best.innerHTML = (won
+        ? `Schicht geschafft: <b>${game.passed}</b> Fahrzeuge und Boote durchgelassen, <b>${game.strikes}</b> Hupe${game.strikes === 1 ? "" : "n"}.`
+        : `Um <b>${game.clock} Uhr</b> hat der Hafenmeister genug: dreimal gehupt. <b>${game.passed}</b> sind vorher durchgekommen.`)
+        + (neu ? ` <span class="record">Neuer Rekord!</span>` : ` Rekord: <b>${ui.best}</b>.`);
+      start.textContent = "Noch eine Schicht";
+      hint.hidden = true;
+    }
+  }
+
+  /* ---------- Schleife ---------- */
+  function frame(now) {
+    requestAnimationFrame(frame);
+    if (!ui.last) ui.last = now;
+    let real = Math.min(0.1, (now - ui.last) / 1000);
+    ui.last = now;
+    ui.time += real;
+    if (!ui.paused && !game.over) {
+      ui.acc += real * tempo;
+      let steps = 0;
+      while (ui.acc >= STEP && steps++ < 600) {
+        if (autoplay) game.setHeld(B.choose(game));
+        for (const e of game.tick(STEP)) onEvent(e);
+        ui.acc -= STEP;
+        if (game.over) break;
+      }
+    }
+    if (game.over && ui.mode === null) {
+      ui.endTimer += real;
+      if (ui.endTimer > 0.9) showOverlay("end");
+    } else ui.endTimer = 0;
+    hud();
+    draw();
+  }
+
+  function onEvent(e) {
+    if (e.type === "passiert") {
+      const p = unitPose(e.unit);
+      ui.effects.push({ text: `+${e.points}`, x: p.cx, y: p.cy, t: ui.time, dur: 1.1, color: e.bonus ? "#ffe38a" : "#ffffff", size: e.bonus ? 0.05 : 0.04 });
+    } else if (e.type === "hupe") {
+      const p = unitPose(e.unit);
+      ui.effects.push({ text: e.unit.kind === "segler" ? "TUUUT!" : e.unit.kind === "rettung" ? "TATÜ TATA!" : "HUUUP!", x: p.cx, y: p.cy, t: ui.time, dur: 1.4, color: "#ff6b5b", size: 0.06 });
+      stage.classList.remove("shake"); void stage.offsetWidth; stage.classList.add("shake");
+    } else if (e.type === "gewonnen" && e.bonus) {
+      ui.effects.push({ text: `Ruhebonus +${e.bonus}`, x: 0.5, y: 0.3, t: ui.time, dur: 2, color: "#ffe38a", size: 0.055 });
+    }
+  }
+
+  function hud() {
+    $("clock").textContent = game.clock;
+    $("score").textContent = game.score;
+    for (let i = 0; i < 3; i++) $("horn-" + i).classList.toggle("used", i < game.strikes);
+    const dots = $("traffic").querySelectorAll("span");
+    dots.forEach((d, i) => d.classList.toggle("on", i < game.traffic));
+    lift.classList.toggle("held", game.held && !game.blocked);
+    lift.classList.toggle("blocked", !!game.blocked);
+    lift.setAttribute("aria-pressed", game.held ? "true" : "false");
+    $("lift-hint").textContent = game.blocked === "auto" ? "wartet: Auto auf der Brücke" : game.blocked === "schiff" ? "wartet: Segler unter der Brücke" : game.held ? "hebt … loslassen senkt" : "halten, loslassen senkt";
+  }
+
+  /* ---------- Zeichnen ---------- */
+  function unitPose(u) {
+    const k = B.KINDS[u.kind];
+    const front = u.dir === 1 ? u.s : 1 - u.s;
+    if (k.lane === B.ROAD) return { cx: front - u.dir * k.length / 2, cy: ROAD_Y[u.dir === 1 ? 0 : 1], len: k.length, angle: u.dir === 1 ? 0 : Math.PI };
+    return { cx: WATER_X[u.dir === 1 ? 0 : 1], cy: front - u.dir * k.length / 2, len: k.length, angle: u.dir === 1 ? Math.PI / 2 : -Math.PI / 2 };
+  }
+  function rrect(x, y, w, h, r) {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  function text(str, x, y, size, color, weight) {
+    ctx.save();
+    ctx.setTransform(ui.dpr, 0, 0, ui.dpr, 0, 0);
+    ctx.font = `${weight || 700} ${Math.max(9, size * ui.size)}px system-ui, sans-serif`;
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    ctx.lineWidth = Math.max(2, size * ui.size * 0.18); ctx.strokeStyle = "rgba(10, 20, 30, .75)";
+    ctx.strokeText(str, x * ui.size, y * ui.size);
+    ctx.fillStyle = color; ctx.fillText(str, x * ui.size, y * ui.size);
+    ctx.restore();
+  }
+
+  function draw() {
+    const S = ui.size * ui.dpr, d = game.config.deck, t = ui.time;
+    ctx.setTransform(S, 0, 0, S, 0, 0);
+    ctx.lineJoin = "round"; ctx.lineCap = "round";
+
+    // Wiesen und Stadt
+    ctx.fillStyle = "#5f8f4a"; ctx.fillRect(0, 0, 1, 1);
+    ctx.fillStyle = "#56843f";
+    for (let i = 0; i < 9; i++) ctx.fillRect(0.02 + (i * 0.37) % 0.9, 0.02 + (i * 0.61) % 0.9, 0.06, 0.03);
+    for (const [x, y, w, h, hue] of HOUSES) {
+      ctx.fillStyle = `hsl(${hue} 45% 62%)`; rrect(x, y, w, h, 0.006); ctx.fill();
+      ctx.fillStyle = `hsl(${hue} 40% 48%)`; ctx.fillRect(x, y + h / 2 - 0.002, w, 0.004);
+    }
+    for (const [x, y] of TREES) { ctx.fillStyle = "#3f7a37"; ctx.beginPath(); ctx.arc(x, y, 0.022, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = "#4f9143"; ctx.beginPath(); ctx.arc(x - 0.006, y - 0.006, 0.012, 0, Math.PI * 2); ctx.fill(); }
+
+    // Kanal mit Kaimauern und Wellen
+    ctx.fillStyle = "#b7a98a"; ctx.fillRect(0.5 - d - 0.012, 0, 2 * d + 0.024, 1);
+    ctx.fillStyle = "#2c7fb3"; ctx.fillRect(0.5 - d, 0, 2 * d, 1);
+    ctx.strokeStyle = "rgba(140, 205, 240, .55)"; ctx.lineWidth = 0.004;
+    for (let i = 0; i < 14; i++) {
+      const y = ((i / 14) + t * 0.02) % 1, x = 0.5 - d + 0.02 + ((i * 0.37) % 1) * (2 * d - 0.04);
+      ctx.beginPath(); ctx.moveTo(x - 0.012, y); ctx.quadraticCurveTo(x, y - 0.006, x + 0.012, y); ctx.stroke();
+    }
+
+    // Straße mit Markierung, endet an der Kaimauer
+    for (const [x0, x1] of [[0, 0.5 - d - 0.012], [0.5 + d + 0.012, 1]]) {
+      ctx.fillStyle = "#3a3f47"; ctx.fillRect(x0, 0.5 - d, x1 - x0, 2 * d);
+      ctx.strokeStyle = "#e8d26a"; ctx.lineWidth = 0.004; ctx.setLineDash([0.03, 0.02]);
+      ctx.beginPath(); ctx.moveTo(x0, 0.5); ctx.lineTo(x1, 0.5); ctx.stroke(); ctx.setLineDash([]);
+      ctx.strokeStyle = "#d9dde3"; ctx.lineWidth = 0.003;
+      ctx.beginPath(); ctx.moveTo(x0, 0.5 - d + 0.005); ctx.lineTo(x1, 0.5 - d + 0.005); ctx.moveTo(x0, 0.5 + d - 0.005); ctx.lineTo(x1, 0.5 + d - 0.005); ctx.stroke();
+    }
+    // Haltelinien (je Fahrtrichtung eine Spur)
+    const sl = game.stopLine;
+    ctx.strokeStyle = "#f4f4f4"; ctx.lineWidth = 0.005;
+    ctx.beginPath(); ctx.moveTo(sl, 0.5 - d); ctx.lineTo(sl, 0.5); ctx.moveTo(1 - sl, 0.5); ctx.lineTo(1 - sl, 0.5 + d); ctx.stroke();
+
+    // Boote unter der Brücke zuerst, dann die Brücke, dann Autos
+    for (const u of game.units) if (u.lane === B.WATER) drawUnit(u);
+    drawBridge();
+    for (const u of game.units) if (u.lane === B.ROAD) drawUnit(u);
+    for (const u of game.units) if (u.waiting && isFinite(u.patience)) drawPatience(u);
+
+    // Tageszeit
+    const h = game.hour;
+    if (h < 9) { ctx.fillStyle = `rgba(255, 150, 70, ${((9 - h) / 3) * 0.22})`; ctx.fillRect(0, 0, 1, 1); }
+    if (h > 15) { ctx.fillStyle = `rgba(60, 40, 120, ${((h - 15) / 3) * 0.28})`; ctx.fillRect(0, 0, 1, 1); ctx.fillStyle = `rgba(255, 120, 40, ${((h - 15) / 3) * 0.12})`; ctx.fillRect(0, 0, 1, 1); }
+
+    // Hinweise und Effekte
+    if (game.blocked) text(game.blocked === "auto" ? "Auto auf der Brücke" : "Segler unter der Brücke", 0.5, 0.5 + d + 0.06, 0.034, "#ffe38a", 600);
+    ui.effects = ui.effects.filter((e) => t - e.t < e.dur);
+    for (const e of ui.effects) {
+      const p = (t - e.t) / e.dur;
+      ctx.globalAlpha = 1 - p * p;
+      text(e.text, e.x, e.y - 0.05 - p * 0.08, e.size, e.color);
+      ctx.globalAlpha = 1;
+    }
+    if (game.over) {
+      ctx.fillStyle = "rgba(6, 14, 22, .35)"; ctx.fillRect(0, 0, 1, 1);
+      text(game.status === B.WON ? "FEIERABEND" : "GEFEUERT", 0.5, 0.5, 0.11, game.status === B.WON ? "#ffe38a" : "#ff6b5b", 900);
+    }
+  }
+
+  function drawBridge() {
+    const d = game.config.deck, b = game.bridge, theta = b * (Math.PI * 0.42);
+    const L = d * Math.cos(theta), lift = Math.sin(theta);
+    const leaves = [[0.5 - d, 1], [0.5 + d, -1]];  // Angel, Richtung zur Mitte
+    for (const [hinge, dir] of leaves) {
+      const x0 = dir === 1 ? hinge : hinge - L, w = L;
+      // Schatten der angehobenen Klappe
+      if (b > 0) { ctx.fillStyle = `rgba(0, 20, 40, ${0.35 * b})`; ctx.fillRect(x0 + 0.01 * lift * dir, 0.5 - d + 0.012 * lift, w + 0.01 * lift, 2 * d); }
+      ctx.fillStyle = `rgb(${154 - 40 * b}, ${123 - 30 * b}, ${85 - 20 * b})`; ctx.fillRect(x0, 0.5 - d, w, 2 * d);
+      ctx.strokeStyle = "rgba(60, 40, 20, .5)"; ctx.lineWidth = 0.002;
+      for (let i = 1; i < 6; i++) { const px = x0 + (w * i) / 6; ctx.beginPath(); ctx.moveTo(px, 0.5 - d); ctx.lineTo(px, 0.5 + d); ctx.stroke(); }
+      // Spitze: je höher, desto mehr Unterseite sichtbar
+      const tip = dir === 1 ? x0 + w : x0, tw = 0.004 + 0.03 * lift;
+      ctx.fillStyle = "#5a4328"; ctx.fillRect(dir === 1 ? tip - tw : tip, 0.5 - d, tw, 2 * d);
+      // Geländer
+      ctx.strokeStyle = "#e8e8e8"; ctx.lineWidth = 0.004;
+      ctx.beginPath(); ctx.moveTo(x0, 0.5 - d + 0.004); ctx.lineTo(x0 + w, 0.5 - d + 0.004); ctx.moveTo(x0, 0.5 + d - 0.004); ctx.lineTo(x0 + w, 0.5 + d - 0.004); ctx.stroke();
+    }
+    // Schranken fallen, sobald sich die Brücke bewegt
+    const open = Math.min(1, b * 3);
+    if (open > 0) {
+      for (const x of [game.stopLine + 0.009, 1 - game.stopLine - 0.009]) {
+        const y0 = x < 0.5 ? 0.5 - d : 0.5 + d, dirY = x < 0.5 ? 1 : -1, len = 2 * d * open;
+        ctx.strokeStyle = "#e14b3b"; ctx.lineWidth = 0.012; ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y0 + dirY * len); ctx.stroke();
+        ctx.strokeStyle = "#ffffff"; ctx.setLineDash([0.018, 0.018]); ctx.beginPath(); ctx.moveTo(x, y0); ctx.lineTo(x, y0 + dirY * len); ctx.stroke(); ctx.setLineDash([]);
+      }
+    }
+    // Wärterhäuschen
+    ctx.fillStyle = "#d9c7a0"; rrect(0.5 + d + 0.02, 0.5 - d - 0.07, 0.05, 0.045, 0.006); ctx.fill();
+    ctx.fillStyle = b > 0 ? "#ffd166" : "#7c6a4a"; ctx.beginPath(); ctx.arc(0.5 + d + 0.045, 0.5 - d - 0.048, 0.008, 0, Math.PI * 2); ctx.fill();
+  }
+
+  function drawUnit(u) {
+    const k = B.KINDS[u.kind], p = unitPose(u), t = ui.time;
+    ctx.save();
+    ctx.translate(p.cx, p.cy); ctx.rotate(p.angle);
+    const L = k.length;
+    if (u.kind === "auto" || u.kind === "rettung") {
+      const W = 0.036;
+      ctx.fillStyle = "rgba(0,0,0,.25)"; rrect(-L / 2 + 0.004, -W / 2 + 0.006, L, W, 0.008); ctx.fill();
+      ctx.fillStyle = u.kind === "rettung" ? "#f6f6f6" : `hsl(${u.hue} 65% 55%)`; rrect(-L / 2, -W / 2, L, W, 0.008); ctx.fill();
+      ctx.fillStyle = "rgba(30, 50, 70, .85)"; rrect(L * 0.1, -W / 2 + 0.004, L * 0.16, W - 0.008, 0.003); ctx.fill(); rrect(-L * 0.35, -W / 2 + 0.004, L * 0.14, W - 0.008, 0.003); ctx.fill();
+      ctx.fillStyle = "#fff6b0"; ctx.fillRect(L / 2 - 0.006, -W / 2 + 0.004, 0.005, 0.007); ctx.fillRect(L / 2 - 0.006, W / 2 - 0.011, 0.005, 0.007);
+      if (u.kind === "rettung") {
+        ctx.fillStyle = "#e14b3b"; ctx.fillRect(-L / 2, -0.004, L, 0.008);
+        ctx.fillStyle = Math.floor(t * 8) % 2 ? "#4aa3ff" : "#1b4fd8"; ctx.beginPath(); ctx.arc(-L * 0.1, 0, 0.007, 0, Math.PI * 2); ctx.fill();
+      }
+    } else if (u.kind === "kahn") {
+      const W = 0.034;
+      ctx.fillStyle = "rgba(0, 30, 60, .35)"; ctx.beginPath(); ctx.ellipse(0.003, 0.004, L / 2, W / 2, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#8d5a2b"; ctx.beginPath(); ctx.moveTo(L / 2, 0); ctx.quadraticCurveTo(L * 0.1, W / 2 + 0.004, -L / 2, 0); ctx.quadraticCurveTo(L * 0.1, -W / 2 - 0.004, L / 2, 0); ctx.fill();
+      ctx.fillStyle = "#c98b4a"; ctx.beginPath(); ctx.ellipse(-0.004, 0, L * 0.3, W * 0.3, 0, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = "#f3c9a4"; ctx.beginPath(); ctx.arc(-0.006, 0, 0.007, 0, Math.PI * 2); ctx.fill();
+      ctx.strokeStyle = "#5a3a1a"; ctx.lineWidth = 0.003; ctx.beginPath(); ctx.moveTo(-0.006, -0.02); ctx.lineTo(0.006, 0.02); ctx.stroke();
+    } else {
+      const W = 0.05;
+      ctx.fillStyle = "rgba(0, 30, 60, .35)"; ctx.beginPath(); ctx.moveTo(L / 2 + 0.004, 0.004); ctx.lineTo(L / 6, W / 2 + 0.004); ctx.lineTo(-L / 2, W * 0.4 + 0.004); ctx.lineTo(-L / 2, -W * 0.4 + 0.004); ctx.lineTo(L / 6, -W / 2 + 0.004); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = "#f4f4f4"; ctx.beginPath(); ctx.moveTo(L / 2, 0); ctx.lineTo(L / 6, W / 2); ctx.lineTo(-L / 2, W * 0.4); ctx.lineTo(-L / 2, -W * 0.4); ctx.lineTo(L / 6, -W / 2); ctx.closePath(); ctx.fill();
+      ctx.strokeStyle = "#b9c4cc"; ctx.lineWidth = 0.002; ctx.stroke();
+      ctx.fillStyle = "#c9b48a"; ctx.fillRect(-L * 0.3, -W * 0.2, L * 0.45, W * 0.4);
+      const sway = Math.sin(t * 2 + u.id) * 0.1;
+      ctx.fillStyle = `hsl(${u.hue} 70% 72%)`; ctx.beginPath(); ctx.moveTo(L * 0.12, 0); ctx.lineTo(-L * 0.42, W * (0.55 + sway)); ctx.lineTo(-L * 0.38, 0); ctx.closePath(); ctx.fill();
+      ctx.fillStyle = "#333"; ctx.beginPath(); ctx.arc(L * 0.12, 0, 0.005, 0, Math.PI * 2); ctx.fill();
+    }
+    ctx.restore();
+  }
+
+  function drawPatience(u) {
+    const k = B.KINDS[u.kind], p = unitPose(u), f = Math.max(0, u.patience / k.patience);
+    if (f < 0.3 && Math.floor(ui.time * 6) % 2) return;
+    ctx.strokeStyle = "rgba(0,0,0,.35)"; ctx.lineWidth = 0.009;
+    ctx.beginPath(); ctx.arc(p.cx, p.cy, 0.042, 0, Math.PI * 2); ctx.stroke();
+    ctx.strokeStyle = `hsl(${120 * f} 80% 55%)`; ctx.lineWidth = 0.007;
+    ctx.beginPath(); ctx.arc(p.cx, p.cy, 0.042, -Math.PI / 2, -Math.PI / 2 + Math.PI * 2 * f); ctx.stroke();
+  }
+
+  /* ---------- Offline ---------- */
+  if ("serviceWorker" in navigator && /^https?:$/.test(location.protocol) && params.get("nosw") !== "1") {
+    navigator.serviceWorker.register("sw.js").catch(() => { /* dann eben nur online */ });
+  }
+
+  window.brueckenwaerter = { game, ui, newGame, tempo, autoplay, resize };
+  resize();
+  requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

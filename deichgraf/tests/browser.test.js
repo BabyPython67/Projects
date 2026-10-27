@@ -69,7 +69,7 @@ function serve(root) {
   return new Promise((resolve) => server.listen(0, "127.0.0.1", () => resolve({ server, url: `http://127.0.0.1:${server.address().port}` })));
 }
 
-test("Startseite verlinkt beide Spiele, jedes unter eigener Adresse", { skip: playwright ? false : "Playwright nicht installiert" }, async () => {
+test("Startseite verlinkt alle Spiele, jedes unter eigener Adresse; spiel/ leitet zu deichgraf/ weiter", { skip: playwright ? false : "Playwright nicht installiert" }, async () => {
   const root = path.resolve(__dirname, "..", "..");
   const { server, url } = await serve(root);
   const browser = await playwright.chromium.launch();
@@ -79,15 +79,23 @@ test("Startseite verlinkt beide Spiele, jedes unter eigener Adresse", { skip: pl
     page.on("pageerror", (e) => fehler.push(String(e)));
     await page.goto(url + "/");
     const hrefs = await page.$$eval("a.card", (as) => as.map((a) => a.getAttribute("href")));
-    assert.deepEqual(hrefs, ["johannisnacht/", "spiel/"]);
+    assert.ok(hrefs.includes("deichgraf/"), "Deichgraf fehlt auf der Startseite: " + hrefs.join(" "));
+    assert.ok(hrefs.includes("johannisnacht/") && hrefs.includes("brueckenwaerter/"), hrefs.join(" "));
+    assert.ok(!hrefs.includes("spiel/"), "Startseite zeigt noch auf die alte Adresse spiel/");
     for (const href of hrefs) {
       assert.ok(fs.existsSync(path.join(root, href, "index.html")), `${href}index.html fehlt`);
       const antwort = await page.request.get(url + "/" + href);
       assert.equal(antwort.status(), 200, href);
     }
-    await page.tap("a.card[href='spiel/']");
+    await page.tap("a.card[href='deichgraf/']");
     await page.waitForSelector("#btn-build");
-    assert.equal(page.url(), url + "/spiel/");
+    assert.equal(page.url(), url + "/deichgraf/");
+    assert.equal(await page.title(), "Deichgraf");
+    // Alte Adresse: Weiterleitung samt Anhängsel, dann läuft das Spiel.
+    await page.goto(url + "/spiel/?seed=7");
+    await page.waitForURL((u) => u.pathname === "/deichgraf/", { timeout: 10000 });
+    assert.equal(page.url(), url + "/deichgraf/?seed=7");
+    await page.waitForSelector("#btn-build");
     assert.equal(await page.title(), "Deichgraf");
     await page.goto(url + "/johannisnacht/");
     assert.equal(await page.title(), "Johannisnacht");

@@ -124,14 +124,14 @@ function serve(root) {
 }
 
 test("läuft offline: nach dem ersten Besuch liefert der Service Worker die Seite ohne Netz", { skip }, async () => {
-  const root = path.resolve(DIR, "..", "..");
+  const root = path.resolve(DIR, "..");
   const { server, url } = await serve(root);
   const browser = await playwright.chromium.launch();
   try {
     const context = await browser.newContext(HANDY);
     const page = await context.newPage();
     const fehler = beobachten(page);
-    const adresse = url + "/spiel/brueckenwaerter/";
+    const adresse = url + "/brueckenwaerter/";
     await page.goto(adresse);
     await page.evaluate(() => navigator.serviceWorker.ready);
     await page.waitForFunction(async () => {

@@ -65,7 +65,7 @@ class TestSmoke(unittest.TestCase):
     def test_readme_nennt_den_startbefehl(self):
         with open(os.path.join(SPIEL, "README.md"), encoding="utf-8") as f:
             readme = f.read()
-        self.assertIn("python3 spiel/deichgraf.py", readme)
+        self.assertIn("python3 deichgraf/deichgraf.py", readme)
         self.assertTrue(os.path.exists(LAUNCHER))
 
 

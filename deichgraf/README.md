@@ -1,4 +1,4 @@
-# DEICHGRAF – ein Sturmflut-Spiel fürs Terminal
+# DEICHGRAF – ein Sturmflut-Spiel fürs Terminal und den Browser
 
 Du bist der Deichgraf eines kleinen Dorfs an der Nordsee. Eine Sturmwoche mit
 sieben Nächten steht bevor, und jede Nacht läuft die Flut höher auf als die davor.
@@ -8,7 +8,7 @@ draußen, während Brecher immer wieder Löcher in den Deich schlagen.
 ## Start
 
 ```
-python3 spiel/deichgraf.py
+python3 deichgraf/deichgraf.py
 ```
 
 Braucht nur Python 3 (ab 3.8), keine Pakete, kein Internet, keine Konten.
@@ -17,9 +17,16 @@ spielt vor), `--ascii` (ohne Blockgrafik, falls das Terminal sie nicht kann).
 
 ## Auf dem Handy spielen
 
-Die Browser-Fassung liegt in `spiel/index.html` und wird über GitHub Pages ausgeliefert:
+Die Browser-Fassung liegt in `deichgraf/index.html` und wird über GitHub Pages ausgeliefert:
 
-**https://babypython67.github.io/Projects/spiel/**
+**https://babypython67.github.io/Projects/deichgraf/**
+
+(Die alte Adresse `…/Projects/spiel/` leitet hierher weiter.) Lokal aus dem Repo, dann
+http://localhost:8000 öffnen:
+
+```
+python3 -m http.server 8000 -d deichgraf
+```
 
 Gleiche Regeln, Touch-Steuerung: Knöpfe für links, Sandsack, rechts und
 „Stunde abwarten“; ein Tipp auf einen Deichabschnitt lässt den Deichgrafen
@@ -57,7 +64,7 @@ vorspielen. Am Rechner geht auch die Tastatur (siehe unten).
 ## Tests
 
 ```
-python3 -m unittest discover -s spiel/tests -v
+python3 -m unittest discover -s deichgraf/tests -v
 ```
 
 `tests/test_engine.py` prüft die Spiellogik (Punkte, Sieg/Niederlage,
@@ -68,17 +75,21 @@ Neustart; außerdem spielt der Autopilot zwei Partien am Stück.
 Die Browser-Fassung hat ihre eigene Suite (Node ab Version 18, keine Pakete):
 
 ```
-node --test spiel/tests/*.test.js
+node --test deichgraf/tests/*.test.js
 ```
 
 `tests/engine.test.js` prüft dieselben Regeln in `web/engine.js`.
 `tests/browser.test.js` öffnet die Seite in einem Handy-Viewport, spielt eine
-komplette Partie über die Touch-Knöpfe und startet neu. Dafür muss Playwright
-installiert sein (`npm install playwright && npx playwright install chromium`),
-sonst wird dieser eine Test übersprungen.
+komplette Partie über die Touch-Knöpfe und startet neu; außerdem prüft es die
+Startseite des Repos und die Weiterleitung von der alten Adresse `spiel/`. Dafür
+muss Playwright installiert sein (`npm install playwright && npx playwright
+install chromium`), sonst werden diese Tests übersprungen.
 
 ## Entscheidungen
 
+* **Eigener Ordner `deichgraf/` (seit dem Aufräumen):** Terminal-Fassung,
+  Browser-Fassung und Tests liegen zusammen; `spiel/` enthält nur noch die
+  Weiterleitung auf die neue Adresse.
 * **Terminal statt Browser, nur Standardbibliothek:** ein Befehl zum Starten,
   nichts zu installieren, läuft auf Linux, macOS und Windows.
 * **Rundenbasiert statt Echtzeit:** jede Taste ist ein Zug. So lässt sich die
