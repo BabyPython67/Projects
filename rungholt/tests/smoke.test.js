@@ -192,11 +192,13 @@ test("läuft offline: nach dem ersten Besuch liefert der Service Worker die Seit
   }
 });
 
-test("Handy und iPad quer: jede Tippfläche mindestens 44×44 px, eine Runde nur per Tipp, nichts ragt über den Rand", { skip }, async () => {
+test("Geräteprofile iPhone 13 und iPad Pro 11 quer: jede Tippfläche mindestens 44×44 px, eine Runde nur per Tipp, nichts ragt über den Rand", { skip }, async () => {
   const browser = await playwright.chromium.launch();
   try {
-    for (const vp of [{ name: "Handy hochkant", width: 390, height: 844 }, { name: "iPad quer", width: 1180, height: 820 }]) {
-      const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height }, isMobile: true, hasTouch: true });
+    // Playwrights Geräteprofile (Bildschirm, Pixeldichte, Touch, Kennung); die Engine bleibt Chromium.
+    for (const vp of [{ name: "iPhone 13", geraet: playwright.devices["iPhone 13"] }, { name: "iPad Pro 11 quer", geraet: playwright.devices["iPad Pro 11 landscape"] }]) {
+      assert.ok(vp.geraet && vp.geraet.hasTouch, `${vp.name}: Geräteprofil fehlt`);
+      const page = await browser.newPage(Object.assign({}, vp.geraet, { defaultBrowserType: undefined }));
       const fehler = beobachten(page);
       await page.goto(SEITE + "?seed=11&schnell=1");
       const messen = async (schirm) => {

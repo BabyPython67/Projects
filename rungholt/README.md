@@ -17,11 +17,14 @@ offline.
 **https://babypython67.github.io/Projects/rungholt/** (GitHub Pages, sobald `main` den
 Ordner enthält). Auf iPad und Handy komplett per Touch, über „Zum Home-Bildschirm“ wird
 daraus eine App mit eigenem Icon; nach dem ersten Besuch läuft sie auch ohne Netz.
-Geprüft mit Playwright und Touch-Emulation (Chromium) in Handy-Hochkant (390×844) und
-iPad-Querformat (1180×820): Alle Bedienelemente sind Knöpfe von mindestens 44×44 Pixeln,
-nichts braucht Ziehen, Maus oder Tastatur. Auf einem echten iPad oder iPhone konnte ich es
-aus der Arbeitsumgebung nicht testen; dort offen sind vor allem Safari-Eigenheiten bei Ton
-und Home-Bildschirm-App.
+Geprüft mit Playwright und Touch-Emulation in Chromium mit den Geräteprofilen „iPhone 13“
+(390×844, Pixeldichte 3) und „iPad Pro 11 landscape“ (1194×834) sowie im Handy-Viewport
+390×844: Alle Bedienelemente sind Knöpfe von mindestens 44×44 Pixeln, nichts braucht
+Ziehen, Maus oder Tastatur, eine ganze Nacht lässt sich nur mit Tipps durchspielen. Auf
+einem echten iPad oder iPhone konnte ich es aus der Arbeitsumgebung nicht testen, und
+auch Playwrights WebKit (Safaris Engine) ließ sich dort nicht installieren (Download vom
+Netz-Proxy abgewiesen); offen bleiben damit Safari-Eigenheiten bei Ton und
+Home-Bildschirm-App.
 
 Lokal aus dem Repo mit einem Befehl, dann http://localhost:8000/rungholt/ öffnen:
 
@@ -72,8 +75,8 @@ Build, Logik getrennt von Darstellung, Service Worker, Autopilot für Balance un
 ## Recherche
 
 Websuche war verfügbar und hat die Links geliefert. Die Seiten selbst ließen sich aus der
-Arbeitsumgebung nicht öffnen (Netzsperre für alle fremden Hosts, geprüft an fünf der
-Adressen), deshalb stützen sich die Sätze auf die Suchzusammenfassungen und auf mein
+Arbeitsumgebung nicht öffnen (Netzsperre für alle fremden Hosts; per WebFetch und curl an
+zehn der Adressen geprüft, alle abgewiesen), deshalb stützen sich die Sätze auf die Suchzusammenfassungen und auf mein
 Vorwissen zu den Werken; die Links sind zum Nachprüfen da. Als Anregung genutzt, nicht als
 Vorgabe:
 
@@ -251,7 +254,8 @@ Neuladen; eine Begegnung von Hand (Würfel wählen, Gegenstand setzen, Abweisung
 unpassenden Würfels, Runde beenden, Hilfe, Ton, Chronik); der Offline-Start aus dem
 Service Worker bei abgeschaltetem Server; und in Handy- und iPad-Querformat eine Runde
 per Tipp, wobei auf Titel, Karte und Begegnung jeder sichtbare Knopf mindestens 44×44
-Pixel groß sein muss und die Seite nicht breiter als der Bildschirm sein darf.
+Pixel groß sein muss und die Seite nicht breiter als der Bildschirm sein darf (Geräteprofile
+„iPhone 13“ und „iPad Pro 11 landscape“ aus Playwright, Engine Chromium).
 
 ## Ehrliche Einschätzung
 
