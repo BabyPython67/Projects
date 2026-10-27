@@ -7,6 +7,7 @@ eigene Adresse, die Startseite verlinkt alle:
 | | Ordner | Adresse |
 |---|---|---|
 | Startseite | `index.html` | https://babypython67.github.io/Projects/ |
+| **Rungholt**, Würfel-Roguelike: eine Nacht durchs Watt zur versunkenen Stadt (neu) | [rungholt/](rungholt/) | https://babypython67.github.io/Projects/rungholt/ |
 | Johannisnacht, Glühwürmchen mit einer Schlinge aus Licht fangen | [johannisnacht/](johannisnacht/) | https://babypython67.github.io/Projects/johannisnacht/ |
 | Deichgraf, Sturmflut-Spiel, rundenbasiert (Handy und Terminal) | [deichgraf/](deichgraf/) | https://babypython67.github.io/Projects/deichgraf/ |
 | Brückenwärter, Klappbrücke im Hafen bedienen, Echtzeit, läuft offline | [brueckenwaerter/](brueckenwaerter/) | https://babypython67.github.io/Projects/brueckenwaerter/ |
@@ -28,6 +29,7 @@ ohne Playwright übersprungen.
 python3 -m unittest discover -s deichgraf/tests
 node --test deichgraf/tests/*.test.js
 node --test brueckenwaerter/tests/*.test.js
+node --test rungholt/tests/*.test.js
 ```
 
 Johannisnacht hat keine Tests (eine einzelne Datei ohne getrennte Spiellogik).
@@ -58,6 +60,10 @@ Was beim Aufräumen geändert wurde und warum:
   `brueckenwaerter-v1`) und löscht nur eigene alte Stände, damit die alte Fassung offline spielbar
   bleibt, bis der Umzug gelaufen ist. `brueckenwaerter/tests/umzug.test.js` prüft beides im
   Browser; dafür liegt der alte Service Worker als Kopie in `brueckenwaerter/tests/fixtures/`.
+* **Brückenwärter-Smoke-Test entflackert.** Die Prüfung „Nichtstun endet mit drei Hupen“ las die
+  Hupen-Anzeige direkt nach dem Neustart, bevor das nächste Bild gezeichnet war, und schlug
+  gelegentlich fehl (einmal in fünf Läufen). Sie wartet jetzt auf das Neuzeichnen; am Spiel
+  wurde nichts geändert.
 * **`london-sporttag/` entfernt.** Der Ordner enthielt nur noch eine Weiterleitung zur
   Johannisnacht für Links auf die gelöschte London-Karte; ohne Ersatz gestrichen.
 * **Startseite und dieses README** verlinken und beschreiben alle Spiele; die Startseite hatte

@@ -98,7 +98,8 @@ test("Hebel halten hebt die Brücke, Nichtstun endet mit drei Hupen und 'Gefeuer
     const neu = await zustand(page);
     assert.equal(neu.status, "läuft");
     assert.equal(neu.strikes, 0);
-    assert.equal(await page.$$eval(".horn.used", (els) => els.length), 0);
+    // Die Hupen werden erst im nächsten Bild neu gezeichnet: darauf warten statt sofort zu prüfen.
+    await page.waitForFunction(() => document.querySelectorAll(".horn.used").length === 0, null, { timeout: 5000 });
     // Leertaste halten hebt die Brücke genauso.
     await page.keyboard.down("Space");
     await page.waitForFunction(() => window.brueckenwaerter.game.bridge > 0.3, null, { timeout: 10000 });
