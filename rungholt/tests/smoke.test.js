@@ -191,3 +191,52 @@ test("läuft offline: nach dem ersten Besuch liefert der Service Worker die Seit
     server.close();
   }
 });
+
+test("Handy und iPad quer: jede Tippfläche mindestens 44×44 px, eine Runde nur per Tipp, nichts ragt über den Rand", { skip }, async () => {
+  const browser = await playwright.chromium.launch();
+  try {
+    for (const vp of [{ name: "Handy hochkant", width: 390, height: 844 }, { name: "iPad quer", width: 1180, height: 820 }]) {
+      const page = await browser.newPage({ viewport: { width: vp.width, height: vp.height }, isMobile: true, hasTouch: true });
+      const fehler = beobachten(page);
+      await page.goto(SEITE + "?seed=11&schnell=1");
+      const messen = async (schirm) => {
+        const kleine = await page.$$eval("button", (els) => els
+          .filter((b) => !b.disabled && b.offsetParent !== null)
+          .map((b) => { const r = b.getBoundingClientRect(); return { knopf: b.textContent.trim().slice(0, 24) || b.id, w: Math.round(r.width), h: Math.round(r.height) }; })
+          .filter((b) => b.w < 44 || b.h < 44));
+        assert.deepEqual(kleine, [], `${vp.name}, ${schirm}: zu kleine Tippflächen`);
+        assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth + 1), `${vp.name}, ${schirm}: Seite breiter als der Bildschirm`);
+      };
+      await messen("Titel");
+      await page.tap("#btn-start");
+      await messen("Karte");
+      await page.tap('.node[data-node="0"]');
+      await ruhe(page);
+      assert.equal((await zustand(page)).screen, "fight");
+      await messen("Begegnung");
+      // Jeden Würfel per Tipp auf den ersten Gegenstand setzen, der ihn nimmt; dann die Runde beenden.
+      let gesetzt = 0;
+      for (let k = 0; k < 8; k++) {
+        const paar = await page.evaluate(() => { const g = window.rungholt.game; for (let di = 0; di < g.dice.length; di++) for (let gi = 0; gi < g.gear.length; gi++) if (g.fits(g.dice[di], g.gear[gi])) return { di, gi }; return null; });
+        if (!paar) break;
+        await page.tap(`.die[data-die="${paar.di}"]`);
+        await page.tap(`.gear[data-gear="${paar.gi}"]`);
+        await ruhe(page);
+        gesetzt++;
+        if ((await zustand(page)).screen !== "fight") break;
+      }
+      assert.ok(gesetzt >= 1, "kein Würfel ließ sich per Tipp setzen");
+      if ((await zustand(page)).screen === "fight") {
+        await page.tap("#btn-end");
+        await ruhe(page);
+        const z = await zustand(page);
+        assert.ok(["fight", "reward", "over"].includes(z.screen), z.screen);
+        if (z.screen === "fight") assert.ok(z.dice >= 1, "keine neuen Würfel nach der Runde");
+      }
+      assert.deepEqual(fehler, []);
+      await page.close();
+    }
+  } finally {
+    await browser.close();
+  }
+});

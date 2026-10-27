@@ -17,6 +17,11 @@ offline.
 **https://babypython67.github.io/Projects/rungholt/** (GitHub Pages, sobald `main` den
 Ordner enthält). Auf iPad und Handy komplett per Touch, über „Zum Home-Bildschirm“ wird
 daraus eine App mit eigenem Icon; nach dem ersten Besuch läuft sie auch ohne Netz.
+Geprüft mit Playwright und Touch-Emulation (Chromium) in Handy-Hochkant (390×844) und
+iPad-Querformat (1180×820): Alle Bedienelemente sind Knöpfe von mindestens 44×44 Pixeln,
+nichts braucht Ziehen, Maus oder Tastatur. Auf einem echten iPad oder iPhone konnte ich es
+aus der Arbeitsumgebung nicht testen; dort offen sind vor allem Safari-Eigenheiten bei Ton
+und Home-Bildschirm-App.
 
 Lokal aus dem Repo mit einem Befehl, dann http://localhost:8000/rungholt/ öffnen:
 
@@ -66,13 +71,16 @@ Build, Logik getrennt von Darstellung, Service Worker, Autopilot für Balance un
 
 ## Recherche
 
-Websuche war verfügbar; einzelne Seiten (gamedeveloper.com) ließen sich aus der Umgebung
-nicht abrufen, dort stütze ich mich auf die Suchzusammenfassungen und mein Wissen. Als
-Anregung genutzt, nicht als Vorgabe:
+Websuche war verfügbar und hat die Links geliefert. Die Seiten selbst ließen sich aus der
+Arbeitsumgebung nicht öffnen (Netzsperre für alle fremden Hosts, geprüft an fünf der
+Adressen), deshalb stützen sich die Sätze auf die Suchzusammenfassungen und auf mein
+Vorwissen zu den Werken; die Links sind zum Nachprüfen da. Als Anregung genutzt, nicht als
+Vorgabe:
 
-1. **Sid Meier, „a game is a series of interesting decisions“** (GDC-Seminar 2012, Kapitel
-   in seiner Memoir) – [GDC-Ankündigung](https://www.engadget.com/2012-01-24-sid-meier-keiji-inafune-and-riot-games-folks-added-to-gdc-semin.html),
-   [Besprechung](https://thestrategybridge.org/the-bridge/2021/1/11/reviewing-sid-meiers-lessons-in-game-design-civilization-and-wargames).
+1. **Sid Meier, „a game is a series of interesting decisions“** – Interview
+   [„Just one more turn“ bei Game Developer](https://www.gamedeveloper.com/game-platforms/just-one-more-turn---game-development-tips-and-tricks-from-the-creator-of-civilization-sid-meier-),
+   die [GDC-2012-Sitzung „Interesting Decisions“](https://www.engadget.com/2012-01-24-sid-meier-keiji-inafune-and-riot-games-folks-added-to-gdc-semin.html)
+   und das Kapitel dazu in [„Sid Meier's Memoir!“](https://www.sidmeiersmemoir.com/).
    Übernommen: Jede Runde ist eine Zuordnung mit sichtbarem Preis (dieser Würfel auf
    Schlag oder auf Schutz?), und jeder Schritt auf der Karte eine Wahl zwischen ungleichen
    Dingen; nichts ist reine Ausführung.
@@ -125,10 +133,23 @@ Anregung genutzt, nicht als Vorgabe:
     sich mit der Strecke, ab den Prielen schlägt alle Weile eine ferne Glocke, jeder
     Gegner und jeder Gegenstand hat einen Satz Hintergrund, kein Tutorial-Text.
 
-Außerdem im Kopf, ohne Link: *Slay the Spire* und *FTL* (Karte mit sichtbaren
-Knotentypen, Belohnung aus dreien), *Dicey Dungeons* (Würfel auf Gegenstände setzen,
-Zähl-Felder), *Into the Breach* (angekündigte Gegnerzüge), die Sage von Rungholt und
-Detlev von Liliencrons „Trutz, Blanke Hans“.
+11. **Matthew Davis (Subset Games), „Into the Breach Design Postmortem“** (GDC 2019) –
+    [GDC Vault](https://www.gdcvault.com/play/1025772/-Into-the-Breach-Design),
+    [Bericht](https://www.gdconf.com/news/get-inside-look-making-breach-gdc-2019). Übernommen:
+    vollständige Information: Der Gegner zeigt seinen nächsten Zug mit Zahl, der Spieler
+    rechnet mit dem, was da steht, und die Spannung kommt aus knappen Mitteln, nicht aus
+    verborgenem Zufall.
+12. **Anthony Giovannetti (Mega Crit), „Slay the Spire: Metrics Driven Design and
+    Balance“** (GDC 2019) – [GDC Vault](https://www.gdcvault.com/play/1025731),
+    [Ankündigung](https://gdconf.com/news/learn-slay-spires-successful-metrics-driven-approach-game-balancing-gdc-2019).
+    Übernommen: Balance über Zahlen statt Gefühl: Der Autopilot spielt hunderte Nächte,
+    und Lebenspunkte, Schaden und die Glocke wurden danach eingestellt (von 94 % Siegquote
+    auf 41 %); außerdem die Karte mit sichtbaren Knotentypen und die Belohnung „eins von
+    dreien“.
+
+Außerdem im Kopf, ohne Link: *FTL* (Reise mit Ereignissen und knappen Mitteln), *Dicey
+Dungeons* (Würfel auf Gegenstände setzen, Zähl-Felder), die Sage von Rungholt und Detlev
+von Liliencrons „Trutz, Blanke Hans“.
 
 ## Was das Spiel reizvoll macht
 
@@ -223,12 +244,14 @@ Browser (Playwright, sonst übersprungen):
 node --test rungholt/tests/smoke.test.js
 ```
 
-Drei Tests im Handy-Viewport (390×844, Touch): eine komplette Nacht nur über Tipp-Eingaben
+Vier Tests mit Touch-Emulation: im Handy-Viewport (390×844) eine komplette Nacht nur über Tipp-Eingaben
 vom Titel bis zum Ende (der Autopilot sagt, was er täte, getippt wird auf die Knöpfe),
 mit Prüfung von Endanzeige, Punkten, gespeichertem Profil, „Noch eine Nacht“ und
 Neuladen; eine Begegnung von Hand (Würfel wählen, Gegenstand setzen, Abweisung eines
 unpassenden Würfels, Runde beenden, Hilfe, Ton, Chronik); der Offline-Start aus dem
-Service Worker bei abgeschaltetem Server.
+Service Worker bei abgeschaltetem Server; und in Handy- und iPad-Querformat eine Runde
+per Tipp, wobei auf Titel, Karte und Begegnung jeder sichtbare Knopf mindestens 44×44
+Pixel groß sein muss und die Seite nicht breiter als der Bildschirm sein darf.
 
 ## Ehrliche Einschätzung
 
@@ -243,7 +266,9 @@ Treffergröße, synthetischer Klang, der ohne Laden auskommt, Würfelwurf und
 Gegnerzug als kleine Sequenz. Schwach: Die Gegner sind statische SVG-Silhouetten ohne
 eigene Bewegung, die Animationen sind CSS-Standard, Vibration gibt es nur auf Android,
 und der Autopilot-Durchlauf verrät, dass Tippen schneller geht, als die Sequenzen laufen:
-wer hastig spielt, wartet manchmal eine halbe Sekunde.
+wer hastig spielt, wartet manchmal eine halbe Sekunde. Und: Alles ist nur in emulierten
+Touch-Browsern geprüft, nicht auf einem echten iPhone oder iPad; wie Web Audio und die
+Home-Bildschirm-App sich in Safari anfühlen, weiß ich erst, wenn Mirko es öffnet.
 
 **Spannende Entscheidungen.** Gelungen: angekündigte Gegnerzüge, Zufall vor der Wahl,
 Zuordnung mit echtem Preis, fünf Plätze, Flut gegen Mut. Schwach: Der gierige Autopilot
