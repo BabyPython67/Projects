@@ -13,6 +13,14 @@ eigene Adresse, die Startseite verlinkt alle:
 | Deichgraf, Sturmflut-Spiel, rundenbasiert (Handy und Terminal) | [deichgraf/](deichgraf/) | https://babypython67.github.io/Projects/deichgraf/ |
 | Brückenwärter, Klappbrücke im Hafen bedienen, Echtzeit, läuft offline | [brueckenwaerter/](brueckenwaerter/) | https://babypython67.github.io/Projects/brueckenwaerter/ |
 
+## Vergleich Rungholt gegen Moorlicht
+
+Rungholt (Claude Fable 5.1) und Moorlicht (Claude Opus 5.5) entstanden aus fast demselben Auftrag.
+Der Vergleich steht als Seite zum Durchklicken unter
+https://babypython67.github.io/Projects/vergleich/ ([vergleich/index.html](vergleich/index.html)) und als
+Text in [vergleich/BERICHT.md](vergleich/BERICHT.md); Aufträge, Messwerkzeug und Rohdaten liegen in
+[vergleich/](vergleich/). Spätere Spielinhalte stehen dort nur in zugeklappten Spoiler-Abschnitten.
+
 ## Alte Adressen
 
 [spiel/](spiel/) enthält nur noch Weiterleitungen: `spiel/` führt zu `deichgraf/`,
