@@ -40,9 +40,9 @@ test("Startglas und Werte der drei Laternen", () => {
   assert.deepEqual([s.docht, s.dochtMax, s.schwelle], [6, 6, 7]);
   const k = M.neuerLauf({ seed: 1, laterne: "kupfer" });
   assert.equal(k.glas.filter((id) => id === "gleichtakt").length, 3);
-  assert.deepEqual(k.talismane, ["taktstock"]);
+  assert.deepEqual(k.talismane, []);
   const p = M.neuerLauf({ seed: 1, laterne: "papier" });
-  assert.deepEqual([p.docht, p.schwelle], [4, 9]);
+  assert.deepEqual([p.docht, p.schwelle], [4, 8]);
   assert.equal(M.neuerLauf({ seed: 1, laterne: "gibtsnicht" }).laterne, "sturm");
 });
 

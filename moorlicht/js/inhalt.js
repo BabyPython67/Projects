@@ -144,16 +144,16 @@
       text: "Almas Laterne. Robust, 6 Docht, Kälte-Schwelle 7."
     },
     kupfer: {
-      name: "Kupferlaterne", docht: 5, schwelle: 7, talismane: ["taktstock"],
+      name: "Kupferlaterne", docht: 5, schwelle: 7, talismane: [],
       glas: ["gluehwuermchen", "gluehwuermchen", "gluehwuermchen", "gleichtakt", "gleichtakt", "gleichtakt",
         "irrlicht1", "irrlicht1", "irrlicht1", "irrlicht1", "irrlicht2", "irrlicht2", "irrlicht3"],
-      text: "Für Gleichtakt gebaut: drei Gleichtakt-Käfer und der Taktstock, dafür nur 5 Docht."
+      text: "Für Gleichtakt gebaut: drei Gleichtakt-Käfer statt drei Glühwürmchen, dafür nur 5 Docht."
     },
     papier: {
-      name: "Papierlaterne", docht: 4, schwelle: 9, talismane: [],
+      name: "Papierlaterne", docht: 4, schwelle: 8, talismane: [],
       glas: ["gluehwuermchen", "gluehwuermchen", "gluehwuermchen", "gluehwuermchen", "nachtfalter", "nachtfalter",
-        "johannis", "irrlicht1", "irrlicht1", "irrlicht1", "irrlicht1", "irrlicht2", "irrlicht2", "irrlicht3"],
-      text: "Leicht und zugig: Kälte-Schwelle 9 und zwei Nachtfalter, aber nur 4 Docht."
+        "irrlicht1", "irrlicht1", "irrlicht1", "irrlicht1", "irrlicht2", "irrlicht2", "irrlicht3"],
+      text: "Leicht und zugig: Kälte-Schwelle 8 und zwei Nachtfalter, aber nur 4 Docht."
     }
   };
 
