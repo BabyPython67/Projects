@@ -666,6 +666,12 @@
     run.ende = { sieg, region: run.region, ausgewertet: false, bilanz: null, wahresEnde: false };
     return true;
   }
+  function aufgeben(run) {
+    if (!run || run.phase === "ende") return false;
+    run.station = null;
+    run.fund = null;
+    return beenden(run, false);
+  }
   function fortschritt(run) {
     return run.statistik.schritte + (run.ende && run.ende.sieg ? 10 : 0);
   }
@@ -684,7 +690,11 @@
     meta.laeufe++;
     for (const n of neueNotizen) meta.notizen.push(n);
     meta.notizen.sort((a, b) => a - b);
-    for (const id of s.gesehen) if (meta.gesehen.arten.indexOf(id) < 0) { meta.gesehen.arten.push(id); neu.push(ARTEN[id].name); }
+    for (const id of s.gesehen) {
+      if (meta.gesehen.arten.indexOf(id) >= 0) continue;
+      meta.gesehen.arten.push(id);
+      if (!ARTEN[id].irr) neu.push(ARTEN[id].name);
+    }
     for (const t of run.talismane) if (meta.gesehen.talismane.indexOf(t) < 0) meta.gesehen.talismane.push(t);
     meta.weitesteRegion = Math.max(meta.weitesteRegion, run.region);
     for (const w of s.waechter) meta.waechter[w] = (meta.waechter[w] || 0) + 1;
@@ -720,6 +730,6 @@
     fangen, beuteWaehlen, rastHeilung, entfernbar, rasten,
     kaufbar, kaufen, austreibenKosten, austreiben, haendlerVerlassen,
     fundDaten, optionMoeglich, fundWaehlen, fundAbschliessen,
-    laufAuswerten, fortschritt
+    laufAuswerten, fortschritt, aufgeben
   };
 });
