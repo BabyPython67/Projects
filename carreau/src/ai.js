@@ -73,7 +73,7 @@ export function applyError(from, target, err) {
 }
 
 // Welcher Landepunkt bringt eine Kugel (allein auf dem Platz) genau zum Ziel?
-export function solveLanding(terrain, from, goal, shotKey, kind = 'boule', iters = 6) {
+export function solveLanding(terrain, from, goal, shotKey, kind = 'boule', iters = 8) {
   const dx = goal.x - from.x, dy = goal.y - from.y;
   const dist = Math.hypot(dx, dy) || 1;
   const ux = dx / dist, uy = dy / dist, px = -uy, py = ux;
@@ -96,7 +96,7 @@ export function solveLanding(terrain, from, goal, shotKey, kind = 'boule', iters
     prevS = s;
     prevA = along;
     s = Math.min(dist + 1.5, Math.max(0.3, ns));
-    lat -= side * 0.9;
+    lat -= side * Math.min(1, Math.max(0.3, s / Math.max(0.5, along)));
   }
   return best;
 }

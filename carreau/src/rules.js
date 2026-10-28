@@ -99,6 +99,7 @@ export function holder(state, bodies = state.bodies) {
 }
 
 export function nextThrower(state) {
+  if (state.mode === 'practice') return state.phase === 'jack' || state.phase === 'play' ? 0 : null;
   if (state.phase === 'jack') return state.jackPlacer ?? state.jackThrower;
   if (state.phase !== 'play') return null;
   const rem = state.remaining;
@@ -174,6 +175,11 @@ export function commitThrow(state, terrain, team, bodies, thrown, shotKey) {
       return { jackInvalid: true, feats };
     }
     return { jackValid: true, feats };
+  }
+  if (state.mode === 'practice') {
+    state.lastThrower = team;
+    analyse(state, before, team, thrown, shotKey, feats);
+    return { feats, practice: true };
   }
   state.remaining[team]--;
   state.lastThrower = team;

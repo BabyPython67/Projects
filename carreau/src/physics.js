@@ -197,7 +197,8 @@ export class World {
     if (b.y < lo) { b.y = lo; b.vy = -b.vy * 0.3; b.vx *= 0.6; hit = true; }
     if (b.y > L + BOARD - b.r) { b.y = L + BOARD - b.r; b.vy = -b.vy * 0.3; b.vx *= 0.6; hit = true; }
     if (hit) this.emit({ type: 'board', id: b.id, kind: b.kind, speed: Math.hypot(b.vx, b.vy) / 0.3, x: b.x, y: b.y });
-    if (!b.out && !b.air && (b.x < -b.r || b.x > W + b.r || b.y < -b.r || b.y > L + b.r)) {
+    const low = !b.air || hit || b.z - b.r < this.terrain.macro(b.x, b.y) + 0.15;
+    if (!b.out && low && (b.x < -b.r || b.x > W + b.r || b.y < -b.r || b.y > L + b.r)) {
       b.out = true;
       this.emit({ type: 'out', id: b.id, kind: b.kind, x: b.x, y: b.y });
     }
