@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Carreau – Boule unter Platanen</title>
+<meta name="description" content="Boule (Pétanque) im Browser: Physik, Taktik, Zikaden. Gegen die Leute aus Saint-Aurel oder zu zweit an einem Gerät.">
+<meta name="theme-color" content="#2b3a33">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Carreau">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="cv" aria-label="Bouleplatz"></canvas>
+
+<div id="hud" hidden>
+  <div id="topbar">
+    <button id="btnMenu" class="icon" aria-label="Menü">☰</button>
+    <div id="board">
+      <div class="side" id="sb0"><span class="nm"></span><span class="pts"></span><span class="bl"></span></div>
+      <div class="mid" id="meneNo"></div>
+      <div class="side right" id="sb1"><span class="nm"></span><span class="pts"></span><span class="bl"></span></div>
+    </div>
+  </div>
+  <div id="lage"></div>
+  <div id="toast" role="status"></div>
+  <div id="bigToast"></div>
+  <div id="practiceBar" hidden>
+    <button id="pCollect">Kugeln einsammeln</button>
+    <button id="pNewJack">Neue Sau</button>
+  </div>
+  <div id="bottombar">
+    <div id="aiBar" hidden></div>
+    <div id="shotbar">
+      <button data-shot="roll"><b>Rollen</b><small>früh aufsetzen</small></button>
+      <button data-shot="half"><b>Halbhoch</b><small>Mitte</small></button>
+      <button data-shot="high"><b>Hoch</b><small>liegt tot</small></button>
+      <button data-shot="shot"><b>Schießen</b><small>auf Kugel</small></button>
+    </div>
+    <button id="throwBtn"><span id="throwLabel">Halten · Loslassen</span></button>
+  </div>
+  <div id="meneCard" class="card" hidden>
+    <h2 id="meneTitle"></h2>
+    <p id="meneText"></p>
+    <button id="meneNext" class="primary">Nächste Aufnahme</button>
+  </div>
+</div>
+
+<div id="screens">
+  <section id="scrTitle" class="screen">
+    <div class="titlebox">
+      <h1>Carreau</h1>
+      <p class="sub">Boule unter Platanen</p>
+      <div id="titleInfo" class="info"></div>
+      <div class="menu">
+        <button id="btnResume" class="primary" hidden>Weiterspielen</button>
+        <button id="btnVillage" class="primary">Dorfpartie</button>
+        <button id="btnDaily">Tagesplatz</button>
+        <button id="btnDuo">Zu zweit an einem Gerät</button>
+        <button id="btnPractice">Übungsplatz</button>
+      </div>
+      <div class="row small">
+        <button id="btnHelp">Anleitung</button>
+        <button id="btnStats">Werte</button>
+        <button id="btnBackup">Sichern</button>
+        <button id="btnSound">Ton an</button>
+      </div>
+      <p id="installHint" class="hint" hidden></p>
+    </div>
+  </section>
+
+  <section id="scrSelect" class="screen" hidden>
+    <div class="panel">
+      <header><button class="back" data-back>‹</button><h2>Wen forderst du heraus?</h2></header>
+      <div class="lenrow"><span>Partie bis</span><button data-len="13" class="seg">13 Punkte</button><button data-len="7" class="seg">7 Punkte</button></div>
+      <div id="villagers" class="list"></div>
+    </div>
+  </section>
+
+  <section id="scrDuo" class="screen" hidden>
+    <div class="panel">
+      <header><button class="back" data-back>‹</button><h2>Zu zweit</h2></header>
+      <p>Ihr spielt abwechselnd an diesem Gerät. Silber gegen Bronze, Tête-à-tête mit je drei Kugeln.</p>
+      <label class="field">Silber <input id="duoA" maxlength="12" value="Silber"></label>
+      <label class="field">Bronze <input id="duoB" maxlength="12" value="Bronze"></label>
+      <div class="lenrow"><span>Partie bis</span><button data-dlen="13" class="seg">13 Punkte</button><button data-dlen="7" class="seg">7 Punkte</button></div>
+      <button id="duoGo" class="primary">Los geht's</button>
+    </div>
+  </section>
+
+  <section id="scrHelp" class="screen" hidden>
+    <div class="panel">
+      <header><button class="back" data-back>‹</button><h2>So spielt man Carreau</h2></header>
+      <div class="prose">
+        <h3>Ziel</h3>
+        <p>Bring deine Kugeln näher an die kleine rote Sau als dein Gegner. Wer am Ende einer Aufnahme die nächste Kugel hat, bekommt einen Punkt für jede eigene Kugel, die näher liegt als die beste gegnerische. Wer zuerst 13 (oder 7) Punkte hat, gewinnt.</p>
+        <h3>Wer wirft?</h3>
+        <p>Wer gerade <em>nicht</em> den Punkt hält, wirft so lange, bis er ihn hat oder keine Kugeln mehr übrig sind. Jeder hat drei Kugeln pro Aufnahme. Kugeln in der Hand sind deshalb wertvoll: Wer am Ende noch Kugeln hat, kann nachlegen.</p>
+        <h3>Werfen</h3>
+        <p><b>Zielen:</b> Zieh mit dem Finger irgendwo auf dem Platz – die Zielmarke wandert mit. Tippen setzt sie direkt. Die Marke ist der <em>Aufsetzpunkt</em>, nicht das Ende: Wie weit die Kugel danach rollt, hängt von Wurfart, Boden und Gefälle ab.</p>
+        <p><b>Ausführen:</b> Halte den runden Knopf. Der gelbe Punkt pendelt in der gestrichelten Ellipse und zeigt, wo die Kugel jetzt landen würde. Lass los, wenn er gut steht. Wer zu lange hält, wird zittrig. Ziehst du den Finger weit weg, brichst du ab.</p>
+        <h3>Wurfarten</h3>
+        <ul>
+          <li><b>Rollen</b> – flach, setzt früh auf und rollt weit. Präzise auf glattem Boden, launisch auf grobem Kies.</li>
+          <li><b>Halbhoch</b> – das Allzweck-Werkzeug: landet etwa auf halber Strecke.</li>
+          <li><b>Hoch</b> – steiler Bogen, die Kugel gräbt sich ein und bleibt fast liegen. Ideal über Hindernisse und auf rauem Boden.</li>
+          <li><b>Schießen</b> – schnell und direkt auf eine Kugel (tippen rastet ein). Ein Treffer räumt ab; bleibt deine Kugel dabei liegen, ist das ein <em>Carreau</em>. Ein Fehlschuss fliegt meist ins Aus.</li>
+        </ul>
+        <h3>Den Boden lesen</h3>
+        <p>Schattierung zeigt Gefälle und Mulden (Licht von links oben). Heller Sand bremst, rötlicher Lehm ist schnell, grauer Grobkies lenkt ab, eine Platanenwurzel wirkt wie eine Schwelle. Hohe Würfe hinterlassen Krater, die bis zum Ende der Partie bleiben. Die gestrichelte Spur zeigt, wie deine letzte Kugel gerollt ist.</p>
+        <h3>Die Sau</h3>
+        <p>Wer eine Aufnahme gewinnt, wirft die nächste Sau – 6 bis 10 m vom Kreis, mindestens 50 cm vom Rand. Der Kreis liegt dort, wo die Sau zuletzt lag. Fliegt die Sau ins Aus, zählt die Aufnahme nicht – außer nur einer hat noch Kugeln: dann zählt jede davon.</p>
+        <h3>Tipps</h3>
+        <p>Antippen während die Kugeln rollen spult vor. Die Lupe oben rechts zeigt die Lage an der Sau, wenn die Kamera weit weg ist. Jeder Gegner hat Stärken und Schwächen – Zoé räumt nahe Kugeln ab, Opa Marcel schießt kaum.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="scrStats" class="screen" hidden>
+    <div class="panel">
+      <header><button class="back" data-back>‹</button><h2>Deine Werte</h2></header>
+      <div id="statsBody"></div>
+    </div>
+  </section>
+
+  <section id="scrBackup" class="screen" hidden>
+    <div class="panel">
+      <header><button class="back" data-back>‹</button><h2>Fortschritt sichern</h2></header>
+      <div class="prose">
+        <p>Carreau speichert nach jedem Wurf auf diesem Gerät. Safari kann den Speicher von Webseiten aber löschen, wenn du sie eine Woche nicht öffnest. Zwei Wege, das zu verhindern:</p>
+        <ol>
+          <li><b>Zum Home-Bildschirm hinzufügen</b> (Teilen-Symbol → „Zum Home-Bildschirm“). Als App vom Home-Bildschirm wird der Speicher nicht automatisch gelöscht, und Carreau läuft auch offline.</li>
+          <li><b>Sicherungscode</b>: Kopiere den Code unten (z. B. in die Notizen-App). Auf jedem Gerät kannst du ihn wieder einspielen.</li>
+        </ol>
+        <p id="persistInfo" class="hint"></p>
+      </div>
+      <button id="btnCopy" class="primary">Sicherungscode kopieren</button>
+      <textarea id="codeBox" rows="4" placeholder="Hier einen Sicherungscode einfügen …"></textarea>
+      <button id="btnImport">Code einspielen</button>
+      <p id="backupMsg" class="hint"></p>
+    </div>
+  </section>
+
+  <section id="scrEnd" class="screen" hidden>
+    <div class="panel center">
+      <h2 id="endTitle"></h2>
+      <p id="endScore" class="bigscore"></p>
+      <div id="endBody"></div>
+      <div class="menu">
+        <button id="endAgain" class="primary">Revanche</button>
+        <button id="endShare" hidden>Ergebnis kopieren</button>
+        <button id="endOther">Anderer Gegner</button>
+        <button id="endHome">Zum Dorfplatz</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="scrPause" class="screen dim" hidden>
+    <div class="panel center">
+      <h2>Pause</h2>
+      <div class="menu">
+        <button id="pResume" class="primary">Weiter</button>
+        <button id="pHelp">Anleitung</button>
+        <button id="pSound">Ton an</button>
+        <button id="pHome">Zum Titel (Partie bleibt gespeichert)</button>
+        <button id="pGiveUp" class="danger">Aufgeben</button>
+      </div>
+    </div>
+  </section>
+
+  <section id="scrTip" class="screen dim" hidden>
+    <div class="panel center">
+      <h3>Tipp</h3>
+      <p id="tipText"></p>
+      <button id="tipOk" class="primary">Verstanden</button>
+    </div>
+  </section>
+</div>
+
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

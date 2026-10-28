@@ -7,8 +7,9 @@ eigene Adresse, die Startseite verlinkt alle:
 | | Ordner | Adresse |
 |---|---|---|
 | Startseite | `index.html` | https://babypython67.github.io/Projects/ |
-| **Rungholt**, Würfel-Roguelike: eine Nacht durchs Watt zur versunkenen Stadt (neu) | [rungholt/](rungholt/) | https://babypython67.github.io/Projects/rungholt/ |
-| **Moorlicht**, Laternen-Roguelite: Funken ziehen, Licht gegen Kälte, eine Geschichte über viele Nächte (neu) | [moorlicht/](moorlicht/) | https://babypython67.github.io/Projects/moorlicht/ |
+| **Carreau**, Boule unter Platanen: Dorfpartien auf immer neuen Plätzen, Können statt Würfel (neu) | [carreau/](carreau/) | https://babypython67.github.io/Projects/carreau/ |
+| Rungholt, Würfel-Roguelike: eine Nacht durchs Watt zur versunkenen Stadt | [rungholt/](rungholt/) | https://babypython67.github.io/Projects/rungholt/ |
+| Moorlicht, Laternen-Roguelite: Funken ziehen, Licht gegen Kälte, eine Geschichte über viele Nächte | [moorlicht/](moorlicht/) | https://babypython67.github.io/Projects/moorlicht/ |
 | Johannisnacht, Glühwürmchen mit einer Schlinge aus Licht fangen | [johannisnacht/](johannisnacht/) | https://babypython67.github.io/Projects/johannisnacht/ |
 | Deichgraf, Sturmflut-Spiel, rundenbasiert (Handy und Terminal) | [deichgraf/](deichgraf/) | https://babypython67.github.io/Projects/deichgraf/ |
 | Brückenwärter, Klappbrücke im Hafen bedienen, Echtzeit, läuft offline | [brueckenwaerter/](brueckenwaerter/) | https://babypython67.github.io/Projects/brueckenwaerter/ |
@@ -41,6 +42,7 @@ node --test brueckenwaerter/tests/*.test.js
 node --test rungholt/tests/*.test.js
 node --test moorlicht/tests/engine.test.js
 node --test moorlicht/tests/smoke.test.js
+node --test carreau/test/*.test.mjs
 ```
 
 Johannisnacht hat keine Tests (eine einzelne Datei ohne getrennte Spiellogik).
