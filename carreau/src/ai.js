@@ -60,9 +60,10 @@ export function errorScale(dist) {
   return 0.35 + (0.65 * dist) / 8;
 }
 
-export function aimError(profile, shotKey, dist, rng) {
+export function aimError(profile, shotKey, dist, rng, draw) {
   const s = profile.sigma[shotKey] * errorScale(dist);
-  return { lat: rng.gauss() * s * 0.7, len: rng.gauss() * s };
+  const g = draw || [rng.gauss(), rng.gauss()];
+  return { lat: g[0] * s * 0.7, len: g[1] * s };
 }
 
 export function applyError(from, target, err) {
@@ -151,8 +152,9 @@ function candidates(state, terrain, team, profile) {
     { tag: 'neben die Sau', x: jack.x - ux * 0.03 + px * 0.09, y: jack.y - uy * 0.03 + py * 0.09 },
     { tag: 'neben die Sau', x: jack.x - ux * 0.03 - px * 0.09, y: jack.y - uy * 0.03 - py * 0.09 },
   ];
+  if (profile.naive) goals.length = 1;
   const mine = state.bodies.filter((b) => b.kind === 'boule' && b.alive && b.team === team);
-  if (mine.length) goals.push({ tag: 'vorlegen', x: jack.x - ux * 0.35, y: jack.y - uy * 0.35 });
+  if (mine.length && !profile.naive) goals.push({ tag: 'vorlegen', x: jack.x - ux * 0.35, y: jack.y - uy * 0.35 });
   if (profile.jackShots) goals.push({ tag: 'Sau schieben', x: jack.x + ux * 0.25, y: jack.y + uy * 0.25 });
   for (const loft of profile.lofts) {
     for (const g of goals) {
@@ -161,7 +163,7 @@ function candidates(state, terrain, team, profile) {
     }
   }
   const opp = state.bodies.filter((b) => b.kind === 'boule' && b.alive && b.team !== team);
-  for (const b of opp) {
+  for (const b of profile.naive ? [] : opp) {
     if (Math.hypot(b.x - jack.x, b.y - jack.y) < 1.6) out.push({ shotKey: 'shot', target: { x: b.x, y: b.y }, label: 'schießt', tag: 'auf deine Kugel', targetId: b.id });
   }
   if (profile.jackShots) out.push({ shotKey: 'shot', target: { x: jack.x, y: jack.y }, label: 'schießt', tag: 'auf die Sau', targetId: 'j' });
@@ -176,11 +178,13 @@ export function decide(state, terrain, team, profile, rng) {
   const rem = state.remaining.slice();
   rem[team]--;
   let best = null;
+  // Gemeinsame Zufallszahlen für alle Kandidaten: verglichen wird die Wahl, nicht das Glück der Stichprobe
+  const draws = Array.from({ length: profile.samples }, () => [rng.gauss(), rng.gauss()]);
   for (const c of cands) {
     let sum = 0;
     const dist = Math.hypot(c.target.x - from.x, c.target.y - from.y);
     for (let k = 0; k < profile.samples; k++) {
-      const land = applyError(from, c.target, aimError(profile, c.shotKey, dist, rng));
+      const land = applyError(from, c.target, aimError(profile, c.shotKey, dist, rng, draws[k]));
       const r = simulateThrow(terrain, bodies, newBoule(state, team), from, land, c.shotKey, { craters: false });
       for (const b of r.bodies) if (b.out) b.alive = false;
       sum += evaluate(r.bodies, rem, team);

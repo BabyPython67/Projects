@@ -260,7 +260,7 @@ function analyse(state, before, team, thrown, shotKey, feats) {
       state.stats.kisses[team]++;
       feats.push({ team, id: 'kuss' });
     }
-    if (shotKey === 'high' && gap < 0.08) feats.push({ team, id: 'plombee' });
+    if (shotKey === 'high' && gap < 0.025) feats.push({ team, id: 'plombee' });
   }
   state.feats.push(...feats.map((f) => ({ ...f, mene: state.mene })));
 }

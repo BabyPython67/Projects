@@ -7,6 +7,7 @@ const M = 2.4;      // Rand um das Feld in Metern (Pflaster, Bäume)
 const TPX = 150;    // Texturauflösung in Pixel pro Meter
 const LIGHT = norm(-0.55, 0.75);
 const OBL = 0.55;   // Schrägprojektion: Höhe wird nach oben verschoben
+const BOULE_LABEL = 0.0375;
 
 function norm(x, y) {
   const d = Math.hypot(x, y);
@@ -401,8 +402,8 @@ export class Renderer {
 
   shadeAlpha() {
     const h = this.hour;
-    if (h < 7 || h > 20.5) return 0.06;
-    return 0.17;
+    if (h < 7 || h > 20.5) return 0.05;
+    return 0.11;
   }
 
   drawBodies(ctx, cam, scene, center) {
@@ -415,7 +416,7 @@ export class Renderer {
       const hz = Math.max(0, b.z - b.r - gh);
       const [gx, gy] = this.proj(cam, b.x, b.y, 0, center);
       const [sx, sy] = this.proj(cam, b.x, b.y, hz + b.r * 0.0, center);
-      const rp = Math.max(b.kind === 'jack' ? 2 : 3, b.r * cam.s);
+      const rp = Math.max(b.kind === 'jack' ? 2 : 3, b.r * cam.s) * (1 + Math.min(1.2, hz) * 0.35);
       const alpha = b.alive === false ? Math.max(0, b.fade ?? 0) : 1;
       ctx.globalAlpha = alpha;
       // Schatten
@@ -538,7 +539,9 @@ export class Renderer {
       ctx.lineTo(bx, by);
       ctx.stroke();
       ctx.setLineDash([]);
-      const lx = bx + (bx - jx) * 0.15, ly = by + (by - jy) * 0.15 - 8;
+      const vl = Math.hypot(bx - jx, by - jy) || 1;
+      const off = BOULE_LABEL * cam.s + 20;
+      const lx = bx + ((bx - jx) / vl) * off, ly = by + ((by - jy) / vl) * off + 4;
       const text = it.cm < 100 ? `${it.cm.toFixed(it.cm < 10 ? 1 : 0)} cm` : `${(it.cm / 100).toFixed(2)} m`;
       ctx.fillStyle = 'rgba(20,14,8,0.7)';
       const w = ctx.measureText(text).width + 8;

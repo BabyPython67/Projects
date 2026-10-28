@@ -5,7 +5,7 @@ export const FEATS = [
   { id: 'kuss', name: 'Bise', text: 'Eine gelegte Kugel küsst die Sau – sie berührt sie.' },
   { id: 'carreau', name: 'Carreau', text: 'Schuss auf eine gegnerische Kugel: sie fliegt weg, deine bleibt an ihrer Stelle liegen.' },
   { id: 'carreau-sur-place', name: 'Carreau sur place', text: 'Ein Carreau, bei dem deine Kugel keine 5 cm vom Platz der alten liegen bleibt.' },
-  { id: 'plombee', name: 'Plombée', text: 'Hoher Wurf, der keine 8 cm von der Sau entfernt liegen bleibt.' },
+  { id: 'plombee', name: 'Plombée', text: 'Hoher Wurf, der keine 2,5 cm von der Sau entfernt liegen bleibt.' },
   { id: 'doppelschlag', name: 'Doppelschlag', text: 'Ein Wurf räumt zwei gegnerische Kugeln aus dem Spiel.' },
   { id: 'sau-getroffen', name: 'Auf die Sau', text: 'Ein Schuss trifft die Sau direkt aus der Luft.' },
   { id: 'sau-aus', name: 'Sau ins Aus', text: 'Die Sau fliegt ins Aus, als nur du noch Kugeln hattest – jede zählt einen Punkt.' },

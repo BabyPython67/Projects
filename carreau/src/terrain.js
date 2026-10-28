@@ -13,7 +13,7 @@ const SNY = Math.round(L / SCELL) + 1;
 // mu: Rollwiderstand, e: Rücksprung, imp: Reibung beim Aufprall, micro: Mikro-Unebenheit (m),
 // wave: deren Wellenlänge, dig: wie tief Kugeln Krater schlagen
 export const SURFACES = [
-  { id: 0, key: 'kies', name: 'Kies', mu: 0.22, e: 0.22, imp: 0.34, micro: 0.0012, wave: 0.04, dig: 1.0, color: [214, 190, 148] },
+  { id: 0, key: 'kies', name: 'Kies', mu: 0.22, e: 0.22, imp: 0.34, micro: 0.0012, wave: 0.04, dig: 1.0, color: [224, 197, 150] },
   { id: 1, key: 'sand', name: 'Sand', mu: 0.38, e: 0.08, imp: 0.55, micro: 0.0001, wave: 0.05, dig: 1.7, color: [226, 205, 162] },
   { id: 2, key: 'lehm', name: 'Lehm', mu: 0.12, e: 0.36, imp: 0.24, micro: 0.0002, wave: 0.05, dig: 0.35, color: [190, 143, 102] },
   { id: 3, key: 'grob', name: 'Grobkies', mu: 0.25, e: 0.26, imp: 0.4, micro: 0.0045, wave: 0.07, dig: 0.7, color: [172, 164, 152] },
@@ -38,13 +38,13 @@ export class Terrain {
 
   generate() {
     const rng = new Rng(mix(this.seed, 77));
-    const tiltX = rng.range(-0.012, 0.012);
-    const tiltY = rng.range(-0.008, 0.008);
-    const a1 = rng.range(0.01, 0.024), a2 = rng.range(0.003, 0.008);
+    const tiltX = rng.range(-0.02, 0.02);
+    const tiltY = rng.range(-0.012, 0.012);
+    const a1 = rng.range(0.012, 0.03), a2 = rng.range(0.003, 0.008);
     const ns1 = mix(this.seed, 1), ns2 = mix(this.seed, 2);
     const bumps = [];
-    if (Math.abs(tiltX) > 0.006) this.features.push({ type: 'gefaelle', text: 'deutliches Gefälle zur Seite' });
-    if (Math.abs(tiltY) > 0.0045) this.features.push({ type: 'gefaelle', text: 'der Platz fällt der Länge nach ab' });
+    if (Math.abs(tiltX) > 0.01) this.features.push({ type: 'gefaelle', text: 'deutliches Gefälle zur Seite' });
+    if (Math.abs(tiltY) > 0.007) this.features.push({ type: 'gefaelle', text: 'der Platz fällt der Länge nach ab' });
 
     const nHollow = rng.int(3);
     for (let i = 0; i < nHollow; i++) {

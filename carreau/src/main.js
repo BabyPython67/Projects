@@ -74,13 +74,14 @@ function showcase() {
   game.traces = [];
   game.measure = null;
   game.r.resize();
-  game.r.setInsets(0, Math.round(window.innerHeight * 0.55));
-  game.r.frame({ x0: c.x - 0.9, x1: c.x + 0.9, y0: c.y - 0.75, y1: c.y + 0.7 }, 0.35, { instant: true, maxS: 420 });
+  const box = [...document.querySelectorAll('#scrTitle .titlebox, #scrEnd .panel')].map((e) => e.getBoundingClientRect()).find((r) => r.height > 0);
+  const free = box ? Math.max(170, box.top) : window.innerHeight * 0.4;
+  game.r.setInsets(0, window.innerHeight - free);
+  game.r.frame({ x0: c.x - 0.55, x1: c.x + 0.55, y0: c.y - 0.5, y1: c.y + 0.45 }, 0.35, { instant: true, minS: 260, maxS: 520, pad: 6 });
 }
 
 function refreshTitle() {
   game.stop();
-  showcase();
   show('scrTitle');
   const m = profile.match;
   const resumable = m && m.phase !== 'matchEnd' && m.mode !== 'show';
@@ -92,6 +93,7 @@ function refreshTitle() {
   const d = dailySetup();
   const played = profile.daily[d.key];
   $('btnDaily').innerHTML = `Tagesplatz<small>${d.place} · gegen ${villager(d.opp).name} · bis 7${played ? ` · heute: ${played.score[0]}:${played.score[1]}` : ''}</small>`;
+  showcase();
   const g = profile.games;
   $('titleInfo').textContent = g ? `Dorfwertung ${profile.rating} · ${profile.wins} von ${g} Partien gewonnen` : 'Ein Nachmittag in Saint-Aurel. Die Zikaden sind schon da.';
   $('btnSound').textContent = profile.settings.sound ? 'Ton an' : 'Ton aus';
@@ -149,7 +151,6 @@ function onMatchEnd(state) {
   profile.match = null;
   save(profile);
   game.stop();
-  showcase();
   const humanWon = state.winner === 0;
   if (state.mode === 'duo') {
     $('endTitle').textContent = `${state.teams[state.winner].name} gewinnt!`;
@@ -173,6 +174,7 @@ function onMatchEnd(state) {
   $('endAgain').textContent = state.mode === 'daily' ? 'Nochmal (zählt nicht)' : 'Revanche';
   $('endOther').hidden = state.mode !== 'ai';
   show('scrEnd');
+  showcase();
   sound.chime(humanWon || state.mode === 'duo' ? 'win' : 'bad');
   if (humanWon) sound.applause(1.4);
   lastEnd = state;

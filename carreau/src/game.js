@@ -11,18 +11,18 @@ import { Rng, mix } from './rng.js';
 import { featName } from './career.js';
 
 const TEAM_COLORS = ['#dfe6ee', '#c98a4b'];
-const SWAY_K = { roll: 0.012, half: 0.017, high: 0.021, shot: 0.0115, jack: 0.02 };
+const SWAY_K = { roll: 0.022, half: 0.031, high: 0.038, shot: 0.021, jack: 0.034 };
 const DEFAULT_FRAC = { roll: 0.33, half: 0.7, high: 0.94, shot: 1 };
 const $ = (id) => document.getElementById(id);
 
 export function swayAmp(shotKey, dist) {
-  return (SWAY_K[shotKey] ?? 0.017) * dist + 0.03;
+  return (SWAY_K[shotKey] ?? 0.031) * dist + 0.05;
 }
 
 // Pendelnde Hand: wo die Kugel landet, wenn man jetzt loslässt (Versatz quer/längs in Metern)
 export function swayOffset(amp, t, ph, pressure = 1) {
   const grow = t > 2.2 ? 1 + 0.45 * (t - 2.2) : 1;
-  const f1 = 0.62 * pressure, f2 = 0.83 * pressure;
+  const f1 = 0.78 * pressure, f2 = 1.04 * pressure;
   return {
     lat: amp * 0.75 * grow * Math.sin(2 * Math.PI * f1 * t + ph[0]),
     len: amp * grow * Math.sin(2 * Math.PI * f2 * t + ph[1]),
@@ -763,7 +763,7 @@ export class Game {
     const bodies = this.world ? this.world.bodies : liveBodies(s, this.terrain).map((b) => ({ ...b }));
     scene.bodies = bodies.concat(this.fading.map((f) => ({ ...f, alive: false })));
     const jack = bodies.find((b) => b.kind === 'jack' && b.alive);
-    if (jack) scene.lupe = { x: jack.x, y: jack.y };
+    if (jack && this.phase !== 'idle') scene.lupe = { x: jack.x, y: jack.y };
     if (this.phase === 'aim' && this.aim) {
       const a = this.aim;
       const c = s.circle;
@@ -854,7 +854,14 @@ export class Game {
     const show = (id, text) => {
       if (p.tipsSeen[id]) return false;
       p.tipsSeen[id] = 1;
-      setTimeout(() => this.hooks.tip && this.hooks.tip(text), 350);
+      setTimeout(() => {
+        // nie mitten in einen gehaltenen Wurf hinein
+        if (this.holding || this.drag || this.phase !== 'aim') {
+          delete p.tipsSeen[id];
+          return;
+        }
+        this.hooks.tip && this.hooks.tip(text);
+      }, 350);
       return true;
     };
     if (s.phase === 'jack' && !this.aim.place) {

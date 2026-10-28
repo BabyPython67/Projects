@@ -25,6 +25,23 @@ async function touch(cdp, type, x, y) {
   const cdp = await ctx.newCDPSession(page);
   const t0 = Date.now();
   let ok = false, throws = 0, drags = 0, menes = 0, result = '';
+  let reloaded = 0, resumedText = '', flightReload = null;
+  const base = `http://localhost:${PORT}/index.html?test=1&seed=5&speed=8&hour=15`;
+  // Seite schließen und wieder öffnen (ohne „fresh“): Fortschritt muss bleiben
+  async function reopen(label) {
+    const before = await page.evaluate(() => ({ ti: window.__carreau.game.state.throwIndex, score: window.__carreau.game.state.score.join(':'), ph: window.__carreau.game.phase }));
+    await page.goto(base);
+    await page.waitForSelector('#btnVillage');
+    const vis = await page.locator('#btnResume').isVisible();
+    resumedText = vis ? (await page.textContent('#btnResume')) : '(kein Weiterspielen-Knopf!)';
+    if (!vis) throw new Error('Nach dem Neuladen fehlt „Weiterspielen“');
+    await page.tap('#btnResume');
+    await sleep(300);
+    const after = await page.evaluate(() => ({ ti: window.__carreau.game.state.throwIndex, score: window.__carreau.game.state.score.join(':') }));
+    reloaded++;
+    console.log(`Neu geladen (${label}, vorher Phase ${before.ph}): Würfe ${before.ti} -> ${after.ti}, Stand ${before.score} -> ${after.score} · Knopf: „${resumedText.trim()}“`);
+    return { before, after };
+  }
   try {
     await page.goto(`http://localhost:${PORT}/index.html?test=1&fresh=1&seed=5&speed=8&hour=15`);
     await page.waitForSelector('#btnVillage');
@@ -40,7 +57,15 @@ async function touch(cdp, type, x, y) {
         break;
       }
       if (await page.locator('#scrTip').isVisible()) { await page.tap('#tipOk'); continue; }
-      if (await page.locator('#meneCard').isVisible()) { menes++; await page.tap('#meneNext'); continue; }
+      if (await page.locator('#meneCard').isVisible()) {
+        menes++;
+        if (menes === 1) {
+          await page.screenshot({ path: path.join(__dirname, '..', 'docs', 'handy-aufnahme.png') });
+          await reopen('Aufnahme-Ende');
+        }
+        if (await page.locator('#meneCard').isVisible()) await page.tap('#meneNext');
+        continue;
+      }
       const g = await page.evaluate(() => {
         const G = window.__carreau.game;
         const s = G.state;
@@ -74,6 +99,13 @@ async function touch(cdp, type, x, y) {
       await sleep(350 + (throws % 4) * 170);
       await touch(cdp, 'touchEnd');
       throws++;
+      if (throws === 6 && !flightReload) {
+        // mitten im Flug schließen: der Wurf muss danach trotzdem zählen
+        await sleep(60);
+        const ph = await page.evaluate(() => window.__carreau.game.phase);
+        flightReload = await reopen('während die Kugel ' + (ph === 'fly' ? 'fliegt' : 'liegt'));
+        if (flightReload.after.ti <= flightReload.before.ti - (ph === 'fly' ? 0 : 1)) throw new Error('Wurf ging beim Neuladen verloren');
+      }
       await sleep(150);
     }
     const state = await page.evaluate(() => {
@@ -89,6 +121,7 @@ async function touch(cdp, type, x, y) {
   }
   console.log(`Dauer ${(Date.now() - t0) / 1000 | 0} s · Konsolenfehler: ${errors.length}`);
   for (const e of errors) console.log('  ', e);
+  if (reloaded < 2) { console.log('Neuladen nicht geprüft'); ok = false; }
   if (!ok || errors.length) {
     console.log('SMOKE-TEST FEHLGESCHLAGEN');
     process.exit(1);

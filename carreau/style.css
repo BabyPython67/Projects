@@ -104,6 +104,7 @@ button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulat
 .card h2 { margin: 0 0 6px; font-family: Georgia, "Iowan Old Style", serif; font-size: 24px; }
 .card p { margin: 0 0 12px; font-size: 14px; line-height: 1.4; }
 .card p:empty { display: none; }
+.card button.primary { border: 0; border-radius: 14px; padding: 13px 22px; min-width: 70%; font-size: 16px; font-weight: 700; color: #fff8ec; background: linear-gradient(#d96f48, #b5482c); box-shadow: 0 3px 10px rgba(120, 40, 15, .35); }
 
 /* ---------- Bildschirme ---------- */
 #screens .screen {
@@ -111,6 +112,9 @@ button { font: inherit; color: inherit; cursor: pointer; touch-action: manipulat
   overflow-y: auto; -webkit-overflow-scrolling: touch;
 }
 #screens .screen.dim { background: rgba(30, 20, 10, 0.45); }
+#scrTitle, #scrEnd { align-items: flex-end; }
+.titlebox h1 { line-height: 1.05; }
+@media (max-height: 700px) { .titlebox { padding: 14px 16px 12px; } .titlebox h1 { font-size: 44px; } .menu { gap: 7px; margin: 6px 0; } .menu button { padding: 11px 12px; } }
 .titlebox {
   width: min(440px, 100%); background: rgba(251, 245, 232, 0.93); border-radius: 22px; padding: 22px 20px 18px; text-align: center;
   box-shadow: 0 14px 40px rgba(40, 20, 5, .35);
