@@ -80,7 +80,7 @@ test("Startseite verlinkt alle Spiele, jedes unter eigener Adresse; spiel/ leite
     await page.goto(url + "/");
     const hrefs = await page.$$eval("a.card", (as) => as.map((a) => a.getAttribute("href")));
     assert.ok(hrefs.includes("deichgraf/"), "Deichgraf fehlt auf der Startseite: " + hrefs.join(" "));
-    assert.ok(hrefs.includes("johannisnacht/") && hrefs.includes("brueckenwaerter/"), hrefs.join(" "));
+    assert.ok(hrefs.includes("johannisnacht/") && hrefs.includes("brueckenwaerter/") && hrefs.includes("rungholt/"), hrefs.join(" "));
     assert.ok(!hrefs.includes("spiel/"), "Startseite zeigt noch auf die alte Adresse spiel/");
     for (const href of hrefs) {
       assert.ok(fs.existsSync(path.join(root, href, "index.html")), `${href}index.html fehlt`);
