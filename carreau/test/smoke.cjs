@@ -6,6 +6,8 @@ const { spawn } = require('child_process');
 const path = require('path');
 
 const PORT = 8139;
+const SHOTS = path.join(__dirname, '..', 'test-results');
+require('fs').mkdirSync(SHOTS, { recursive: true });
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const MAX_MS = 6 * 60 * 1000;
 
@@ -60,7 +62,7 @@ async function touch(cdp, type, x, y) {
       if (await page.locator('#meneCard').isVisible()) {
         menes++;
         if (menes === 1) {
-          await page.screenshot({ path: path.join(__dirname, '..', 'docs', 'handy-aufnahme.png') });
+          await page.screenshot({ path: path.join(SHOTS, 'handy-aufnahme.png') });
           await reopen('Aufnahme-Ende');
         }
         if (await page.locator('#meneCard').isVisible()) await page.tap('#meneNext');
@@ -114,7 +116,7 @@ async function touch(cdp, type, x, y) {
     });
     console.log(`Würfe per Touch: ${throws} (davon ${drags} mit Ziehen) · Aufnahmen bestätigt: ${menes}`);
     console.log(`Ende erreicht: ${ok} · ${result} · Profil: ${state.games} Partie(n), Wertung ${state.rating}, offene Partie: ${state.match ? 'ja' : 'nein'}`);
-    await page.screenshot({ path: path.join(__dirname, '..', 'docs', 'smoke-ende.png') });
+    await page.screenshot({ path: path.join(SHOTS, 'smoke-ende.png') });
   } finally {
     await browser.close();
     srv.kill();

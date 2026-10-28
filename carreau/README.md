@@ -421,6 +421,9 @@ Schwächen, die ich beim Selbsttest (Bildschirmfotos, Smoke-Test, Bot-Partien) g
     Engerer Ausschnitt, Bildbereich beginnt unter der Lage-Anzeige.
 13. **Titel- und Ergebniskarte verdeckten das Schaubild des Platzes.** → Karte nach unten, Kamera auf den freien Bereich.
 14. **Fliegende Kugeln wirkten flach.** → Kugel wird mit der Höhe größer, Schatten wandert weg.
+15. **Die Lupe erschien auch auf dem Titelbildschirm.** → Nur noch im laufenden Spiel.
+16. **Maßband-Beschriftungen lagen auf den Kugeln, der Knopf „Nächste Aufnahme“ war ungestylt.** → Beschriftung
+    hinter die Kugel versetzt, Knopf im Stil der übrigen.
 
 ## Ehrliche Einschätzung
 
