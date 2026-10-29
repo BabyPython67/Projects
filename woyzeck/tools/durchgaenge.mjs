@@ -4,7 +4,7 @@
 // Ausgabe getrennt nach den drei Folgen (offen, kraft, abschied), je Stelle nur Kennung und Wortzahlen,
 // nie der Text. Prüft außerdem, dass jede Folge mindestens zwei Stellen um je mindestens 50 Wörter ändert.
 // Aufruf aus dem Ordner woyzeck: node tools/durchgaenge.mjs   (Exit-Code 1, wenn die Prüfung scheitert)
-import { durchspielen, klartext } from "../js/engine.js";
+import { durchspielen, klartext, buechnerSpannen } from "../js/engine.js";
 import { ladeInhalt } from "./lade.mjs";
 
 export const FOLGEN = { offen: "Offenheit (ob er sich dir öffnet)", kraft: "Kräfte (Doktor, Schlaf, Klarheit)", abschied: "Abschied (die Sachen, und was du dann tust)" };
@@ -54,7 +54,8 @@ export function vergleiche(inhalt) {
     stellen.push({ id, folge: ta.get(id)?.folge ?? tb.get(id)?.folge ?? null, woerterA: wa.length, woerterB: wb.length, geaendert });
   }
   const summe = (aus) => aus.szenen.reduce((n, s) => n + s.bloecke.reduce((k, x) => k + (x.text ? tokens(x.text).length : 0), 0), 0);
-  return { stellen, woerterA: summe(a), woerterB: summe(b), varsA: a.vars, varsB: b.vars };
+  const buechner = (aus) => aus.szenen.reduce((n, s) => n + s.bloecke.reduce((k, x) => k + (x.text ? buechnerSpannen(x.text).reduce((j, t) => j + tokens(t).length, 0) : 0), 0), 0);
+  return { stellen, woerterA: summe(a), woerterB: summe(b), buechnerA: buechner(a), buechnerB: buechner(b), varsA: a.vars, varsB: b.vars };
 }
 
 export function bewerte(ergebnis) {
@@ -85,6 +86,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   }
   if (ohne.length) { console.log("Stellen ohne Folge (Fehler):"); for (const s of ohne) console.log(zeile(s)); console.log(); }
   console.log(`Wörter gesamt: A „zuhören“ ${erg.woerterA}, B „abwimmeln“ ${erg.woerterB}`);
+  const anteil = (b, g) => Math.round((100 * b) / g);
+  console.log(`davon von Büchner: A ${erg.buechnerA} (${anteil(erg.buechnerA, erg.woerterA)} %), B ${erg.buechnerB} (${anteil(erg.buechnerB, erg.woerterB)} %)`);
   console.log(`Lesezeit bei 150–200 Wörtern pro Minute: A ${lesezeit(erg.woerterA, 200)}–${lesezeit(erg.woerterA, 150)} min, B ${lesezeit(erg.woerterB, 200)}–${lesezeit(erg.woerterB, 150)} min`);
   console.log(ok ? "Prüfung bestanden: jede Folge ändert mindestens zwei Stellen um je mindestens 50 Wörter." : "Prüfung NICHT bestanden.");
   process.exit(ok ? 0 : 1);

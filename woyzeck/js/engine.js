@@ -11,7 +11,7 @@ const RE_REDE = /^((?:\d\. )?[A-ZÄÖÜ][A-ZÄÖÜ. -]*[A-ZÄÖÜ]): (.+)$/;
 const RE_OPTION = /^\* ([a-zäöüß0-9-]+) \((zuwenden|abwimmeln|neutral)\)(?: \[wenn (.+?)\])?: (.+)$/;
 const RE_ANWEISUNG = /^\[(\/?)([a-zäöü]+)(?: (.*))?\]$/;
 const RE_SZENE = /^## ([a-z0-9-]+) \| (.+)$/;
-const META = new Set(["quelle", "ort", "bild", "zeit"]);
+const META = new Set(["quelle", "ort", "bild", "zeit", "wenn"]);
 
 export class InhaltsFehler extends Error {}
 
@@ -53,7 +53,7 @@ function parseDatei(name, text, szenen, wahlen) {
     if (kopf) {
       flush(); liedFlush();
       if (szene && stapel.length !== 1) fehler(z, `Szene ${szene.id} hat offene Blöcke`);
-      szene = { id: kopf[1], titel: kopf[2], quelle: [], ort: null, bild: null, zeit: null, kinder: [], datei: name };
+      szene = { id: kopf[1], titel: kopf[2], quelle: [], ort: null, bild: null, zeit: null, bedingung: null, kinder: [], datei: name };
       szenen.push(szene);
       stapel = [{ knoten: szene, kinder: szene.kinder }];
       nr = 0;
@@ -64,6 +64,7 @@ function parseDatei(name, text, szenen, wahlen) {
     const meta = zeile.match(/^([a-z]+): (.+)$/);
     if (meta && META.has(meta[1]) && szene.kinder.length === 0 && stapel.length === 1 && !absatz.length) {
       if (meta[1] === "quelle") szene.quelle = meta[2].split(/;\s*/).map((q) => q.trim());
+      else if (meta[1] === "wenn") szene.bedingung = parseBedingung(meta[2], (m) => fehler(z, m));
       else szene[meta[1]] = meta[2].trim();
       continue;
     }
@@ -274,6 +275,7 @@ export function auswerten(inhalt, stand) {
   const szenen = [];
   for (let i = 0; i <= ziel; i++) {
     const s = inhalt.szenen[i];
+    if (i < ziel && s.bedingung && !pruefe(s.bedingung, ctx)) continue; // Szene gehört nicht zu diesem Weg
     ctx.aus = [];
     ctx.offen = null;
     lauf(s.kinder, ctx, {});
@@ -282,13 +284,15 @@ export function auswerten(inhalt, stand) {
   }
   const letzte = szenen[szenen.length - 1];
   const idx = inhalt.index.get(letzte.szene.id);
+  const naechste = inhalt.szenen.findIndex((s, i) => i > idx && (!s.bedingung || pruefe(s.bedingung, ctx)));
   return {
+    naechste: naechste < 0 ? null : inhalt.szenen[naechste].id,
     vars: { ...ctx.vars },
     gewaehlt: ctx.gewaehlt,
     szenen,
     aktuell: {
       szene: letzte.szene, bloecke: letzte.bloecke, wahl: ctx.offen, ende: !ctx.offen,
-      letzte: idx === inhalt.szenen.length - 1, nummer: idx + 1, von: inhalt.szenen.length,
+      letzte: naechste < 0, nummer: idx + 1, von: inhalt.szenen.length,
     },
   };
 }
@@ -307,7 +311,7 @@ export function waehle(inhalt, stand, wahlId, key) {
 export function weiter(inhalt, stand) {
   const a = auswerten(inhalt, stand);
   if (!a.aktuell.ende || a.aktuell.letzte) return null;
-  return { szene: inhalt.szenen[a.aktuell.nummer].id, wahlen: { ...stand.wahlen } };
+  return { szene: a.naechste, wahlen: { ...stand.wahlen } };
 }
 
 // Bereinigt einen geladenen Stand: unbekannte Szenen und Wahlen fallen weg, sodass ein alter Stand nach

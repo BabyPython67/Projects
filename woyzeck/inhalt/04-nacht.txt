@@ -249,3 +249,15 @@ Er kommt. Er geht vor dir her, wie einer, der abgeführt wird. In der Nacht steh
 Später gehst du mit den Kameraden heim. Draußen auf der Bank vor der Tür sitzt Franz allein, das Gesicht voll Blut, und schaut in die Gasse. Einer stößt dich an: „Lass ihn. Der sitzt gut da.“ Ihr geht vorbei. Du drehst dich nicht um, bis zur Ecke. An der Ecke drehst du dich um. Er sitzt noch da.
 [ende]
 [/stelle]
+
+[innen kampf.innen offen]
+[wenn dazwischen]
+Einer ist dem Ochsen auf den Rücken gesprungen.
+Ein Hund, der beißt, wo er nicht hinkommt.
+Der Andres. Der Narr. Am Kopf hat er jetzt eine Beule für mich.
+[sonst]
+Beim Ofen der Andres. Zwischen den andern.
+Ein Gesicht unter vielen, und ich hab's gesucht, und es hat zurückgeschaut, und dann auf den Tisch.
+Er hat recht. Gegen den Tambourmajor geht keiner.
+[ende]
+[/innen]

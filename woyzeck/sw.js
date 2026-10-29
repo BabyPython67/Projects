@@ -1,7 +1,7 @@
 // Service Worker für „Woyzeck“: macht das Spiel offline lesbar und liefert neue Fassungen zuverlässig aus.
 // Strategie: immer zuerst das Netz (am HTTP-Cache vorbei, „no-cache“), bei fehlendem Netz der Speicher.
 // VERSION und DATEIEN schreibt tools/version.mjs – nicht von Hand ändern, sondern `npm run version`.
-const VERSION = "da98544a75";
+const VERSION = "71dc16bbd6";
 const DATEIEN = [
   "./",
   "index.html",

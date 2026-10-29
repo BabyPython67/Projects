@@ -79,6 +79,21 @@ test("Parser und Auswertung eines kleinen Inhalts", () => {
   assert.throws(() => waehle(i, neuerStand(i), "a.w", "geheim"), /nicht möglich/);
 });
 
+test("Szenen mit Bedingung werden nur auf passenden Wegen gelesen (für spätere Abweichungen)", () => {
+  const text = MINI.replace("## b | Zweite", "## nie | Nie\nwenn: x >= 100\nNie gelesen.\n\n## ja | Ja\nwenn: a.w = ja\nNur nach Ja.\n\n## b | Zweite");
+  const i = parseInhalt([{ name: "mini", text }]);
+  let st = waehle(i, neuerStand(i), "a.w", "ja");
+  st = weiter(i, st);
+  assert.equal(st.szene, "ja");
+  st = weiter(i, st);
+  assert.equal(st.szene, "b");
+  assert.ok(auswerten(i, st).szenen.every((s) => s.szene.id !== "nie"));
+  let st2 = waehle(i, neuerStand(i), "a.w", "nein");
+  st2 = weiter(i, st2);
+  assert.equal(st2.szene, "b");
+  assert.ok(auswerten(i, st2).aktuell.letzte);
+});
+
 test("Segmente trennen Büchners Wortlaut und Kursives", () => {
   assert.deepEqual(segmente("a {b _c_} d"), [
     { t: "a ", b: false, i: false }, { t: "b ", b: true, i: false }, { t: "c", b: true, i: true }, { t: " d", b: false, i: false },
