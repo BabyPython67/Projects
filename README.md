@@ -7,7 +7,8 @@ eigene Adresse, die Startseite verlinkt alle:
 | | Ordner | Adresse |
 |---|---|---|
 | Startseite | `index.html` | https://babypython67.github.io/Projects/ |
-| **Carreau**, Boule unter Platanen: Dorfpartien auf immer neuen Plätzen, Können statt Würfel (neu) | [carreau/](carreau/) | https://babypython67.github.io/Projects/carreau/ |
+| **Woyzeck**, ein Spiel, das man liest: Büchners Woyzeck als Textspiel, du bist Andres an seiner Seite (neu) | [woyzeck/](woyzeck/) | https://babypython67.github.io/Projects/woyzeck/ |
+| Carreau, Boule unter Platanen: Dorfpartien auf immer neuen Plätzen, Können statt Würfel | [carreau/](carreau/) | https://babypython67.github.io/Projects/carreau/ |
 | Rungholt, Würfel-Roguelike: eine Nacht durchs Watt zur versunkenen Stadt | [rungholt/](rungholt/) | https://babypython67.github.io/Projects/rungholt/ |
 | Moorlicht, Laternen-Roguelite: Funken ziehen, Licht gegen Kälte, eine Geschichte über viele Nächte | [moorlicht/](moorlicht/) | https://babypython67.github.io/Projects/moorlicht/ |
 | Johannisnacht, Glühwürmchen mit einer Schlinge aus Licht fangen | [johannisnacht/](johannisnacht/) | https://babypython67.github.io/Projects/johannisnacht/ |
@@ -43,6 +44,7 @@ node --test rungholt/tests/*.test.js
 node --test moorlicht/tests/engine.test.js
 node --test moorlicht/tests/smoke.test.js
 node --test carreau/test/*.test.mjs
+node --test woyzeck/tests/logik.test.mjs woyzeck/tests/inhalt.test.mjs
 ```
 
 Johannisnacht hat keine Tests (eine einzelne Datei ohne getrennte Spiellogik).

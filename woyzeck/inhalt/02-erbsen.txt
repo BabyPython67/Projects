@@ -1,0 +1,334 @@
+// Woyzeck – Inhalt, Teil 2: Professor, Löhnung, Tambourmajor, Doktor.
+
+## professor | Der Hof des Professors.
+quelle: H3,1
+ort: kaserne
+bild: katze
+zeit: Eine Woche später.
+
+Franz kommt spät in die Stube. Auf beiden Handrücken hat er Kratzer, frisch, drei und drei nebeneinander, wie mit einer Gabel gezogen. Er setzt sich auf die Pritsche und löffelt aus dem Blechnapf, den er vom Doktor mitbringt. Erbsen, kalt. Seit einem Vierteljahr bringt er den Napf mit.
+
+[stelle professor.bericht offen]
+[wenn offen >= 2]
+Du setzt dich zu ihm und fragst nach den Händen. Er schaut sie an, als gehörten sie einem anderen.
+
+„Beim Professor“, sagt er. „Im Hof. Die Studenten unten, er oben am Dachfenster.“ Dann macht er den Professor nach, mit hoher Stimme, die Hand an einem Fensterkreuz, das nicht da ist.
+
+WOYZECK: „{Meine Herrn wir sind an der wichtigen Frage über das Verhältnis des Subjekts zum Objekt.}“ Und dann: „{meine Herrn, wenn ich diese Katze zum Fenster hinauswerfe, wie wird diese Wesenheit sich zum centrum gravitationis und dem eigenen Instinkt verhalten? He Woyzeck, _Brüllt._ Woyzeck!}“
+
+Ich hab sie unten fangen müssen, sagt er. Sie ist ihm vom Dach in die Arme gefallen, und dann hat sie sich festgekrallt.
+
+WOYZECK: „{Herr Professor sie beißt.}“ Hab ich gesagt. Und er: „{Kerl, er greift die Bestie so zärtlich an, als wär's seine Großmutter.}“
+
+Die Katz ist fort, sagt er, und dann hat der Doktor mich hingestellt. Statt der Katz.
+
+WOYZECK: „{Meine Herrn, Sie können dafür was anders sehen, sehn Sie, der Mensch, seit einem Vierteljahr isst er nichts als Erbsen, beachten Sie die Wirkung, fühlen Sie einmal was ein ungleicher Puls, da und die Augen.}“
+
+Er legt den Löffel hin.
+
+WOYZECK: Da hab ich gesagt: „{Herr Doktor es wird mir dunkel.}“ Und er: „{Courage! Woyzeck noch ein paar Tage, und dann ist's fertig, fühlen Sie meine Herrn fühlen Sie.}“ Und sie haben gefühlt. Alle. Am Hals und an der Brust.
+
+Er sagt es ohne Zorn, wie man vom Wetter redet. Dann, ganz leise, als wär's das Schlimmste: „{beweg den Herrn doch einmal die Ohren}“, hat er gesagt. Und ich hab's gemacht.
+
+Er macht es dir vor. Die Ohren gehn hoch und wieder runter. Er schaut dich dabei nicht an.
+
+WOYZECK: „{So meine Herrn, das sind so Übergänge zum Esel}“. Und dann hat er mir an die Haare gelangt. „{Sie sind dir ja ganz dünn geworden, seit ein paar Tagen, ja die Erbsen, meine Herren.}“
+
+Er fährt sich mit der Hand übern Kopf, und zwischen den Fingern bleiben Haare hängen.
+[sonst]
+In der Kantine erzählt es der Hannes, der beim Professor das Holz macht. Er steht auf der Bank, damit alle es sehen, und macht den Woyzeck nach, mit eingezogenem Kopf und gepiepster Stimme:
+
+„{Herr Professor sie beißt.}“
+
+Gelächter. Dann macht er den Professor, mit dem Bauch heraus: „{Kerl, er greift die Bestie so zärtlich an, als wär's seine Großmutter.}“
+
+Und dann, sagt er, hat der Doktor den Woyzeck vorgeführt, statt der Katz, vor allen Studenten: „{der Mensch, seit einem Vierteljahr isst er nichts als Erbsen}“! Und hat gesagt: „{beweg den Herrn doch einmal die Ohren}“! Und er hat's gemacht, so! Der Hannes zieht die Ohren mit den Fingern hoch. „{das sind so Übergänge zum Esel}“, hat der Doktor gesagt.
+
+Die Kantine brüllt. Franz sitzt am Ende der Bank und löffelt aus seinem Napf. Als sie „Esel“ sagen, hört er auf zu löffeln. Dann löffelt er weiter.
+
+Auf seinen Handrücken die Kratzer, drei und drei.
+[ende]
+[/stelle]
+
+[wahl professor.wahl kraft]
+* brot (zuwenden): Du brichst dein Kommissbrot in zwei Teile und legst ihm den größeren auf den Napf.
+Er schaut das Brot an wie etwas Verbotenes.
+
+„Ich darf nit“, sagt er. „Der Doktor merkt's. Am Wasser.“
+
+„Der Doktor merkt nur, was er sucht“, sagst du.
+
+[wenn offen >= 2]
+Er nimmt das Brot. Er isst es nicht, er schlingt es, mit beiden Händen, den Kopf über dem Napf, wie einer, der Angst hat, man nimmt's ihm wieder weg. Dann wischt er die Krumen vom Knie in die hohle Hand und isst auch die.
+[sonst]
+Er schiebt es dir hin. Du lässt es liegen. In der Nacht hörst du ihn im Dunkeln kauen, lang und langsam, und am Morgen ist das Brot fort.
+[ende]
+
+Von da an brichst du jeden Abend dein Brot in zwei Teile.
+[setze brot = 1, kraft +1]
+* lachen (abwimmeln): „Zeig's halt, Franz. Wackel einmal.“
+Ein paar am Tisch drehen sich um. „Wackel!“, ruft einer, und dann rufen es alle.
+
+Franz schaut dich an. Lange. Dann bewegt er die Ohren. Einmal, zweimal. Die Stube johlt. Er steht auf, stellt den Napf auf die Pritsche und geht hinaus. Den Napf lässt er stehen. Die Erbsen werden kalt, dann hart.
+[setze offen -1]
+* schweigen (neutral): Du sagst nichts. Du schaust auf seine Hände.
+Er merkt, dass du auf seine Hände schaust, und legt sie unter den Napf.
+[/wahl]
+
+[innen professor.innen kraft]
+[wenn brot]
+Brot. Schwarz und sauer.
+Der Andres hat's gebrochen, das größere Stück mir.
+Der Doktor riecht's nicht. Der Doktor riecht nur, was in seinem Glas ist.
+Im Bauch ist was Festes. Zum ersten Mal seit Wochen ist was Festes in mir.
+[sonst]
+Erbsen. Seit einem Vierteljahr.
+Die Erbsen rollen im Bauch, grün, und wenn man aufsteht, wird's grün vor den Augen.
+Es wird mir dunkel, hab ich gesagt.
+Dann ist's fertig, hat er gesagt.
+Was ist dann fertig.
+[ende]
+[/innen]
+
+
+## loehnung | Marie mit einem Stückchen Spiegel. Der Hauptmann.
+quelle: H4,4; H4,5
+ort: stadt
+bild: ohrring
+zeit: Samstag, Löhnung. Dann der Montag.
+
+[stelle loehnung.ohrringe offen]
+[wenn offen >= 2]
+Am Samstag kommt Franz von Marie zurück und setzt sich zu dir auf die Treppe vor der Stube. Er dreht seine Mütze in den Händen.
+
+„Sie hat Ohrringe, Andres“, sagt er. „Gold.“
+
+Er sagt dir, wie es war. Er ist hineingekommen, und sie hat ihm den Rücken zugedreht, mit einem Stückchen Spiegel in der Hand, und ist aufgefahren, die Hände an den Ohren.
+
+WOYZECK: Ich hab gefragt: „{Was hast du?}“ Sie: „{Nix.}“ Ich: „{Unter deinen Fingern glänzt's ja.}“ Und sie: „{Ein Ohrringlein; hab's gefunden.}“
+
+Er lacht, ohne dass es ein Lachen wird.
+
+WOYZECK: Da hab ich gesagt: „{Ich hab so noch nix gefunden. Zwei auf einmal.}“ Und sie: „{Bin ich ein Mensch?}“
+
+„Und dann?“, fragst du.
+
+WOYZECK: Dann hab ich gesagt: „{'s ist gut, Marie.}“
+
+Er erzählt dir vom Buben, wie der auf dem Stuhl geschlafen hat, schief, mit nassem Haar. „{Die hellen Tropfen stehn ihm auf der Stirn; alles Arbeit unter der Sonn, sogar Schweiß im Schlaf. Wir arme Leut!}“
+
+Er hat ihr die Löhnung gegeben, alles, und das vom Hauptmann dazu. Sie hat gesagt: „{Gott vergelt's Franz.}“ Er sagt es dir zweimal, „Gott vergelt's“, als wollte er hören, wie es klingt.
+[sonst]
+Am Samstag holst du Wasser am Brunnen in der Judengasse. Da steht die Margreth mit zwei Eimern und drei Weibern und hat ihr Publikum.
+
+„Durch die Wand hört man alles“, sagt sie, „alles.“ Und dann macht sie die Marie, mit gespreiztem kleinem Finger, als hielte sie ein Stück Spiegel:
+
+MARGRETH: „{Was die Steine glänze! Was sind's für? Was hat er gesagt?}“ Und dann: „{'s ist gewiss Gold!}“ Und dann, hört, hört: „{doch hab ich einen so roten Mund als die großen Madamen mit ihren Spiegeln von oben bis unten}“!
+
+Die Weiber kichern. Du stellst deinen Eimer unter den Strahl und schaust nicht hin.
+
+MARGRETH: Und dann kommt ihr Woyzeck, und sie, die Händ an die Ohren! „{Ein Ohrringlein; hab's gefunden.}“ Gefunden! Und er: „{Zwei auf einmal.}“ Und gibt ihr die ganze Löhnung, der Narr.
+
+Sie senkt die Stimme, damit es noch besser zu hören ist.
+
+MARGRETH: Und wie er fort ist, sagt sie: „{Ich bin doch ein schlecht Mensch. Ich könnt mich erstechen.}“ Das hat sie gesagt. Durch die Wand.
+
+Dein Eimer läuft über. Du merkst es erst, als dir das Wasser in die Stiefel geht.
+[ende]
+[/stelle]
+
+[pause]
+
+Am Montag hast du Ordonnanz im Gang vor dem Zimmer des Hauptmanns. Die Tür steht einen Spalt offen. Drinnen sitzt der Hauptmann auf dem Stuhl, ein Tuch um den Hals, und Franz rasiert ihn. Du hörst das Messer über die Stoppeln gehen, kratz, kratz, und dazwischen die Stimme.
+
+HAUPTMANN: {Langsam, Woyzeck, langsam; eins nach dem andern. Er macht mir ganz schwindlich. Was soll ich dann mit den zehn Minuten anfangen, die Er heut zu früh fertig wird? Woyzeck, bedenk Er, Er hat noch seine schöne dreißig Jahr zu leben, dreißig Jahr! macht dreihundertsechzig Monate, und Tage, Stunden, Minuten! Was will Er denn mit der ungeheuren Zeit all anfangen? Teil Er sich ein, Woyzeck.}
+WOYZECK: {Jawohl, Herr Hauptmann.}
+HAUPTMANN: {Es wird mir ganz angst um die Welt, wenn ich an die Ewigkeit denke. Beschäftigung, Woyzeck, Beschäftigung! ewig das ist ewig, das ist ewig, das siehst du ein; nun ist es aber wieder nicht ewig und das ist ein Augenblick, ja, ein Augenblick – Woyzeck, es schaudert mich, wenn ich denk, dass sich die Welt in einem Tag herumdreht, was 'ne Zeitverschwendung, wo soll das hinaus? Woyzeck, ich kann kein Mühlrad mehr sehn, oder ich werd melancholisch.}
+WOYZECK: {Jawohl, Herr Hauptmann.}
+HAUPTMANN: {Woyzeck Er sieht immer so verhetzt aus. Ein guter Mensch tut das nicht, ein guter Mensch, der sein gutes Gewissen hat. – Red Er doch was Woyzeck. Was ist heut für Wetter?}
+WOYZECK: {Schlimm, Herr Hauptmann, schlimm; Wind.}
+HAUPTMANN: {Ich spür's schon, 's ist so was Geschwindes draußen; so ein Wind macht mir den Effekt wie eine Maus. _Pfiffig._ Ich glaub wir haben so was aus Süd-Nord.}
+WOYZECK: {Jawohl, Herr Hauptmann.}
+HAUPTMANN: {Ha! ha! ha! Süd-Nord! Ha! Ha! Ha! O Er ist dumm, ganz abscheulich dumm. _Gerührt._ Woyzeck, Er ist ein guter Mensch, ein guter Mensch – aber _Mit Würde._ Woyzeck, Er hat keine Moral! Moral das ist wenn man moralisch ist, versteht Er. Es ist ein gutes Wort. Er hat ein Kind, ohne den Segen der Kirche, wie unser hochehrwürdiger Herr Garnisonsprediger sagt, ohne den Segen der Kirche, es ist nicht von mir.}
+
+Das Messer hört auf zu kratzen.
+
+WOYZECK: {Herr Hauptmann, der liebe Gott wird den armen Wurm nicht drum ansehn, ob das Amen drüber gesagt ist, eh er gemacht wurde. Der Herr sprach: Lasset die Kindlein zu mir kommen.}
+HAUPTMANN: {Was sagt Er da? Was ist das für 'ne kuriose Antwort? Er macht mich ganz konfus mit seiner Antwort. Wenn ich sag: Er, so mein ich Ihn, Ihn.}
+WOYZECK: {Wir arme Leut. Sehn Sie, Herr Hauptmann, Geld, Geld. Wer kein Geld hat. Da setz eimal einer seinsgleichen auf die Moral in die Welt. Man hat auch sein Fleisch und Blut. Unseins ist doch einmal unselig in der und der andern Welt, ich glaub wenn wir in Himmel kämen so müssten wir donnern helfen.}
+HAUPTMANN: {Woyzeck Er hat keine Tugend, Er ist kein tugendhafter Mensch. Fleisch und Blut? Wenn ich am Fenster lieg, wenn's geregnet hat und den weißen Strümpfen so nachsehe wie sie über die Gassen springen, – verdammt Woyzeck, – da kommt mir die Liebe. Ich hab auch Fleisch und Blut. Aber Woyzeck, die Tugend, die Tugend! Wie sollte ich dann die Zeit herumbringen? ich sag mir immer: Du bist ein tugendhafter Mensch, _Gerührt._ ein guter Mensch, ein guter Mensch.}
+WOYZECK: {Ja Herr Hauptmann, die Tugend! ich hab's noch nicht so aus. Sehn Sie, wir gemeine Leut, das hat keine Tugend, es kommt einem nur so die Natur, aber wenn ich ein Herr wär und hätt ein Hut und eine Uhr und eine anglaise und könnt vornehm reden, ich wollt schon tugendhaft sein. Es muss was Schöns sein um die Tugend, Herr Hauptmann. Aber ich bin ein armer Kerl.}
+HAUPTMANN: {Gut Woyzeck. Du bist ein guter Mensch, ein guter Mensch. Aber du denkst zu viel, das zehrt, du siehst immer so verhetzt aus. Der Diskurs hat mich ganz angegriffen. Geh jetzt und renn nicht so; langsam hübsch langsam die Straße hinunter.}
+
+Franz kommt heraus, die Schüssel mit dem Seifenwasser vor dem Bauch. Er geht schnell. Er geht immer schnell.
+
+[stelle loehnung.gang offen]
+[wenn offen >= 2]
+Neben dir bleibt er stehen. „Hast's gehört, Andres? Eine anglaise.“ Er weiß nicht, was das ist, du auch nicht. „Ein Rock vielleicht“, sagst du. „Mit Schößen.“ – „Mit einem Rock mit Schößen wär ich tugendhaft“, sagt er, und für einen Augenblick seid ihr zwei Herren im Gang, die über die Tugend reden. Dann schwappt ihm das Seifenwasser auf die Stiefel.
+[sonst]
+An dir geht er vorbei, ohne den Kopf zu drehen. Das Seifenwasser schwappt bei jedem Schritt. Im Wasser schwimmen die Stoppeln vom Hauptmann.
+[ende]
+[/stelle]
+
+
+## tambourmajor | Marie. Tambourmajor.
+quelle: H4,6
+ort: wirtshaus
+bild: handschuh
+zeit: Abends in der Kantine.
+
+In der Kantine sitzt der Tambourmajor beim Unteroffizier, die Beine bis in den Gang gestreckt, dass jeder drübersteigen muss. Er redet so, dass es alle hören. Er will, dass es alle hören.
+
+TAMBOURMAJOR: Die Marie, die schaut mich an, so, und sagt: „{Geh einmal vor dich hin.}“
+
+Er steht auf und geht vor dem Tisch auf und ab, die Brust heraus, und die Kantine schaut zu.
+
+TAMBOURMAJOR: Und dann sagt sie: „{Über die Brust wie ein Rind und ein Bart wie ein Löw – So ist keiner – Ich bin stolz vor allen Weibern.}“
+TAMBOURMAJOR: Und ich sag: „{Wenn ich am Sonntag erst den großen Federbusch hab und die weiße Handschuh, Donnerwetter, Marie, der Prinz sagt immer: Mensch, Er ist ein Kerl.}“
+
+Er macht sie nach, mit spitzem Mund: „{Ach was!}“ Und tritt vor einen hin, der nicht ausweichen kann: „{Mann!}“
+
+TAMBOURMAJOR: Da sag ich: „{Und du bist auch ein Weibsbild. Sapperment, wir wollen eine Zucht von Tambourmajors anlegen. He?}“
+
+Er umfasst die Luft, wo sie gestanden hat.
+
+TAMBOURMAJOR: Und sie: „{Lass mich!}“ Und ich: „{Wild Tier.}“ Und sie: „{Rühr mich an!}“ Und ich: „{Sieht dir der Teufel aus den Augen?}“
+
+Er setzt sich wieder, trinkt und wischt sich den Bart. Er lässt die Kantine warten.
+
+TAMBOURMAJOR: Und wisst ihr, was sie sagt? „{Meintwegen. Es ist alles eins.}“
+
+Das Gelächter schlägt gegen die Decke. Da geht die Tür auf, und Franz kommt herein, den Napf vom Doktor unterm Arm. Er sieht niemanden. Er sucht einen Platz.
+
+[wahl tm.wahl offen]
+* sagen (zuwenden): „Franz. Komm mit hinaus. Ich muss dir was sagen.“
+Draußen an der Pumpe sagst du's ihm. Nicht alles. Dass der Tambourmajor mit der Marie prahlt.
+
+[wenn offen >= 2]
+Er schaut in den Trog unter der Pumpe, wo das Wasser steht und der Mond drin ist.
+
+„Was hat sie gesagt?“, fragt er. „Sag's genau.“
+
+Du sagst es genau. „Es ist alles eins.“
+
+Er sagt es nach, leise, zweimal, als müsste er's auswendig lernen. Dann bedankt er sich. Er bedankt sich, als hättest du ihm Tabak gegeben.
+[sonst]
+„Der Tambourmajor redt viel“, sagt er. Er sagt es zu schnell. Dann geht er wieder hinein und setzt sich mit dem Rücken zum Tisch des Tambourmajors und isst seine Erbsen, und du siehst seinen Nacken, der ganz steif ist.
+[ende]
+[setze tm_gesagt = 1, offen +1]
+* schweigen (abwimmeln): Du stellst dich zwischen ihn und den Tisch des Tambourmajors. „Komm. Hier stinkt's.“
+Er geht mit dir hinaus. Er fragt nicht, warum. Im Rücken hörst du sie noch lachen, und einer ruft „Alles eins!“, und dann lachen sie wieder.
+
+Draußen ist es kalt. Er setzt sich auf die Treppe und isst seine Erbsen, und du stehst daneben, als hieltest du Wache vor einer Tür, die schon offen ist.
+[setze tm_gesagt = 0]
+[/wahl]
+
+
+## doktor | Woyzeck. Der Doktor.
+quelle: H4,8
+ort: stadt
+bild: erbsen
+zeit: Ein heißer Tag.
+
+[stelle doktor.bericht offen]
+[wenn offen >= 2]
+Abends auf der Bank im Kasernenhof erzählt er dir's. Er erzählt es leise und schnell, wie man einem einen Traum erzählt, bevor man ihn vergisst.
+
+Er hat an die Wand gepisst, in der Gasse beim Doktor. Und der Doktor hat am Fenster gestanden.
+
+WOYZECK: „{Ich hab's gesehn Woyzeck; Er hat auf die Straß gepisst, an die Wand gepisst wie ein Hund. Und doch zwei Groschen täglich. Woyzeck das ist schlecht. Die Welt wird schlecht, sehr schlecht.}“
+WOYZECK: Und ich: „{Aber Herr Doktor, wenn einem die Natur kommt.}“ Und er: „{Woyzeck, der Mensch ist frei, in dem Menschen verklärt sich die Individualität zur Freiheit. Den Harn nicht halten können!}“
+
+Er schüttelt den Kopf, wie der Doktor den Kopf geschüttelt hat, und für einen Augenblick ist er der Doktor, mit den Händen auf dem Rücken, auf und ab vor der Bank.
+
+WOYZECK: „{Nein Woyzeck, ich ärgre mich nicht, Ärger ist ungesund, ist unwissenschaftlich. Ich bin ruhig ganz ruhig, mein Puls hat seine gewöhnlichen sechzig}“.
+
+Dann setzt er sich wieder, und jetzt ist er wieder er. Er rückt näher.
+
+„Ich hab's ihm sagen wollen, Andres“, sagt er. „Wie es ist. Mit der Natur.“
+
+WOYZECK: Ich hab gesagt: „{Herr Doktor haben Sie schon was von der doppelten Natur gesehn? Wenn die Sonn in Mittag steht und es ist als ging die Welt in Feuer auf hat schon eine fürchterliche Stimme zu mir geredt!}“
+WOYZECK: Und er sagt: „{Woyzeck, Er hat eine aberratio.}“
+WOYZECK: Und ich zeig ihm: „{Die Schwämme Herr Doktor. Da, da steckts. Haben Sie schon gesehn in was für Figuren die Schwämme auf dem Boden wachsen? Wer das lesen könnt.}“
+
+Er legt den Finger an die Nase, wie er ihn dem Doktor an die Nase gelegt hat, und schaut dich an, ob du's lesen kannst.
+
+WOYZECK: Und da ist er froh geworden. „{Woyzeck Er hat die schönste aberratio mentalis partialis, die zweite Spezies, sehr schön ausgeprägt. Woyzeck Er kriegt Zulage.}“
+WOYZECK: Und dann hat er gefragt, ob ich noch alles tu wie sonst. „{Isst sei Erbse?}“ Und ich: „{Immer ordentlich Herr Doktor. Das Geld für die Menage kriegt mei Frau.}“
+
+[stelle doktor.luege kraft]
+[wenn brot]
+Er sagt es, und um den Mund zuckt's ihm. Immer ordentlich. Dein Brot liegt ihm im Magen wie ein Geheimnis, und zum ersten Mal hat er den Doktor angelogen, und der Doktor hat's aufgeschrieben. Er stößt dich mit dem Ellbogen. Ihr lacht beide, lautlos, auf der Bank im Hof, wie Schulbuben, die einen Lehrer betrogen haben.
+[sonst]
+Er sagt es, wie er's dem Doktor gesagt hat, ohne etwas dabei. Es ist ja wahr. Er isst immer ordentlich seine Erbse. Unterm Hemd sieht man die Rippen, wenn er sich vorbeugt, eine Leiter aus Knochen.
+[ende]
+[/stelle]
+
+WOYZECK: „{Er ist ein interessanter casus. Subjekt Woyzeck Er kriegt Zulag. Halt Er sich brav. Zeig Er sei Puls! Ja.}“
+[sonst]
+Du bist in der Gasse beim Doktor, mit einem Brief vom Feldwebel, als oben das Fenster aufgeht. Unten an der Wand steht Franz und knöpft sich die Hose zu.
+
+DOKTOR: {Was erleb ich Woyzeck? Ein Mann von Wort.}
+WOYZECK: {Was denn Herr Doktor?}
+DOKTOR: {Ich hab's gesehn Woyzeck; Er hat auf die Straß gepisst, an die Wand gepisst wie ein Hund. Und doch zwei Groschen täglich. Woyzeck das ist schlecht. Die Welt wird schlecht, sehr schlecht.}
+
+In der Gasse bleiben die Leute stehen. Eine Magd setzt den Korb ab, um besser zuzuhören.
+
+WOYZECK: {Aber Herr Doktor, wenn einem die Natur kommt.}
+DOKTOR: {Die Natur kommt, die Natur kommt! Die Natur! Hab ich nicht nachgewiesen, dass der musculus constrictor vesicae dem Willen unterworfen ist? Die Natur! Woyzeck, der Mensch ist frei, in dem Menschen verklärt sich die Individualität zur Freiheit. Den Harn nicht halten können!}
+DOKTOR: {Hat Er schon seine Erbsen gegessen, Woyzeck?}
+
+Dann winkt er ihn hinein, und das Fenster geht zu. Was drinnen geredet wird, hört keiner. Du gibst deinen Brief ab und gehst.
+
+Am Abend hat es die ganze Kaserne. Die Magd vom Doktor hat's dem Bäcker erzählt, und der Bäcker der halben Stadt. Der Woyzeck kriegt Zulage, weil er spinnt. „Zweite Spezies“, ruft einer, wenn Franz in die Stube kommt, und ein anderer: „{fixe Idee, mit allgemein vernünftigem Zustand}“, und keiner weiß, was es heißt, aber alle lachen.
+
+Franz setzt sich auf seine Pritsche und zieht die Stiefel aus. Er hat nichts gehört. Er hat alles gehört.
+[ende]
+[/stelle]
+
+[wahl doktor.wahl kraft]
+* aufhoeren (zuwenden): „Geh nimmer hin, Franz. Wir kommen auch so durch.“
+[wenn offen >= 3 und brot]
+Er schaut auf seine Hände, dann auf dich.
+
+„Noch die Woche“, sagt er. „Bis der Akkord rum ist. Dann geh ich nimmer hin.“
+
+„Und die Menage?“
+
+„Wenn du mir dein Brot gibst.“ Er sagt es, als wär's ein Witz, und es ist keiner. Du nickst. Er nickt. Damit ist es abgemacht, wie unter Bauern auf dem Markt, mit einem Nicken.
+[setze doktor_ende = 1, kraft +1, offen +1]
+[sonst]
+„Und die Marie?“, sagt er. „Und der Bub?“
+
+Er rechnet es dir vor, auf den Fingern. Zwei Groschen täglich, und die Zulage, und das Rasieren beim Hauptmann, und die Stöcke für den Major. Er hat alles im Kopf, jeden Kreuzer.
+
+„Zwei Groschen sind zwei Groschen, Andres.“
+
+Er geht am nächsten Tag wieder hin. Und am übernächsten.
+[setze offen +1]
+[ende]
+* zulage (abwimmeln): „Zulage ist Zulage. Iss deine Erbsen und denk nit so viel.“
+„Du denkst zu viel“, hat der Hauptmann auch gesagt. Franz schaut dich an, als hätte der Hauptmann aus deinem Mund geredet.
+
+„Jawohl“, sagt er. Wie zum Hauptmann.
+
+Er geht am nächsten Tag wieder hin, und am übernächsten, und an dem Tag danach schickt ihn der Doktor heim, weil er im Hof umgefallen ist, mitten im Wasserlassen, in den eigenen Harn.
+[setze kraft -1, offen -1]
+[/wahl]
+
+[innen doktor.innen kraft]
+[wenn doktor_ende]
+Noch die Woche.
+Dann hört das Grün im Mund auf.
+Wir kommen durch, hat der Andres gesagt. Wir.
+Ich hab das Wort in der Tasche wie einen Kreuzer und fass es an, wenn keiner hinschaut.
+[sonst wenn kraft <= 1]
+Zweite Spezies. Fixe Idee.
+Mit allgemein vernünftigem Zustand.
+Ich tu noch alles wie sonst. Rasier den Hauptmann. Ess die Erbse. Tu den Dienst.
+Allgemein vernünftig. Und in den Ohren die Posaunen, und unterm Pflaster hohl.
+[sonst]
+Er kriegt Zulage. Halt Er sich brav.
+Ich halt mich brav. Ich halt mich an der Bank fest, damit der Hof nicht kippt.
+[ende]
+[/innen]

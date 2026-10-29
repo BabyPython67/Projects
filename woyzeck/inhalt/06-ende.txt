@@ -1,0 +1,459 @@
+// Woyzeck – Inhalt, Teil 6: Die letzte Nacht, der Morgen, was bleibt.
+
+## letzte | Marie mit Mädchen vor der Haustür. Am Teich.
+quelle: H1,14; H1,15; H1,16; H1,17; H1,19; H1,20
+ort: stadt
+bild: mond
+zeit: Dieselbe Nacht.
+
+[stelle letzte.weg abschied]
+[wenn abschied = marie]
+Du rennst durch die Stadt. Die Gassen sind schon dunkel, nur aus den Wirtshäusern fällt Licht. Vor Mariens Haus sitzen die Mädchen der Gasse auf der Schwelle und singen, wie sie jeden Abend singen.
+
+~ {Wie scheint die Sonn St. Lichtmesstag}
+~ {Und steht das Korn im Blühn.}
+~ {Sie gingen wohl die Straße hin,}
+~ {Sie gingen zu zwei und zwein.}
+~ {Die Pfeifer gingen vorn,}
+~ {Die Geiger hinte drein.}
+~ {Sie hatte rote Sock ...}
+
+1. KIND: {'s ist nit schön.}
+2. KIND: {Was willst du auch immer!}
+
+„Wo ist die Marie?“
+
+Die Mädchen schauen dich an, einen Soldaten ohne Mütze, mit einem Kreuz in der Faust. Auf der Bank neben der Tür sitzt die Großmutter, die Hände im Schoß.
+
+„Fort“, sagt die Kleinste. „Mit dem Franz.“ Und sie macht es dir vor, mit tiefer Stimme, weil sie's lustig gefunden hat: „{Marie wir wolln gehn. 's ist Zeit.}“ Und mit hoher: „{Wohinaus?}“ Und wieder mit tiefer: „{Weiß ich's?}“
+
+„Wohin?“
+
+Die Kleine zeigt zum Tor hinaus, wo das Feld anfängt. Die Großmutter hat die Augen zu. Die Mädchen ziehen sie am Ärmel, sie soll erzählen, wie vorhin, noch einmal, und sie erzählt, und du hörst es, schon im Gehen, und dann im Laufen, und es läuft hinter dir her bis ans Tor.
+
+GROSSMUTTER: {Es war eimal ein arm Kind und hat kei Vater und kei Mutter war alles tot und war niemand mehr auf der Welt. Alles tot, und es ist hingangen und hat greint Tag und Nacht. Und weil auf der Erd niemand mehr war, wollt's in Himmel gehn, und der Mond guckt es so freundlich an und wie's endlich zum Mond kam, war's ein Stück faul Holz}
+
+[ort nachtfeld]
+
+Vor dem Tor liegt Nebel auf den Wiesen, in Bänken, hüfthoch. Der Mond steht rot über dem Wald. Auf dem Weg zur Lochschanz kommen dir zwei entgegen, Leute aus der Vorstadt, mit einer Laterne, und bleiben stehen, als du stehen bleibst.
+
+1. PERSON: {Halt!}
+2. PERSON: {Hörst du? Still! Da!}
+
+Und du hörst es. Vom Wasser her, oder vom Wald, oder aus dem Nebel selbst.
+
+1. PERSON: {Uu! Da! Was ein Ton.}
+2. PERSON: {Es ist das Wasser, es ruft, schon lang ist niemand ertrunken. Fort, 's ist nicht gut, es zu hören.}
+1. PERSON: {Uu jetzt wieder. Wie ein Mensch der stirbt.}
+2. PERSON: {Es ist unheimlich, so dunstig, allenthalb Nebel, grau und das Summen der Käfer wie gesprungne Glocken. Fort!}
+1. PERSON: {Nein, zu deutlich, zu laut. Da hinauf. Komm mit.}
+
+Ihr geht da hinauf, zu dritt, mit der Laterne, die nicht weiter leuchtet als bis zu den eigenen Knien. Ihr findet den Wald und das rote Kreuz am Weg und sonst nichts. Du rufst „Marie“, und der Nebel nimmt es dir aus dem Mund. Du rufst „Franz“. Der eine mit der Laterne sagt, das war ein Vogel, ein Käuzchen, und zieht den andern heim.
+
+Du bleibst. Du stehst am roten Kreuz und hörst nichts mehr. Später erfährst du, wie nah du warst. Dreißig Schritte, sagen sie. Vielleicht vierzig.
+
+Dann hörst du einen rennen, unten am Weg, zur Stadt hin. Du rennst hinterher und verlierst ihn am Tor. In der Stadt ist im Rössel noch Licht und mehr Lärm als sonst. Der Wirt steht in der Tür und erzählt es schon denen, die vorbeikommen.
+
+WIRT: Der Woyzeck war da. Hat getanzt mit der Käthe wie ein Verrückter, und die Käthe sagt: „{Aber was hast du an deiner Hand?}“ Und dann: „{Rot, Blut!}“
+
+WIRT: Und er: „{Ich glaub ich hab mich geschnitten, da an der rechten Hand.}“ Und ich sag: „{Wie kommt's aber an den Ellenbogen?}“ Und er: „{Ich hab's abgewischt.}“ Und ich: „{Was mit der rechten Hand an den rechten Ellenbogen? Ihr seid geschickt.}“
+
+WIRT: Und dann hat er geschrien: „{Meint ihr ich hätt jemand umgebracht? Bin ich Mörder?}“ Und fort war er, hinaus, Richtung Teich.
+
+Du weißt, wohin. Er geht immer zum Wasser, wenn er sich waschen will.
+[sonst wenn abschied = nach]
+In der Stadt verlierst du ihn, in der zweiten Gasse schon. Du suchst ihn in den Gassen, die er immer geht. In Mariens Gasse siehst du ihn wieder, von weitem, am Ende, bei ihrem Haus. Vor der Tür sitzen die Mädchen der Gasse und singen, die Großmutter auf der Bank, und er steht bei Marie und hat ihr die Hand auf den Arm gelegt.
+
+Du hörst nicht, was er sagt. Du siehst, dass sie mit ihm geht, zum Tor hin.
+
+Er ist bei ihr, denkst du. Dann ist er nicht allein.
+
+Du gehst ins Rössel und wartest. Du trinkst einen Schoppen und dann noch einen. Es ist voll, es wird getanzt, und du schaust auf die Tür. Nach einer Stunde geht die Tür auf, und er kommt herein. Er sieht dich nicht. Er sieht keinen. Er geht mitten in die Tanzenden.
+
+WOYZECK: {Tanzt alle, immer zu, schwitzt und stinkt, er holt euch doch eimal alle.}
+
+Und er singt, was du in der Wachtstube gesungen hast:
+
+~ {Frau Wirtin hat 'ne brave Magd,}
+~ {Sie sitzt im Garten Tag und Nacht,}
+~ {Sie sitzt in ihrem Garten,}
+~ {Bis dass das Glöcklein zwölfe schlägt,}
+~ {Und passt auf die Soldaten.}
+
+Er packt die Käthe und tanzt mit ihr, zu schnell für die Musik.
+
+WOYZECK: {So Käthe! setz dich! Ich hab heiß, heiß,}
+
+Er zieht den Rock aus und wirft ihn auf die Bank, neben dich. Der Rock ist nass, an einem Ärmel.
+
+WOYZECK: {es ist eimal so, der Teufel holt die eine und lässt die andre laufen. Käthe du bist heiß! Warum denn? Käthe du wirst auch noch kalt werden. Sei vernünftig. Kannst du nicht singen?}
+Käthe singt und tanzt dazu.
+
+~ {Ins Schwabeland das mag ich nicht,}
+~ {Und lange Kleider trag ich nicht,}
+~ {Denn lange Kleider spitze Schuh,}
+~ {Die kommen keiner Dienstmagd zu.}
+
+WOYZECK: {Nein, keine Schuh, man kann auch ohne Schuh in die Höll gehn.}
+
+~ {O pfui mein Schatz das war nicht fein.}
+~ {Behalt dei Taler und schlaf allein.}
+
+WOYZECK: {Ja wahrhaftig! ich möchte mich nicht blutig machen.}
+KÄTHE: {Aber was hast du an deiner Hand?}
+WOYZECK: {Ich? Ich?}
+KÄTHE: {Rot, Blut!}
+
+Die Leute stellen sich um sie. Du stehst auch auf.
+
+WOYZECK: {Blut? Blut.}
+WIRT: {Uu Blut.}
+WOYZECK: {Ich glaub ich hab mich geschnitten, da an der rechten Hand.}
+WIRT: {Wie kommt's aber an den Ellenbogen?}
+WOYZECK: {Ich hab's abgewischt.}
+WIRT: {Was mit der rechten Hand an den rechten Ellenbogen? Ihr seid geschickt.}
+NARR: {Und da hat der Ries gesagt: ich riech, ich riech, ich riech Menschefleisch. Puh! Das stinkt schon.}
+
+Da sieht er dich. Zwischen den andern, mit dem Schoppen in der Hand. Er sieht dich an, und für einen Atemzug ist er ganz still.
+
+WOYZECK: {Teufel, was wollt ihr? Was geht's euch an? Platz! oder der erste – Teufel! Meint ihr ich hätt jemand umgebracht? Bin ich Mörder? Was gafft ihr! Guckt euch selbst an! Platz da!}
+
+Er läuft hinaus. Du läufst ihm nach, durch die Gasse, zum Tor, aufs Feld, in den Nebel. Du verlierst ihn am Wald. Du hörst ihn nur noch. Er ist ganz nah, irgendwo vor dir im Dunkeln, und redet.
+
+[ort nachtfeld]
+
+WOYZECK: {Das Messer? Wo ist das Messer? Ich hab es da gelassen. Es verrät mich! Näher, noch näher! Was ist das für ein Platz? Was hör ich? Es rührt sich was. Still. Da in der Nähe. Marie? Ha Marie! Still.}
+
+Du bleibst stehen. Du rufst nicht. Du weißt nicht, warum du nicht rufst.
+
+WOYZECK: {Da liegt was! kalt, nass, stille. Weg von dem Platz. Das Messer, das Messer, hab ich's? So! Leute. – Dort.}
+
+Er rennt, an dir vorbei, so nah, dass du den Wind spürst, zum Wasser hinunter. Du gehst ihm nach. Du gehst nicht zu dem Platz, wo was liegt. Du gehst ihm nach.
+[sonst]
+Du schläfst schlecht. Zweimal wachst du auf, weil die Turmuhr schlägt, und einmal, weil unten im Hof einer lacht. Das Bett neben dir ist leer. Du denkst: Er ist bei ihr. Du denkst: Morgen ist Appell. Die Sachen liegen am Fußende, du spürst sie mit den Zehen, das Kreuz, hart, durch die Decke.
+
+Gegen Morgen träumst du vom Feld. Ihr schneidet Stöcke, und er sagt „Still!“, und du singst nicht, du singst diesmal nicht, und es ist so still, dass du aufwachst.
+
+Es ist noch dunkel. Du drehst dich zur Wand und schläfst wieder ein.
+[ende]
+[/stelle]
+
+[stelle letzte.teich abschied]
+[wenn abschied != liegen]
+[ort teich]
+
+Am Teich steht er im Wasser, bis an die Hüften. Der Mond liegt auf dem Wasser, rot, und zerbricht, wo er steht. Er hat dich nicht gehört.
+
+WOYZECK: {So da hinunter!}
+
+Etwas fliegt aus seiner Hand und klatscht ins Wasser.
+
+WOYZECK: {Es taucht in das dunkle Wasser, wie ein Stein! Der Mond ist wie ein blutig Eisen! Will denn die ganze Welt es ausplaudern? Nein es liegt zu weit vorn, wenn sie sich baden,}
+
+Er watet weiter hinein, bis an die Brust, sucht mit den Füßen, findet es, hebt es auf und wirft noch einmal, weit, in die Mitte.
+
+WOYZECK: {so jetzt – aber im Sommer, wenn sie tauchen nach Muscheln, bah es wird rostig. Wer kann's erkennen – hätt ich es zerbrochen! Bin ich noch blutig? ich muss mich waschen. Da ein Fleck und da noch einer.}
+
+Er reibt sich die Arme mit Wasser, die Hände, die Ellenbogen. Er reibt, als wollte er die Haut abreiben. Da sieht er dich am Ufer.
+
+[wahl teich.wahl abschied]
+* fragen (zuwenden): „Franz. Was hast du getan?“
+[wenn offen >= 3]
+Er hört auf zu reiben. Er sagt es dir. Er sagt es wie alles, was er dir gesagt hat, auf dem Feld, in der Nacht, auf der Bank: als wärst du der Einzige, der es hören kann.
+
+WOYZECK: Sie hat gesagt: „{Also dort hinaus ist die Stadt. 's ist finster.}“ Und ich: „{Du sollst noch bleiben. Komm setz dich.}“ Und sie: „{Aber ich muss fort.}“
+WOYZECK: Und ich hab sie gefragt: „{Weißt du auch wie lang es just ist, Marie?}“ Und sie: „{An Pfingsten zwei Jahr.}“ Und ich: „{Weißt du auch wie lang es noch sein wird?}“
+WOYZECK: Und dann hat sie gesagt: „{Was der Mond rot auf geht.}“ Und ich: „{Wie ein blutig Eisen.}“
+
+Er schaut zum Mond, der noch immer da ist, und dann zu dir.
+
+WOYZECK: Und sie: „{Was hast du vor? Franz, du bist so blass. Franz halt! Um des Himmels willen, Hü – Hülfe!}“
+
+Weiter sagt er nichts. Weiter musst du nicht fragen.
+[sonst]
+„{Nix.}“, sagt er. Und wäscht weiter. Da ein Fleck und da noch einer.
+[ende]
+
+Er kommt aus dem Wasser, an dir vorbei. Du hast seinen Ärmel. Diesmal hast du seinen Ärmel, wie er deinen hatte, am ersten Tag im Gebüsch. Er reißt sich los, und der nasse Stoff rutscht dir durch die Finger, und er ist fort, zur Stadt hin.
+[setze teich = gefragt]
+* waschen (neutral): Du gehst zu ihm ins Wasser und wäschst ihm die Hände.
+Das Wasser ist kalt, es nimmt dir den Atem. Du nimmst seine Hände in deine und reibst sie, die Finger, die Nägel, die Gelenke, die Ellenbogen, wie man einem Kind die Hände wäscht. Er lässt dich. Er zeigt dir die Stellen. „Da ein Fleck“, sagt er, „und da noch einer.“ Du reibst, bis die Haut rot ist und nichts mehr zu sehen, und dann reibst du weiter.
+
+Du fragst nicht. Du willst es nicht wissen, solange du reibst.
+
+Dann zieht er die Hände weg, sauber, und schaut sie an, und geht aus dem Wasser, zur Stadt hin. Du stehst noch im Teich, bis dir die Beine nicht mehr gehören.
+[setze teich = gewaschen]
+* weg (abwimmeln): Du drehst dich um und gehst.
+Hinter dir plätschert es weiter, das Reiben und Waschen, und dann hörst du ihn nicht mehr, weil du schneller gehst. Du gehst über die Wiese, durchs Tor, in die Kaserne, in dein Bett, und ziehst die nassen Stiefel nicht aus.
+[setze teich = weg]
+[/wahl]
+[ende]
+[/stelle]
+
+[innen letzte.mord kraft]
+[wenn teich = gefragt und offen >= 3]
+Ich hab's ihm gesagt. Bis zum Hülfe.
+Weiter nicht. Das Weitere ist bei mir.
+[sonst]
+{_Also dort hinaus ist die Stadt. 's ist finster._}
+{Du sollst noch bleiben. Komm setz dich.}
+{_Aber ich muss fort._}
+{Du wirst dir die Füß nicht wund laufen.}
+{_Wie bist du nur auch!_}
+{Weißt du auch wie lang es just ist, Marie?}
+{_An Pfingsten zwei Jahr._}
+{Weißt du auch wie lang es noch sein wird?}
+{_Ich muss fort das Nachtessen richten._}
+{Friert's dich Marie, und doch bist du warm. Was du heiße Lippen hast!}
+{Du wirst vom Morgentau nicht frieren.}
+{_Was sagst du?_}
+{Nix.}
+{_Was der Mond rot auf geht._}
+{Wie ein blutig Eisen.}
+{_Was hast du vor? Franz, du bist so blass. Franz halt! Um des Himmels willen, Hü – Hülfe!_}
+{Nimm das und das! Kannst du nicht sterben? So! so!}
+[ende]
+
+[wenn kraft >= 4]
+Ich war ganz klar.
+Ich hab geschlafen, ich hab gegessen.
+Ich hab der Hand zugesehen, was sie tut, und ich hab gewusst, dass es meine ist.
+Keine Geige. Keine Wand. Nur der Mond und ich und sie.
+[sonst wenn kraft <= 1]
+Die Geigen. Immer zu.
+Die Hand gehört dem, der aus der Wand redt. Ich hab ihn nicht gesehn. Ich hab nur die Hand gesehn.
+Seit Tagen kein Schlaf, und dann der Mond, und dann war's vorbei, und ich weiß nicht, wer's getan hat, und es war meine Hand.
+[sonst]
+Ich weiß es und weiß es nicht.
+Wie im Traum, wo man rennt und nicht vom Fleck kommt. Nur dass ich vom Fleck gekommen bin. Bis zu ihr.
+[ende]
+[wenn abschied != nach]
+{Das Messer? Wo ist das Messer? Ich hab es da gelassen. Es verrät mich!}
+{Marie? Ha Marie! Still.}
+[ende]
+{Was bist du so bleich, Marie? Was hast du eine rote Schnur um den Hals?}
+{Bei wem hast du das Halsband verdient, mit deinen Sünden? Du warst schwarz davon, schwarz! Hab ich dich jetzt gebleicht.}
+{Was hänge die schwarze Haar, so wild? Hast du die Zöpfe heut nicht geflochten?}
+[wenn abschied = liegen]
+{Der Mond ist wie ein blutig Eisen!}
+{Bin ich noch blutig? ich muss mich waschen. Da ein Fleck und da noch einer.}
+Der Andres schläft.
+[ende]
+[/innen]
+
+
+## morgen | Kinder. Der Idiot. Das Kind. Woyzeck. Gerichtsdiener.
+quelle: H1,18; H3,2; H1,21; H1,14
+ort: morgen
+bild: reiter
+zeit: Der Morgen.
+
+[stelle morgen.aufwachen abschied]
+[wenn abschied = liegen]
+Der Hornist weckt dich. Das Bett neben dir ist leer und glatt, unberührt, mit der Kante wie ein Lineal. Am Fußende liegen die Sachen. Draußen auf der Gasse unterm Fenster rennen Kinder.
+[sonst]
+Du sitzt auf der Treppe vor der Kaserne, als es hell wird. Deine Hosen sind nass bis zum Gürtel und trocknen nicht. Unten auf der Gasse rennen Kinder.
+[ende]
+[/stelle]
+
+1. KIND: {Fort!}
+2. KIND: {Was is?}
+1. KIND: {Weißt du's nit? Sie sind schon alle hinaus. Drauß liegt eine!}
+2. KIND: {Wo?}
+1. KIND: {Links über die Lochschanz in dem Wäldche, am roten Kreuz.}
+2. KIND: {Fort, dass wir noch was sehen. Sie tragen's sonst hinein.}
+
+[stelle morgen.verstehen abschied]
+[wenn abschied = liegen]
+Du sitzt auf der Bettkante. Du schaust auf das Kreuz und das Ringlein und das Kamisol, das zu klein ist. Du hast es gehabt, gestern Abend, in deinen Händen. Du hast Jawohl gesagt.
+
+Auf dem Weg hinaus zur Lochschanz reden die Leute. Sie wissen schon alles, oder sie wissen schon mehr als alles. Zwei aus der Vorstadt haben es gehört, gestern Nacht am Teich, und erzählen es jedem: „{Uu! Da! Was ein Ton.}“ Und der andere hat gesagt: „{Es ist das Wasser, es ruft, schon lang ist niemand ertrunken.}“ Und dann wieder: „{Wie ein Mensch der stirbt.}“ Und sie sind heimgegangen.
+
+Und im Rössel, sagt eine, war er dann noch, der Woyzeck, und hat mit der Käthe getanzt, und die Käthe hat's gesehen an seiner Hand: „{Rot, Blut!}“ Und er: „{Ich glaub ich hab mich geschnitten, da an der rechten Hand.}“ Und der Wirt: „{Wie kommt's aber an den Ellenbogen?}“ Die ganze Stadt sagt es jetzt nach, an den rechten Ellenbogen, und lacht ein bisschen dabei, weil es so dumm war.
+[sonst wenn abschied = nach]
+Du gehst nicht mit den Kindern. Du weißt, wo der Platz ist. Du warst dort, im Dunkeln, dreißig Schritte weit.
+
+Auf dem Weg erzählen sich die Leute, was zwei aus der Vorstadt gestern Nacht am Teich gehört haben: „{Uu! Da! Was ein Ton.}“ Und: „{Wie ein Mensch der stirbt.}“ Und dass sie heimgegangen sind, weil es nicht gut ist, so was zu hören. Du hast es nicht gehört. Du hast nur ihn gehört, im Dunkeln, wie er nach dem Messer gesucht hat.
+[sonst]
+Du gehst nicht mit den Kindern. Du warst schon dort, am roten Kreuz, im Nebel, mit einer Laterne, die nicht weiter leuchtete als bis zu den Knien.
+[ende]
+[/stelle]
+
+[ort stadt]
+
+Vor Mariens Haus sitzt der Narr Karl auf der Schwelle und hält das Kind vor sich auf dem Schoß. Die Großmutter sitzt auf der Bank daneben, wie gestern, als hätte sie die Nacht dort gesessen.
+
+[stelle morgen.grossmutter abschied]
+[wenn abschied != marie]
+Die Mädchen der Gasse sind auch da, stumm diesmal. Eine sagt zu dir, als wärst du einer, der's wissen muss: „Gestern hat sie noch mit uns gesungen. Und dann hat sie gesagt: {Kommt ihr klei Krabben! Ringle, ringel Rosenkranz. König Herodes.} Und dann: {Großmutter erzähl.}“
+
+Und die Großmutter, als hätte man sie aufgezogen, erzählt es noch einmal, dem Kind auf Karls Schoß, das nicht zuhört.
+
+GROSSMUTTER: {Es war eimal ein arm Kind und hat kei Vater und kei Mutter war alles tot und war niemand mehr auf der Welt. Alles tot, und es ist hingangen und hat greint Tag und Nacht. Und weil auf der Erd niemand mehr war, wollt's in Himmel gehn, und der Mond guckt es so freundlich an und wie's endlich zum Mond kam, war's ein Stück faul Holz und da ist es zur Sonn gangen und wie's zur Sonn kam, war's ein verreckt Sonneblum und wie's zu den Sterne kam, warens klei golde Mück, die waren angesteckt wie der Neuntöter sie auf die Schlehe steckt und wie's wieder auf die Erd wollt, war die Erd ein umgestürzter Hafen und war ganz allein und da hat sich's hingesetzt und geweint und da sitzt es noch und ist ganz allein.}
+
+„Und dann ist der Franz gekommen“, sagt das Mädchen. „{Marie wir wolln gehn. 's ist Zeit.}“ Und sie: „{Wohinaus?}“ Und er: „{Weiß ich's?}“
+[sonst]
+Die Großmutter erzählt dem Kind das Märchen zu Ende, das du gestern im Laufen nicht mehr gehört hast.
+
+GROSSMUTTER: {und da ist es zur Sonn gangen und wie's zur Sonn kam, war's ein verreckt Sonneblum und wie's zu den Sterne kam, warens klei golde Mück, die waren angesteckt wie der Neuntöter sie auf die Schlehe steckt und wie's wieder auf die Erd wollt, war die Erd ein umgestürzter Hafen und war ganz allein und da hat sich's hingesetzt und geweint und da sitzt es noch und ist ganz allein.}
+[ende]
+[/stelle]
+
+KARL: {Der is ins Wasser gefallen, der is ins Wasser gefalln, wie, der is ins Wasser gefalln.}
+
+Da kommt Franz die Gasse herauf. Seine Kleider sind nass und schwer. Er sieht dich und bleibt nicht stehen. Er geht zum Kind.
+
+WOYZECK: {Bub, Christian.}
+
+Karl sieht ihn starr an.
+
+KARL: {Der is ins Wasser gefalln.}
+
+Franz will das Kind streicheln. Es wendet sich weg und schreit.
+
+WOYZECK: {Herrgott!}
+KARL: {Der is ins Wasser gefalln.}
+WOYZECK: {Christianche, du bekommst en Reuter, sa, sa.}
+
+Das Kind wehrt sich. Er gräbt in der nassen Tasche und gibt Karl, was er findet, zwei Kreuzer.
+
+WOYZECK: {Da kauf dem Bub en Reuter.}
+
+Karl sieht ihn starr an.
+
+WOYZECK: {Hop! hop! Ross.}
+KARL: {Hop! hop! Ross! Ross!}
+
+Karl jauchzt und läuft mit dem Kind weg, die Gasse hinunter, und das Kind auf seinem Arm hüpft und hört auf zu schreien.
+
+[stelle morgen.blick abschied]
+[wenn teich = gewaschen]
+Franz steht da und schaut seinen Händen nach, die er dem Kind hingehalten hat. Sie sind sauber. Du hast sie sauber gemacht. Er hebt sie ein wenig, gegen dich, als wollte er sie dir zeigen. Dann lässt er sie fallen.
+[sonst wenn teich = gefragt]
+Franz dreht sich zu dir um. Er nickt dir zu, einmal, wie über einen Tisch hinweg, an dem ihr etwas abgemacht habt. Du weißt es. Er weiß, dass du's weißt. Mehr ist zwischen euch nicht mehr zu sagen, und es ist viel.
+[sonst wenn teich = weg]
+Franz schaut an dir vorbei. Du hast dich umgedreht am Teich, und jetzt dreht er sich um, und es ist, als wärt ihr quitt.
+[sonst]
+Franz schaut dich an. Er schaut auf das Kreuz, das du nicht dabeihast, und auf dein Gesicht, und du siehst, dass er etwas sucht in deinem Gesicht und es nicht findet. Dann schaut er weg.
+[ende]
+[/stelle]
+
+Hinter dir in der Gasse Schritte, viele, und eine Stimme, die Platz ruft. Der Feldwebel schickt dich mit drei anderen hinaus zur Lochschanz, die Leute zurückhalten. Du gehst. Als du dich an der Ecke umdrehst, steht Franz noch vor der Tür, allein, und die Schritte sind bei ihm.
+
+[ort nachtfeld]
+
+Am roten Kreuz stehst du mit dem Gewehr und hältst die Leute zurück. Hinter dir liegt sie unter einem Tuch. Unter dem Tuch schaut das Haar heraus, schwarz, nicht geflochten. Die vom Gericht sind gekommen, der Gerichtsdiener, der Barbier, der Richter, und der Arzt. Der Arzt ist der Doktor.
+
+Der Gerichtsdiener reibt sich die Hände in der Morgenkälte.
+
+GERICHTSDIENER: {Ein guter Mord, ein echter Mord, ein schöner Mord, so schön als man ihn nur verlangen tun kann, wir haben schon lange so kein gehabt.}
+
+Der Barbier, der das Protokoll führen hilft, beschreibt den Täter für den Steckbrief, und der Richter diktiert mit:
+
+BARBIER: {Dogmatischer Atheist. Lang, hager, feig, schlecht, Wissenschftl.}
+
+Der Doktor kniet beim Tuch und hebt es an einer Ecke an, so wie er das Tuch von einem Präparat hebt.
+
+
+## epilog | Andres.
+quelle: ergänzt
+ort: amtsstube
+bild: kamisol
+zeit: Später.
+
+In der Amtsstube riecht es nach Tinte und nassen Mänteln. Der Richter sitzt hinter dem Tisch, der Schreiber daneben. An der Wand sitzt der Doktor, die Hände auf dem Stockknauf. Du stehst, die Mütze unterm Arm.
+
+Ob er dem Woyzeck sein Bettkamerad gewesen sei. Jawohl. Ob der Woyzeck ihm etwas anvertraut habe. Ob er bei Verstand gewesen sei.
+
+[wahl epilog.wahl abschied]
+* stimmen (zuwenden) [wenn weiss_zickwolf oder offen >= 3]: „Er hat Stimmen gehört, Herr Richter. Aus dem Boden. Aus der Wand. Sie haben ihm gesagt, was er tun soll.“
+Der Schreiber schreibt. Der Richter schaut zum Doktor. Der Doktor nickt, als hätte er's bestellt.
+
+„{Zweite Spezies, fixe Idee, mit allgemein vernünftigem Zustand}“, sagt der Doktor. „Ich hab's notiert, seit einem Vierteljahr. {Er tut noch alles wie sonst}. Rasiert seinen Hauptmann, tut seinen Dienst. Er weiß sehr wohl, was er tut.“
+
+Der Schreiber schreibt auch das, unter deins.
+[setze aussage = stimmen]
+* ordentlich (neutral): „Er war ein ordentlicher Mensch, Herr Richter. Er hat seinen Dienst getan.“
+Der Schreiber schreibt: ordentlicher Mensch. Der Doktor lächelt.
+
+„{Er tut noch alles wie sonst}“, sagt er. „Sehr richtig. Ordentlich bis zuletzt.“
+[setze aussage = ordentlich]
+* nichts (abwimmeln): „Ich weiß nix, Herr Richter. Er hat nix gesagt.“
+„Er war sein Bettkamerad und weiß nix?“
+
+„Jawohl.“
+
+Der Schreiber schreibt: weiß nichts. Es ist die kürzeste Zeile auf dem Blatt.
+[setze aussage = nichts]
+[/wahl]
+
+[stelle epilog.arzt kraft]
+[wenn kraft >= 4]
+„Zuletzt hat er wieder gegessen“, sagt der Doktor noch, im Aufstehen. „Man sieht's. Geschlafen hat er auch, sagt man. Er war bei Kräften. Er war vollkommen klar.“
+
+[wenn brot]
+Du hast ihm das Brot gegeben.
+[ende]
+[wenn wache]
+Du hast seine Wache gestanden.
+[ende]
+[wenn nacht.wahl = wach]
+Du hast bei ihm gewacht, damit er schläft.
+[ende]
+Der Schreiber schreibt: bei Kräften.
+[sonst wenn kraft <= 1]
+„Er hat zuletzt nicht mehr geschlafen“, sagt der Doktor noch, im Aufstehen, „und nichts gegessen als meine Erbsen. Ein schöner Verlauf. Ich werde darüber schreiben.“
+
+[wenn nacht.wahl = schlafen]
+Du hast dich zur Wand gedreht, in der Nacht.
+[ende]
+[wenn doktor.wahl = zulage]
+Du hast gesagt: Iss deine Erbsen.
+[ende]
+Der Schreiber schreibt: Erbsen.
+[sonst]
+„Er war erschöpft“, sagt der Doktor noch, im Aufstehen, „aber bei sich. Erschöpft und bei sich, das ist kein Widerspruch, meine Herren, das ist der interessante Fall.“
+
+Der Schreiber weiß nicht, was er davon schreiben soll, und schreibt nichts.
+[ende]
+[/stelle]
+
+[innen epilog.innen offen]
+[wenn offen >= 3]
+Der Andres hat gefragt.
+Auf dem Feld hat er gefragt, und in der Nacht, und zuletzt am Wasser.
+Einer hat gefragt. Das ist nicht nichts.
+[sonst wenn offen <= 0]
+Der Andres hat gesungen.
+Den Hasen das Gras ab, bis auf den Rasen.
+Er singt gut, der Andres. Er hat immer gut gesungen.
+[sonst]
+Der Andres hat neben mir gelegen, Rücken an Rücken.
+Einen Rücken hat man gespürt. Gesehn hat man ihn nicht.
+[ende]
+[/innen]
+
+[stelle epilog.bleibt abschied]
+[wenn abschied = liegen]
+Die Sachen liegen noch auf deinem Tornister. Du rührst sie nicht an, wochenlang nicht, und beim Packen für die Verlegung legst du sie ganz unten hinein, unter die Hemden, wo man nicht hinfasst.
+
+Abends, wenn du nicht schlafen kannst, singst du, leise, damit du einschläfst.
+
+~ {Saßen dort zwei Hasen,}
+~ {Fraßen ab das grüne, grüne Gras ...}
+
+Keiner sagt: Still.
+[sonst wenn teich = gewaschen]
+Das Kamisol trägst du unter dem Rock, obwohl es dir zu eng ist. Es kneift unter den Armen, beim Exerzieren, bei jedem Griff. Das Kreuz hast du der Schwester geschickt, mit einem Brief, den der Feldwebel für dich geschrieben hat, und keine Antwort bekommen.
+
+Am Brunnen im Hof wäschst du dir die Hände. Du wäschst sie lang. Die anderen warten hinter dir mit ihren Eimern und schimpfen, und du wäschst. Da ein Fleck. Und da noch einer.
+[sonst wenn teich = gefragt]
+Das Kreuz bringst du dem Buben. Karl macht dir auf, das Kind auf dem Arm. Das Kind nimmt das Kreuz und steckt es in den Mund und schaut dich an, mit Mariens schwarzen Augen, und schreit nicht.
+
+Das Heiligenbild mit den zwei Herzen legst du in dein Gesangbuch, zu dem Lied, das du nicht mehr singst. Und manchmal, auf dem Feld, beim Stöckeschneiden, siehst du einen Streif im Gras, heller als das übrige, und Schwämme darin. Du schaust hin. Du schaust lange hin. Du weißt jetzt, wie man hinschaut. Es hat nur nichts genützt.
+[sonst]
+Am Teich hast du dich umgedreht. Seitdem drehst du dich nicht mehr um, wenn hinter dir einer redet, im Dunkeln, auf dem Gang, in der Stube. Du gehst einfach weiter, schneller.
+
+Das Kamisol hast du dem Trödler verkauft. {Zwee Grosche.} Er hat dich angeschaut, als kennte er dich.
+[ende]
+[/stelle]

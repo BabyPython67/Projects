@@ -1,0 +1,174 @@
+/* Woyzeck – Lesefläche. Papier am Tag, Dunkel in der Nacht; eine Spalte, große Schrift, wenig Bedienung. */
+:root {
+  --papier: #f2ede3;
+  --tinte: #1f1b16;
+  --leise: #6f665a;
+  --linie: #d8cfbf;
+  --rot: #8b2c20;
+  --b-mark: #e6dcc7;
+  --knopf: #e9e2d4;
+  --schatten: rgba(31, 27, 22, 0.12);
+  --schrift: 1;
+  color-scheme: light;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-thema="hell"]) {
+    --papier: #12110f;
+    --tinte: #e4ddd0;
+    --leise: #968c7e;
+    --linie: #2e2a24;
+    --rot: #c45a46;
+    --b-mark: #2a251e;
+    --knopf: #1d1b17;
+    --schatten: rgba(0, 0, 0, 0.5);
+    color-scheme: dark;
+  }
+}
+:root[data-thema="dunkel"] {
+  --papier: #12110f; --tinte: #e4ddd0; --leise: #968c7e; --linie: #2e2a24; --rot: #c45a46;
+  --b-mark: #2a251e; --knopf: #1d1b17; --schatten: rgba(0, 0, 0, 0.5); color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0;
+  background: var(--papier);
+  color: var(--tinte);
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua", Georgia, serif;
+  font-size: calc(clamp(18px, 1.2vw + 13px, 22px) * var(--schrift));
+  line-height: 1.62;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+button, input, textarea { font: inherit; color: inherit; }
+button { cursor: pointer; -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+[hidden] { display: none !important; }
+
+.spalte {
+  max-width: 34rem;
+  margin: 0 auto;
+  padding: 0 max(16px, env(safe-area-inset-right)) 0 max(16px, env(safe-area-inset-left));
+}
+
+/* ---------- Start */
+#start { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 8vh; padding-bottom: 8vh; }
+#start h1 { font-size: 3.2em; font-weight: normal; letter-spacing: 0.04em; margin: 0 0 0.1em; line-height: 1.05; }
+#start .unter { color: var(--leise); margin: 0 0 2.2em; font-style: italic; }
+#start .vorrede { margin: 0 0 2em; }
+.knoepfe { display: flex; flex-direction: column; gap: 0.7em; align-items: flex-start; }
+.knopf {
+  border: 1px solid var(--linie); background: var(--knopf); border-radius: 3px;
+  padding: 0.55em 1.1em; min-height: 48px; text-align: left;
+}
+.knopf.haupt { border-color: var(--tinte); }
+.knopf.leise { background: transparent; color: var(--leise); }
+.schalter { display: flex; align-items: center; gap: 0.6em; min-height: 48px; background: none; border: 0; padding: 0; color: var(--leise); }
+.schalter .punkt { width: 2.6em; height: 1.4em; border-radius: 1em; border: 1px solid var(--linie); position: relative; background: var(--knopf); flex: none; }
+.schalter .punkt::after { content: ""; position: absolute; top: 0.15em; left: 0.18em; width: 1em; height: 1em; border-radius: 50%; background: var(--leise); transition: transform 0.2s; }
+.schalter[aria-checked="true"] { color: var(--tinte); }
+.schalter[aria-checked="true"] .punkt::after { transform: translateX(1.15em); background: var(--rot); }
+.hinweis {
+  margin-top: 2.2em; padding: 0.9em 1em; border-left: 2px solid var(--rot); background: var(--knopf);
+  font-size: 0.82em; line-height: 1.5; color: var(--tinte);
+}
+.hinweis p { margin: 0 0 0.5em; }
+.hinweis p:last-child { margin-bottom: 0; }
+
+/* ---------- Lesen */
+#kopf {
+  position: sticky; top: 0; z-index: 5;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: calc(env(safe-area-inset-top) + 4px) max(10px, env(safe-area-inset-right)) 4px max(10px, env(safe-area-inset-left));
+  background: linear-gradient(var(--papier) 70%, transparent);
+  font-size: 0.8em; color: var(--leise);
+}
+#kopf button { background: none; border: 0; min-width: 48px; min-height: 44px; color: var(--leise); padding: 0 0.6em; }
+#szenenZahl { font-variant: small-caps; letter-spacing: 0.08em; }
+
+#szene { padding-bottom: 40vh; }
+.andeutung { margin: 2.5em 0 0; height: 9.5em; display: flex; justify-content: center; color: var(--leise); pointer-events: none; transition: opacity 0.6s; }
+.andeutung svg { height: 100%; width: auto; max-width: 100%; overflow: visible; }
+.andeutung .strich { fill: none; stroke: currentColor; stroke-width: 1.15; stroke-linecap: round; stroke-linejoin: round; }
+.andeutung .rot { stroke: var(--rot); }
+.andeutung.zeichnen .strich { stroke-dasharray: var(--l, 600); stroke-dashoffset: var(--l, 600); animation: zeichnen 3.2s ease-out forwards; }
+@keyframes zeichnen { to { stroke-dashoffset: 0; } }
+.andeutung.klein { height: 5.5em; margin: 1.6em 0; }
+
+h2.titel { font-weight: normal; font-variant: small-caps; letter-spacing: 0.06em; font-size: 1.05em; margin: 1.6em 0 0.2em; text-align: center; }
+.zeit { text-align: center; color: var(--leise); font-style: italic; font-size: 0.85em; margin: 0 0 2.4em; }
+
+#text p { margin: 0 0 1em; }
+#text .neu { animation: auftauchen 0.9s ease-out both; }
+#text .innen.neu { animation-duration: 1.8s; }
+@keyframes auftauchen { from { opacity: 0; transform: translateY(0.3em); } to { opacity: 1; transform: none; } }
+
+.rede { padding-left: 1.4em; text-indent: -1.4em; }
+.sprecher { font-variant: small-caps; letter-spacing: 0.07em; color: var(--leise); margin-right: 0.45em; text-indent: 0; }
+.rede.du .sprecher, .du-wahl .sprecher { color: var(--rot); }
+.lied { font-style: italic; padding-left: 1.6em; color: var(--tinte); }
+.innen {
+  margin: 2em 0 2.2em 0.4em; padding: 0.2em 0 0.2em 1.1em; border-left: 1px solid var(--linie);
+  font-style: italic; color: var(--leise); letter-spacing: 0.01em; line-height: 1.75;
+}
+.innen p { margin: 0 0 0.9em; }
+.innen em { font-style: normal; }
+.du-wahl { padding-left: 1.4em; text-indent: -1.4em; margin-top: 1.6em !important; }
+hr.pause { border: 0; text-align: center; margin: 2em 0; color: var(--leise); }
+hr.pause::after { content: "⁂"; }
+
+/* Büchners Wortlaut (nur sichtbar, wenn eingeschaltet) */
+.zeige-buechner .b { background: var(--b-mark); box-shadow: 0 0 0 0.1em var(--b-mark); border-radius: 2px; }
+
+/* Entscheidungen */
+#wahl { margin: 2.2em 0 0; border-top: 1px solid var(--linie); }
+#wahl button {
+  display: block; width: 100%; text-align: left; background: none; border: 0; border-bottom: 1px solid var(--linie);
+  padding: 0.8em 0.2em 0.8em 1.6em; min-height: 52px; position: relative; line-height: 1.45;
+}
+#wahl button::before { content: "–"; position: absolute; left: 0.3em; color: var(--rot); }
+#wahl button:active, #wahl button:focus-visible { background: var(--knopf); outline: none; }
+#wahl .frage { color: var(--leise); font-size: 0.8em; font-style: italic; margin: 0.9em 0 0.2em; }
+#weiterBox { text-align: center; margin-top: 3em; }
+#weiterBox .orn { color: var(--leise); display: block; margin-bottom: 0.8em; }
+#weiter { background: none; border: 1px solid var(--linie); border-radius: 3px; padding: 0.6em 2em; min-height: 48px; font-variant: small-caps; letter-spacing: 0.1em; }
+#ende { text-align: center; margin-top: 4em; }
+#ende h3 { font-weight: normal; font-variant: small-caps; letter-spacing: 0.2em; }
+
+/* ---------- Menü */
+dialog {
+  border: 0; padding: 0; background: var(--papier); color: var(--tinte);
+  width: min(100vw, 34rem); max-width: 100vw; max-height: 100svh; height: 100svh; margin: 0 0 0 auto;
+  box-shadow: -10px 0 30px var(--schatten);
+}
+dialog::backdrop { background: rgba(0, 0, 0, 0.35); }
+.blatt { padding: calc(env(safe-area-inset-top) + 12px) max(18px, env(safe-area-inset-right)) calc(env(safe-area-inset-bottom) + 24px) 18px; overflow-y: auto; height: 100%; }
+.blatt h2 { font-weight: normal; font-variant: small-caps; letter-spacing: 0.08em; font-size: 1.1em; margin: 1.6em 0 0.6em; }
+.blatt .zu { float: right; background: none; border: 0; min-width: 48px; min-height: 48px; font-size: 1.2em; color: var(--leise); }
+.blatt p, .blatt li { font-size: 0.9em; }
+.liste { list-style: none; padding: 0; margin: 0; }
+.liste button { background: none; border: 0; border-bottom: 1px solid var(--linie); width: 100%; text-align: left; padding: 0.6em 0; min-height: 48px; }
+.liste .nr { color: var(--leise); display: inline-block; min-width: 2em; font-variant: tabular-nums; }
+.code {
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace; font-size: 1.05em; letter-spacing: 0.06em;
+  padding: 0.6em 0.8em; background: var(--knopf); border: 1px solid var(--linie); border-radius: 3px; word-break: break-all; user-select: all; -webkit-user-select: all;
+}
+textarea.code { width: 100%; min-height: 3.4em; resize: vertical; }
+.reihe { display: flex; gap: 0.6em; flex-wrap: wrap; margin: 0.7em 0; }
+.meldung { color: var(--rot); font-size: 0.85em; min-height: 1.3em; }
+.schrift button { min-width: 48px; }
+.schrift button[aria-pressed="true"] { border-color: var(--tinte); }
+
+#zurueck { position: fixed; inset: 0; z-index: 20; background: var(--papier); overflow-y: auto; }
+#zurueck .kopfzeile { position: sticky; top: 0; background: var(--papier); padding: calc(env(safe-area-inset-top) + 8px) 16px 8px; border-bottom: 1px solid var(--linie); display: flex; justify-content: space-between; align-items: center; }
+#toast {
+  position: fixed; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 16px); transform: translateX(-50%);
+  background: var(--tinte); color: var(--papier); padding: 0.6em 1em; border-radius: 4px; font-size: 0.85em; z-index: 30;
+  display: flex; gap: 0.8em; align-items: center; max-width: calc(100vw - 32px);
+}
+#toast button { background: none; border: 1px solid var(--papier); color: var(--papier); border-radius: 3px; min-height: 40px; padding: 0 0.8em; }
+
+@media (prefers-reduced-motion: reduce) {
+  #text .neu, #text .innen.neu { animation: none; }
+  .andeutung.zeichnen .strich { animation: none; stroke-dashoffset: 0; }
+}

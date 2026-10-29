@@ -1,0 +1,18 @@
+{
+  "name": "woyzeck",
+  "version": "1.0.0",
+  "description": "Woyzeck – ein Spiel, das man liest. Nach Georg Büchner. Statisch, ohne Build-Schritt.",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node tools/server.mjs 8080",
+    "test": "node --test tests/logik.test.mjs tests/inhalt.test.mjs",
+    "test:browser": "node --test tests/browser.test.mjs",
+    "durchgaenge": "node tools/durchgaenge.mjs",
+    "version": "node tools/version.mjs",
+    "quelle": "sh tools/quelle-holen.sh && node tools/modernisieren.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

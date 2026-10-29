@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Woyzeck</title>
+<meta name="description" content="Georg Büchners Woyzeck als Spiel, das man liest. Du bist Andres.">
+<meta name="theme-color" content="#f2ede3" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#12110f" media="(prefers-color-scheme: dark)">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Woyzeck">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="stylesheet" href="css/stil.css">
+</head>
+<body>
+<main>
+  <section id="start" class="spalte" aria-labelledby="titel">
+    <h1 id="titel">Woyzeck</h1>
+    <p class="unter">nach Georg Büchner. Ein Spiel, das man liest.</p>
+    <p class="vorrede">Du bist Andres, Füsilier, Woyzecks Kamerad. Ihr teilt ein Bett in der Kaserne. Was er dir sagt und was er für sich behält, hängt an dir. Was am Ende geschieht, nicht.</p>
+    <div class="knoepfe">
+      <button class="knopf haupt" id="beginnen">Beginnen</button>
+      <button class="knopf" id="weiterlesen" hidden>Weiterlesen</button>
+      <button class="schalter" id="klangStart" role="switch" aria-checked="false"><span class="punkt"></span><span>Mit Klang lesen (Kopfhörer)</span></button>
+    </div>
+    <div class="hinweis" id="installHinweis" hidden></div>
+    <p class="meldung" id="startMeldung" role="status"></p>
+    <noscript><p>Dieses Spiel braucht JavaScript.</p></noscript>
+  </section>
+
+  <section id="lesen" hidden>
+    <div id="kopf">
+      <button id="menuKnopf" aria-label="Menü">☰ Menü</button>
+      <span id="szenenZahl" aria-live="polite"></span>
+      <button id="klangKnopf" aria-label="Klang ein oder aus">Klang aus</button>
+    </div>
+    <article id="szene" class="spalte">
+      <figure class="andeutung" id="bild" aria-hidden="true"></figure>
+      <h2 class="titel" id="szenenTitel"></h2>
+      <p class="zeit" id="szenenZeit"></p>
+      <div id="text"></div>
+      <div id="wahl" role="group" aria-label="Was tust du?"></div>
+      <div id="weiterBox" hidden><span class="orn">⁂</span><button id="weiter">Weiter</button></div>
+      <div id="ende" hidden>
+        <h3>Ende</h3>
+        <p class="zeit">Was du getan hast, steht im Text. Was du nicht getan hast, auch.</p>
+        <div class="reihe" style="justify-content:center">
+          <button class="knopf" id="nochmal">Noch einmal von vorn</button>
+        </div>
+      </div>
+    </article>
+  </section>
+</main>
+
+<dialog id="menu" aria-label="Menü">
+  <div class="blatt">
+    <button class="zu" id="menuZu" aria-label="Schließen">✕</button>
+    <h2>Bisher gelesen</h2>
+    <ul class="liste" id="inhaltListe"></ul>
+
+    <h2>Sicherungscode</h2>
+    <p>Dein Stand als kurzer Code. Kopier ihn irgendwohin, wo er bleibt (Notizen, eine Nachricht an dich). Mit ihm liest du auf einem anderen Gerät oder nach gelöschten Website-Daten genau hier weiter.</p>
+    <p class="code" id="codeAnzeige">–</p>
+    <div class="reihe"><button class="knopf" id="codeKopieren">Code kopieren</button></div>
+    <label for="codeEingabe"><p>Code einfügen und weiterlesen:</p></label>
+    <textarea class="code" id="codeEingabe" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="WOY-…"></textarea>
+    <div class="reihe"><button class="knopf" id="codeLaden">Stand wiederherstellen</button></div>
+    <p class="meldung" id="codeMeldung" role="status"></p>
+    <div class="hinweis" id="installHinweisMenu" hidden></div>
+
+    <h2>Einstellungen</h2>
+    <button class="schalter" id="klangSchalter" role="switch" aria-checked="false"><span class="punkt"></span><span>Klang</span></button>
+    <button class="schalter" id="buechnerSchalter" role="switch" aria-checked="false"><span class="punkt"></span><span>Büchners Wortlaut hinterlegen</span></button>
+    <p>Schriftgröße</p>
+    <div class="reihe schrift" id="schriftWahl">
+      <button class="knopf" data-schrift="0.9">A−</button>
+      <button class="knopf" data-schrift="1">A</button>
+      <button class="knopf" data-schrift="1.15">A+</button>
+      <button class="knopf" data-schrift="1.3">A++</button>
+    </div>
+
+    <h2>Über dieses Spiel</h2>
+    <p>Georg Büchners Text nach der Hamburger Ausgabe von Werner R. Lehmann (über zeno.org, gemeinfrei), Rechtschreibung behutsam modernisiert, Szenenfolge nach Henri Poschmann. Erzähltext, Andres’ Antworten und Woyzecks innere Welt sind ergänzt. Einzelheiten stehen im README im Ordner <code>woyzeck/</code> des Repositorys.</p>
+    <p class="zeit" id="versionAnzeige"></p>
+    <div class="reihe"><button class="knopf leise" id="vonVorn">Von vorn beginnen</button></div>
+  </div>
+</dialog>
+
+<div id="zurueck" hidden>
+  <div class="kopfzeile"><span id="zurueckTitel"></span><button class="knopf" id="zurueckZu">Zurück zum Lesen</button></div>
+  <div class="spalte" id="zurueckText"></div>
+</div>
+
+<div id="toast" hidden role="status"></div>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

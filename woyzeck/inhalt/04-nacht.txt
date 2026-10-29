@@ -1,0 +1,263 @@
+// Woyzeck – Inhalt, Teil 4: Nacht, Kasernenhof, Wirtshaus (Kampf).
+
+## nacht | Nacht. Andres und Woyzeck in einem Bett.
+quelle: H4,13; H1,7; H1,13
+ort: schlafsaal
+bild: bett
+zeit: Später in derselben Nacht.
+
+Die Betten in der Kaserne sind für zwei. Ihr liegt Rücken an Rücken, wie immer, unter einer Decke, die nach euch beiden riecht. Irgendwann ist er zurückgekommen. Seine Füße sind nass vom Feld, und er liegt nicht still.
+
+Er rüttelt dich.
+
+WOYZECK: {Andres! Andres! ich kann nit schlafe, wenn ich die Aug zumach, dreht sich's immer und ich hör die Geigen, immer zu, immer zu und dann spricht's aus der Wand, hörst du nix?}
+ANDRES: {Ja, – lass sie tanze! Gott behüt uns, Amen.}
+
+Du bist schon wieder halb weg. Der Schlaf zieht dich hinunter wie nasses Zeug.
+
+WOYZECK: {Es redt immer: stich! stich! und zieht mir zwischen den Augen wie ein Messer.}
+ANDRES: {Du musst Schnaps trinke und Pulver drin, das schneidt das Fieber.}
+
+Du hast es gesagt. Jetzt liegt es im Dunkeln zwischen euch wie ein Stein, den einer ins Bett gelegt hat. Er atmet nicht wie einer, der schläft.
+
+[wahl nacht.wahl kraft]
+* wach (zuwenden): Du setzt dich auf. „Was redt, Franz? Sag's mir.“
+[wenn offen >= 4]
+Er setzt sich auch auf. Im Fenster ist der Mond, und in seinen Augen ist er zweimal.
+
+WOYZECK: {Ich hab kei Ruh, ich hör's immer, wie's geigt und springt, immer zu! immer zu! Und dann wann ich die Augen zumach, da blitzt es mir immer, es ist ei groß breit Messer und das liegt auf eim Tisch am Fenster und ist in einer eng dunkel Gass und ein alter Mann sitzt dahinter. Und das Messer ist mir immer zwischen den Augen.}
+
+Er drückt dir zwei Finger zwischen die Augenbrauen, damit du weißt, wo.
+
+WOYZECK: {Draußen liegt was. Im Boden. Sie deuten immer drauf hin und hörst du's jetzt, und jetzt, wie sie in den Wänden klopfen? eben hat einer zum Fenster hereingeguckt. Hörst du's nicht? Ich hör's den ganzen Tag. Immer zu.}
+
+Du hörst die Stube schnarchen und eine Maus hinterm Spind. „Und was sagen sie, Franz?“
+
+Lange sagt er nichts. Dann, so nah an deinem Ohr, dass du seinen Atem spürst:
+
+WOYZECK: „{stich, stich die Zickwolfin tot.}“
+
+Du weißt, wie die Marie mit Vatersnamen heißt.
+
+Du sagst nichts. Du nimmst seine Hand, die eiskalt ist, und hältst sie unter der Decke fest, bis der Hornist bläst. Gegen vier schläft er ein, an deiner Schulter, mit offenem Mund, wie ein Kind, das sich müd geweint hat.
+[setze weiss_messer = 1, weiss_zickwolf = 1, kraft +1, offen +1]
+[sonst wenn offen >= 2]
+Er schüttelt den Kopf, und dann sagt er's doch, zur Wand hin, nicht zu dir.
+
+WOYZECK: {Draußen liegt was. Im Boden. Sie deuten immer drauf hin und hörst du's jetzt, und jetzt, wie sie in den Wänden klopfen? eben hat einer zum Fenster hereingeguckt. Hörst du's nicht? Ich hör's den ganzen Tag. Immer zu.}
+
+„Wen sollst du stechen?“, fragst du.
+
+„Weiß ich's?“, sagt er.
+
+Du bleibst sitzen. Gegen Morgen schläft er doch noch, eine Stunde, weil einer wach ist für ihn.
+[setze kraft +1, offen +1]
+[sonst]
+„Nix“, sagt er. „Schlaf.“
+
+Er dreht sich weg. Aber du legst dich nicht wieder hin. Du sitzt, bis das Fenster grau wird, und irgendwann, weil einer wach ist, schläft er doch noch ein.
+[setze kraft +1]
+[ende]
+* schnaps (neutral): Du stehst auf, tappst barfuß zum Spind und holst die Feldflasche mit dem Branntwein.
+Pulver hast du keins. Du gibst ihm den Schnaps so. Er trinkt, die Hälfte läuft ihm übers Kinn. Dann schläft er, auf einmal, wie ein Stein, der ins Wasser fällt, und schnarcht, und du liegst daneben und hörst ihn schnarchen und bist froh und weißt nicht, worüber.
+[setze kraft +1]
+* schlafen (abwimmeln): Du drehst dich zur Wand und ziehst die Decke über die Ohren.
+Er rüttelt dich nicht mehr. Eine Weile hörst du ihn noch atmen, schnell, wie nach dem Laufen. Dann schläfst du.
+
+Als der Hornist bläst, sitzt er schon angezogen auf der Bettkante, die Stiefel an, und hat die Augen offen, als hätte er sie die ganze Nacht nicht zugemacht. Er hat sie die ganze Nacht nicht zugemacht.
+[setze kraft -1, offen -1]
+[/wahl]
+
+[innen nacht.innen kraft]
+[wenn nacht.wahl = wach]
+Der Andres sitzt.
+Hält Wache über mir wie über einem Pulverturm.
+[wenn weiss_zickwolf]
+Jetzt sind's zwei, die's wissen. Zwei können's tragen. Oder zwei sind schuld.
+[sonst]
+Ich hab ihm nicht alles gesagt. Das Letzte liegt noch unterm Bett.
+[ende]
+Ich hab geschlafen. Ich weiß nicht mehr, wie das geht, und hab's doch gekonnt.
+[sonst wenn nacht.wahl = schnaps]
+Schnaps. Warm im Hals, dann nix.
+Kein Geigen. Ein Loch, schwarz und weich, und ich fall hinein.
+Am Morgen ist das Loch zu, und die Geigen sind wieder da, ausgeruht.
+[sonst]
+Der Andres schläft.
+Die Wand redt. Ich lieg und zähl.
+Die Geigen zähl ich, und die Schritte auf dem Gang, und die Glocke vom Turm, jede Stunde.
+Wenn's hell wird, hab ich alles gezählt, und nix ist weniger.
+[ende]
+[/innen]
+
+
+## hof | Kasernenhof.
+quelle: H1,8
+ort: hof
+bild: flasche
+zeit: Am Morgen.
+
+Morgens im Hof steht der Tambourmajor am Stall bei einem Kameraden und lacht. Du gehst vorbei mit den Eimern. Du hörst, was er sagt. Du wirst es gleich noch einmal hören, aus deinem eigenen Mund.
+
+Franz kommt über den Hof.
+
+WOYZECK: {Hast nix gehört?}
+ANDRES: {Er ist da noch mit einem Kamraden.}
+WOYZECK: {Er hat was gesagt.}
+ANDRES: {Woher weißt du's? Was soll ich's sagen. Nu, er lachte und dann sagt er: ein köstlich Weibsbild! Die hat Schenkel und alles so heiß!}
+WOYZECK: {_ganz kalt._ So hat er das gesagt?}
+
+[stelle hof.gewusst offen]
+[wenn tm_gesagt]
+Er nickt nur. Du hast's ihm schon einmal gesagt, an der Pumpe, leiser. Jetzt ist es nur lauter geworden, und der Hof ist voll davon.
+[sonst]
+Er schaut dich an.
+
+„Du hast's gewusst“, sagt er. Nicht laut. „Schon länger. In der Kantine war's, wie ich mit dem Napf gekommen bin. Alle haben gelacht, und du hast mich hinausgebracht.“
+
+Du sagst nichts. Das ist auch eine Antwort, und er nimmt sie.
+[setze offen -1]
+[ende]
+[/stelle]
+
+WOYZECK: {Von was hat mir doch heut Nacht geträumt? War's nicht von eim Messer? Was man doch närrische Träume hat.}
+
+[wahl hof.wahl offen]
+* erinnern (zuwenden) [wenn weiss_messer]: „Du hast mir's erzählt, heut Nacht. Das Messer am Fenster. Der alte Mann.“
+Er erschrickt. Nicht vor dem Messer. Vor dir, weil du's weißt.
+
+„Hab ich?“ Und dann, langsam: „Ja. Hab ich.“
+
+Er legt dir die Hand auf die Schulter, schwer, als müsste er sich abstützen. Oder als müsste er dich festhalten, damit du's nicht weiterträgst.
+[setze offen +1]
+* fragen (zuwenden) [wenn nicht weiss_messer]: „Was für ein Messer, Franz?“
+[wenn offen >= 2]
+„Ein großes“, sagt er. „{es ist ei groß breit Messer und das liegt auf eim Tisch am Fenster}.“ Er sagt es, als läse er's ab. Mehr weiß er nicht, oder mehr sagt er nicht.
+[setze weiss_messer = 1, offen +1]
+[sonst]
+„Nix“, sagt er. „Ein Traum.“ Und schaut dabei zum Stall.
+[ende]
+* lachen (abwimmeln): „Träum von was Gescheitem. Von Blutwurst.“
+Er lacht nicht mit. Er schaut zum Stall, wo der Tambourmajor ihm den Rücken zukehrt, einen Rücken so breit wie ein Scheunentor.
+[setze offen -1]
+[/wahl]
+
+ANDRES: {Wohin Kamrad?}
+WOYZECK: {Meim Offizier Wein holen. – Aber Andres, sie war doch ein einzig Mädel.}
+ANDRES: {Wer war?}
+WOYZECK: {Nix. Adies.}
+
+Er geht über den Hof, ohne Flasche, ohne Korb, als hätte er vergessen, wozu er geht.
+
+
+## kampf | Wirtshaus.
+quelle: H4,14; H1,11
+ort: wirtshaus
+bild: faust
+zeit: Am Abend.
+
+Im Rössel ist es voll und heiß. Du sitzt mit den Kameraden hinten beim Ofen. Der Tambourmajor hat getrunken, er steht mitten in der Stube, und die Stube weicht vor ihm zurück wie Wasser vor einem Stein. Da kommt Franz herein.
+
+TAMBOURMAJOR: {Ich bin ein Mann! _Schlägt sich auf die Brust._ ein Mann sag ich.}
+TAMBOURMAJOR: {Wer will was? Wer kein besoffen Herrgott ist der lass sich von mir. Ich will ihm die Nas ins Arschloch prügeln. Ich will – _Zu Woyzeck._ da Kerl, sauf, der Mann muss saufen, ich wollt die Welt wär Schnaps, Schnaps.}
+
+Franz nimmt das Glas nicht. Er pfeift. Leise, durch die Zähne, ein Lied ohne Anfang.
+
+TAMBOURMAJOR: {Kerl, soll ich dir die Zung aus dem Hals ziehe und sie um den Leib herumwickle?}
+
+[stelle kampf.ringen kraft]
+[wenn kraft >= 4]
+Sie ringen. Franz hält stand, länger, als einer gedacht hat. Er ist dünn wie eine Rute, aber er kämpft, ohne einen Laut, mit offenen Augen, und einmal hat er den Tambourmajor so weit, dass der auf ein Knie muss, und die Stube schreit auf. Dann kommt das Gewicht. Zwei Zentner Tambourmajor fallen auf ihn wie ein Tor aus den Angeln, und er liegt.
+[sonst wenn kraft <= 1]
+Sie ringen nicht. Beim ersten Griff klappt Franz zusammen wie ein leerer Sack. Der Tambourmajor hat ihn am Hals, hebt ihn hoch, lässt ihn fallen, hebt ihn wieder. Franz wehrt sich nicht. Seine Hände hängen herunter. Er schaut an die Decke, als wär da oben etwas, das wichtiger ist.
+[sonst]
+Sie ringen. Franz wehrt sich, aber er hat nichts in den Armen. Der Tambourmajor wirft ihn gegen den Tisch und dann auf den Boden und kniet ihm auf der Brust, bis Franz keine Luft mehr hat.
+[ende]
+[/stelle]
+
+[wahl kampf.wahl offen]
+* dazwischen (zuwenden): Du springst über die Bank und reißt am Tambourmajor.
+Du hängst an seinem Rücken wie ein Hund an einem Ochsen. Er schüttelt dich ab, mit einer Schulter, und du fliegst gegen die Bank und schlägst dir den Kopf an. Er dreht sich nicht einmal nach dir um. Er beugt sich über Franz.
+[setze dazwischen = 1, offen +1]
+* stehen (abwimmeln): Du bleibst beim Ofen sitzen.
+Die Kameraden sitzen auch. Keiner geht gegen den Tambourmajor. Du sagst dir, dass keiner geht. Franz liegt am Boden und dreht den Kopf zur Seite, und sein Blick findet dich, beim Ofen, zwischen den andern.
+[setze offen -1]
+[/wahl]
+
+TAMBOURMAJOR: {Soll ich dir noch so viel Atem lassen als en Altweiberfurz, soll ich?}
+
+Er lässt ihn los. Franz kriecht zur Bank und setzt sich, erschöpft, zitternd. Der Tambourmajor steht über ihm.
+
+TAMBOURMAJOR: {Der Kerl soll dunkelblau pfeifen.}
+
+Und er singt, zur Stube hin, das Glas hoch:
+
+~ {Ha. Brandewein das ist mein Leben,}
+~ {Brandwein gibt courage!}
+
+EINE: {Der hat sei Fett.}
+ANDRE: {Er blut.}
+WOYZECK: {Eins nach dem andern.}
+
+[stelle kampf.eins kraft]
+[wenn kraft >= 4]
+Er sagt es ganz ruhig. Er sagt es nicht zum Tambourmajor. Er sagt es zu sich, wie man sich eine Rechnung aufsagt, damit man sie nicht vergisst. Das Blut läuft ihm aus der Nase, und er wischt es nicht ab. Seine Hände liegen auf den Knien und zittern nicht mehr.
+[sonst]
+Es ist, was der Hauptmann sagt, beim Rasieren. Langsam, Woyzeck, langsam, eins nach dem andern. Er sagt es nach wie ein Star, der nachpfeift, was man ihm vorgepfiffen hat, und das Blut tropft ihm vom Kinn auf die Hose.
+[ende]
+[/stelle]
+
+[stelle kampf.bank offen]
+[wenn dazwischen]
+Später sitzt er draußen auf der Bank vor dem Wirtshaus. Die Leute gehen heim. Du setzt dich zu ihm, mit dem Kopf, der dir brummt.
+
+ANDRES: {Was machst du da?}
+WOYZECK: {Wie viel Uhr ist's?}
+
+Du weißt es nicht. Du sagst nichts.
+
+WOYZECK: {Is noch nicht mehr? Ich meint es müsst schneller gehn. Ich wollt es wär übermorgen Abend.}
+ANDRES: {Warum?}
+WOYZECK: {Dann wär's vorbei.}
+ANDRES: {Was?}
+WOYZECK: {Geh dei Wege.}
+ANDRES: {Was sitzt du da vor der Tür?}
+WOYZECK: {Ich sitze gut da, und ich weiß – aber es sitze manche Leut vor der Tür und sie wissen es nicht: Es wird mancher mit den Füßen voran zur Tür 'naus getragen!}
+ANDRES: {Komm mit!}
+WOYZECK: {Ich sitz gut so und läg noch besser gut so. Ja Andres grobe Hobelspän sind ja auch noch Polster. Wenn alle Leut wüssten wie viel Uhr es ist, sie würde sich ausziehn, und ei seidens Hemd antun und sich die Hobelspän schütteln lassen.}
+
+Zwei vom Rössel bleiben stehen und gaffen.
+
+ANDRES: {Er ist besoffen.}
+
+Sie gehen weiter. Er ist nicht besoffen. Er hat das Glas nicht angerührt.
+
+[wahl kampf.wache kraft]
+* wache (zuwenden): „Ich steh heut Nacht deine Wache. Du legst dich hin.“
+[wenn offen >= 2]
+Er sagt nicht danke. Er steht auf, und auf dem Weg zur Kaserne geht er neben dir, nah, und stößt dich zweimal mit der Schulter an, wie aus Versehen. In der Nacht stehst du seine Wache und deine, acht Stunden am Pulverschuppen, und er schläft, zum ersten Mal seit Tagen, durch.
+[setze wache = 1, kraft +1]
+[sonst]
+„Ich steh meine Wache selber“, sagt er.
+
+Und er steht sie, die ganze Nacht, am Pulverschuppen, und du liegst im Bett und hörst die Glocke vom Turm, jede Stunde, und denkst an ihn, wie er dasteht.
+[ende]
+* rein (abwimmeln): „Komm jetzt. Morgen ist Appell.“
+Er kommt. Er geht vor dir her, wie einer, der abgeführt wird. In der Nacht steht er seine Wache am Pulverschuppen, und am Morgen beim Appell schwankt er im Glied, und der Feldwebel schreibt ihn auf.
+[/wahl]
+[sonst]
+Später gehst du mit den Kameraden heim. Draußen auf der Bank vor der Tür sitzt Franz allein, das Gesicht voll Blut, und schaut in die Gasse. Einer stößt dich an: „Lass ihn. Der sitzt gut da.“ Ihr geht vorbei. Du drehst dich nicht um, bis zur Ecke. An der Ecke drehst du dich um. Er sitzt noch da.
+[ende]
+[/stelle]
+
+[innen kampf.innen offen]
+[wenn dazwischen]
+Einer ist dem Ochsen auf den Rücken gesprungen.
+Ein Hund, der beißt, wo er nicht hinkommt.
+Der Andres. Der Narr. Am Kopf hat er jetzt eine Beule für mich.
+[sonst]
+Beim Ofen der Andres. Zwischen den andern.
+Ein Gesicht unter vielen, und ich hab's gesucht, und es hat zurückgeschaut, und dann auf den Tisch.
+Er hat recht. Gegen den Tambourmajor geht keiner.
+[ende]
+[/innen]
