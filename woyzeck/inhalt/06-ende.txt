@@ -216,7 +216,7 @@ Weiter nicht. Das Weitere ist bei mir.
 
 [wenn kraft >= 4]
 Ich war ganz klar.
-Ich hab geschlafen, ich hab gegessen, der Andres hat Wache gestanden für mich.
+Ich hab geschlafen, ich hab gegessen.
 Ich hab der Hand zugesehen, was sie tut, und ich hab gewusst, dass es meine ist.
 Keine Geige. Keine Wand. Nur der Mond und ich und sie.
 [sonst wenn kraft <= 1]
@@ -267,7 +267,7 @@ Du sitzt auf der Treppe vor der Kaserne, als es hell wird. Deine Hosen sind nass
 [wenn abschied = liegen]
 Du sitzt auf der Bettkante. Du schaust auf das Kreuz und das Ringlein und das Kamisol, das zu klein ist. Du hast es gehabt, gestern Abend, in deinen Händen. Du hast Jawohl gesagt.
 
-Auf dem Weg hinaus zur Lochschanz reden die Leute. Sie wissen schon alles, oder sie wissen schon mehr als alles. Zwei aus der Vorstadt haben es gehört, gestern Nacht am Teich, und erzählen es jedem: „{Uu! Da! Was ein Ton.}“, und der andere hat gesagt: „{Es ist das Wasser, es ruft, schon lang ist niemand ertrunken.}“ Und dann wieder, „{Wie ein Mensch der stirbt.}“ Und sie sind heimgegangen.
+Auf dem Weg hinaus zur Lochschanz reden die Leute. Sie wissen schon alles, oder sie wissen schon mehr als alles. Zwei aus der Vorstadt haben es gehört, gestern Nacht am Teich, und erzählen es jedem: „{Uu! Da! Was ein Ton.}“ Und der andere hat gesagt: „{Es ist das Wasser, es ruft, schon lang ist niemand ertrunken.}“ Und dann wieder: „{Wie ein Mensch der stirbt.}“ Und sie sind heimgegangen.
 
 Und im Rössel, sagt eine, war er dann noch, der Woyzeck, und hat mit der Käthe getanzt, und die Käthe hat's gesehen an seiner Hand: „{Rot, Blut!}“ Und er: „{Ich glaub ich hab mich geschnitten, da an der rechten Hand.}“ Und der Wirt: „{Wie kommt's aber an den Ellenbogen?}“ Die ganze Stadt sagt es jetzt nach, an den rechten Ellenbogen, und lacht ein bisschen dabei, weil es so dumm war.
 [sonst wenn abschied = nach]
@@ -391,11 +391,26 @@ Der Schreiber schreibt: weiß nichts. Es ist die kürzeste Zeile auf dem Blatt.
 [wenn kraft >= 4]
 „Zuletzt hat er wieder gegessen“, sagt der Doktor noch, im Aufstehen. „Man sieht's. Geschlafen hat er auch, sagt man. Er war bei Kräften. Er war vollkommen klar.“
 
-Du hast ihm das Brot gegeben. Du hast seine Wache gestanden. Der Schreiber schreibt: bei Kräften.
+[wenn brot]
+Du hast ihm das Brot gegeben.
+[ende]
+[wenn wache]
+Du hast seine Wache gestanden.
+[ende]
+[wenn nacht.wahl = wach]
+Du hast bei ihm gewacht, damit er schläft.
+[ende]
+Der Schreiber schreibt: bei Kräften.
 [sonst wenn kraft <= 1]
 „Er hat zuletzt nicht mehr geschlafen“, sagt der Doktor noch, im Aufstehen, „und nichts gegessen als meine Erbsen. Ein schöner Verlauf. Ich werde darüber schreiben.“
 
-Du hast dich zur Wand gedreht, in der Nacht. Du hast gesagt: Iss deine Erbsen. Der Schreiber schreibt: Erbsen.
+[wenn nacht.wahl = schlafen]
+Du hast dich zur Wand gedreht, in der Nacht.
+[ende]
+[wenn doktor.wahl = zulage]
+Du hast gesagt: Iss deine Erbsen.
+[ende]
+Der Schreiber schreibt: Erbsen.
 [sonst]
 „Er war erschöpft“, sagt der Doktor noch, im Aufstehen, „aber bei sich. Erschöpft und bei sich, das ist kein Widerspruch, meine Herren, das ist der interessante Fall.“
 

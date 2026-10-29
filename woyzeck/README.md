@@ -284,7 +284,7 @@ Zustand Optionen verschließt, kam nur aus Suchergebnissen); die Reclam-Leseprob
 ## Länge
 
 <!-- Zeile aus `node tools/durchgaenge.mjs` -->
-**Durchgang „zuhören“: 10 403 Wörter, „abwimmeln“: 8 231 Wörter; geschätzte Lesezeit bei 150–200 Wörtern pro
+**Durchgang „zuhören“: 10 404 Wörter, „abwimmeln“: 8 231 Wörter; geschätzte Lesezeit bei 150–200 Wörtern pro
 Minute 52–69 bzw. 41–55 Minuten**, dazu die Pausen an den Entscheidungen. Das liegt am unteren Rand des
 Richtwerts. Der abwimmelnde Durchgang ist kürzer, weil Woyzeck dann weniger erzählt; das ist gewollt.
 
