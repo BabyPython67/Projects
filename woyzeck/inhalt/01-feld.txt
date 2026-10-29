@@ -93,7 +93,7 @@ Ein Rücken vor mir, breit. Hinter einem Rücken kann man gehn.
 
 ## fenster | Die Stadt. Marie mit ihrem Kind am Fenster.
 quelle: H4,2
-ort: stadt
+ort: zapfenstreich
 bild: federbusch
 zeit: Derselbe Abend.
 

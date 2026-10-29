@@ -116,3 +116,10 @@ test(`Die Folgen sind spürbar: jede Folge ändert mindestens zwei Stellen um je
   for (const [f, p] of Object.entries(proFolge)) assert.ok(p.stark >= 2, `${f}: nur ${p.stark}`);
   assert.ok(ok);
 });
+
+test("Service Worker ist aktuell: Fassung und Dateiliste passen zu den ausgelieferten Dateien", async () => {
+  const { berechne } = await import("../tools/version.mjs");
+  const { sw, versionJs } = berechne();
+  assert.equal(readFileSync(join(ORDNER, "sw.js"), "utf8"), sw, "npm run version ausführen");
+  assert.equal(readFileSync(join(ORDNER, "js/version.js"), "utf8"), versionJs, "npm run version ausführen");
+});
