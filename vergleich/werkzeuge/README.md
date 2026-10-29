@@ -18,5 +18,5 @@ node vergleich/werkzeuge/messen.js 100 20     # schneller Probelauf
 ```
 
 Alle Zufallszahlen hängen an festen Startzahlen; derselbe Aufruf liefert dieselben Zahlen.
-`messen.js` liest nur `rungholt/engine.js`, `moorlicht/js/engine.js` und `moorlicht/tests/bot.js`
+`messen.js` liest nur `spiele/rungholt/engine.js`, `spiele/moorlicht/js/engine.js` und `spiele/moorlicht/tests/bot.js`
 und ändert an den Spielen nichts. Was gemessen wird und wie, steht im Bericht unter „Messungen“.

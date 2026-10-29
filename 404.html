@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0b1220">
+<title>Nicht gefunden</title>
+<script>
+  // GitHub Pages zeigt diese Seite für jede Adresse, die es nicht gibt.
+  // Seit dem 29.10.2026 liegen alle Spiele unter spiele/. Alte Adressen
+  // (…/carreau/, …/spiel/ usw.) werden hier samt Anhängsel an die neue Stelle geschickt.
+  (function () {
+    var ALT = ["woyzeck", "carreau", "rungholt", "moorlicht", "johannisnacht", "deichgraf", "brueckenwaerter", "spiel"];
+    var teile = location.pathname.split("/");          // "/Projects/carreau/x" → ["", "Projects", "carreau", "x"]
+    if (teile.indexOf("spiele") !== -1) return;         // schon neue Adresse: nicht weiterleiten, keine Schleife
+    var i = ALT.indexOf(teile[1]) !== -1 ? 1 : (ALT.indexOf(teile[2]) !== -1 ? 2 : 0);
+    if (!i) return;
+    var basis = teile.slice(0, i).join("/") + "/";
+    var rest = teile.slice(i + 1);
+    var ziel = "spiele/" + teile[i];
+    if (teile[i] === "spiel") {                          // ganz alte Adressen vor dem 27.10.2026
+      if (rest[0] === "brueckenwaerter") { ziel = "spiele/brueckenwaerter"; rest = rest.slice(1); }
+      else ziel = "spiele/deichgraf";
+    }
+    window.__umzug = basis + ziel + "/" + rest.join("/") + location.search + location.hash;
+    location.replace(window.__umzug);
+  })();
+</script>
+<style>
+  :root { color-scheme: dark; }
+  body { margin: 0; min-height: 100vh; background: #0b1220; color: #ecebdf; padding: 24px 16px;
+         font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; display: grid; place-items: center; }
+  main { max-width: 420px; }
+  h1 { font-size: 1.4rem; margin: 0 0 8px; }
+  p { color: #9fb0c5; line-height: 1.5; }
+  a { color: #b9c7d8; }
+</style>
+</head>
+<body>
+<main>
+  <h1 id="titel">Diese Seite gibt es nicht.</h1>
+  <p id="text">Vielleicht ist das Spiel umgezogen. Alle Spiele stehen auf der <a href="/Projects/">Startseite</a>.</p>
+</main>
+<script>
+  if (window.__umzug) {
+    document.getElementById("titel").textContent = "Umgezogen";
+    document.getElementById("text").innerHTML = 'Das Spiel liegt jetzt unter einer neuen Adresse. <a id="weiter">Weiter</a>';
+    document.getElementById("weiter").href = window.__umzug;
+  }
+</script>
+</body>
+</html>

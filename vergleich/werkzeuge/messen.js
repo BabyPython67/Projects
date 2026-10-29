@@ -10,9 +10,9 @@
 "use strict";
 const fs = require("fs");
 const path = require("path");
-const R = require("../../rungholt/engine.js");
-const M = require("../../moorlicht/js/engine.js");
-const MB = require("../../moorlicht/tests/bot.js");
+const R = require("../../spiele/rungholt/engine.js");
+const M = require("../../spiele/moorlicht/js/engine.js");
+const MB = require("../../spiele/moorlicht/tests/bot.js");
 
 const NAECHTE = Number(process.argv[2]) || 500;   // Nächte je Messung
 const SPIELER = Number(process.argv[3]) || 100;   // simulierte Spieler für die Fortschritts-Kurve
