@@ -1,0 +1,163 @@
+// Woyzeck – Inhalt, Teil 5: Der Jude, Marie mit der Bibel, Kaserne (der Abschied).
+
+## jude | Woyzeck. Der Jude.
+quelle: H4,15
+ort: hof
+bild: messer
+zeit: Am Tag darauf.
+
+Mittags kommt der alte Trödler aus der Judengasse in den Kasernenhof, wie jeden Monat, mit dem Bauchladen: Knöpfe, Tabak, Rasierseife, Feuerstahl, Messer. Die Kameraden feilschen um Tabak. Du kaufst eine Nadel für die Hose. Er kennt dich. Er kennt alle, die bei ihm kaufen, und die anderen auch.
+
+„Ihr seid doch der Kamerad vom Langen“, sagt er, während er dir herausgibt. „Der war gestern bei mir. Abends, wie ich schon zu hatte.“
+
+Er erzählt es, wie man vom Wetter erzählt. Er hat den Tag über viel geredet und redet weiter.
+
+JUDE: Erst wollt er ein Pistol. Hat's in die Hand genommen und wieder hingelegt: „{Das Pistolche ist zu teuer.}“ Und dann: „{Was kost das Messer?}“
+JUDE: Und ich sag noch, im Spaß: „{'s ist ganz, grad. Wollt Ihr Euch den Hals mit abschneide? Nu, was is es? Ich geb's Euch so wohlfeil wie ein andrer, Ihr sollt Euern Tod wohlfeil haben, aber doch nit umsonst.}“
+JUDE: Und er sagt: „{Das kann mehr als Brot schneide.}“ Und ich: „{Zwee Grosche.}“ Und er: „{Da!}“ Und fort ist er.
+
+Er zuckt mit den Schultern und klappt den Kasten zu.
+
+JUDE: {Als ob's nichts wär. Und 's is doch Geld.}
+
+[stelle jude.erkennen offen]
+[wenn weiss_messer]
+Er geht. Du stehst mit deiner Nadel im Hof.
+
+Eine enge dunkle Gass. Ein Tisch am Fenster. Ein alter Mann sitzt dahinter. Und darauf ein groß breit Messer.
+
+Du hast es gehört, in der Nacht, in deinem eigenen Bett, an deinem Ohr. Er hat's dir gesagt, als wär's ein Traum, und jetzt ist der Traum zwei Groschen wert und liegt irgendwo in seiner Tasche.
+
+Du gehst in die Stube. Sein Bett ist gemacht, die Decke glatt, mit der Kante wie ein Lineal. Er ist nicht da. Du setzt dich auf sein Bett und wartest, bis es zum Essen bläst, und er kommt nicht.
+[sonst]
+Ein Messer, denkst du. Ein Messer braucht jeder, für Brot und für Wurst und für die Stiefelriemen. Der Trödler zieht zur nächsten Gruppe weiter, und du fädelst den Faden ein, und es ist ein Mittag wie jeder.
+[ende]
+[/stelle]
+
+
+## bibel | Marie. Der Narr.
+quelle: H4,16
+ort: stadt
+bild: bibel
+zeit: Am Abend.
+
+[stelle bibel.weg offen]
+[wenn offen >= 3]
+Am Abend gibt Franz dir das Geld. Er zählt es dir in die Hand, Kreuzer um Kreuzer, die ganze Zulage vom Doktor und das vom Hauptmann.
+
+„Bring ihr das“, sagt er. „Ich kann nit.“
+
+Du gehst. Mariens Fenster steht offen, es ist heiß in der Gasse, und ihre Stimme kommt heraus, lesend, wie in der Kirche, wenn einer zu laut liest. Du bleibst unten an der Tür stehen und hörst zu, das Geld in der Faust.
+[sonst]
+Am Abend steht die Margreth wieder am Brunnen. Sie hat jetzt etwas Neues.
+
+„Die liest jetzt in der Bibel, die!“, sagt sie. „Ich hab's gehört, durchs Fenster, bis auf die Gasse.“ Und sie liest es vor, wie Marie es gelesen hat, mit gefalteten Händen und schiefem Kopf, und die Weiber lachen, und dann lachen sie nicht mehr so laut. Du stehst mit deinem Eimer dabei, und die Margreth liest dir's ins Gesicht.
+[ende]
+[/stelle]
+
+MARIE: {»Und ist kein Betrug in seinem Munde erfunden« – Herrgott! Herrgott! Sieh mich nicht an.}
+
+Es raschelt, sie blättert.
+
+MARIE: {»Aber die Pharisäer brachten ein Weib zu ihm, im Ehebruch begriffen und stelleten sie ins Mittel dar. – Jesus aber sprach: So verdamme ich dich auch nicht. Geh hin und sündige hinfort nicht mehr.«}
+MARIE: {Herrgott! Herrgott! Ich kann nicht. Herrgott gib mir nur so viel, dass ich beten kann.}
+
+Drinnen weint das Kind.
+
+MARIE: {Das Kind gibt mir einen Stich ins Herz. Karl! Das brüst sich in der Sonne!}
+
+Der Narr Karl liegt auf dem Boden der Stube, das weiß die ganze Gasse, er liegt immer da und erzählt sich was an den Fingern ab.
+
+NARR: {Der hat die golden Kron, der Herr König. Morgen hol ich der Frau Königin ihr Kind. Blutwurst sagt: komm Leberwurst!}
+
+Dann ist das Kind still.
+
+MARIE: {Der Franz ist nit gekomm, gestern nit, heut nit, es wird heiß hier.}
+
+[stelle bibel.fenster offen]
+[wenn offen >= 3]
+Oben geht das Fenster ganz auf. Du trittst in den Türschatten, damit sie dich nicht sieht. Sie sieht dich nicht. Sie liest in die Gasse hinaus, als wär die Gasse eine Kirche.
+[sonst]
+„Und dann macht sie das Fenster auf“, sagt die Margreth, „und liest weiter, zur Gasse hinaus, dass es alle hören sollen, und schlägt sich auf die Brust wie ein Pfaff!“
+[ende]
+[/stelle]
+
+MARIE: {»Und trat hinein zu seinen Füßen und weinete und fing an seine Füße zu netzen mit Tränen und mit den Haaren ihres Hauptes zu trocknen und küssete seine Füße und salbete sie mit Salben.« _ Schlägt sich auf die Brust._ alles tot! Heiland, Heiland ich möchte dir die Füße salben.}
+
+[stelle bibel.danach offen]
+[wenn offen >= 3]
+Du gehst die Treppe hinauf und klopfst. Der Narr macht auf, das Kind auf dem Arm. Hinter ihm sitzt Marie am Tisch, die Bibel offen, und schaut nicht auf. Du gibst dem Narren das Geld. Er zählt es nicht. Er legt es dem Kind in die Hand, Kreuzer für Kreuzer, und das Kind lässt sie fallen, einen nach dem andern, auf die Dielen, und lacht.
+
+„Vom Franz“, sagst du.
+
+Marie schaut nicht auf. Aber sie hört auf zu lesen.
+[sonst]
+Die Margreth will noch mehr erzählen, aber die Weiber gehen. Eine sagt im Gehen: „Lass sie. Die hat's schwer genug.“ Die Margreth schaut ihr nach, als hätte die etwas Unanständiges gesagt.
+[ende]
+[/stelle]
+
+
+## kaserne | Kaserne.
+quelle: H4,17
+ort: kaserne
+bild: kreuz
+zeit: Am nächsten Abend.
+
+Als du in die Stube kommst, kniet Franz vor seinem Bett. Er kramt in seinen Sachen. Er hat alles auf die Decke gelegt, was er hat, und es ist nicht viel.
+
+[stelle kaserne.haende kraft]
+[wenn kraft >= 4]
+Er ist rasiert. Sein Rock ist gebürstet, die Knöpfe geputzt. Er legt die Sachen nebeneinander, mit gleichen Abständen, wie zum Appell, und seine Hände tun es ruhig, genau, ohne Eile. So ordentlich hast du ihn nie gesehen. Er schaut dich an, und seine Augen sind klar wie Wasser im Brunnen, wenn kein Wind geht.
+[sonst wenn kraft <= 1]
+Seine Hände zittern. Das Ringlein fällt ihm zweimal herunter, rollt unter das Bett, und er kriecht ihm nach und redet mit ihm, leise, wie mit einem Tier. Er hat sich seit Tagen nicht rasiert. Unter den Augen hat er Ringe, blau, wie geschlagen.
+[sonst]
+Er legt die Sachen hin und nimmt sie wieder auf und legt sie anders hin. Er ist blass. Er schaut dich nicht an, nur die Sachen.
+[ende]
+[/stelle]
+
+Er gibt sie dir. Eins nach dem andern.
+
+WOYZECK: {Das Kamisolche Andres, ist nit zur Montur, du kannst's brauche Andres. Das Kreuz is meiner Schwester und das Ringlein, ich hab auch noch ein Heiligen, zwei Herze und schön Gold, es lag in meiner Mutter Bibel, und da steht:}
+
+~ {Leiden sei all mein Gewinst,}
+~ {Leiden sei mein Gottesdienst.}
+~ {Herr wie dein Leib war rot und wund,}
+~ {So lass mein Herz sein aller Stund.}
+
+WOYZECK: {Mei Mutter fühlt nur noch, wenn ihr die Sonn auf die Händ scheint. Das tut nix.}
+
+Du stehst ganz starr. Du hast die Hände voll, und du sagst zu allem dasselbe.
+
+ANDRES: {Jawohl.}
+
+Er zieht ein Papier hervor und liest es dir vor, wie beim Appell.
+
+WOYZECK: {Friedrich Johann Franz Woyzeck, Wehrmann, Füsilier im 2. Regiment, 2. Bataillon, 4. Kompanie, geb. d.i. ich bin heut alt dreißig Jahr, sieben Monat und zwölf Tage.}
+ANDRES: {Franz, du kommst ins Lazarett. Armer du musst Schnaps trinke und Pulver drin das töt das Fieber.}
+WOYZECK: {Ja Andres, wann der Schreiner die Hobelspän sammlet, es weiß niemand, wer sein Kopf drauf lege wird.}
+
+[stelle kaserne.zeichen offen]
+[wenn weiss_zickwolf]
+Hobelspäne. Der Kopf, der abends über das Gras rollt, drei Tage und drei Nächte auf den Hobelspänen. Das Messer am Fenster in der dunklen Gass, zwei Groschen beim Trödler. Stich, stich die Zickwolfin tot.
+
+Du hast alles, was man braucht, um es zu wissen. Es liegt dir in den Händen, zwischen dem Kreuz und dem Kamisol, und es ist nicht schwer.
+[sonst wenn offen >= 2]
+Hobelspäne. Du denkst an den ersten Tag auf dem Feld, an den Kopf, der übers Gras rollt. Du denkst, er redet wieder so. Du denkst, morgen bringst du ihn zum Feldscher, ob er will oder nicht.
+[sonst]
+Du verstehst nichts. Du verstehst, dass er dir ein Kamisol schenkt, das dir zu klein ist, und ein Kreuz, das seiner Schwester gehört, und du denkst, er hat Fieber, wie alle sagen.
+[ende]
+[/stelle]
+
+Er nimmt die Mütze vom Haken und setzt sie auf, gerade, wie es sich gehört. An der Tür dreht er sich nicht um. Seine Schritte auf der Treppe, eins nach dem andern, dann ist es still.
+
+[wahl kaserne.wahl abschied]
+* marie (zuwenden) [wenn weiss_zickwolf]: Du lässt alles aufs Bett fallen und rennst los. Nicht ihm nach. Zu ihr.
+Die Treppe hinunter, drei Stufen auf einmal, am Posten vorbei, der dir etwas nachruft. Das Kreuz hast du noch in der Faust. Du merkst es erst auf der Gasse.
+[setze abschied = marie]
+* nach (zuwenden): Du legst die Sachen aufs Bett und gehst ihm nach.
+Auf der Treppe hörst du ihn nicht mehr. Unten im Hof ist er nicht. Am Tor sagt der Posten, der Woyzeck ist eben hinaus, Richtung Stadt, schnell wie immer.
+[setze abschied = nach]
+* liegen (abwimmeln): „Jawohl.“ Du legst die Sachen auf deinen Tornister und legst dich hin.
+Morgen ist Appell. Du ziehst die Decke hoch. Neben dir ist das Bett leer und glatt, und die Sachen liegen am Fußende, Kreuz und Ring und Heiliger und das zu kleine Kamisol, und du siehst sie im Dunkeln nicht mehr.
+[setze abschied = liegen]
+[/wahl]

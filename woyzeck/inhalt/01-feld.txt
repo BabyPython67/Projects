@@ -1,0 +1,252 @@
+// Woyzeck – Inhalt, Teil 1. Format: siehe README, Abschnitt „Inhaltsformat“.
+// {…} = Büchners Wortlaut (wird gegen quelle/woyzeck-modernisiert.txt geprüft), _…_ = kursiv.
+
+## feld | Freies Feld. Die Stadt in der Ferne.
+quelle: H4,1; H2,1
+ort: feld
+bild: streif
+zeit: Spätsommer. Ein Nachmittag.
+
+[setze offen = 1, kraft = 2]
+
+Ihr schneidet Stöcke im Gebüsch, Haselruten für den Major. Franz schneidet schneller als du, schneller als alle in der Kompanie, und er schaut dabei nicht auf seine Hände. Er schaut aufs Gras.
+
+Unten liegt die Stadt. Klein und grau, der Kirchturm mitten drin wie ein Nagel, den einer in den Boden geschlagen hat.
+
+Am Hang wächst das Gras anders. Ein Streif, heller als das übrige, quer über die Wiese, und darin Schwämme, weiß, in einer Reihe, als hätte sie einer gesät.
+
+WOYZECK: {Ja Andres; den Streif da über das Gras hin, da rollt abends der Kopf, es hob ihn einmal einer auf, er meint es wär ein Igel. Drei Tag und drei Nächt und er lag auf den Hobelspänen _Leise._ Andres, das waren die Freimaurer, ich hab's, die Freimaurer, still!}
+
+Du singst. Es ist das Erste, was dir einfällt.
+
+~ {Saßen dort zwei Hasen,}
+~ {Fraßen ab das grüne, grüne Gras ...}
+
+WOYZECK: {Still! Es geht was!}
+
+Du singst weiter, lauter.
+
+~ {Fraßen ab das grüne, grüne Gras}
+~ {Bis auf den Rasen.}
+
+WOYZECK: {Es geht hinter mir, unter mir _Stampft auf den Boden._ hohl, hörst du? Alles hohl da unten. Die Freimaurer!}
+ANDRES: {Ich fürcht mich.}
+WOYZECK: {'s ist so kurios still. Man möcht den Atem halten. Andres!}
+ANDRES: {Was?}
+WOYZECK: {Red was! _Starrt in die Gegend._ Andres! Wie hell! Ein Feuer fährt um den Himmel und ein Getös herunter wie Posaunen. Wie's heraufzieht! Fort. Sieh nicht hinter dich. _Reißt ihn ins Gebüsch._}
+
+Die Ruten schlagen dir ins Gesicht. Er hat dich am Kragen. Du riechst seinen Schweiß, sauer, wie bei einem, der zu wenig isst. Über der Stadt ist nichts. Ein Himmel, ein bisschen rot vom Abend.
+
+Ihr liegt im Gebüsch. Du hörst dein Herz und seins, und sonst nichts.
+
+ANDRES: {Woyzeck! hörst du's noch?}
+WOYZECK: {Still, alles still, als wär die Welt tot.}
+ANDRES: {Hörst du? Sie trommeln drin. Wir müssen fort.}
+
+Von der Stadt herauf kommt der Zapfenstreich, erst die Trommeln, dann die Pfeifen, dünn wie Draht. Franz rührt sich nicht. Er hält deinen Ärmel, als wär der Ärmel noch das Einzige, was fest ist.
+
+[wahl feld.wahl offen]
+* fragen (zuwenden): „Was hast du gesehen, Franz?“
+Er schaut dich an, als hätte er nicht gewusst, dass man danach fragen kann. Dann zeigt er, mit dem ganzen Arm.
+
+WOYZECK: {Ja Andres, das ist er – der Platz ist verflucht. Siehst du den leuchtenden Streif, da über das Gras hin, wo die Schwämme so nachwachsen? da rollt abends der Kopf, es hob ihn eimal einer auf, er meint es sei ein Igel, drei Tage und drei Nächte, er wurde zwerch, und er war tot.}
+
+Du siehst Gras und Schwämme. Er sieht etwas anderes und zeigt es dir trotzdem, als könntest du's lernen.
+
+WOYZECK: {Hörst du das fürchterliche Getös am Himmel? Über der Stadt. Alles Glut!}
+
+Du schaust über die Stadt. Der Himmel ist rot, weil Abend ist. Das sagst du ihm nicht.
+
+„Ich seh's nicht, Franz“, sagst du. „Aber ich glaub dir, dass du's siehst.“
+
+Er lässt deinen Ärmel los und nimmt seine Stöcke. Den ganzen Weg hinunter geht er dicht neben dir, Schulter an Schulter, wie zwei, die an derselben Last tragen.
+[setze offen +1]
+* singen (abwimmeln): Du stehst auf, klopfst dir die Knie ab und singst, so laut, dass es bis in die Stadt reicht.
+
+~ {Da ist die schöne Jägerei,}
+~ {Schießen steht jedem frei;}
+~ {Da möcht ich Jäger sein,}
+~ {Da möcht ich hin.}
+
+Franz lässt deinen Ärmel los. Er steht auf, langsam, wie einer, der sich schämt, und sucht seine Stöcke im Gras zusammen. Den ganzen Weg hinunter singst du, und er geht zwei Schritte hinter dir. Einmal drehst du dich um. Er schaut nicht dich an. Er schaut auf den Boden, auf jeden Tritt, als könnt der Boden aufgehn.
+[setze offen -1]
+* schweigen (neutral): Du sagst nichts. Du nimmst seine Stöcke zu deinen und trägst beide Bündel.
+Zwei Bündel, die Ruten stechen dich in den Hals. Er läuft neben dir her und redet nicht mehr. Am Stadttor sagt er: „Du hast meine Stöcke.“ Als hätte er's eben erst gemerkt. Du gibst sie ihm nicht.
+[/wahl]
+
+[innen feld.innen offen]
+[wenn offen >= 2]
+Der Andres hat gefragt.
+Hat nicht gesungen. Hat gefragt.
+Ich hab's ihm gezeigt, und er hat hingeschaut, wo ich hinschau.
+Da, wo zwei hinschaun, ist's nicht mehr so hohl.
+[sonst wenn offen <= 0]
+Der Andres singt.
+Singt den Hasen das Gras ab, bis auf den Rasen.
+Singen ist ein Deckel. Unterm Deckel kocht's.
+[sonst]
+Der Andres trägt meine Stöcke.
+Ein Rücken vor mir, breit. Hinter einem Rücken kann man gehn.
+[ende]
+[/innen]
+
+
+## fenster | Die Stadt. Marie mit ihrem Kind am Fenster.
+quelle: H4,2
+ort: stadt
+bild: federbusch
+zeit: Derselbe Abend.
+
+Ihr kommt durchs Tor, als der Zapfenstreich schon in der Gasse ist. Franz bleibt stehen. „Geh voraus“, sagt er. Du gehst nicht voraus. Du stellst dich an den Brunnen an der Ecke, das Bündel auf der Schulter, und wartest.
+
+Der Tambourmajor geht vor den Trommlern her. Er ist einen Kopf größer als alle, den Stab wirft er bis über die Dachrinnen, und sein Federbusch nickt bei jedem Schritt, als grüßte er jedes Haus einzeln. Oben im Fenster steht Marie mit dem Kind auf dem Arm. Nebenan lehnt die Margreth auf dem Sims.
+
+MARIE: {He Bub! Sa ra ra ra! Hörst? Da komme sie.}
+MARGRETH: {Was ein Mann, wie ein Baum.}
+MARIE: {Er steht auf seinen Füßen wie ein Löw.}
+
+Der Tambourmajor grüßt hinauf. Nicht zur Margreth.
+
+MARGRETH: {Ei, was freundliche Auge, Frau Nachbarin, so was is man an ihr nit gewöhnt.}
+
+Marie singt den Trommeln nach:
+
+~ {Soldaten das sind schöne Bursch ...}
+
+MARGRETH: {Ihre Auge glänze ja noch.}
+MARIE: {Und wenn! Trag Sie Ihre Auge zum Jud und lass Sie sie putze, vielleicht glänze sie noch, dass man sie für zwei Knöpf verkaufe könnt.}
+MARGRETH: {Was Sie? Sie? Frau Jungfer, ich bin eine honette Person, aber Sie, Sie guckt sieben Paar lederne Hose durch.}
+MARIE: {Luder!}
+
+Das Fenster schlägt zu. Durchs Glas hörst du sie weiter, gedämpft, wie aus einem Schrank.
+
+MARIE: {Komm mein Bub. Was die Leut wollen. Bist doch nur en arm Hurenkind und machst deiner Mutter Freud mit deim unehrliche Gesicht. Sa! Sa!}
+
+~ {Mädel, was fangst du jetzt an?}
+~ {Hast ein klein Kind und kein Mann.}
+~ {Ei was frag ich danach,}
+~ {Sing ich die ganze Nacht}
+~ {Heio popeio mein Bu. Juchhe!}
+~ {Gibt mir kein Mensch nix dazu.}
+~ {Hansel spann deine sechs Schimmel an,}
+~ {Gib ihn zu fresse aufs neu.}
+~ {Kein Haber fresse sie,}
+~ {Kein Wasser saufe sie,}
+~ {Lauter kühle Wein muss es sein. Juchhe!}
+~ {Lauter kühle Wein muss es sein.}
+
+Franz klopft ans Fenster. Er klopft, wie man an eine Tür klopft, hinter der einer krank liegt.
+
+MARIE: {Wer da? Bist du's Franz? Komm herein!}
+WOYZECK: {Kann nit. Muss zum Verles.}
+MARIE: {Was hast du Franz?}
+
+Er reckt sich zu ihr hinauf und sagt es so leise, dass du's am Brunnen gerade noch hörst.
+
+WOYZECK: {Marie, es war wieder was, viel, steht nicht geschrieben: und sieh da ging ein Rauch vom Land, wie der Rauch vom Ofen?}
+MARIE: {Mann!}
+WOYZECK: {Es ist hinter mir gegangen bis vor die Stadt. Was soll das werden?}
+MARIE: {Franz!}
+WOYZECK: {Ich muss fort.}
+
+[stelle fenster.brunnen offen]
+[wenn offen >= 2]
+Er kommt zu dir an den Brunnen und bleibt stehen. „Hast's gesehen, Andres? Den Rauch?“ Über den Dächern ist nichts, nur der Abend und ein Kamin, der qualmt. „Das ist der Metzger, der räuchert“, sagst du. Er lacht, kurz, durch die Nase, das erste Mal heut. Dann gehst du mit ihm, und er lässt dich neben sich gehen.
+[sonst]
+Er kommt zu dir an den Brunnen und geht vorbei, als wärst du ein Pfosten. Du gehst ihm nach, zwei Schritte hinter ihm, wie den ganzen Tag schon.
+[ende]
+[/stelle]
+
+Oben steht Marie noch im offenen Fenster. Sie schaut ihm nach. Dann schaut sie dich an, nur kurz, wie man einen Hund anschaut, der dem Herrn nachläuft.
+
+MARIE: {Der Mann! So vergeistert. Er hat sein Kind nicht angesehn. Er schnappt noch über mit den Gedanken. Was bist so still, Bub? Furchst dich? Es wird so dunkel, man meint, man wär blind. Sonst scheint doch als die Latern herein. Ich halt's nicht aus. Es schauert mich.}
+
+Das Licht oben geht aus. Beim Verlesen steht ihr nebeneinander im Glied, und als der Feldwebel „Woyzeck“ ruft, sagt er „Hier“, wie einer, der von weit her antwortet.
+
+
+## buden | Buden. Lichter. Volk.
+quelle: H4,3; H2,3; H1,1; H2,5; H1,2; H1,3
+ort: jahrmarkt
+bild: pferd
+zeit: Ein paar Tage darauf. Messe vor der Stadt.
+
+Messe vor der Stadt. Lichter an Stangen, Talg und gebrannte Mandeln, Pferdemist. Die halbe Kompanie ist da, den Sold in der Faust, und du mit ihnen.
+
+Vor einer Bude dreht ein alter Mann eine Leier, und ein Kind tanzt dazu, barfuß, auf dem festgetretenen Lehm. Der Alte singt mit einer Stimme wie ein Scharnier.
+
+~ {Auf der Welt ist kein Bestand,}
+~ {Wir müssen alle sterben,}
+~ {Das ist uns wohlbekannt!}
+
+ALTER MANN: {Hei! Hopsa! Arm Mann, alter Mann! Arm Kind! Jung Kind! Sorgen und Fest!}
+
+Er hält inne und sieht in die Leute, als suche er einen bestimmten.
+
+ALTER MANN: {Ein Mensch muss auch der Narr von Verstand sein, damit er sagen kann: Narrisch Welt! Schön Welt!}
+
+Nebenan schreit der Ausrufer, einen Affen auf der Schulter. Der Affe hat einen roten Rock an, mit Knöpfen, und einen Säbel aus Blech.
+
+AUSRUFER: {Meine Herrn, meine Damen, hier sind zu sehn das astronomische Pferd und die kleine Canaillevogel, sind Liebling von alle Potentate Europas und Mitglied von alle gelehrte Societät, verkündige de Leute alles, wie alt, wie viel Kinder, was für Krankheit.}
+AUSRUFER: {Sehn Sie die Fortschritte der Zivilisation. Alles schreitet fort, ein Pferd, ein Aff, ein Canaillevogel! Der Aff ist schon ein Soldat, 's ist noch nit viel, unterst Stuf von menschliche Geschlecht!}
+
+Die Kameraden lachen und stoßen dich an. Der Affe salutiert. Du lachst mit, und dann nicht mehr.
+
+HERR: {Grotesk! Sehr grotesk!}
+STUDENT: {Sind Sie auch ein Atheist! ich bin ein dogmatischer Atheist.}
+
+Da siehst du Franz. Er steht mit Marie vor der Bude, das Kind schläft ihr auf der Schulter. Er hat den Sonntagsrock an, der ihm zu kurz ist an den Armen. Der Marktschreier zieht den Affen vor:
+
+MARKTSCHREIER: {Meine Herren! Meine Herren! Sehn Sie die Kreatur, wie sie Gott gemacht, nix, gar nix. Sehen Sie jetzt die Kunst, geht aufrecht hat Rock und Hosen, hat ein Säbel! Ho! Mach Kompliment! So bist Baron. Gib Kuss!}
+WOYZECK: {Willst du?}
+MARIE: {Meinetwege. Das muss schön Dings sein. Was der Mensch Quasten hat und die Frau hat Hosen.}
+
+Neben dir drängt sich der Unteroffizier durch, und hinter ihm, einen Kopf über allen, der Tambourmajor. Sie bleiben stehen, wo du stehst. Sie sehen nicht dich.
+
+UNTEROFFIZIER: {Halt, jetzt. Siehst du sie! Was 'n Weibsbild.}
+TAMBOURMAJOR: {Teufel, zum Fortpflanzen von Kürassierregimenter und zur Zucht von Tambourmajors!}
+UNTEROFFIZIER: {Wie sie den Kopf trägt, man meint das schwarz Haar müsst sie abwärts ziehn, wie ein Gewicht, und Auge, schwarz ...}
+TAMBOURMAJOR: {Als ob man in ein Ziehbrunn oder zu eim Schornstein hinabguckt. Fort hinte drein.}
+
+Marie dreht sich nach den Lichtern um, und das Licht fällt ihr ins Gesicht.
+
+MARIE: {Was Lichter, mei Auge!}
+WOYZECK: {Ja de Brandwein, ein Fass schwarz Katze mit feurige Auge. Hei, was n Abend.}
+
+In der Bude riecht es nach nassem Stroh. Du hast deinen Kreuzer bezahlt und stehst hinten bei den Kameraden. Auf dem Podium steht ein Pferd, mager, mit einer Schleife im Schweif.
+
+MARKTSCHREIER: {Zeig dein Talent! zeig deine viehische Vernünftigkeit! Beschäm die menschlich Societät! Meine Herren, dies Tier, das Sie da sehn, Schwanz am Leib, auf sei vier Hufe ist Mitglied von alle gelehrte Societät, ist Professor an unse Universität, wo die Studente bei ihm reiten und schlage lerne.}
+
+Das Pferd schüttelt den Kopf, wenn er's am Halfter zieht, und nickt, wenn er's loslässt. Die Leute klatschen.
+
+MARKTSCHREIER: {Sehn Sie das Vieh ist noch Natur, unideale Natur! Lern Sie bei ihm. Fragen Sie den Arzt, es ist höchst schädlich. Das hat geheiße: Mensch sei natürlich. Du bist geschaffe Staub, Sand, Dreck. Willst du mehr sein, als Staub, Sand, Dreck?}
+MARKTSCHREIER: {Sag den Herrn, wie viel Uhr es ist. Wer von den Herrn und Damen hat eine Uhr, eine Uhr?}
+TAMBOURMAJOR: {Eine Uhr! _Zieht großartig und gemessen die Uhr aus der Tasche._ Da mein Herr.}
+MARIE: {Das muss ich sehn.}
+
+Sie steigt über die Bank nach vorn auf den ersten Platz, und der Tambourmajor reicht ihr die Hand, damit sie nicht fällt. Er lässt sie nicht gleich wieder los. Franz steht unten, mit dem schlafenden Kind, und hält es, als wär's eine Last, die man ihm aufgeladen hat.
+
+Da kommt der Unteroffizier zu ihm. „Woyzeck. Der Hauptmann will seinen Wein. Marsch.“ Franz gibt Marie das Kind hinauf.
+
+[stelle buden.befehl offen]
+[wenn offen >= 2]
+Im Hinausgehen bleibt er bei dir stehen. „Andres“, sagt er, „bleib da.“ Weiter nichts. Du bleibst. Du stellst dich unten an die Bank, wo Marie sitzt, und stehst da wie ein Pfahl, und der Tambourmajor schaut über dich hinweg, als wär da kein Pfahl.
+
+Als die Vorstellung aus ist, steht Marie neben dir im Gedränge vor der Bude. Sie sagt es nicht zu dir. Sie sagt es in die Lichter hinein.
+[sonst]
+Er geht hinaus, ohne sich umzusehen. Du bleibst bei den Kameraden. Nach der Vorstellung zieht ihr weiter zur Schießbude. Von dort siehst du Marie allein vor dem Zelt stehen, das Kind auf dem Arm, und siehst, wie der Federbusch sich durch die Leute zu ihr hinschiebt. Im Vorbeigehen hörst du sie noch, sie sagt es zu keinem.
+[ende]
+[/stelle]
+
+MARIE: {Der andre hat ihm befohlen und er hat gehn müssen. Ha! Ein Mann vor einem andern.}
+
+[innen buden.innen offen]
+[wenn offen >= 2]
+Bleib da, hab ich gesagt, und er ist dageblieben.
+Einer ist dageblieben.
+Der Wein für den Hauptmann schwappt bei jedem Schritt.
+[sonst]
+Ein Pferd mit doppelter Raison. Ein Aff mit Säbel.
+Ein Woyzeck mit Wein für den Hauptmann.
+Alles schreitet fort.
+[ende]
+[/innen]

@@ -41,9 +41,8 @@ const woerter = {
   Uebergänge: "Übergänge", Aermchen: "Ärmchen", Wieviel: "Wie viel", wieviel: "wie viel", soviel: "so viel", zuviel: "zu viel",
   Hurenathem: "Hurenatem", werthester: "wertester", Thut: "Tut", rothes: "rotes", roseroth: "roserot",
   rosenroth: "rosenrot", Roth: "Rot", Infusionsthier: "Infusionstier", Sey: "Sei", Bey: "Bei", Laßt: "Lasst",
-  Affect: "Affekt", Beschluß: "Beschluss", blaß: "blass", gewiß: "gewiss", naß: "nass", Roß: "Ross", Gaß: "Gass", Morgenthau: "Morgentau", Lichtmeßtag: "Lichtmesstag", Neuntödter: "Neuntöter",
-  // Großschreibung von Pronomen und Adverbien
-  Abends: "abends", Alles: "alles", Allem: "allem", Niemand: "niemand", Jemand: "jemand", Jedem: "jedem",
+  Affect: "Affekt", Pressirt: "Pressiert", blos: "bloß", Beschluß: "Beschluss", blaß: "blass", gewiß: "gewiss", naß: "nass", Roß: "Ross", Gaß: "Gass", Morgenthau: "Morgentau", Lichtmeßtag: "Lichtmesstag", Neuntödter: "Neuntöter",
+  WIRTH: "WIRT",
   // Zusammenschreibung
   "ganzruhig": "ganz ruhig", "inder": "in der", "inden": "in den", "einfürchterliches": "ein fürchterliches",
   "abscheulicherAberglaube": "abscheulicher Aberglaube", "Niemandertrunken": "niemand ertrunken",
@@ -53,16 +52,16 @@ const woerter = {
 // Wortgruppen und Apostrophe (in dieser Reihenfolge angewandt).
 const gruppen = [
   [/\bJa wohl\b/g, "Jawohl"], [/\bja wohl\b/g, "jawohl"], [/\bJa, wohl\b/g, "Jawohl"],
-  [/\bin's\b/g, "ins"], [/\bIn's\b/g, "Ins"], [/\büber's\b/g, "übers"], [/\bunter's\b/g, "unters"], [/\bauf's\b/g, "aufs"],
+  [/\bin's\b/g, "ins"], [/\bIn's\b/g, "Ins"], [/über's\b/g, "übers"], [/\bunter's\b/g, "unters"], [/\bauf's\b/g, "aufs"], [/\ban's\b/g, "ans"],
   [/\bS' ist\b/g, "'s ist"], [/\bS' is\b/g, "'s is"], [/\bs' ist\b/g, "'s ist"], [/\bs' is\b/g, "'s is"], [/\bS' kommt\b/g, "'s kommt"],
   [/\bs'ist\b/g, "'s ist"], [/\bs'is\b/g, "'s is"], [/\bS'is\b/g, "'s is"],
   [/\bn'e\b/g, "'ne"], [/\bn' Weibsbild\b/g, "'n Weibsbild"], [/\bn'en\b/g, "'nen"], [/\bn'aus\b/g, "'naus"],
-  [/\bTambour-Major\b/g, "Tambourmajor"], [/\bTAMBOUR-MAJOR\b/g, "TAMBOURMAJOR"], [/\bTambour- Major\b/g, "Tambourmajor"],
+  [/Tambour-Major/g, "Tambourmajor"], [/\bTAMBOUR-MAJOR\b/g, "TAMBOURMAJOR"], [/\bTambour- Major\b/g, "Tambourmajor"],
   [/\bHaupt mann\b/g, "Hauptmann"], [/\bein Paar Tage(n?)\b/g, "ein paar Tage$1"], [/\bein's nach\b/g, "eins nach"], [/\bein Paar Kugeln\b/g, "ein paar Kugeln"],
   [/\bauf Paar Lippen\b/g, "auf ein Paar Lippen"],
   [/\b7 Paar\b/g, "sieben Paar"], [/\b2 Groschen\b/g, "zwei Groschen"], [/\b3 Groschen\b/g, "drei Groschen"],
   [/\b360 Monate\b/g, "dreihundertsechzig Monate"], [/\bgewöhnlichen 60\b/g, "gewöhnlichen sechzig"],
-  [/\b4 Wochen\b/g, "vier Wochen"], [/\bWochen\? Herr\b/g, "Wochen? Herr"], [/\b2 Auge\b/g, "zwei Auge"],
+  [/Teufel\. 4 Wochen\?/g, "Teufel. Vier Wochen?"], [/\b4 Wochen\b/g, "vier Wochen"], [/\bWochen\? Herr\b/g, "Wochen? Herr"], [/\b2 Auge\b/g, "zwei Auge"],
   [/\b2 Knöpf\b/g, "zwei Knöpf"], [/\b20 solche\b/g, "zwanzig solche"], [/\b4 Hufe\b/g, "vier Hufe"],
   [/\b3 Tage und 3 Nächte\b/g, "drei Tage und drei Nächte"], [/\bAn Pfingsten 2 Jahr\b/g, "An Pfingsten zwei Jahr"],
   [/\balt 30 Jahr, 7 Monat und 12 Tage\b/g, "alt dreißig Jahr, sieben Monat und zwölf Tage"],
@@ -72,8 +71,12 @@ const gruppen = [
   [/\bsteh'n\b/g, "stehn"], [/\bGreif' ihm\b/g, "Greif ihm"],
 ];
 
+// Großgeschriebene Pronomen und Adverbien werden klein, außer am Satz- oder Zeilenanfang.
+const KLEIN = /(^|[.!?:»–]\s*|\s)(Alles|Allem|Alle|Abends|Niemand|Jemand|Jedem|Andern)\b/gm;
+const satzanfang = (vor) => vor === "" || /[.!?:»–]\s*$/.test(vor);
+
 export function modernisiere(text) {
-  let t = text;
+  let t = text.replace(KLEIN, (m, vor, w) => (satzanfang(vor) ? m : vor + w.toLowerCase()));
   for (const [re, ersatz] of gruppen) t = t.replace(re, ersatz);
   t = t.replace(/[A-Za-zÄÖÜäöüß]+(?:'[A-Za-zäöüß]+)?/g, (w) => (Object.hasOwn(woerter, w) ? woerter[w] : w));
   return t;
@@ -102,8 +105,8 @@ export function endgueltigeNamen(text) {
     .replace(/\bUnterofficier \[Tambour- ?Major\]/g, "Tambour-Major")
     .replace(/\b(?:Louis|Louis Woyzeck) \[(Woyzeck|Franz)\]/g, "$1")
     .replace(/\b(?:Magreth|Margreth|Louisel|Magrethchen|Magrethche) \[Marie\]/g, "Marie")
-    .replace(/\bLouis Woyzeck\b/g, "Woyzeck")
-    .replace(/\bMargreth Marie\b/g, "Marie")
+    .replace(/Louis Woyzeck/g, "Woyzeck")
+    .replace(/Margreth Marie/g, "Marie")
     .replace(/\bLouise Marie\b/g, "Marie")
     .replace(/\bLouisel Marie\b/g, "Marie")
     .replace(/\bFRANZ \[WOYZECK\]/g, "WOYZECK");

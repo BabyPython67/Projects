@@ -1,0 +1,36 @@
+# Register für den Sicherungscode. Nur am Ende anhängen, nie umordnen oder löschen:
+# Der Code speichert Szenen und Optionen als Nummern in dieser Reihenfolge.
+szene feld
+szene fenster
+szene buden
+szene professor
+szene loehnung
+szene tambourmajor
+szene doktor
+szene strasse
+szene marie
+szene wachtstube
+szene wirtshaus
+szene feld2
+szene nacht
+szene hof
+szene kampf
+szene jude
+szene bibel
+szene kaserne
+szene letzte
+szene morgen
+szene epilog
+wahl feld.wahl: fragen singen schweigen
+wahl professor.wahl: brot lachen schweigen
+wahl tm.wahl: sagen schweigen
+wahl doktor.wahl: aufhoeren zulage
+wahl strasse.wahl: nach bleiben
+wahl wachtstube.wahl: mit bleiben
+wahl nacht.wahl: wach schnaps schlafen
+wahl hof.wahl: erinnern fragen lachen
+wahl kampf.wahl: dazwischen stehen
+wahl kampf.wache: wache rein
+wahl kaserne.wahl: marie nach liegen
+wahl teich.wahl: fragen waschen weg
+wahl epilog.wahl: stimmen ordentlich nichts

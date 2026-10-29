@@ -26,7 +26,7 @@ MARIE. Das muss ich sehn. _Sie klettert auf den ersten Platz. Tambourmajor hilft
 TAMBOURMAJOR _entwurf bricht ab._
 
 === [H1, Szene 3] (Lehmann S. 146)
-MARIE _allein._ Der andre hat ihm befohlen und er hat gehn müssen. Ha! Ein Mann vor einem Andern.
+MARIE _allein._ Der andre hat ihm befohlen und er hat gehn müssen. Ha! Ein Mann vor einem andern.
 
 === [H1, Szene 4] (Lehmann S. 146-147)
 _Der Kasernenhof._
@@ -52,7 +52,7 @@ WOYZECK. Ich muss fort.
 === [H1, Szene 5] (Lehmann S. 147)
 _Wirtshaus._
 _Die Fenster sind offen. Man tanzt. Auf der Bank vor dem Haus._
-WOYZECK _lauscht am Fenster._ Er – Sie! Teufel! _Er setzt sich zitternd nieder. Er späht, tritt an's Fenster._ Wie das geht! Ja wälzt euch übernander! Und Sie: immer, zu – immer zu.
+WOYZECK _lauscht am Fenster._ Er – Sie! Teufel! _Er setzt sich zitternd nieder. Er späht, tritt ans Fenster._ Wie das geht! Ja wälzt euch übernander! Und Sie: immer, zu – immer zu.
 DER NARR. Puh! Das riecht.
 WOYZECK. Ja das riecht! Sie hat rote rote Backe und warum riecht sie schon? Carl, was witterst du so?
 DER NARR. Ich riech, ich riech Blut.
@@ -64,7 +64,7 @@ WOYZECK. Immer! zu! – Immer zu! – Hisch! hasch, so gehn die Geigen und die P
 
 === [H1, Szene 7] (Lehmann S. 147-148)
 _Ein Zimmer._
-_Louis Woyzeck und Andres._
+_Woyzeck und Andres._
 ANDRES. He!
 WOYZECK. Andres!
 _Andres murmelt im Schlaf._
@@ -109,7 +109,7 @@ BARBIER. Herr Er tut sich Unrecht, hab ich Ihn denn gemeint, hab ich gesagt Er h
 
 === [H1, Szene 11] (Lehmann S. 149-150)
 _Das Wirtshaus._
-_Louis Woyzeck sitzt vorm Wirtshaus._
+_Woyzeck sitzt vorm Wirtshaus._
 _Leute gehn hinaus._
 ANDRES. Was machst du da?
 WOYZECK. Wie viel Uhr ist's?
@@ -143,7 +143,7 @@ WOYZECK. Draußen liegt was. Im Boden. Sie deuten immer drauf hin und hörst du'
 ANDRES. Leg dich Woyzeck. Du musst ins Lazarett. Du musst Schnaps trinke und Pulver drin, das schneidt das Fieber.
 
 === [H1, Szene 14] (Lehmann S. 151-152)
-_Margreth Marie mit Mädchen vor der Haustür._
+_Marie mit Mädchen vor der Haustür._
 MÄDCHEN.
   Wie scheint die Sonn St. Lichtmesstag
   Und steht das Korn im Blühn.
@@ -164,7 +164,7 @@ MÄDCHEN.
 MARIE. Kommt ihr klei Krabben!
 Ringle, ringel Rosenkranz. König Herodes.
 Großmutter erzähl.
-GROSSMUTTER. Es war eimal ein arm Kind und hat kei Vater und kei Mutter war alles tot und war niemand mehr auf der Welt. alles tot, und es ist hingangen und hat greint Tag und Nacht. Und weil auf der Erd niemand mehr war, wollt's in Himmel gehn, und der Mond guckt es so freundlich an und wie's endlich zum Mond kam, war's ein Stück faul Holz und da ist es zur Sonn gangen und wie's zur Sonn kam, war's ein verreckt Sonneblum und wie's zu den Sterne kam, warens klei golde Mück, die waren angesteckt wie der Neuntöter sie auf die Schlehe steckt und wie's wieder auf die Erd wollt, war die Erd ein umgestürzter Hafen und war ganz allein und da hat sich's hingesetzt und geweint und da sitzt es noch und ist ganz allein.
+GROSSMUTTER. Es war eimal ein arm Kind und hat kei Vater und kei Mutter war alles tot und war niemand mehr auf der Welt. Alles tot, und es ist hingangen und hat greint Tag und Nacht. Und weil auf der Erd niemand mehr war, wollt's in Himmel gehn, und der Mond guckt es so freundlich an und wie's endlich zum Mond kam, war's ein Stück faul Holz und da ist es zur Sonn gangen und wie's zur Sonn kam, war's ein verreckt Sonneblum und wie's zu den Sterne kam, warens klei golde Mück, die waren angesteckt wie der Neuntöter sie auf die Schlehe steckt und wie's wieder auf die Erd wollt, war die Erd ein umgestürzter Hafen und war ganz allein und da hat sich's hingesetzt und geweint und da sitzt es noch und ist ganz allein.
 WOYZECK. Marie!
 MARIE _erschreckt._ Was ist?
 WOYZECK. Marie wir wolln gehn. 's ist Zeit.
@@ -172,7 +172,7 @@ MARIE. Wohinaus?
 WOYZECK. Weiß ich's?
 
 === [H1, Szene 15] (Lehmann S. 152)
-_Margreth Marie und Louis Woyzeck_
+_Marie und Woyzeck_
 MARIE. Also dort hinaus ist die Stadt. 's ist finster.
 WOYZECK. Du sollst noch bleiben. Komm setz dich.
 MARIE. Aber ich muss fort.
@@ -204,7 +204,7 @@ _Es kommen Leute._
 
 === [H1, Szene 17] (Lehmann S. 153-154)
 _Das Wirtshaus_
-WOYZECK. Tanzt alle, immer zu, schwitzt und stinkt, er holt euch doch eimal Alle. _Singt._
+WOYZECK. Tanzt alle, immer zu, schwitzt und stinkt, er holt euch doch eimal alle. _Singt._
   Frau Wirtin hat 'ne brave Magd,
   Sie sitzt im Garten Tag und Nacht,
   Sie sitzt in ihrem Garten,
@@ -225,11 +225,11 @@ KÄTHE. Aber was hast du an deiner Hand?
 WOYZECK. Ich? Ich?
 KÄTHE. Rot, Blut! _Es stellen sich Leute um sie._
 WOYZECK. Blut? Blut.
-WIRTH. Uu Blut.
+WIRT. Uu Blut.
 WOYZECK. Ich glaub ich hab mich geschnitten, da an der rechten Hand.
-WIRTH. Wie kommt's aber an den Ellenbogen?
+WIRT. Wie kommt's aber an den Ellenbogen?
 WOYZECK. Ich hab's abgewischt.
-WIRTH. Was mit der rechten Hand an den rechten Ellenbogen? Ihr seid geschickt.
+WIRT. Was mit der rechten Hand an den rechten Ellenbogen? Ihr seid geschickt.
 NARR. Und da hat der Ries gesagt: ich riech, ich riech, ich riech Menschefleisch. Puh! Das stinkt schon.
 WOYZECK. Teufel, was wollt ihr? Was geht's euch an? Platz! oder der erste – Teufel! Meint ihr ich hätt jemand umgebracht? Bin ich Mörder? Was gafft ihr! Guckt euch selbst an! Platz da! _Er läuft hinaus._
 
@@ -243,7 +243,7 @@ _Kinder_
 2. KIND. Fort, dass wir noch was sehen. Sie tragen's sonst hinein.
 
 === [H1, Szene 19] (Lehmann S. 154-155)
-WOYZECK _allein._ Das Messer? Wo ist das Messer? Ich hab es da gelassen. Es verrät mich! Näher, noch näher! Was ist das für ein Platz? Was hör ich? Es rührt sich was. Still. Da in der Nähe. Marie? Ha Marie! Still. alles still! (Was bist du so bleich, Marie? Was hast du eine rote Schnur um den Hals? Bei wem hast du das Halsband verdient, mit deinen Sünden? Du warst schwarz davon, schwarz! Hab ich dich jetzt gebleicht. Was hänge die schwarze Haar, so wild? Hast du die Zöpfe heut nicht geflochten?) Da liegt was! kalt, nass, stille. Weg von dem Platz. Das Messer, das Messer, hab ich's? So! Leute. – Dort. _Er läuft weg._
+WOYZECK _allein._ Das Messer? Wo ist das Messer? Ich hab es da gelassen. Es verrät mich! Näher, noch näher! Was ist das für ein Platz? Was hör ich? Es rührt sich was. Still. Da in der Nähe. Marie? Ha Marie! Still. Alles still! (Was bist du so bleich, Marie? Was hast du eine rote Schnur um den Hals? Bei wem hast du das Halsband verdient, mit deinen Sünden? Du warst schwarz davon, schwarz! Hab ich dich jetzt gebleicht. Was hänge die schwarze Haar, so wild? Hast du die Zöpfe heut nicht geflochten?) Da liegt was! kalt, nass, stille. Weg von dem Platz. Das Messer, das Messer, hab ich's? So! Leute. – Dort. _Er läuft weg._
 
 === [H1, Szene 20] (Lehmann S. 155)
 WOYZECK _an einem Teich._ So da hinunter! _Er wirft das Messer hinein._ Es taucht in das dunkle Wasser, wie ein Stein! Der Mond ist wie ein blutig Eisen! Will denn die ganze Welt es ausplaudern? Nein es liegt zu weit vorn, wenn sie sich baden, _Er geht in den Teich und wirft weit._ so jetzt – aber im Sommer, wenn sie tauchen nach Muscheln, bah es wird rostig. Wer kann's erkennen – hätt ich es zerbrochen! Bin ich noch blutig? ich muss mich waschen. Da ein Fleck und da noch einer.
@@ -270,7 +270,7 @@ WOYZECK. Ja Andres, das ist er – der Platz ist verflucht. Siehst du den leucht
 ANDRES. Es wird finster, fast macht Ihr mir Angst. _ Er singt._
 WOYZECK _fasst ihn an._ Hörst du's Andres? Hörst du's es geht neben uns, unter uns. Fort, die Erde schwankt unter unsern Sohlen. Die Freimaurer! Wie sie wühlen! _Er reißt ihn mit sich._
 ANDRES. Lasst mich! Seid Ihr toll! Teufel.
-WOYZECK. Bist du ein Maulwurf, sind dei Ohre voll Sand? Hörst du das fürchterliche Getös am Himmel? Über der Stadt. alles Glut! Sieh nicht hinter dich. Wie es hervorschießt, und alles donnert.
+WOYZECK. Bist du ein Maulwurf, sind dei Ohre voll Sand? Hörst du das fürchterliche Getös am Himmel? Über der Stadt. Alles Glut! Sieh nicht hinter dich. Wie es hervorschießt, und alles donnert.
 ANDRES. Du machst mir Angst.
 WOYZECK. Sieh nicht hinter dich! _Sie verstecken sich im Gebüsch._
 ANDRES. Woyzeck ich hör nichts mehr.
@@ -312,7 +312,7 @@ WOYZECK. Ja Marie.
 MARIE. Was hast du Franz, du siehst so verstört?
 WOYZECK. Pst! still! Ich hab's aus! Die Freimaurer! Es war ein fürchterliches Getös am Himmel und alles in Glut! Ich bin viel auf der Spur! sehr viel.
 MARIE. Mann!
-WOYZECK. Meinst? Sieh um dich! alles starr, fest, finster, was regt sich dahinter. Etwas, was wir nicht fasse. Geht still, was uns von Sinnen bringt, aber ich hab's aus. Ich muss fort!
+WOYZECK. Meinst? Sieh um dich! Alles starr, fest, finster, was regt sich dahinter. Etwas, was wir nicht fasse. Geht still, was uns von Sinnen bringt, aber ich hab's aus. Ich muss fort!
 MARIE. Dei Kind?
 WOYZECK. Ach, Junge! Heut Abend auf die Mess. Ich hab wieder was gespart. _Ab._
 MARIE. Der Mann schnappt noch über, er hat mir Angst gemacht. Wie unheimlich, ich mag wenn es finster wird gar nicht bleiben, ich glaub ich bin blind, er steckt ein an. Sonst scheint doch als die Latern herein. Ach wir armen Leut. _Sie singt._
@@ -328,8 +328,8 @@ ALTER MANN. KIND _das tanzt._
   Das ist uns wohlbekannt!
 Hei! Hopsa! Arm Mann, alter Mann! Arm Kind! Jung Kind! Sorgen und Fest! Hei Louisel, soll ich dich [Satz bricht ab.]
 Ein Mensch muss auch der Narr von Verstand sein, damit er sagen kann: Narrisch Welt! Schön Welt!
-AUSRUFER _vor einer Bude._ Meine Herrn, meine Damen, hier sind zu sehn das astronomische Pferd und die kleine Canaillevogel, sind Liebling von alle Potentate Europas und Mitglied von alle gelehrte Societät, verkündige de Leute alles, wie alt, wie viel Kinder, was für Krankheit. Schießt Pistol los, stellt sich auf ein Bein. alles Erziehung, habe nur eine viehische Vernunft, oder vielmehr eine ganz vernünftige Viehigkeit, ist kein viehdummes Individuum wie viel Person, das verehrliche Publikum abgerechnet. Herein. Es wird sein, die rapräsentation. Das commencement vom commencement wird sogleich nehm sein Anfang.
-Sehn Sie die Fortschritte der Zivilisation. alles schreitet fort, ein Pferd, ein Aff, ein Canaillevogel! Der Aff ist schon ein Soldat, 's ist noch nit viel, unterst Stuf von menschliche Geschlecht!
+AUSRUFER _vor einer Bude._ Meine Herrn, meine Damen, hier sind zu sehn das astronomische Pferd und die kleine Canaillevogel, sind Liebling von alle Potentate Europas und Mitglied von alle gelehrte Societät, verkündige de Leute alles, wie alt, wie viel Kinder, was für Krankheit. Schießt Pistol los, stellt sich auf ein Bein. Alles Erziehung, habe nur eine viehische Vernunft, oder vielmehr eine ganz vernünftige Viehigkeit, ist kein viehdummes Individuum wie viel Person, das verehrliche Publikum abgerechnet. Herein. Es wird sein, die rapräsentation. Das commencement vom commencement wird sogleich nehm sein Anfang.
+Sehn Sie die Fortschritte der Zivilisation. Alles schreitet fort, ein Pferd, ein Aff, ein Canaillevogel! Der Aff ist schon ein Soldat, 's ist noch nit viel, unterst Stuf von menschliche Geschlecht!
 HERR. Grotesk! Sehr grotesk!
 STUDENT. Sind Sie auch ein Atheist! ich bin ein dogmatischer Atheist.
 [??]. Ist's grotesk? Ich bin ein Freund vom grotesken. Sehen Sie dort? was ein grotesker Effekt.
@@ -367,7 +367,7 @@ WOYZECK. Was denn Herr Doktor?
 DOKTOR. Ich es gesehn hab, Er auf die Straß gepisst hat, wie ein Hund. Geb ich Ihm dafür alle Tag drei Groschen und Kost? Die Welt wird schlecht, sehr schlecht, schlecht, sag ich. O! Woyzeck das ist schlecht.
 WOYZECK. Aber Herr Doktor wenn man nit anders kann?
 DOKTOR. Nit anders kann, nit anders kann. Aberglaube, abscheulicher Aberglaube! hab ich nit nachgewiese, dass der musculus constrictor vesicae dem Willen unterworfen ist? Woyzeck der Mensch ist frei, im Menschen verklärt sich die Individualität zur Freiheit – seinen Harn nicht halten können! Es ist Betrug Woyzeck. Hat Er schon seine Erbsen gegessen? nichts als Erbsen, nichts als Hülsenfrüchte, cruciferae, merk Er sich's. Die nächste Woche fangen wir dann mit Hammelfleisch an. Muss Er nicht aufs secret? Mach Er. Ich sag's Ihm. Es gibt eine Revolution in der Wissenschaft. Eine Revolution! Nach gestrigem Bericht, 0,10 Harnstoff, und salzsaures Ammonium, [??].
-Aber ich hab's gesehn, dass Er an die Wand pisste, ich steckt gerad meinen Kopf hinaus, zwischen meiner Valnessia und Myan[??]. Hat Er mir Frösch gefange? Hat Er Laich? Kein Süßwasserpolyp? keine Hydra? Vestillen? Cristatellen? Stoß Er mir nicht an's Mikroskop, ich hab eben den linken Backzahn von einem Infusionstier darunter. Ich sprenge sie in die Luft, alle miteinander. Woyzeck, keine Spinneneier, keine Kröten? Aber an die Wand gepisst! Ich hab's gesehen. _Tritt auf ihn los._ Nein Woyzeck, ich ärgre mich nicht, ärgern ist ungesund, ist unwissenschaftlich. Ich bin ruhig, ganz ruhig und ich sag's Ihm mit der größten Kaltblütigkeit. Behüte wer wird sich über einen Menschen ärgern! einen Menschen. Wenn es noch ein Proteus wäre, der einem krepiert! Aber Er hätte doch nicht an die Wand pissen sollen.
+Aber ich hab's gesehn, dass Er an die Wand pisste, ich steckt gerad meinen Kopf hinaus, zwischen meiner Valnessia und Myan[??]. Hat Er mir Frösch gefange? Hat Er Laich? Kein Süßwasserpolyp? keine Hydra? Vestillen? Cristatellen? Stoß Er mir nicht ans Mikroskop, ich hab eben den linken Backzahn von einem Infusionstier darunter. Ich sprenge sie in die Luft, alle miteinander. Woyzeck, keine Spinneneier, keine Kröten? Aber an die Wand gepisst! Ich hab's gesehen. _Tritt auf ihn los._ Nein Woyzeck, ich ärgre mich nicht, ärgern ist ungesund, ist unwissenschaftlich. Ich bin ruhig, ganz ruhig und ich sag's Ihm mit der größten Kaltblütigkeit. Behüte wer wird sich über einen Menschen ärgern! einen Menschen. Wenn es noch ein Proteus wäre, der einem krepiert! Aber Er hätte doch nicht an die Wand pissen sollen.
 WOYZECK. Ja die Natur, Herr Doktor wenn die Natur aus ist.
 DOKTOR. Was ist das wenn die Natur aus ist?
 WOYZECK. Wenn die Natur aus ist, das ist, wenn die Natur aus ist! Wenn die Welt so finster wird, dass man mit den Händen an ihr herumtappen muss, dass man meint sie verrinnt zu Spinnweb! Das ist, so wenn etwas ist und doch nicht ist. Wenn alles dunkel ist und nur noch ein roter Schein im Westen, wie von einer Esse. Wenn – _Schreitet im Zimmer auf und ab._
@@ -385,12 +385,12 @@ DOKTOR. Wohin so langsam geehrtester Herr Exerzierzagel?
 HAUPTMANN. Nehmen Sie sich Zeit wertester Grabstein.
 DOKTOR. Ich stehle meine Zeit nicht wie Sie wertester [Satz bricht ab.]
 HAUPTMANN. Laufen Sie nicht so Herr Doktor, ein guter Mensch geht nicht so schnell. Hahaha, ein guter Mensch, _Schnauft._ ein guter Mensch, Sie hetzen sich ja hinter dem Tod drein, Sie machen mir ganz Angst.
-DOKTOR. Pressirt, Herr Hauptmann pressiert.
+DOKTOR. Pressiert, Herr Hauptmann pressiert.
 HAUPTMANN. Herr Sargnagel, Sie schleifen sich ja so Ihre kleinen Beine ganz auf dem Pflaster ab. Reiten Sie doch nicht auf ihrem Stock in die Luft.
 DOKTOR. Sie ist in vier Wochen tot, via coronar congestionis, im siebenten Monat, ich hab schon zwanzig solche Patienten gehabt, in vier Wochen, richt Sie sich danach.
 HAUPTMANN. Herr Doktor, erschrecken Sie mich nicht, es sind schon Leute am Schreck gestorben, am puren hellen Schreck.
 DOKTOR. In vier Wochen, dummes Tier, Sie gibt ein interessant's Präparat. Ich sag Ihr, vier [Satz bricht ab.]
-HAUPTMANN. Dass dich das Wetter, ich halt Sie Herr Flegel, ich lass Sie nicht Teufel. vier Wochen? Herr Doktor, Sargnagel, Totenhemd, ich leb so lang ich da bin, vier Wochen, und die Leute Zitron in den Händen, aber sie werden sagen, er war ein guter Mensch, ein guter Mensch.
+HAUPTMANN. Dass dich das Wetter, ich halt Sie Herr Flegel, ich lass Sie nicht Teufel. Vier Wochen? Herr Doktor, Sargnagel, Totenhemd, ich leb so lang ich da bin, vier Wochen, und die Leute Zitron in den Händen, aber sie werden sagen, er war ein guter Mensch, ein guter Mensch.
 DOKTOR. Ei guten Morgen Herr Hauptmann. _Den Hut und Stock schwingend._ Kikeriki! Freut mich! Freut mich! _Hält ihm den Hut hin._ Was ist das Herr Hauptmann? Das ist Hohlkopf. Ha?
 HAUPTMANN _macht eine Falte._ Was ist das Herr Doktor? Das ist 'ne Einfalt! Hahaha! Aber nichts für ungut. Ich bin ein guter Mensch – aber ich kann auch wenn ich will Herr Doktor, hahaha, wenn ich will. He Woyzeck, was hetzt Er sich so an uns vorbei? Bleib Er doch Woyzeck, Er läuft ja wie ein offnes Rasiermesser durch die Welt, man schneidt sich an Ihm, Er läuft als hätt Er ein Regiment Kastrierte zu rasiern und würd gehenkt über dem letzten Haar noch vorm Verschwinden – aber, über die langen Bärte, was wollt ich doch sagen? Woyzeck – die langen Bärte ...
 DOKTOR. Ein langer Bart unter dem Kinn, schon Plinius spricht davon, man muss es den Soldaten abgewöhnen, du, du ...
@@ -406,7 +406,7 @@ HAUPTMANN. Kerl, will Er erschossen werden, will Er ein paar Kugeln vor den Kopf
 DOKTOR. Gesichtsmuskeln starr, gespannt, zuweilen hüpfend, Haltung aufgerichtet, gespannt.
 WOYZECK. Ich geh! Es ist viel möglich. Der Mensch! es ist viel möglich. Wir habe schön Wetter Herr Hauptmann. Sehn Sie so ein schön, festen groben Himmel, man könnte Lust bekomm, ein Kloben hineinzuschlagen und sich daran zu hänge, nur wege des Gedankenstrichels zwischen Ja, und wieder ja – und nein, Herr, Herr Hauptmann ja und nein? Ist das Nein am Ja oder das Ja am Nein Schuld? Ich will drüber nachdenke. _Geht mit breiten Schritten ab, erst langsam dann immer schneller._
 DOKTOR _schießt ihm nach._ Phänomen, Woyzeck, Zulage.
-HAUPTMANN. Mir wird ganz schwindlich vor den Menschen, wie schnell, der lange Schlingel greift aus, es läuft der Schatten von einem Spinnbein, und der Kurze, – das zuckelt. Der Lange ist der Blitz und der Kleine der Donner. Haha, hinterdrein. Das hab ich nicht gern! ein guter Mensch ist [??] und hat sein Leben lieb, ein guter Mensch hat keine courage nicht! ein Hundsfott hat courage! Ich bin blos in Krieg gegangen um mich in meiner Liebe zum Leben zu befestigen. Von d. [??] zu Fuß, von da zum [??], von da zur courage, wie man zu so Was kommt. Grotesk! grotesk!
+HAUPTMANN. Mir wird ganz schwindlich vor den Menschen, wie schnell, der lange Schlingel greift aus, es läuft der Schatten von einem Spinnbein, und der Kurze, – das zuckelt. Der Lange ist der Blitz und der Kleine der Donner. Haha, hinterdrein. Das hab ich nicht gern! ein guter Mensch ist [??] und hat sein Leben lieb, ein guter Mensch hat keine courage nicht! ein Hundsfott hat courage! Ich bin bloß in Krieg gegangen um mich in meiner Liebe zum Leben zu befestigen. Von d. [??] zu Fuß, von da zum [??], von da zur courage, wie man zu so Was kommt. Grotesk! grotesk!
 
 === [H2, Szene 8] (Lehmann S. 164-165)
 _Woyzeck. Louisel Marie_
@@ -462,7 +462,7 @@ WOYZECK. Still! Es geht was!
 ANDRES.
   Fraßen ab das grüne, grüne Gras
   Bis auf den Rasen.
-WOYZECK. Es geht hinter mir, unter mir _Stampft auf den Boden._ hohl, hörst du? alles hohl da unten. Die Freimaurer!
+WOYZECK. Es geht hinter mir, unter mir _Stampft auf den Boden._ hohl, hörst du? Alles hohl da unten. Die Freimaurer!
 ANDRES. Ich fürcht mich.
 WOYZECK. 's ist so kurios still. Man möcht den Atem halten. Andres!
 ANDRES. Was?
@@ -558,7 +558,7 @@ TAMBOURMAJOR. Marie!
 MARIE _ihn ansehend, mit Ausdruck._ Geh einmal vor dich hin. – Über die Brust wie ein Rind und ein Bart wie ein Löw – So ist keiner – Ich bin stolz vor allen Weibern.
 TAMBOURMAJOR. Wenn ich am Sonntag erst den großen Federbusch hab und die weiße Handschuh, Donnerwetter, Marie, der Prinz sagt immer: Mensch, Er ist ein Kerl.
 MARIE _spöttisch._ Ach was! _Tritt vor ihn hin._ Mann!
-TAMBOURMAJOR. Und du bist auch ein Weibsbild. Sapperment, wir wollen eine Zucht von Tambour-Majors anlegen. He? _Er umfasst sie._
+TAMBOURMAJOR. Und du bist auch ein Weibsbild. Sapperment, wir wollen eine Zucht von Tambourmajors anlegen. He? _Er umfasst sie._
 MARIE _verstimmt._ Lass mich!
 TAMBOURMAJOR. Wild Tier.
 MARIE _heftig._ Rühr mich an!
@@ -653,10 +653,10 @@ ANDRE _im Chor._
   Halli, halloh, gar lustig ist die Jägerei
   Allhier auf grüner Heid.
   Das Jagen ist mei Freud.
-_Woyzeck stellt sich an's Fenster. Marie und der Tambourmajor tanzen vorbei, ohne ihn zu bemerken._
+_Woyzeck stellt sich ans Fenster. Marie und der Tambourmajor tanzen vorbei, ohne ihn zu bemerken._
 MARIE _im Vorbeitanzen._ Immer, zu, immer zu.
 WOYZECK _erstickt._ Immer zu! – immer zu! _Fährt heftig auf und sinkt zurück auf die Bank._ immer zu immer zu, _Schlägt die Hände in einander._ dreht euch, wälzt euch. Warum bläst Gott nicht die Sonn aus, dass alles in Unzucht sich übernanderwälzt, Mann und Weib, Mensch und Vieh. Tut's am hellen Tag, tut's einem auf den Händen, wie die Mücken. – Weib. – Das Weib ist heiß, heiß! – Immer zu, immer zu. _Fährt auf._ Der Kerl! Wie er an ihr herumtappt, an ihrem Leib, er, er hat sie wie ich zu Anfang!
-1. HANDWERKSBURSCH _predigt auf dem Tisch._ Jedoch wenn ein Wandrer, der gelehnt steht an dem Strom der Zeit oder aber sich die göttliche Weisheit beantwortet und sich anredet: Warum ist der Mensch? Warum ist der Mensch? – Aber wahrlich ich sage euch, von was hätte der Landmann, der Weißbinder, der Schuster, der Arzt leben sollen, wenn Gott den Menschen nicht geschaffen hätte? Von was hätte der Schneider leben sollen, wenn er dem Menschen nicht die Empfindung der Scham eingepflanzt, von was der Soldat, wenn Er ihn nicht mit dem Bedürfnis sich totzuschlagen ausgerüstet hätte? Darum zweifelt nicht, ja ja, es ist lieblich und fein, aber alles Irdische ist eitel, selbst das Geld geht in Verwesung über. – Zum Beschluss meine geliebten Zuhörer lasst uns noch über's Kreuz pissen, damit ein Jud stirbt.
+1. HANDWERKSBURSCH _predigt auf dem Tisch._ Jedoch wenn ein Wandrer, der gelehnt steht an dem Strom der Zeit oder aber sich die göttliche Weisheit beantwortet und sich anredet: Warum ist der Mensch? Warum ist der Mensch? – Aber wahrlich ich sage euch, von was hätte der Landmann, der Weißbinder, der Schuster, der Arzt leben sollen, wenn Gott den Menschen nicht geschaffen hätte? Von was hätte der Schneider leben sollen, wenn er dem Menschen nicht die Empfindung der Scham eingepflanzt, von was der Soldat, wenn Er ihn nicht mit dem Bedürfnis sich totzuschlagen ausgerüstet hätte? Darum zweifelt nicht, ja ja, es ist lieblich und fein, aber alles Irdische ist eitel, selbst das Geld geht in Verwesung über. – Zum Beschluss meine geliebten Zuhörer lasst uns noch übers Kreuz pissen, damit ein Jud stirbt.
 
 === [H4, Szene 12] (Lehmann S. 178-179)
 _Freies Feld._
@@ -672,7 +672,7 @@ ANDRES. Du musst Schnaps trinke und Pulver drin, das schneidt das Fieber.
 
 === [H4, Szene 14] (Lehmann S. 179-180)
 _Wirtshaus._
-_Tambour-Major. Woyzeck. Leute._
+_Tambourmajor. Woyzeck. Leute._
 TAMBOURMAJOR. Ich bin ein Mann! _Schlägt sich auf die Brust._ ein Mann sag ich.
 Wer will was? Wer kein besoffen Herrgott ist der lass sich von mir. Ich will ihm die Nas ins Arschloch prügeln. Ich will – _Zu Woyzeck._ da Kerl, sauf, der Mann muss saufen, ich wollt die Welt wär Schnaps, Schnaps.
 _Woyzeck pfeift._

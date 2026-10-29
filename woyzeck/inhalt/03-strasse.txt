@@ -1,0 +1,284 @@
+// Woyzeck – Inhalt, Teil 3: Straße, Marie, Wachtstube, Wirtshaus, Feld bei Nacht.
+
+## strasse | Straße. Hauptmann. Doktor.
+quelle: H4,9; H2,7
+ort: stadt
+bild: bart
+zeit: Ein paar Tage später.
+
+Der Feldwebel schickt euch beide mit einem Korb Flaschen ins Kasino. Franz trägt den Korb. Er geht so schnell, dass die Flaschen aneinanderschlagen, und du kommst kaum nach.
+
+Vorn auf der Straße keucht der Hauptmann hinter dem Doktor her. Der Doktor ist klein und rennt mit dem Stock voraus, als stäche er Löcher in die Luft.
+
+HAUPTMANN: {Herr Doktor, die Pferde machen mir ganz Angst; wenn ich denke, dass die armen Bestien zu Fuß gehn müssen. Rennen Sie nicht so. Rudern Sie mit Ihrem Stock nicht so in der Luft. Sie hetzen sich ja hinter dem Tod drein. Ein guter Mensch, der sein gutes Gewissen hat, geht nicht so schnell. Ein guter Mensch.}
+
+Er erwischt den Doktor am Rock und hält ihn fest.
+
+HAUPTMANN: {Herr Doktor, ich bin so schwermütig, ich habe so was Schwärmerisches, ich muss immer weinen, wenn ich meinen Rock an der Wand hängen sehe, da hängt er.}
+DOKTOR: {Hm! aufgedunsen, fett, dicker Hals, apoplektische Konstitution. Ja Herr Hauptmann Sie können eine apoplexia cerebralis kriegen, Sie können sie aber vielleicht auch nur auf der einen Seite bekommen, und dann auf der einen gelähmt sein, oder aber Sie können im besten Fall geistig gelähmt werden und nur fort vegetieren, das sind so ohngefähr Ihre Aussichten auf die nächsten vier Wochen.}
+HAUPTMANN: {Herr Doktor erschrecken Sie mich nicht, es sind schon Leute am Schreck gestorben, am bloßen hellen Schreck. – Ich seh schon die Leute mit den Zitronen in den Händen, aber sie werden sagen, er war ein guter Mensch, ein guter Mensch – Teufel Sargnagel.}
+DOKTOR: {Was ist das Herr Hauptmann? Das ist Hohlkopf!}
+
+Er hält ihm den Hut hin. Der Hauptmann knickt eine Falte hinein.
+
+HAUPTMANN: {Was ist das Herr Doktor? Das ist Einfalt.}
+
+Da hat er euch gesehen. Ihr müsst an ihm vorbei, es gibt keinen anderen Weg. Franz geht noch schneller. Du bleibst einen Schritt hinter ihm und stehst stramm, als es nicht mehr anders geht.
+
+HAUPTMANN: {He Woyzeck, was hetzt Er sich so an uns vorbei? Bleib Er doch Woyzeck, Er läuft ja wie ein offnes Rasiermesser durch die Welt, man schneidt sich an Ihm, Er läuft als hätt Er ein Regiment Kastrierte zu rasiern und würd gehenkt über dem letzten Haar noch vorm Verschwinden – aber, über die langen Bärte, was wollt ich doch sagen? Woyzeck – die langen Bärte ...}
+DOKTOR: {Ein langer Bart unter dem Kinn, schon Plinius spricht davon, man muss es den Soldaten abgewöhnen, du, du ...}
+HAUPTMANN: {Hä? über die langen Bärte? Wie is Woyzeck, hat Er noch nicht ein Haar aus eim Bart in seiner Schüssel gefunden? He, Er versteht mich doch, ein Haar von einem Menschen, vom Bart eines sapeur, eines Unteroffizier, eines – eines Tambourmajor? He Woyzeck? Aber Er hat eine brave Frau. Geht Ihm nicht wie andern.}
+WOYZECK: {Jawohl! Was wollen Sie sagen Herr Hauptmann?}
+HAUPTMANN: {Was der Kerl ein Gesicht macht!} {aber wenn Er sich eilt und um die Eck geht, so kann Er vielleicht noch auf ein Paar Lippen eins finden, ein Paar Lippen, Woyzeck, ich habe auch die Liebe gefühlt, Woyzeck.} {Kerl Er ist ja kreideweiß.}
+WOYZECK: {Herr, Hauptmann, ich bin ein arm Teufel, – und hab sonst nichts auf der Welt Herr Hauptmann, wenn Sie Spaß machen –}
+HAUPTMANN: {Spaß ich, dass dich Spaß, Kerl!}
+
+Der Doktor hat Franz schon am Handgelenk, zwei Finger auf der Ader, und zählt.
+
+DOKTOR: {Den Puls Woyzeck, den Puls, klein, hart, hüpfend, unregelmäßig.}
+WOYZECK: {Herr Hauptmann, die Erd ist höllenheiß, mir eiskalt! eiskalt, die Hölle ist kalt, wollen wir wetten. Unmöglich, Mensch! Mensch! unmöglich.}
+HAUPTMANN: {Kerl, will Er erschossen werden, will Er ein paar Kugeln vor den Kopf haben? Er ersticht mich mit seinen Augen, und ich mein's gut mit Ihm, weil Er ein guter Mensch ist Woyzeck, ein guter Mensch.}
+DOKTOR: {Gesichtsmuskeln starr, gespannt, zuweilen hüpfend, Haltung aufgerichtet, gespannt.}
+WOYZECK: {Ich geh! Es ist viel möglich. Der Mensch! es ist viel möglich. Wir habe schön Wetter Herr Hauptmann. Sehn Sie so ein schön, festen groben Himmel, man könnte Lust bekomm, ein Kloben hineinzuschlagen und sich daran zu hänge, nur wege des Gedankenstrichels zwischen Ja, und wieder ja – und nein, Herr, Herr Hauptmann ja und nein? Ist das Nein am Ja oder das Ja am Nein Schuld? Ich will drüber nachdenke.}
+
+Er drückt dir den Korb in die Arme und geht. Erst langsam, mit breiten Schritten, dann immer schneller.
+
+DOKTOR: {Phänomen, Woyzeck, Zulage.}
+HAUPTMANN: {Mir wird ganz schwindlich vor den Menschen, wie schnell, der lange Schlingel greift aus, es läuft der Schatten von einem Spinnbein, und der Kurze, – das zuckelt. Der Lange ist der Blitz und der Kleine der Donner. Haha, hinterdrein.}
+
+[wahl strasse.wahl offen]
+* nach (zuwenden): Du stellst den Korb an die Hauswand und läufst ihm nach.
+Hinter dir ruft der Hauptmann etwas. Du hörst nicht hin.
+
+[wenn offen >= 2]
+Am Ende der Gasse holst du ihn ein. Er redet, ohne dich anzusehen, als hätte er die ganze Zeit mit dir geredet.
+
+„Ein Haar, Andres. In der Schüssel. Aus eim Bart.“
+
+[wenn tm_gesagt]
+„Du hast's ja gesagt. An der Pumpe.“ Er sagt es nicht als Vorwurf. Er sagt es, wie man sagt: Es hat geregnet. Du hast's gesagt, und jetzt sagt's auch der Hauptmann, und wenn's zwei sagen, ist's wahr.
+[sonst]
+„Weißt du was?“, fragt er.
+
+„Nix weiß ich“, sagst du.
+
+Du sagst es zu schnell. Er bleibt nicht stehen. Ob er's gemerkt hat, weißt du nicht.
+[ende]
+[sonst]
+Er geht so schnell, dass du rennen musst. Du rufst ihn. Er dreht sich nicht um.
+[ende]
+
+Vor Mariens Haus bleibt er stehen und schaut hinauf. „Wart hier“, sagt er. Du wartest am Brunnen, wie damals am ersten Abend.
+[setze offen +1]
+* bleiben (abwimmeln): Du bleibst stehen, den Korb in beiden Armen, und schaust geradeaus.
+Der Hauptmann dreht sich nach dir um, als hätte er dich eben erst bemerkt.
+
+„Und Er? Was gafft Er? Trag Er die Flaschen, eh sie warm werden.“
+
+Der Doktor schaut dich an wie einen Frosch, den er schon hat. Du trägst den Korb allein ins Kasino. Franz kommt erst nach dem Zapfenstreich zurück, und der Feldwebel schreibt ihn auf.
+[setze offen -1]
+[/wahl]
+
+
+## marie | Marie. Woyzeck.
+quelle: H4,7
+ort: stadt
+bild: mund
+zeit: Am selben Tag.
+
+[stelle marie.bericht offen]
+[wenn strasse.wahl = nach]
+Das Fenster oben steht offen, wegen der Hitze. Du hörst es, ob du willst oder nicht. Die Margreth nebenan hört es auch; du siehst ihren Vorhang, der sich bewegt.
+
+Erst ist es lange still. Dann seine Stimme.
+
+WOYZECK: {Hm! Ich seh nichts, ich seh nichts. O, man müsst's sehen, man müsst's greifen könne mit Fäusten.}
+MARIE: {Was hast du Franz? Du bist hirnwütig Franz.}
+WOYZECK: {Eine Sünde so dick und so breit. Es stinkt dass man die Engelchen zum Himmel hinaus rauche könnt. Du hast ein rote Mund, Marie. Keine Blase drauf? Adieu, Marie, du bist schön wie die Sünde –. Kann die Todsünde so schön sein?}
+MARIE: {Franz, du red'st im Fieber.}
+WOYZECK: {Teufel! – Hat er da gestande, so, so?}
+MARIE: {Dieweil der Tag lang und die Welt alt ist, könn viel Mensche an eim Platz stehn, einer nach dem andern.}
+WOYZECK: {Ich hab ihn gesehn.}
+MARIE: {Man kann viel sehn, wenn man zwei Auge hat und man nicht blind ist und die Sonn scheint.}
+WOYZECK: {Mit diesen Augen!}
+MARIE: {Und wenn auch.}
+
+Dann kommt er heraus. Er hat die Fäuste noch zu, beide.
+
+[wenn offen >= 3]
+Er setzt sich zu dir auf den Brunnenrand. Er macht die Fäuste auf und schaut hinein.
+
+„Ich seh nichts, Andres“, sagt er. „Man müsst's doch sehen. Wenn eins so ist, müsst man's doch sehen, an ihr. Eine Blase am Mund. Ein Zeichen.“
+
+„Man sieht's nie“, sagst du. „Bei keinem.“
+
+Er nickt, als hättest du ihm etwas Tröstliches gesagt. Ihr sitzt am Brunnen, bis das Wasser im Trog schwarz wird.
+[sonst]
+Er geht an dir vorbei, als hätte er vergessen, dass er dich hat warten lassen. Du gehst ihm nach. Er macht die Fäuste nicht auf, den ganzen Weg nicht.
+[ende]
+[sonst]
+Am andern Morgen am Brunnen hat es die Margreth schon für alle. Sie hat's durch die Wand gehört, das Fenster war offen, die ganze Gasse hat's gehört.
+
+MARGRETH: Und er steht da und sagt: „{Ich seh nichts, ich seh nichts.}“ Und dann: „{Eine Sünde so dick und so breit.}“ Und sie: „{Du bist hirnwütig Franz.}“
+
+Die Weiber halten die Eimer still.
+
+MARGRETH: Und er: „{Du hast ein rote Mund, Marie. Keine Blase drauf?}“ Und dann: „{Hat er da gestande, so, so?}“ Und sie, frech wie Dreck: „{Dieweil der Tag lang und die Welt alt ist, könn viel Mensche an eim Platz stehn, einer nach dem andern.}“
+
+Sie macht eine Pause, damit es wirkt.
+
+MARGRETH: „{Ich hab ihn gesehn}“, sagt er. „{Mit diesen Augen!}“ Und sie: „{Und wenn auch.}“ Das hat sie gesagt. Und wenn auch.
+
+Du füllst deinen Eimer. Als du gehst, ruft dir die Margreth nach: „Sag's ihm, deinem Woyzeck! Sag ihm, es ist alles eins!“ Und die Weiber lachen.
+[ende]
+[/stelle]
+
+
+## wachtstube | Die Wachtstube.
+quelle: H4,10
+ort: wachtstube
+bild: glocke
+zeit: Sonntag.
+
+Sonntag. Ihr habt Wache bis Mittag. Die Wachtstube riecht nach nassem Tuch und kaltem Pfeifenrauch, und durchs Fenster kommt Musik von vor der Stadt, Geigen und eine Trompete, die immer zu spät einsetzt. Du sitzt auf der Pritsche und singst, weil man an einem Sonntag singt.
+
+~ {Frau Wirtin hat 'ne brave Magd,}
+~ {Sie sitzt im Garten Tag und Nacht,}
+~ {Sie sitzt in ihrem Garten ...}
+
+WOYZECK: {Andres!}
+ANDRES: {Nu?}
+WOYZECK: {Schön Wetter.}
+ANDRES: {Sonntagsonnwetter. Musik vor der Stadt. Vorhin sind die Weibsbilder hinaus, die Mensche dampfe, das geht.}
+WOYZECK: {Tanz, Andres, sie tanze.}
+ANDRES: {Im Rössel und im Sternen.}
+WOYZECK: {Tanz, Tanz.}
+ANDRES: {Meintwege.}
+
+~ {Sie sitzt in ihrem Garten,}
+~ {Bis dass das Glöcklein zwölfe schlägt,}
+~ {Und passt auf die Solda-aten.}
+
+WOYZECK: {Andres, ich hab kei Ruh.}
+ANDRES: {Narr!}
+
+Er steht am Fenster. Er hat die Hände am Fensterkreuz, wie einer im Arrest.
+
+WOYZECK: {Ich muss hinaus. Es dreht sich mir vor den Augen. Tanz. Tanz. Was sie heiße Händ habe. Verdammt Andres!}
+ANDRES: {Was willst du?}
+WOYZECK: {Ich muss fort.}
+ANDRES: {Mit dem Mensch.}
+WOYZECK: {Ich muss hinaus, 's ist so heiß da hie.}
+
+Draußen schlägt es zwölf. Die Ablösung poltert die Treppe herauf. Franz hat das Koppel schon abgeschnallt.
+
+[wahl wachtstube.wahl offen]
+* mit (zuwenden): „Dann geh ich mit.“
+[wenn offen >= 2]
+Er schaut dich an. Er will nein sagen, du siehst es. Dann sagt er: „Komm halt.“ Und auf der Treppe, leiser: „Lass mich nit allein hingehn.“
+[setze mit = 1, offen +1]
+[sonst]
+„Nein“, sagt er. „Bleib.“
+
+Er sagt es nicht böse. Er sagt es, wie man einem Hund sagt, er soll sitzen. Und du sitzt. Er ist schon unten auf der Gasse, als dir einfällt, dass du ihm hättest nachgehen können, auch ohne gefragt zu haben.
+[ende]
+* bleiben (abwimmeln): „Lauf halt. Ich sing derweil.“
+Du singst ihm nach, durchs Fenster, bis er um die Ecke ist.
+
+~ {Und passt auf die Solda-aten.}
+
+Dann legst du dich auf die Pritsche, weil die Ablösung da ist und weil Sonntag ist, und schläfst bis in den Abend.
+[setze offen -1]
+[/wahl]
+
+
+## wirtshaus | Wirtshaus.
+quelle: H4,11
+ort: wirtshaus
+bild: geige
+zeit: Sonntagabend.
+
+[stelle wirtshaus.dabei offen]
+[wenn mit]
+Die Fenster sind offen, drinnen wird getanzt. Vor dem Haus stehen Bänke, und auf den Bänken sitzen die Handwerksburschen und haben schon getrunken. Franz setzt sich ans Ende der Bank, mit dem Rücken zur Wand, wo er durchs Fenster sehen kann. Du setzt dich neben ihn.
+
+Der erste Handwerksbursch singt, das Glas in der Hand.
+
+~ {Ich hab ein Hemdlein an das ist nicht mein,}
+~ {Meine Seele stinkt nach Branndewein ...}
+
+2. HANDWERKSBURSCH: {Bruder, soll ich dir aus Freundschaft ein Loch in die Natur machen? Vorwärts! Ich will ein Loch in die Natur machen. Ich bin auch ein Kerl, du weißt, ich will ihm alle Flöh am Leib tot schlagen.}
+1. HANDWERKSBURSCH: {Meine Seele, mei Seele stinkt nach Brandewein. Selbst das Geld geht in Verwesung über. Vergissmeinich! Wie ist diese Welt so schön. Bruder, ich muss ein Regenfass voll greinen. Ich wollt unse Nase wärn zwei Bouteille und wir könnte sie uns einander in de Hals gießen.}
+
+Die andern singen im Chor, und du singst mit, weil alle singen, und weil du's kannst.
+
+~ {Ein Jäger aus der Pfalz,}
+~ {Ritt einst durch ein grünen Wald.}
+~ {Halli, halloh, gar lustig ist die Jägerei}
+~ {Allhier auf grüner Heid.}
+~ {Das Jagen ist mei Freud.}
+
+Franz ist aufgestanden. Er steht am Fenster. Drinnen drehen sich die Paare, und eins davon dreht sich vorbei, ganz nah, so nah, dass du den Federbusch durchs Fenster streifen siehst. Marie hat den Kopf zurückgelegt. Sie sieht ihn nicht.
+
+MARIE: {Immer, zu, immer zu.}
+WOYZECK: {Immer zu! – immer zu!}
+
+Er fährt auf, und du hast ihn am Arm, und er sinkt zurück auf die Bank, als hättest du ihn gezogen. Du hast ihn nicht gezogen.
+
+WOYZECK: {immer zu immer zu, _Schlägt die Hände in einander._ dreht euch, wälzt euch. Warum bläst Gott nicht die Sonn aus, dass alles in Unzucht sich übernanderwälzt, Mann und Weib, Mensch und Vieh. Tut's am hellen Tag, tut's einem auf den Händen, wie die Mücken. – Weib. – Das Weib ist heiß, heiß! – Immer zu, immer zu.}
+
+Er fährt wieder auf. Diesmal hältst du ihn nicht.
+
+WOYZECK: {Der Kerl! Wie er an ihr herumtappt, an ihrem Leib, er, er hat sie wie ich zu Anfang!}
+
+Auf dem Tisch hinter euch steht der erste Handwerksbursch und predigt, mit erhobenem Glas, und die Bank lacht.
+
+1. HANDWERKSBURSCH: {Jedoch wenn ein Wandrer, der gelehnt steht an dem Strom der Zeit oder aber sich die göttliche Weisheit beantwortet und sich anredet: Warum ist der Mensch? Warum ist der Mensch? – Aber wahrlich ich sage euch, von was hätte der Landmann, der Weißbinder, der Schuster, der Arzt leben sollen, wenn Gott den Menschen nicht geschaffen hätte? Von was hätte der Schneider leben sollen, wenn er dem Menschen nicht die Empfindung der Scham eingepflanzt, von was der Soldat, wenn Er ihn nicht mit dem Bedürfnis sich totzuschlagen ausgerüstet hätte? Darum zweifelt nicht, ja ja, es ist lieblich und fein, aber alles Irdische ist eitel, selbst das Geld geht in Verwesung über. – Zum Beschluss meine geliebten Zuhörer lasst uns noch übers Kreuz pissen, damit ein Jud stirbt.}
+
+Als du dich wieder umdrehst, ist die Bank am Fenster leer. Franz ist fort. Zwischen den Häusern siehst du ihn noch, wie er zum Tor hinaus läuft, aufs Feld zu.
+[sonst]
+Spät in der Nacht kommen die Kameraden zurück, laut, nach Wein riechend. Du liegst auf der Pritsche und stellst dich schlafend. Der Hannes setzt sich auf deine Bettkante, weil er's einem erzählen muss.
+
+„Der Woyzeck“, sagt er. „Am Rössel. Am Fenster hat er gestanden wie ein Ölgötz.“ Und drinnen die Marie mit dem Tambourmajor, immer vorbei am Fenster, und sie sagt's noch beim Vorbeitanzen: „{Immer, zu, immer zu.}“
+
+Er macht's dir vor, mit den Hüften, auf deiner Bettkante.
+
+Und er hockt auf der Bank, sagt der Hannes, und schlägt die Händ zusammen und schreit: „{dreht euch, wälzt euch. Warum bläst Gott nicht die Sonn aus}“ – und so weiter, wie ein Pfaff. Und dann: „{Der Kerl! Wie er an ihr herumtappt, an ihrem Leib}“!
+
+Der Hannes lacht und hört nicht auf, und von der andern Pritsche ruft einer, der Handwerksbursch hätte besser gepredigt, und macht ihn nach: „{Warum ist der Mensch? Warum ist der Mensch?}“ Und dann die ganze Stube im Chor, auch das Ende mit dem Kreuz und dem Juden, und alle lachen, und du drehst dich zur Wand.
+
+Das Bett neben dir ist leer. Franz kommt nicht in dieser Stunde und nicht in der nächsten.
+[ende]
+[/stelle]
+
+
+## feld2 | Freies Feld.
+quelle: H4,12
+ort: nachtfeld
+bild: boden
+zeit: Dieselbe Nacht.
+
+[stelle feld2.weg offen]
+[wenn mit]
+Du gehst ihm nach, bis vors Tor. Auf dem Feld ist es so dunkel, dass du ihn erst findest, als du fast auf ihn trittst: Er liegt im Gras, flach, das Ohr am Boden, wie einer, der hört, ob Pferde kommen.
+
+Du bleibst stehen, ein paar Schritte weg. Er redet. Du hörst „{Immer zu! immer zu! Still Musik!}“, und dann nimmt der Wind den Rest und trägt ihn weg, über die Stoppeln.
+
+Du gehst nicht hin. Du weißt nicht, warum nicht. Du stehst da, bis dir kalt wird, und dann gehst du zurück und lässt das Tor einen Spalt offen, für ihn.
+[sonst]
+Du liegst wach und hörst die Stube schnarchen. Neben dir das leere Bett, die Decke so glatt, wie er sie am Morgen gezogen hat, mit der Kante wie ein Lineal.
+[ende]
+[/stelle]
+
+[innen feld2.innen offen]
+{Immer zu! immer zu! Still Musik!}
+{_Reckt sich gegen den Boden._}
+{Ha was, was sagt ihr? Lauter, lauter, – stich, stich die Zickwolfin tot?}
+{stich, stich die Zickwolfin tot.}
+{Soll ich? Muss ich?}
+{Hör ich's da auch, sagt's der Wind auch?}
+{Hör ich's immer, immer zu, stich tot, tot.}
+[wenn mit]
+Hinter mir steht einer im Dunkeln und hört's nicht.
+[ende]
+[/innen]
