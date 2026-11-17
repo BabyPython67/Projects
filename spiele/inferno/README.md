@@ -241,7 +241,23 @@ Drei Runden waren erlaubt, jede mit einem frischen Unteragenten als Kritiker. Er
 [kritik/runde-1.md](kritik/runde-1.md)
 </details>
 
-<!-- KRITIK-RUNDEN -->
+### Runde 2 (Fassung 2026.11.17-3)
+
+1. Sog: **bestanden.** Der Anfang, Francesca, Cavalcante, Argenti, Guido und Ugolino ziehen, am Ende leuchten die mitgenommenen Namen. In der zweiten Hälfte, vor allem in den Übelbulgen, lässt es nach.
+2. Inferno: **bestanden.** Alle 34 Gesänge in Dantes Reihenfolge, fast alle Gestalten, Philalethes' Verse. Dünner in den Übelbulgen (XXII, XXIII und XXIX ohne Vers), Cacus fehlt.
+3. Text: **nicht bestanden.** Die Prosa erzählt oft den Vers davor nach, erklärt statt zu zeigen, viele Knoten enden mit einem kurzen Pointensatz, die Sätze sind gleichförmig kurz, die Rubriken verraten den Inhalt.
+4. Prüfungen: **nicht bestanden** (knapp). Abwechslungsreich, acht treffen Dante genau, aber man kann nirgends scheitern; Hügel, Gesichter und Flucht wirken nicht nach, und bei der Flucht tippt man selbst, wo Dante getragen wird.
+5. Technik: **bestanden.** Beide Geräte ohne Fehler, nichts läuft über, Speichern und Weiterspielen klappen. Mängel: Bilder sperrten auf dem Handy das Scrollen, einige Zeilen erschienen in Prüfungen doppelt, doppelte Anführungszeichen in der Stimmenliste.
+
+**Was sich danach geändert hat:** Runde 2 war die letzte. Für eine dritte reichte das Rundenbudget nicht. Danach habe ich nur noch Fehler behoben: Stumme Bilder lassen sich auf dem Handy wieder überscrollen, nur Lauschbilder halten den Finger fest. Die doppelten Zeilen in den Prüfungen Gesichter, Flucht und Griff sind weg, die doppelten Anführungszeichen auch. Die Überleitung vor Vers I, 76–78 passt jetzt zu Vergils Frage.
+
+**Offen geblieben** (keine Fehler im Sinn der Regel, darum nicht mehr angefasst): die Textschwächen aus Kriterium 3, Prüfungen ohne Scheitern und die fehlende Nachwirkung von Hügel, Gesichtern und Flucht, die dünnen Übelbulgen, Cacus und der Sprung an den Seitenanfang beim Zurückkehren. Diese Punkte stehen auch unter „Ehrliche Einschätzung“.
+
+<details>
+<summary>Bericht Runde 2 (zugeklappt)</summary>
+
+[kritik/runde-2.md](kritik/runde-2.md)
+</details>
 
 ## Was ungeprüft bleibt
 
@@ -255,6 +271,6 @@ Drei Runden waren erlaubt, jede mit einem frischen Unteragenten als Kritiker. Er
 
 **Was trägt.** Das Hören als Art zu erkunden. Es kommt aus dem Inferno selbst, und es macht aus dem Lesen eine Handlung: Man legt den Finger auf ein Bild und wartet, bis eine Stimme deutlich wird. Am stärksten sind die Stellen, an denen eine Geste und Dantes Vers zusammenfallen: Francesca, deren Worte man nur hört, solange man dem Paar im Wind folgt; Ciacco, der nur noch zwei Fragen durchhält; Cavalcante, bei dem das Zögern selbst die Antwort ist; der Zweig des Pier della Vigna, der blutet, wenn man ihn antippt; Brunetto, neben dem man Schritt halten muss, um ihn zu hören; Ugolino, bei dem man selbst entscheidet, ob man bis zum Ende zuhört; die Umkehr an Luzifers Fell. Die 34 Gesänge im Menü und die Verse im Text sorgen dafür, dass man das Inferno danach wirklich kennt, und die Namen, die man hinaufträgt, geben dem langen Abstieg ein eigenes Ziel.
 
-**Was schwach ist.** Die Wahlen ändern Sätze, Einträge und Sterne, aber nie den Weg. Wer das Spiel zweimal spielt, erkennt das schnell. Der Ton ist Rauschen und Murmeln aus dem Synthesizer, stimmungsvoll, aber dünn, und die Miniaturen sind einfache Zeichnungen, keine Buchmalerei. Manche Prüfungen sind im Kern eine Wahl mit gutem Text (die Ehre im Limbus, Argenti, Bocca, Alberigo), andere eine Geste, die man nach dem ersten Mal durchschaut.
+**Was schwach ist.** Die Wahlen ändern Sätze, Einträge und Sterne, aber nie den Weg. Wer das Spiel zweimal spielt, erkennt das schnell. Der Ton ist Rauschen und Murmeln aus dem Synthesizer, stimmungsvoll, aber dünn, und die Miniaturen sind einfache Zeichnungen, keine Buchmalerei. Manche Prüfungen sind im Kern eine Wahl mit gutem Text (die Ehre im Limbus, Argenti, Bocca, Alberigo), andere eine Geste, die man nach dem ersten Mal durchschaut. Verlieren kann man keine Prüfung, und Hügel, Gesichter und Flucht wirken danach nicht nach. Bei der Flucht tippt man selbst, obwohl Vergil Dante trägt.
 
-**Wo der Text abfällt.** In der Malebolge (Gesänge XVIII bis XXX). Sie ist der längste Abschnitt, und dort folgen zu viele Gestalten in zu kurzer Zeit: Venedico, Jason, Thaïs, die Päpste, die Wahrsager, die Teufel, die Heuchler, die Diebe, Odysseus, Guido, die Zerspaltenen, die Fälscher. Mehrere Bulgen werden in ein oder zwei Absätzen erzählt statt erlebt. Dantes derbe Komik bei den Teufeln (XXI–XXII) kommt kaum an. Schwächer sind auch die langen Reden Vergils, die als Nacherzählung in einem Block stehen: die Ordnung der Sünden (XI), der Alte von Kreta (XIV), die Gründung Mantuas (XX). Dort erklärt der Text, statt zu zeigen, und neben Dantes Versen wirkt er glatt.
+**Wo der Text abfällt.** In der Malebolge (Gesänge XVIII bis XXX). Sie ist der längste Abschnitt, und dort folgen zu viele Gestalten in zu kurzer Zeit: Venedico, Jason, Thaïs, die Päpste, die Wahrsager, die Teufel, die Heuchler, die Diebe, Odysseus, Guido, die Zerspaltenen, die Fälscher. Mehrere Bulgen werden in ein oder zwei Absätzen erzählt statt erlebt. Dantes derbe Komik bei den Teufeln (XXI–XXII) kommt kaum an. Schwächer sind auch die langen Reden Vergils, die als Nacherzählung in einem Block stehen: die Ordnung der Sünden (XI), der Alte von Kreta (XIV), die Gründung Mantuas (XX). Dort erklärt der Text, statt zu zeigen, und neben Dantes Versen wirkt er glatt. Durchgehend gilt: Oft erzählt die Prosa den gerade zitierten Vers noch einmal nach, viele Knoten enden mit einem kurzen Pointensatz, und die Rubriken verraten manchmal vorab, was im Gesang geschieht.

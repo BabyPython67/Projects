@@ -162,7 +162,7 @@ export const PRUEFUNGEN = {
         g.addEventListener('click', () => {
           if (g.classList.contains('verwischt')) return;
           g.classList.add('verwischt'); versuche++; ton(h, 'klirren', 0.5);
-          schreibe(h, log, t[Math.min(versuche, t.length - 1)] || '');
+          if (versuche < t.length) schreibe(h, log, t[versuche] || '');
           if (versuche === 3) b.append(h.el('div.aktionen', {}, knopf(h, 'Aufgeben', () => fertig({ zahlen: { gesichter: versuche } }))));
         });
         feld.append(g);
@@ -331,7 +331,7 @@ export const PRUEFUNGEN = {
       runde++;
       const halt = h.el('button.halt', { style: `left:${10 + Math.random() * 75}%;top:${15 + Math.random() * 65}%`, 'aria-label': 'Halt' });
       let ok = false;
-      if (runde % 2 === 1 && t[Math.floor(runde / 2)]) schreibe(h, log, t[Math.floor(runde / 2)]);
+      if (runde % 2 === 1 && Math.floor(runde / 2) < t.length - 1) schreibe(h, log, t[Math.floor(runde / 2)]);
       halt.addEventListener('click', () => { ok = true; treffer++; ton(h, 'schritt'); halt.remove(); feld.style.setProperty('--nah', Math.max(0, runde - treffer) / 7); naechster(); });
       feld.append(halt);
       setTimeout(() => { if (!ok) { halt.remove(); ton(h, 'bruellen', 0.5); feld.style.setProperty('--nah', Math.max(0, runde - treffer) / 7); naechster(); } }, 2000);
@@ -368,7 +368,7 @@ export const PRUEFUNGEN = {
             clearTimeout(langZeit); langZeit = null;
             geprueft++; ton(h, 'knacken', 0.5);
             st.classList.add(seite === locker ? 'wackelt' : 'traegt');
-            if (seite === locker) schreibe(h, log, t[1] || '', 'p.leise');
+            if (seite === locker && !wand.dataset.gewarnt) { wand.dataset.gewarnt = '1'; schreibe(h, log, t[1] || '', 'p.leise'); }
           };
           st.addEventListener('pointerup', kurz);
           st.addEventListener('pointerleave', () => { if (langZeit) { clearTimeout(langZeit); langZeit = null; } });

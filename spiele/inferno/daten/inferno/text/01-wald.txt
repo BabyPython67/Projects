@@ -63,7 +63,7 @@ bild: vergil
 {wenn schwieg_vergil} Er kommt nicht näher. Er wartet auch. Zwei Männer am Rand eines Waldes, die einander nicht trauen, und keiner trägt eine Waffe. Schließlich spricht er doch. Die ersten Wörter klingen rostig.
 „Kein Mensch. Ich war einer.“ Er zählt es auf, ohne Eile, wie von einem Grabstein: die Eltern aus der Lombardei, beide aus Mantua. Geboren unter Julius, spät. Gelebt in Rom unter dem guten Augustus, „in der Zeit der falschen, lügenden Götter“.
 „Ich war Dichter. Ich habe den gerechten Sohn des Anchises besungen, der aus Troja kam, als das stolze Ilion verbrannt war.“
-Dann eine Pause. Er will, dass ich den Rest selbst sage.
+Dann sieht er mich an und fragt zurück:
 [vers 1,76-78]
 + „Dann bist du Vergil.“ -> vergil_erkannt
 

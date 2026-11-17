@@ -79,7 +79,8 @@ blockquote.vers cite { display: block; margin-top: .6em; font-style: normal; fon
 .wahl.gefahr .zeiger { color: #555; }
 
 /* Miniatur und Lauschen */
-.miniatur { position: relative; margin: .4em 0 1.2em; max-height: 46vh; border: 3px solid var(--lapis); outline: 2px solid var(--gold); outline-offset: -6px; aspect-ratio: 400 / 260; overflow: hidden; background: #111; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.miniatur { position: relative; margin: .4em 0 1.2em; max-height: 46vh; border: 3px solid var(--lapis); outline: 2px solid var(--gold); outline-offset: -6px; aspect-ratio: 400 / 260; overflow: hidden; background: #111; touch-action: pan-y; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; }
+.miniatur.lauschen { touch-action: none; }
 .miniatur svg { display: block; width: 100%; height: 100%; }
 .stimmen { position: absolute; inset: 0; pointer-events: none; }
 .stimme {

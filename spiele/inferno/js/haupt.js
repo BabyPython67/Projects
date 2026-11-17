@@ -208,7 +208,7 @@ function zeigeKnoten(ab, k, echo) {
 function lauschbild(ab, k, stimmen) {
   const fig = el('figure.miniatur', { html: zeichne(k.meta.bild || ab.thema) });
   if (!stimmen.length) return fig;
-  fig.classList.add('lauschen');
+  if (stimmen.length) fig.classList.add('lauschen');
   const schicht = el('div.stimmen');
   fig.append(schicht);
   const liste = el('div.gehoert-liste');
@@ -232,7 +232,7 @@ function lauschbild(ab, k, stimmen) {
     app.stand.gehoert[e.key] = 1;
     e.b.classList.add('gehoert');
     e.listenKnopf = el('button.wahl.stimme-wahl', { onclick: () => folge(e) },
-      el('span.zeiger', { 'aria-hidden': 'true' }, '∿'), el('span', {}, '„' + e.st.text + '“'));
+      el('span.zeiger', { 'aria-hidden': 'true' }, '∿'), el('span', {}, e.st.text));
     liste.append(e.listenKnopf);
     app.klang && app.klang.gefunden();
   };
