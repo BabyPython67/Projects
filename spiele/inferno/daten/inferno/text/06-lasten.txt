@@ -20,24 +20,25 @@ Wie Segel, die der Wind bläht, zusammenfallen, wenn der Mast bricht, so fällt 
 
 === kreis
 ort: Vierter Kreis
+probe: Die Gesichter
 bild: lasten
 Gerechtigkeit Gottes, wer häuft so viel neue Mühen und Strafen auf, wie ich sie sah? Und warum zerreißt uns unsere Schuld so?
 [vers 7,25-30]
 Mehr Leute als irgendwo vorher. Zwei Halbkreise. Die auf der einen Seite stemmen große Gewichte mit der Brust und schieben sie vorwärts, und die auf der anderen Seite tun dasselbe, ihnen entgegen. Wenn sie zusammenstoßen, schreien sie sich an. Dann drehen sie um und schieben zurück, den halben Kreis entlang, bis sie auf der anderen Seite wieder zusammenstoßen.
-„Probier es“, sagt Vergil. Er meint es ernst.
-! lasten text=lasten_text -> gesichter
+Ich will wissen, wer sie sind. Ich gehe so nah heran, wie Vergil mich lässt.
+! gesichter text=gesichter_text -> gesichter
 
-=== lasten_text
+=== gesichter_text
 art: text
-„Warum hältst du fest?“, schreit einer von drüben.
-„Warum wirfst du weg?“, schreie ich zurück, ohne es zu wollen. Es kommt aus meiner Brust, als läge es da schon lange.
-Der Stein rollt zurück an den Anfang. Niemand hat gewonnen. Niemand hat etwas davon.
-Die neben mir schieben schon wieder. Sie haben nicht bemerkt, dass ich einer von ihnen war, für zwei Runden.
+Tipp ein Gesicht an, das du zu kennen glaubst.
+Unter dem Dreck ein Mund, ein Kinn. Es dreht sich weg, und es ist niemand mehr.
+Den kenne ich. Ich bin sicher. Dann schiebt er den Stein weiter, und die Stirn ist eine andere.
+Eine Tonsur, ein Ring am Finger. Ich habe ihn segnen sehen, in Santa Croce. Oder einen, der so aussah.
+Es ist wie mit Münzen, die durch zu viele Hände gegangen sind. Kein Bild ist mehr drauf.
 
 === gesichter
 ort: Vierter Kreis
 bild: lasten
-{wenn lasten>=3} Meine Brust tut weh, als hätte ich wirklich geschoben. Vergil sieht mich an, als hätte ich etwas länger getan, als nötig war.
 „Meister, wer sind die? Die links von uns haben Tonsuren. Waren das alles Geistliche?“
 „Alle waren sie so schielend im Kopf, dass sie im ersten Leben kein Maß beim Geldausgeben kannten. Die mit den Tonsuren waren Priester, Päpste und Kardinäle. Bei denen hat der Geiz sein Äußerstes getan.“
 + „Unter denen muss ich doch einige erkennen.“ -> erkennen
@@ -52,12 +53,11 @@ bild: lasten
 === erkennen
 ort: Vierter Kreis
 bild: lasten
-Ich gehe nah an die Gesichter heran, eins nach dem anderen. Es sind Gesichter, man sieht Nasen, Münder, Augen. Aber ich kann sie mir nicht merken. Jedes ist vorbei, sobald das nächste kommt.
+„Meister, unter denen müsste ich doch einige erkennen. Ich habe sie gekannt.“
 [vers 7,52-57]
 „Schlecht geben und schlecht behalten hat ihnen die schöne Welt genommen und sie in dieses Gerangel gestellt. Wie es ist, siehst du. Ich mache keine schönen Worte darum.“
 [vers 7,61-66]
 + „Meister, wer ist diese Fortuna, die die Güter der Welt so in den Klauen hat?“ -> fortuna
-+ Ich sehe noch einmal in die Gesichter. -> nochmal {einmal}
 
 === nochmal
 ort: Vierter Kreis

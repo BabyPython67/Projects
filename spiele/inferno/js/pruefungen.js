@@ -17,6 +17,15 @@ function schreibe(h, ziel, text, klasse = 'p') {
 }
 const ton = (h, art, laut) => h.klang && h.klang.ereignis(art, laut);
 
+// Startet fn erst, wenn el wirklich auf dem Bildschirm ist (und dann noch kurz Zeit zum Lesen).
+function sobaldSichtbar(el, fn, gnade = 1200) {
+  if (typeof IntersectionObserver === 'undefined') return setTimeout(fn, gnade);
+  const io = new IntersectionObserver(eintraege => {
+    if (eintraege.some(e => e.isIntersecting)) { io.disconnect(); setTimeout(fn, gnade); }
+  }, { threshold: 0.9 });
+  io.observe(el);
+}
+
 // Hält-Geste: Ruft an(), solange der Finger liegt, und aus() beim Loslassen.
 function halteFlaeche(flaeche, an, aus) {
   let aktiv = false;
@@ -65,7 +74,7 @@ export const PRUEFUNGEN = {
     const vergil = h.el('div.probe-log');
     b.append(h.el('p.lausch-hinweis', {}, 'Halte den Finger auf die Menge, wenn du hinhören willst.'), feld, vergil);
     const stimmen = t.map((s, i) => {
-      const e = h.el('span.fetzen', { style: `left:${8 + (i * 37) % 80}%;top:${10 + (i * 23) % 75}%;animation-delay:${-i * 0.7}s` }, s);
+      const e = h.el('span.fetzen', { style: `left:${4 + (i * 29) % 52}%;top:${8 + (i * 23) % 78}%;animation-delay:${-i * 0.7}s` }, s);
       feld.append(e); return { e, gehoert: false };
     });
     let gehoert = 0;
@@ -89,7 +98,8 @@ export const PRUEFUNGEN = {
 
   // V: Im Wind. Dem Paar mit dem Finger folgen, um Francesca zu hören.
   async wind(b, args, h) {
-    const t = zeilen(h, args);
+    const teile = h.texteMitVersen(args.text);
+    const t = teile.map(x => x.typ === 'vers' ? x.refs.map(r => h.verszeilen(r).join(' ')).join(' ') : x.text);
     const feld = h.el('div.windfeld');
     const paar = h.el('div.windpaar', { 'aria-hidden': 'true' }, h.el('span'), h.el('span'));
     const satz = h.el('div.windsatz');
@@ -97,6 +107,7 @@ export const PRUEFUNGEN = {
     const log = h.el('div.probe-log.francesca');
     b.append(h.el('p.lausch-hinweis', {}, 'Leg den Finger auf die beiden Lichter und folge ihnen. Nur solange du bei ihnen bist, hörst du sie.'), feld, log);
     let px = 0.5, py = 0.5, fx = -1, fy = -1, halten = false, i = 0, fort = 0, verpasst = 0, gehoert = 0;
+    const dauer = k => Math.max(2600, (t[k] || '').length * 45);
     halteFlaeche(feld, e => { halten = true; setze(e); }, () => { halten = false; });
     const setze = e => { const r = feld.getBoundingClientRect(); fx = (e.clientX - r.left) / r.width; fy = (e.clientY - r.top) / r.height; };
     feld.addEventListener('pointermove', e => { if (halten) setze(e); });
@@ -116,10 +127,11 @@ export const PRUEFUNGEN = {
         if (h.klang) h.klang.stimme('francesca', nah ? 0.8 : 0, px * 2 - 1);
         if (nah) { fort += 16; weg = 0; } else { weg += 16; }
         satz.textContent = t[i] || '';
-        satz.style.setProperty('--fort', Math.min(1, fort / 2600));
+        satz.style.setProperty('--fort', Math.min(1, fort / dauer(i)));
         satz.classList.toggle('klar', nah);
-        if (fort >= 2600) {
-          schreibe(h, log, t[i]); gehoert++; i++; fort = 0;
+        if (fort >= dauer(i)) {
+          if (teile[i].typ === 'vers') log.append(h.vers(teile[i].refs)); else schreibe(h, log, t[i]);
+          gehoert++; i++; fort = 0;
         } else if (weg > 2600 && fort > 0) {
           schreibe(h, log, '… (der Wind nimmt die Worte mit)', 'p.leise'); verpasst++; i++; fort = 0; weg = 0;
           ton(h, 'wind', 0.6);
@@ -136,74 +148,25 @@ export const PRUEFUNGEN = {
     });
   },
 
-  // VI: Cerberus. Erde in den Rachen werfen, der gerade offen ist.
-  async cerberus(b, args, h) {
-    const t = zeilen(h, args);
-    const bild = h.el('figure.miniatur.cerberus-bild', { html: zeichne('cerberus') });
-    const koepfe = h.el('div.cerberus-ziele');
-    const log = h.el('div.probe-log');
-    b.append(h.el('p.lausch-hinweis', {}, t[0] || ''), bild, koepfe, log);
-    const satt = [false, false, false];
-    let fehler = 0, offen = -1;
-    const knoepfe = [0, 1, 2].map(i => {
-      const k = h.el('button.cerberus-kopf-knopf', { 'aria-label': ['linker', 'mittlerer', 'rechter'][i] + ' Rachen' }, ['links', 'Mitte', 'rechts'][i]);
-      k.addEventListener('click', () => {
-        if (satt[i]) return;
-        if (offen === i) {
-          satt[i] = true; k.classList.add('satt'); bild.classList.add('satt' + i); ton(h, 'schlag', 0.6);
-          schreibe(h, log, t[1 + satt.filter(Boolean).length] || '');
-        } else { fehler++; ton(h, 'bellen'); bild.classList.add('schnappt'); setTimeout(() => bild.classList.remove('schnappt'), 300); if (fehler === 2) schreibe(h, log, t[5] || '', 'p.leise'); }
-      });
-      koepfe.append(k); return k;
-    });
-    return new Promise(fertig => {
-      const takt = setInterval(() => {
-        if (satt.every(Boolean)) {
-          clearInterval(takt); knoepfe.forEach(k => k.classList.remove('offen'));
-          b.append(h.el('div.aktionen', {}, knopf(h, 'Über die Liegenden hinweg', () => fertig({ zahlen: { cerberus_fehler: fehler } }))));
-          return;
-        }
-        const frei = [0, 1, 2].filter(i => !satt[i]);
-        offen = frei[Math.floor(Math.random() * frei.length)];
-        knoepfe.forEach((k, i) => k.classList.toggle('offen', i === offen));
-        [0, 1, 2].forEach(i => bild.classList.toggle('offen' + i, i === offen));
-        if (Math.random() < 0.4) ton(h, 'bellen', 0.5);
-      }, 1300);
-    });
-  },
 
-  // VII: Die Lasten. Schieben, zusammenprallen, zurück.
-  async lasten(b, args, h) {
-    const t = zeilen(h, args);
-    const bahn = h.el('div.lastbahn', {}, h.el('div.mitte'));
-    const stein = h.el('div.last', { role: 'slider', 'aria-label': 'Last', tabindex: '0' });
-    bahn.append(stein);
+  // VII: Gesichter. Unter den Geizigen einen erkennen wollen.
+  async gesichter(b, args, h) {
+    const t = zeilen(h, args); // [Hinweis, drei Versuche …, Schluss]
+    const feld = h.el('div.gesichterfeld');
     const log = h.el('div.probe-log');
-    b.append(h.el('p.lausch-hinweis', {}, 'Leg den Finger auf die Last und schieb sie zur Mitte.'), bahn, log);
-    let pos = 0, runden = 0, ziehen = false, sperre = false;
-    const setze = () => { stein.style.left = (4 + pos * 46) + '%'; };
-    setze();
+    b.append(h.el('p.lausch-hinweis', {}, t[0] || ''), feld, log);
+    let versuche = 0;
     return new Promise(fertig => {
-      const knoepfe = h.el('div.aktionen');
-      b.append(knoepfe);
-      halteFlaeche(stein, () => { ziehen = true; }, () => { ziehen = false; });
-      bahn.addEventListener('pointermove', async e => {
-        if (!ziehen || sperre) return;
-        const r = bahn.getBoundingClientRect();
-        const ziel = Math.max(0, Math.min(1, ((e.clientX - r.left) / r.width - 0.04) / 0.46));
-        pos += (ziel - pos) * 0.08; // schwer
-        setze();
-        if (pos > 0.97) {
-          sperre = true; ziehen = false; ton(h, 'klirren'); bahn.classList.add('prall');
-          schreibe(h, log, t[runden % 2] || '„Warum hältst du?“');
-          runden++;
-          await warte(1200); bahn.classList.remove('prall');
-          if (runden === 2) schreibe(h, log, t[2] || '', 'p.leise');
-          if (runden === 3) schreibe(h, log, t[3] || '', 'p.leise');
-          pos = 0; setze(); sperre = false;
-          if (runden >= 2 && !knoepfe.children.length) knoepfe.append(knopf(h, 'Loslassen und weitergehen', () => fertig({ zahlen: { lasten: runden } })));
-        }
-      });
+      for (let i = 0; i < 6; i++) {
+        const g = h.el('button.gesicht', { style: `left:${6 + i * 15}%;animation-delay:${-i * 1.3}s`, 'aria-label': 'Gesicht' }, h.el('span', {}, ['◔', '◑', '◕', '◒', '◐', '◓'][i]));
+        g.addEventListener('click', () => {
+          if (g.classList.contains('verwischt')) return;
+          g.classList.add('verwischt'); versuche++; ton(h, 'klirren', 0.5);
+          schreibe(h, log, t[Math.min(versuche, t.length - 1)] || '');
+          if (versuche === 3) b.append(h.el('div.aktionen', {}, knopf(h, 'Aufgeben', () => fertig({ zahlen: { gesichter: versuche } }))));
+        });
+        feld.append(g);
+      }
     });
   },
 
@@ -234,7 +197,7 @@ export const PRUEFUNGEN = {
         document.body.classList.remove('augen-zu'); dunkel.classList.remove('an');
         ton(h, 'stein');
         b.classList.add('versteinert'); setTimeout(() => b.classList.remove('versteinert'), 1400);
-        schreibe(h, log, fehler === 1 ? '„Dreh dich um! Augen zu!“ Vergil reißt mich herum. Etwas Kaltes ist schon in meinen Fingerspitzen.' : 'Vergil legt seine eigenen Hände über meine. „Noch einmal. Bis ich es sage.“', 'p.leise');
+        schreibe(h, log, fehler === 1 ? 'Vergil reißt mich herum. „Augen zu! Wenn sie sich zeigt und du siehst sie, gibt es keinen Weg mehr nach oben.“' : 'Vergil legt seine eigenen Hände über meine. „Noch einmal. Bis ich es sage.“', 'p.leise');
       };
       halteFlaeche(hand, beginne, abbruch);
     });
@@ -243,16 +206,20 @@ export const PRUEFUNGEN = {
   // X: Zögern. Wer zu lange schweigt, hat auch geantwortet.
   async zoegern(b, args, h) {
     const t = zeilen(h, args).map(z => { const [id, ...r] = z.split('|'); return { id: id.trim(), text: r.join('|').trim() }; });
-    const frist = Number(args.sekunden || 7) * 1000;
+    const frist = Number(args.sekunden || 8) * 1000;
     const linie = h.el('div.frist', {}, h.el('span'));
     const akt = h.el('div.aktionen');
     b.append(linie, akt);
     return new Promise(fertig => {
-      let vorbei = false;
+      let vorbei = false, tim = null;
       const ende = id => { if (vorbei) return; vorbei = true; clearTimeout(tim); fertig({ setzt: ['antwort_' + id], ziel: id === 'zoegern' ? args.zu_spaet : undefined }); };
       t.forEach(a => akt.append(knopf(h, a.text, () => ende(a.id))));
-      linie.firstChild.style.animationDuration = frist + 'ms';
-      const tim = setTimeout(() => ende('zoegern'), frist);
+      sobaldSichtbar(akt, () => {
+        if (vorbei) return;
+        linie.firstChild.style.animationDuration = frist + 'ms';
+        linie.classList.add('laeuft');
+        tim = setTimeout(() => ende('zoegern'), frist);
+      }, 600);
     });
   },
 
@@ -320,10 +287,10 @@ export const PRUEFUNGEN = {
     const log = h.el('div.probe-log');
     const fuss = h.el('button.schritt-knopf', {}, 'Schritt');
     b.append(h.el('p.lausch-hinweis', {}, 'Tippe gleichmäßig „Schritt“. Wer hier stehen bleibt, muss hundert Jahre liegen, ohne das Feuer abwehren zu dürfen.'), weg, log, fuss);
-    let i = 0, schritte = 0, letzte = performance.now(), pausen = 0, gewarnt = false;
+    let i = 0, schritte = 0, letzte = null, pausen = 0, gewarnt = false;
     return new Promise(fertig => {
       const pruef = setInterval(() => {
-        if (performance.now() - letzte > 3500 && !gewarnt && i < t.length) {
+        if (letzte !== null && performance.now() - letzte > 3500 && !gewarnt && i < t.length) {
           gewarnt = true; pausen++; weg.classList.add('steht');
           schreibe(h, log, pausen === 1 ? 'Er bleibt mit mir stehen. Auf seine Schultern fallen Flocken aus Feuer, und er schlägt sie nicht weg. Er sieht mich nur an.' : 'Wieder steht er. Wieder fällt das Feuer.', 'p.leise');
           ton(h, 'knistern');
@@ -349,24 +316,75 @@ export const PRUEFUNGEN = {
     const t = zeilen(h, args);
     const feld = h.el('div.fluchtfeld', {}, h.el('div.verfolger'));
     const log = h.el('div.probe-log');
-    b.append(h.el('p.lausch-hinweis', {}, 'Vergil trägt mich. Tippe auf jeden Halt, der auftaucht, schnell.'), feld, log);
+    const start = knopf(h, 'Sie kommen. Ich halte mich an Vergil fest.', () => { start.remove(); naechster(); });
+    b.append(h.el('p.lausch-hinweis', {}, 'Vergil trägt mich. Sobald es losgeht: Tippe auf jeden Halt, der auftaucht, schnell.'), start, feld, log);
     let treffer = 0, runde = 0;
+    let fertig;
+    const ergebnis = new Promise(r => { fertig = r; });
+    const naechster = () => {
+      if (runde >= 7) {
+        feld.classList.add('unten'); ton(h, 'stein', 0.5);
+        schreibe(h, log, t[t.length - 1] || '');
+        b.append(h.el('div.aktionen', {}, knopf(h, 'Aufsehen', () => fertig({ zahlen: { flucht: treffer } }))));
+        return;
+      }
+      runde++;
+      const halt = h.el('button.halt', { style: `left:${10 + Math.random() * 75}%;top:${15 + Math.random() * 65}%`, 'aria-label': 'Halt' });
+      let ok = false;
+      if (runde % 2 === 1 && t[Math.floor(runde / 2)]) schreibe(h, log, t[Math.floor(runde / 2)]);
+      halt.addEventListener('click', () => { ok = true; treffer++; ton(h, 'schritt'); halt.remove(); feld.style.setProperty('--nah', Math.max(0, runde - treffer) / 7); naechster(); });
+      feld.append(halt);
+      setTimeout(() => { if (!ok) { halt.remove(); ton(h, 'bruellen', 0.5); feld.style.setProperty('--nah', Math.max(0, runde - treffer) / 7); naechster(); } }, 2000);
+    };
+    return ergebnis;
+  },
+
+  // XXIV: Der Griff. Erst prüfen, ob der Stein trägt, dann greifen.
+  async griff(b, args, h) {
+    const t = zeilen(h, args); // [Hinweis, locker, gerutscht, oben]
+    const wand = h.el('div.wand');
+    const log = h.el('div.probe-log');
+    b.append(h.el('p.lausch-hinweis', {}, t[0] || ''), wand, log);
+    const stufen = 5;
+    let stufe = 0, rutscher = 0, geprueft = 0;
     return new Promise(fertig => {
-      const naechster = () => {
-        if (runde >= 7) {
-          feld.classList.add('unten'); ton(h, 'stein', 0.5);
-          schreibe(h, log, t[t.length - 1] || '');
-          b.append(h.el('div.aktionen', {}, knopf(h, 'Aufsehen', () => fertig({ zahlen: { flucht: treffer } }))));
+      const baue = () => {
+        wand.replaceChildren(h.el('div.kletterer2', { style: `bottom:${4 + stufe * 17}%` }));
+        if (stufe >= stufen) {
+          schreibe(h, log, t[3] || '');
+          b.append(h.el('div.aktionen', {}, knopf(h, 'Oben. Atmen.', () => fertig({ zahlen: { griff_rutscher: rutscher, griff_geprueft: geprueft } }))));
           return;
         }
-        runde++;
-        const halt = h.el('button.halt', { style: `left:${10 + Math.random() * 75}%;top:${15 + Math.random() * 65}%`, 'aria-label': 'Halt' });
-        let ok = false;
-        halt.addEventListener('click', () => { ok = true; treffer++; ton(h, 'schritt'); halt.remove(); feld.style.setProperty('--nah', Math.max(0, runde - treffer) / 7); if (t[runde - 1] && runde % 2) schreibe(h, log, t[Math.floor(runde / 2)] || ''); naechster(); });
-        feld.append(halt);
-        setTimeout(() => { if (!ok) { halt.remove(); ton(h, 'bruellen', 0.5); feld.style.setProperty('--nah', Math.max(0, runde - treffer) / 7); naechster(); } }, 1700);
+        const locker = Math.random() < 0.5 ? 0 : 1;
+        [0, 1].forEach(seite => {
+          const st = h.el('button.stein', { style: `left:${seite ? 58 : 22}%;bottom:${4 + (stufe + 1) * 17}%`, 'aria-label': 'Stein' });
+          let druck = 0, langZeit = null;
+          st.addEventListener('pointerdown', e => {
+            e.preventDefault(); druck = performance.now();
+            langZeit = setTimeout(() => { langZeit = null; greife(); }, 550);
+          });
+          const kurz = () => {
+            if (langZeit === null) return;
+            clearTimeout(langZeit); langZeit = null;
+            geprueft++; ton(h, 'knacken', 0.5);
+            st.classList.add(seite === locker ? 'wackelt' : 'traegt');
+            if (seite === locker) schreibe(h, log, t[1] || '', 'p.leise');
+          };
+          st.addEventListener('pointerup', kurz);
+          st.addEventListener('pointerleave', () => { if (langZeit) { clearTimeout(langZeit); langZeit = null; } });
+          st.addEventListener('contextmenu', e => e.preventDefault());
+          const greife = () => {
+            if (seite === locker) {
+              rutscher++; ton(h, 'stein', 0.6); st.classList.add('faellt');
+              schreibe(h, log, t[2] || '', 'p.leise');
+              stufe = Math.max(0, stufe - 1);
+              setTimeout(baue, 900);
+            } else { ton(h, 'schritt'); stufe++; setTimeout(baue, 250); }
+          };
+          wand.append(st);
+        });
       };
-      naechster();
+      baue();
     });
   },
 

@@ -20,26 +20,18 @@ Es riecht wie ein Abfallhaufen nach drei Wochen Regen. Ich atme durch den Mund. 
 ort: Dritter Kreis
 bild: cerberus
 [vers 6,13-18]
-Er hat uns gesehen. Er reißt die drei Mäuler auf und zeigt die Zähne, und jedes Glied an ihm zittert.
-[vers 6,25-27]
-Vergil drückt mir auch eine Handvoll in die Hand. Sie ist kalt und schwer und tropft. „Du auch“, sagt er. „In das Maul, das offen ist. Nicht vorher.“
-! cerberus text=cerberus_text -> liegende
-
-=== cerberus_text
-art: text
-Wirf die Erde in den Rachen, der gerade offen ist.
-Ein Maul klappt zu und kaut. Das Bellen wird ein Würgen.
-Der zweite Kopf frisst. Er hat mich schon vergessen.
-Der dritte. Jetzt kauen alle drei, wie ein Hund, der beim Fressen an nichts anderes mehr denkt.
-Gleich ist es geschafft.
-Die Zähne schlagen neben meiner Hand zusammen. Vergil: „Wenn es offen ist.“
+Er hat uns gesehen. Er reißt die drei Mäuler auf und zeigt die Zähne, und jedes Glied an ihm zittert. Ich bleibe stehen und habe nichts in den Händen.
+[vers 6,25-33]
+Vergil wischt sich die Erde an den Hüften ab und geht weiter. Ich bleibe dicht hinter ihm, an den kauenden Mäulern vorbei.
+& seele cerberus | Cerberus | Der dreiköpfige Hund, der die Gefräßigen zerkratzt und anbellt. Vergil hat ihm die Mäuler mit Erde gestopft.
+-> liegende | Über die Liegenden
 
 === liegende
 ort: Dritter Kreis
 bild: regen
 Wir gehen weiter, über die Schatten, die der Regen niederdrückt.
 [vers 6,34-36]
-Ich trete auf einen Rücken und spüre nichts. Kein Knochen, kein Widerstand. Mein Fuß ist trotzdem nass, als wäre ich in eine Pfütze getreten.
+Ich trete auf einen Rücken und spüre nichts. Kein Knochen, kein Widerstand. Mein Fuß ist trotzdem nass.
 ~ Einer setzt sich auf, als wir vorbeigehen. -> ciacco @50,62
 ~ Unter mir, ganz leise: „… noch …“ -> noch @22,80 {einmal}
 
@@ -52,6 +44,7 @@ Das ist alles, was er sagt. Ich nehme den Fuß weg.
 
 === ciacco
 ort: Dritter Kreis
+probe: Was ich wissen will
 bild: regen
 [vers 6,40-42]
 Ich sehe ihn an und erkenne ihn nicht. Sein Gesicht ist aufgeschwemmt, die Haut grau wie der Schlamm.
@@ -60,10 +53,11 @@ Ich sehe ihn an und erkenne ihn nicht. Sein Gesicht ist aufgeschwemmt, die Haut 
 Ciacco. Das heißt Schwein. So haben wir ihn in Florenz genannt, und er hat mitgelacht und weitergegessen. Ich habe an seinem Tisch gesessen. Ich weiß nicht mehr, was es gab.
 „Ich bin nicht der Einzige hier. Alle hier liegen wegen derselben Schuld.“
 & seele ciacco | Ciacco | Florentiner, ein bekannter Esser. Liegt wegen Völlerei im Regen des dritten Kreises.
-+ „Ciacco, sag mir, wenn du es weißt: Was wird aus unserer Stadt?“ -> florenz {einmal}
-+ „Gibt es dort noch einen Gerechten?“ -> gerechte {einmal} {wenn gesehen:florenz}
-+ „Wo sind Farinata und Tegghiaio, die so würdig waren? Rusticucci, Arrigo, Mosca, die anderen, die das Gute wollten?“ -> namen {einmal} {wenn gesehen:florenz}
-+ „Ich lasse dich in Ruhe.“ -> erinnere {wenn gesehen:florenz}
+Er hat sich auf die Arme gestützt, und die Arme zittern. Lange hält er sich nicht oben. Zwei Fragen, vielleicht.
++ „Ciacco, sag mir, wenn du es weißt: Was wird aus unserer Stadt?“ -> florenz {einmal} {plus fragen}
++ „Gibt es dort noch einen Gerechten?“ -> gerechte {einmal} {plus fragen}
++ „Wo sind Farinata und Tegghiaio, die so würdig waren? Rusticucci, Arrigo, Mosca, die anderen, die das Gute wollten?“ -> namen {einmal} {plus fragen}
++ „Und ich? Was wird aus mir?“ -> selbst {einmal} {plus fragen}
 
 === florenz
 ort: Dritter Kreis
@@ -78,7 +72,7 @@ Ich bin bei den Weißen. Ich sitze im Rat. Er sagt es nicht, aber ich höre es: 
 ort: Dritter Kreis
 bild: regen
 „Zwei sind gerecht. Und auf die hört keiner. Hochmut, Neid und Habgier sind die drei Funken, die alle Herzen dort angezündet haben.“
-Er sagt nicht, wer die zwei sind. Ich frage nicht nach. Ich habe Angst, dass ich nicht dazugehöre.
+Er sagt nicht, wer die zwei sind. Ich frage nicht nach.
 > Zurück zu Ciacco -> ciacco_weiter
 
 === namen
@@ -94,20 +88,29 @@ Fünf Männer, die ich bewundert habe. Ich schreibe mir die Namen auf, innen, wo
 & suche mosca | Mosca dei Lamberti | Ciacco sagt: weiter unten.
 > Zurück zu Ciacco -> ciacco_weiter
 
+=== selbst
+ort: Dritter Kreis
+bild: regen
+Er lacht, und der Regen läuft ihm in den offenen Mund. „Das sagen dir andere. Weiter unten liegen welche, die weiter sehen als ich.“
+> Zurück zu Ciacco -> ciacco_weiter
+
 === ciacco_weiter
 ort: Dritter Kreis
 bild: regen
-Er sitzt immer noch aufrecht im Regen. Er wartet, ob ich noch etwas will.
-+ „Was wird aus unserer Stadt?“ -> florenz {nicht gesehen:florenz}
-+ „Gibt es dort noch einen Gerechten?“ -> gerechte {nicht gesehen:gerechte}
-+ „Wo sind Farinata und Tegghiaio, Rusticucci, Arrigo, Mosca?“ -> namen {nicht gesehen:namen}
-+ „Ich lasse dich in Ruhe.“ -> erinnere
+{nicht fragen>=2} Er sitzt noch aufrecht im Regen. Die Arme zittern. Er wartet, ob ich noch etwas will.
+{wenn fragen>=2} Die Arme geben nach. Was ich nicht gefragt habe, frage ich ihn nicht mehr.
++ „Was wird aus unserer Stadt?“ -> florenz {nicht gesehen:florenz, fragen>=2} {plus fragen}
++ „Gibt es dort noch einen Gerechten?“ -> gerechte {nicht gesehen:gerechte, fragen>=2} {plus fragen}
++ „Wo sind Farinata und Tegghiaio, Rusticucci, Arrigo, Mosca?“ -> namen {nicht gesehen:namen, fragen>=2} {plus fragen}
++ „Und ich? Was wird aus mir?“ -> selbst {nicht gesehen:selbst, fragen>=2} {plus fragen}
++ „Ich lasse dich in Ruhe.“ -> erinnere {nicht fragen>=2}
++ Ich halte ihn nicht. -> erinnere {wenn fragen>=2}
 
 === erinnere
 ort: Dritter Kreis
 bild: regen
 [vers 6,88-90]
-Er sieht mich an. Er wartet nicht auf eine Antwort, und doch wartet er.
+Er sieht mich an und sagt nichts mehr.
 + „Ich werde ihnen von dir erzählen.“ -> sinkt {setzt ciacco_versprochen}
 + Ich nicke nur. -> sinkt {setzt ciacco_versprochen}
 + Ich sage nichts. Ich weiß nicht, ob ich zurückkomme. -> sinkt

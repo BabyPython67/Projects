@@ -165,13 +165,23 @@ ort: Fünfte Bulge
 bild: pech
 klang: pech
 Wie Delfine, die den Seeleuten ein Zeichen geben, dass Sturm kommt, so zeigt mancher Sünder kurz den Rücken über dem Pech und taucht schneller wieder unter als ein Blitz. Einer bleibt zu lange oben. Graffiacane hakt ihn in die verklebten Haare und zieht ihn hoch, wie einen Otter.
-Er ist aus Navarra. Ciampolo. Er hat im Dienst eines Königs Ämter verkauft. Während die Teufel ihn kratzen, fragt Vergil ihn nach anderen Italienern im Pech, und er erzählt, und dabei behält er die Teufel im Auge.
+Die Teufel stehen um ihn herum, die Haken schon erhoben.
++ „Meister, frag ihn, wer er ist, bevor sie ihn zerreißen.“ -> ciampolo_trick {setzt ciampolo_gefragt}
++ Ich sehe weg. -> ciampolo_trick
+
+=== ciampolo_trick
+ort: Fünfte Bulge
+bild: pech
+klang: pech
+{wenn ciampolo_gefragt} Vergil tritt dicht an ihn heran und fragt. Er ist aus Navarra, Ciampolo, und hat im Dienst eines Königs Ämter verkauft. Während ihm die Haken die Haut aufreißen, erzählt er von anderen Italienern im Pech, und dabei behält er die Teufel im Auge.
+{nicht ciampolo_gefragt} Ich höre trotzdem, wie Vergil ihn fragt. Navarra, sagt er. Ciampolo. Ämter verkauft, im Dienst eines Königs. Wenn die Haken ihn treffen, stöhnt er nicht einmal.
 Dann bietet er an, ein paar Landsleute herbeizupfeifen, wenn die Teufel sich zurückziehen. Cagnazzo schüttelt den Kopf: „Hört euch die Gemeinheit an.“ Alichino aber sagt: „Spring nur. Wir sind schneller als du.“
 Er springt. Er ist schneller. Alichino schießt hinterher, zu spät. Calcabrina, wütend über den Spott, packt Alichino in der Luft, und beide fallen ineinander verkrallt ins kochende Pech.
 & seele ciampolo | Ciampolo aus Navarra | Bestechlicher Beamter im kochenden Pech. Entkam den Teufeln mit einem Trick.
 -> flucht_anfang
 
 === flucht_anfang
+probe: Die Flucht
 rubrik: Hier beginnt der dreiundzwanzigste Gesang. Die Flucht vor den Teufeln. Die Heuchler in bleiernen Mänteln.
 gesang: 23
 ort: Fünfte Bulge
@@ -211,8 +221,22 @@ Vergil geht mit großen Schritten davon, ein wenig verstört vor Zorn im Gesicht
 rubrik: Hier beginnen der vierundzwanzigste und der fünfundzwanzigste Gesang. Die Diebe und die Schlangen.
 gesang: 24 25
 ort: Auf den Trümmern
+probe: Prüf, ob er trägt
 bild: malebolge
-Vergil dreht sich zu mir um, mit dem freundlichen Blick, den er zuerst am Fuß des Hügels hatte. Er sieht sich die Trümmer an, er überlegt, dann öffnet er die Arme und schiebt mich hinauf, von Block zu Block. „Halt dich an dem fest. Aber prüf erst, ob er dich trägt.“
+Vergil dreht sich zu mir um, mit dem freundlichen Blick, den er zuerst am Fuß des Hügels hatte. Er sieht sich die Trümmer an, er überlegt, dann öffnet er die Arme und schiebt mich an den ersten Block. Über mir zeigt er auf den nächsten. „Halt dich an dem fest. Aber prüf erst, ob er dich trägt.“
+! griff text=griff_text -> atemlos
+
+=== griff_text
+art: text
+Tipp einen Stein an, um ihn zu prüfen. Halt ihn gedrückt, um dich daran hochzuziehen.
+Der wackelt. Den nehme ich nicht.
+Der Stein bricht mir unter der Hand weg. Vergil hat mich am Gürtel, bevor ich falle.
+Oben. Meine Lunge ist leer.
+
+=== atemlos
+ort: Auf den Trümmern
+bild: malebolge
+{wenn griff_rutscher>=1} Meine Hand blutet, wo der lose Stein sie aufgerissen hat.
 Oben bin ich so außer Atem, dass ich mich hinsetze.
 [vers 24,46-51]
 „Darum steh auf. Besiege die Atemnot mit dem Geist, der jeden Kampf gewinnt, wenn er nicht mit dem schweren Körper niedersinkt. Eine längere Treppe muss noch erstiegen werden.“
@@ -401,6 +425,7 @@ Der Cousin meines Vaters. Er wurde erschlagen, und keiner aus der Familie hat ih
 + „Es gibt keine Blutrache mehr, die ich ihm schulde.“ -> faelscher
 
 === faelscher
+probe: Zusehen
 ort: Zehnte Bulge
 bild: faelscher
 Wir kommen an den letzten Graben. Klagen schießen auf mich ein wie Pfeile, deren Spitzen in Mitleid getaucht sind. Ich halte mir die Ohren zu.

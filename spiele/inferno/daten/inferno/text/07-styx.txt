@@ -18,7 +18,7 @@ Im Schlamm stehen Leute, nackt und voller Dreck, mit wütenden Gesichtern. Sie s
 === zornige
 ort: Fünfter Kreis
 bild: styx
-Zwei, die sich prügeln, als ob es um etwas ginge. Es geht um nichts. Keiner weiß mehr, wer angefangen hat. Wenn einer müde wird, beißt ihn der andere, damit es weitergeht.
+Zwei prügeln sich. Keiner weiß mehr, wer angefangen hat. Wenn einer müde wird, beißt ihn der andere, damit es weitergeht.
 „Mein Sohn, hier siehst du die Seelen derer, die der Zorn besiegt hat“, sagt Vergil.
 > Zurück -> quelle
 
@@ -26,7 +26,7 @@ Zwei, die sich prügeln, als ob es um etwas ginge. Es geht um nichts. Keiner wei
 ort: Fünfter Kreis
 bild: styx
 [vers 7,115-126]
-Ich halte das Ohr dicht über das Wasser. Es sind Worte. Es sind tatsächlich Worte, nur ohne Mund. Trübe waren wir. Trübe. In der süßen Luft. Ich höre es, bis ich es nicht mehr hören will.
+Ich halte das Ohr dicht über das Wasser. Es sind Worte. Es sind tatsächlich Worte, nur ohne Mund. Trübe waren wir. Trübe. In der süßen Luft. Dann hebe ich den Kopf und gehe weiter.
 & seele traege | Die Trägen im Styx | Unter dem Schlamm, wo man sie nicht sieht. Sie gurgeln, dass sie in der Sonne traurig waren und jetzt im Schlamm sind.
 -> turm | Weiter, am Rand des Sumpfs
 
@@ -45,6 +45,7 @@ Phlegyas schluckt seinen Zorn hinunter wie einer, der merkt, dass man ihn betrog
 
 === argenti
 ort: Auf dem Styx
+probe: Zorn oder Mitleid
 bild: styx
 [vers 8,31-36]
 Er ist voller Schlamm, aber ich kenne die Stimme. Filippo Argenti. In Florenz ritt er auf einem Pferd mit silbernen Hufeisen, und wenn er schlechte Laune hatte, schlug er Leute auf der Straße. Er hat einmal einen Verwandten von mir verprügelt.
@@ -70,7 +71,7 @@ Der Meister stößt ihn weg. „Fort, dorthin, zu den anderen Hunden!“
 Dann dreht er sich zu mir, und sein Gesicht ist nicht freundlich. „Du kennst ihn. Ich sehe es dir an. Du weißt, was er war. Und du schaust ihn an wie ein Kind, das sich verlaufen hat?“
 „Er weint.“
 „Er weint um sich.“
-Er sieht mich an, als warte er auf etwas, das ich noch nicht kann. Dann wendet er sich ab, nicht verärgert. Enttäuscht vielleicht, oder geduldig. Bei ihm ist das schwer zu unterscheiden.
+Er sieht mich an, als warte er auf etwas, das ich noch nicht kann. Dann wendet er sich ab, nicht verärgert.
 & seele argenti | Filippo Argenti | Florentiner aus der Familie Adimari, berüchtigt für seinen Jähzorn. Im Styx.
 -> zerrissen
 

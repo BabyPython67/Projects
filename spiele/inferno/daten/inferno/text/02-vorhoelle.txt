@@ -14,8 +14,8 @@ bild: tor
 Das Tor hat keine Flügel, nur einen Bogen aus dunklem Stein. Darüber, in einer Farbe, die ich im Dämmerlicht für Rost halte, stehen Worte. Ich lese sie halblaut, weil ich sonst nichts höre.
 [vers 3,1-9]
 Ich lese die letzte Zeile zweimal. Dann sage ich: „Meister, das ist hart.“
-Er antwortet, als hätte er die Frage erwartet: „Hier musst du jedes Misstrauen zurücklassen. Jede Feigheit muss hier sterben. Wir sind da, wo ich es dir gesagt habe. Hier sind die, die das Gut des Denkens verloren haben.“
-Er nimmt meine Hand. Sein Gesicht ist ruhig, fast heiter, und genau das macht mir Angst.
+Er antwortet sofort: „Hier musst du jedes Misstrauen zurücklassen. Jede Feigheit muss hier sterben. Wir sind da, wo ich es dir gesagt habe. Hier sind die, die das Gut des Denkens verloren haben.“
+Er nimmt meine Hand. Sein Gesicht ist ruhig, fast heiter. Meine Hand in seiner ist nass.
 + Ich lasse mir die Hand nehmen. -> hinein
 + Ich frage: „Wer hat das geschrieben?“ -> wer_schrieb {einmal}
 
@@ -23,7 +23,7 @@ Er nimmt meine Hand. Sein Gesicht ist ruhig, fast heiter, und genau das macht mi
 Er sieht hinauf zu den Buchstaben, wie man ein Schild ansieht, an dem man täglich vorbeigeht.
 „Das Tor spricht selbst. Es sagt, wer es gemacht hat: die Macht, die Weisheit und die erste Liebe. Alle drei zusammen.“
 „Die Liebe hat die Hölle gemacht?“
-„Die Gerechtigkeit hat ihn bewegt. Die Liebe hat mitgebaut. Du wirst es noch verstehen, oder du wirst es nicht verstehen. Gib mir die Hand.“
+„Die Gerechtigkeit hat ihn bewegt. Die Liebe hat mitgebaut. Gib mir die Hand.“
 -> hinein | Ich gebe ihm die Hand.
 
 === hinein
@@ -32,10 +32,11 @@ bild: vorhoelle
 klang: vorhoelle
 Dahinter ist kein Raum. Kein Himmel, keine Wände. Nur Luft, so schwarz, dass sie Gewicht hat. Und Geräusch.
 [vers 3,22-30]
-Mir laufen Tränen herunter, bevor ich weiß, warum. Vergil zieht mich weiter.
+Vergil zieht mich weiter.
 + „Meister, was höre ich da? Wer sind die?“ -> die_lauen
 
 === die_lauen
+probe: Vorübergehen
 bild: vorhoelle
 klang: vorhoelle
 [vers 3,34-42]
@@ -73,7 +74,7 @@ klang: fluss
 Weiter vorn wird die Menge dichter. Sie steht an einem Fluss und drängt nach vorn, als ginge drüben ein Fest los.
 „Meister, wer sind die? Warum wollen sie so dringend hinüber? So sieht es jedenfalls aus in dem bisschen Licht.“
 „Das erfährst du, wenn wir am Ufer des Acheron stehen.“
-Er sagt es nicht unfreundlich. Trotzdem schäme ich mich, als hätte ich etwas Dummes gefragt, und rede nicht mehr, bis wir am Wasser sind.
+Er sagt es nicht unfreundlich. Ich senke die Augen und rede nicht mehr, bis wir am Wasser sind.
 ~ Einer flucht auf seine Mutter. -> fluch @22,52 {einmal}
 ~ Einer sagt immer wieder seinen eigenen Namen. -> name @46,40 {einmal}
 ~ Ein Ruder schlägt ins Wasser. Ein alter Mann schreit. -> charon @70,58
@@ -81,9 +82,9 @@ Er sagt es nicht unfreundlich. Trotzdem schäme ich mich, als hätte ich etwas D
 === fluch
 bild: acheron
 klang: fluss
-Er flucht nicht laut. Er flucht gründlich. Auf Gott, auf seine Eltern, auf alle Menschen, auf den Ort und die Stunde, in der er gezeugt wurde, auf den Samen, aus dem er kam. Neben ihm flucht eine Frau dasselbe, Wort für Wort, als hätten sie es zusammen gelernt.
+Er flucht nicht laut. Er flucht gründlich. Auf Gott, auf seine Eltern, auf alle Menschen, auf den Ort und die Stunde, in der er gezeugt wurde, auf den Samen, aus dem er kam. Neben ihm flucht eine Frau dasselbe, Wort für Wort, im selben Takt.
 [vers 3,103-105]
-Dann hört er auf, mitten im Satz, und drängt wieder nach vorn. Er will hinüber. Er flucht auf alles und will trotzdem dahin.
+Dann hört er auf, mitten im Satz, und drängt wieder nach vorn. Er will hinüber.
 > Zurück zum Ufer -> ufer
 
 === name
@@ -100,6 +101,7 @@ klang: fluss
 [vers 3,82-87]
 Ein Boot kommt aus dem Dunkel. Der Alte darin ist weiß bis in den Bart, und um seine Augen kreist etwas Rotes, wie Räder aus Glut.
 Er sieht mich. Er hört sofort auf zu schreien.
+& seele charon | Charon | Der Fährmann über den Acheron, mit Augen wie Räder aus Glut. Er will keinen Lebenden übersetzen.
 „Und du da, lebende Seele, weg von denen, die tot sind.“
 Ich rühre mich nicht. Er sagt es noch einmal, anders: „Auf einem anderen Weg, an anderen Häfen kommst du ans Ufer. Nicht hier. Ein leichteres Schiff muss dich tragen.“
 + Ich sehe Vergil an. -> vergil_charon

@@ -3,7 +3,7 @@
 // Reines Modul ohne DOM, damit es in Node getestet werden kann.
 
 const META_ABSCHNITT = ['titel', 'untertitel', 'kreis', 'thema', 'start', 'gesaenge'];
-const META_KNOTEN = ['ort', 'bild', 'gesang', 'rubrik', 'klang', 'art'];
+const META_KNOTEN = ['ort', 'bild', 'gesang', 'rubrik', 'klang', 'art', 'probe'];
 
 function zerlegeOptionen(rest) {
   // "{einmal} {wenn a, b>2} {setzt x, y} {plus mitleid 2}" -> Objekt

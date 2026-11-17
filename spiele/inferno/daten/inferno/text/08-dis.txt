@@ -57,6 +57,7 @@ Das hat er gemeint, im ersten Kreis. Ich war schon einmal ganz unten.
 
 === furien
 ort: Vor der Stadt Dis
+probe: Medusa
 bild: furien
 Er sagt noch mehr, aber ich weiß nicht mehr, was. Mein Auge hat mich ganz zur Spitze des glühenden Turms gezogen.
 [vers 9,37-45]
@@ -67,21 +68,19 @@ Sie zerkratzen sich mit den Nägeln die Brust. Sie schlagen sich mit den Händen
 
 === furien_text
 art: text
-„Medusa! Medusa soll kommen!“
+Ich sehe nichts mehr. Ich höre die Nägel auf der Brust.
 Etwas schlägt mit Flügeln gegen die Turmmauer. Stein bröckelt.
-„Wir hätten uns rächen sollen, als Theseus kam!“
+Sie rufen nach ihr, lauter, alle drei.
 Ein Lachen, zu hoch für eine Kehle.
 Vergils Hände liegen über meinen. Sie sind kalt und halten fest.
-„Sie kommt. Hörst du sie? Sie kommt die Treppe herunter.“
-Stille. Lange. Dann ein Geräusch, wie wenn jemand Steinstaub aus dem Gewand schüttelt.
-„Sie ist fort“, sagt Vergil, die Hände noch über meinen. „Jetzt hör.“
+Dann nichts. Lange nichts.
+„Sie ist nicht gekommen“, sagt Vergil, die Hände noch über meinen. „Jetzt hör.“
 
 === schleier
 ort: Vor der Stadt Dis
 bild: dis
-{wenn medusa_fehler>=1} Meine Fingerspitzen sind grau geworden, an der linken Hand. Es geht nicht mehr weg.
+{wenn medusa_fehler>=1} Meine Hände zittern noch, als Vergil sie loslässt. Ich habe einmal fast hingesehen.
 [vers 9,61-63]
-Ich sage das hier für die, die einmal lesen, was ich schreibe. Ich habe es nicht ohne Grund aufgeschrieben.
 -> bote
 
 === bote
@@ -99,7 +98,7 @@ Vergil nimmt mir die Hände vom Gesicht. „Jetzt richte deinen Blick auf den al
 [vers 9,79-90]
 „Ihr aus dem Himmel Gejagten, verachtetes Volk“, sagt er auf der schrecklichen Schwelle, „woher kommt euch diese Frechheit? Warum tretet ihr gegen den Willen, dem man nie sein Ziel abschneiden kann und der eure Qual schon so oft vermehrt hat? Was nützt es, gegen das Schicksal zu stoßen? Euer Cerberus, wenn ihr euch erinnert, trägt dafür noch Kinn und Hals geschoren.“
 Dann geht er zurück über den dreckigen Weg und sagt zu uns kein Wort. Er sieht aus wie einer, den andere Sorgen drängen als die, die vor ihm stehen.
-& seele bote | Der Bote des Himmels | Öffnet mit einem Stäbchen das Tor von Dis. Spricht kein Wort zu Dante.
+& seele bote | Der Bote des Himmels | Öffnet mit einem Stäbchen das Tor von Dis. Spricht kein Wort mit mir.
 -> eintritt
 
 === eintritt

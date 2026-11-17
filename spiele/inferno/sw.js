@@ -1,7 +1,7 @@
 // Service Worker: offline spielbar, neue Fassungen kommen zuverlässig an.
 // Strategie: Netz zuerst (mit Revalidierung am HTTP-Cache vorbei), sonst Cache.
 // Bei jeder Änderung VERSION erhöhen (gleich wie in js/version.js).
-const VERSION = '2026.11.17-2';
+const VERSION = '2026.11.17-3';
 const CACHE = 'inferno-' + VERSION;
 const DATEIEN = [
   './', 'index.html', 'manifest.webmanifest', 'css/stil.css',

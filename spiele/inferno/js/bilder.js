@@ -270,16 +270,16 @@ export function zeichneKarte(aktiv, stand) {
   const besucht = new Set();
   if (stand && stand.gesehen) for (const k of Object.keys(stand.gesehen)) besucht.add(k.split(':')[0]);
   const idx = EBENEN.findIndex(e => e[0] === String(aktiv));
-  let o = `<svg viewBox="0 0 400 ${top + EBENEN.length * hoehe + 30}" class="karte" role="img" aria-label="Karte der Hölle">`;
+  let o = `<svg viewBox="0 0 400 ${top + EBENEN.length * hoehe + 46}" class="karte" role="img" aria-label="Karte der Hölle">`;
   EBENEN.forEach(([k, name], i) => {
     const y = top + i * hoehe, halb = 180 - i * 13;
     const erreicht = idx >= 0 && i <= idx;
     o += `<path d="M${200 - halb} ${y}L${200 + halb} ${y}L${200 + halb - 13} ${y + hoehe}L${200 - halb + 13} ${y + hoehe}Z" fill="${i === idx ? '#e8c9a0' : erreicht ? '#d9c5a3' : '#efe4cf'}" stroke="#5a4632" stroke-width="${i === idx ? 2 : 0.8}" opacity="${erreicht ? 1 : 0.55}"/>`;
     o += `<text x="200" y="${y + 17}" text-anchor="middle" font-size="12" fill="${i === idx ? ROT : '#3b2a1c'}" font-family="inherit">${k.match(/\d/) ? k + '. ' : ''}${name}</text>`;
-    if (i === idx) o += `<circle cx="${200 - halb + 26}" cy="${y + 13}" r="5" fill="${ROT}" stroke="${T}"/>`;
+    if (i === idx) o += `<circle cx="${200 + halb + 8}" cy="${y + 13}" r="5" fill="${ROT}" stroke="${T}"/><circle cx="${200 - halb - 8}" cy="${y + 13}" r="5" fill="${ROT}" stroke="${T}"/>`;
   });
   const yE = top + EBENEN.length * hoehe;
-  o += `<path d="M190 ${yE}L200 ${yE + 22}L210 ${yE}Z" fill="#3a2e2a"/><text x="200" y="${yE + 32}" text-anchor="middle" font-size="9" fill="#3b2a1c">Luzifer · Mitte der Erde</text></svg>`;
+  o += `<path d="M190 ${yE}L200 ${yE + 22}L210 ${yE}Z" fill="#3a2e2a"/><text x="200" y="${yE + 38}" text-anchor="middle" font-size="12" fill="#3b2a1c">Luzifer · Mitte der Erde</text></svg>`;
   void besucht;
   return o;
 }

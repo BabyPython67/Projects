@@ -20,7 +20,7 @@ Vergil ist weiß im Gesicht. „Jetzt steigen wir hinab in die blinde Welt“, s
 === blass
 ort: Am Rand des Abgrunds
 klang: stille
-{wenn nichts_gesagt_blass} Nach ein paar Schritten dreht er sich um, als hätte ich doch etwas gesagt.
+{wenn nichts_gesagt_blass} Nach ein paar Schritten dreht er sich trotzdem um.
 „Das ist nicht Angst“, sagt er. „Das ist der Schmerz derer, die hier unten sind. Er malt mir das Mitleid ins Gesicht, und du hältst es für Furcht. Komm. Der Weg ist lang.“
 Wir treten in den ersten Kreis, der um den Abgrund herumläuft.
 -> seufzer
@@ -38,7 +38,7 @@ Seufzer, von allen Seiten, von Männern, Frauen und sehr kleinen Kindern. Nicht 
 === kinder
 ort: Erster Kreis
 bild: limbus
-Es ist ein Kind, kaum zwei Jahre alt, und es seufzt wie ein alter Mann. Es sieht nicht unglücklich aus. Es sieht aus, als warte es.
+Es ist ein Kind, kaum zwei Jahre alt, und es seufzt wie ein alter Mann. Es weint nicht. Es sieht zum Rand hinauf.
 Ich will es aufheben. Meine Hände gehen durch es hindurch.
 > Weiter -> seufzer
 
@@ -49,7 +49,7 @@ bild: limbus
 Er macht eine kleine Pause.
 „Zu denen gehöre ich.“
 [vers 4,40-42]
-Ich merke, dass ich stehen geblieben bin. So viele, und so viele, die ich verehrt habe. Hier. Ohne Ende.
+Ich merke, dass ich stehen geblieben bin. So viele, und so viele, die ich verehrt habe.
 + „Ist je einer hier herausgekommen? Durch eigenes Verdienst oder durch ein fremdes?“ -> hoellenfahrt
 + „Und du? Hoffst du gar nicht mehr?“ -> keine_hoffnung
 + Ich gehe einfach weiter neben ihm. -> stumm_weiter
@@ -58,7 +58,6 @@ Ich merke, dass ich stehen geblieben bin. So viele, und so viele, die ich verehr
 ort: Erster Kreis
 bild: limbus
 Er antwortet nicht sofort. Dann: „Hoffen ist hier nicht verboten. Es ist nur nicht vorgesehen.“
-Er sagt das, wie man sagt, dass es regnet.
 & setze nach_vergils_hoffnung_gefragt
 -> hoellenfahrt | „Ist je einer hier herausgekommen?“
 
@@ -72,7 +71,7 @@ Wir gehen eine Weile so. Dann fragt er mich doch, als wollte er das Schweigen ni
 ort: Erster Kreis
 bild: limbus
 [vers 4,52-55]
-Er erzählt es, als wäre es gestern gewesen. Er war noch neu hier. Da kam einer, gekrönt mit einem Siegeszeichen, und nahm sie mit: den Schatten des ersten Vaters, Adam, und Abel, seinen Sohn, und Noah, und Mose, der Gesetze gab und gehorchte, Abraham, König David, Israel mit seinem Vater und seinen Söhnen und mit Rahel, für die er so viel getan hat. Und viele andere. Die machte er selig.
+Er war noch neu hier. Da kam einer, gekrönt mit einem Siegeszeichen, und nahm sie mit: den Schatten des ersten Vaters, Adam, und Abel, seinen Sohn, und Noah, und Mose, der Gesetze gab und gehorchte, Abraham, König David, Israel mit seinem Vater und seinen Söhnen und mit Rahel, für die er so viel getan hat. Und viele andere. Die machte er selig.
 „Vor ihnen ist keiner erlöst worden. Ich habe es gesehen. Ich bin hiergeblieben.“
 & seele limbus_alt | Die Väter des Alten Bundes | Adam, Abel, Noah, Mose, Abraham, David, Jakob, Rahel: von Christus aus dem Limbus geholt, als Vergil noch „neu“ war.
 -> licht
@@ -88,6 +87,7 @@ Wir hören nicht auf zu gehen, während er spricht, und kommen durch den Wald au
 
 === dichter
 ort: Erster Kreis, im Licht
+probe: Die Ehre
 bild: limbus
 Vier kommen uns entgegen. Sie sehen weder traurig aus noch froh.
 [vers 4,86-90]
@@ -111,18 +111,18 @@ Wir gehen zu sechst auf das Licht zu und reden.
 ort: Erster Kreis, im Licht
 bild: limbus
 [vers 4,104-105]
-Ich schreibe es nicht auf. Man kann mir das übel nehmen. Aber es gibt Gespräche, die man beschädigt, wenn man sie weitergibt.
+Ich schreibe es nicht auf.
 -> kastell
 
 === kastell
 ort: Das edle Schloss
 bild: limbus
-Wir kommen an ein Schloss, siebenfach ummauert, rundherum ein schöner kleiner Fluss. Wir gehen über ihn wie über festen Boden. Durch sieben Tore. Dann eine Wiese, frisch und grün, das Einzige in der Hölle, das wächst.
+Wir kommen an ein Schloss, siebenfach ummauert, rundherum ein schöner kleiner Fluss. Wir gehen über ihn wie über festen Boden. Durch sieben Tore. Dann eine Wiese, frisch und grün.
 Die Menschen hier haben ernste, langsame Augen. Sie sprechen selten und mit leiser Stimme. Wir steigen auf eine Anhöhe, von der man alle sehen kann.
-~ Eine Frau, die viele um sich hat. -> elektra @20,64 {einmal}
-~ Einer, ganz allein, abseits. -> saladin @86,72 {einmal}
-~ Einer, um den alle anderen still sind. -> aristoteles @52,42 {einmal}
-~ Jemand zeichnet etwas in den Sand. -> euklid @34,80 {einmal}
+> Zu der Frau, um die viele stehen -> elektra {nicht gesehen:elektra}
+> Zu dem, der ganz allein sitzt -> saladin {nicht gesehen:saladin}
+> Zu dem, um den alle anderen still sind -> aristoteles {nicht gesehen:aristoteles}
+> Zu dem, der etwas in den Sand zeichnet -> euklid {nicht gesehen:euklid}
 > Weiter, wenn du genug gehört hast -> abschied {wenn gesehen:aristoteles}
 
 === elektra
@@ -146,15 +146,14 @@ ort: Das edle Schloss
 bild: limbus
 [vers 4,130-133]
 Aristoteles. Um ihn herum Sokrates, Platon, und dann die anderen, die ich aus Büchern kenne, nur Namen auf Rücken von Abschriften: Demokrit, der sagt, die Welt sei Zufall. Diogenes. Anaxagoras, Thales, Empedokles, Heraklit, Zenon. Cicero. Seneca, der Moralist. Hippokrates, Galen, Avicenna. Averroes, der den großen Kommentar geschrieben hat.
-Aristoteles sagt nur einen Satz, und alle nicken, als hätten sie ihn zum ersten Mal gehört: „Alle Menschen streben von Natur aus nach Wissen.“
-Er sagt nicht, was danach kommt, wenn man es hat und trotzdem hier sitzt.
+Aristoteles sagt nur einen Satz, und die um ihn nicken: „Alle Menschen streben von Natur aus nach Wissen.“
 & seele aristoteles | Aristoteles | „Der Meister derer, die wissen“. Mit Sokrates, Platon und den anderen Philosophen im Limbus.
 > Zurück zur Anhöhe -> kastell
 
 === euklid
 ort: Das edle Schloss
 bild: limbus
-Euklid, der Geometer, zieht mit einem Stöckchen Linien in den Sand der Wiese. Ptolemäus steht daneben und sieht zu. Ein Dreieck, dann ein Kreis darum. Er wischt beides weg und fängt von vorn an. Er hat ja Zeit.
+Euklid, der Geometer, zieht mit einem Stöckchen Linien in den Sand der Wiese. Ptolemäus steht daneben und sieht zu. Ein Dreieck, dann ein Kreis darum. Er wischt beides weg und fängt von vorn an.
 > Zurück zur Anhöhe -> kastell
 
 === abschied

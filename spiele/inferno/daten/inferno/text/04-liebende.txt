@@ -24,7 +24,7 @@ Als er mich sieht, hält er inne, mitten in einem Urteil.
 ort: Am Eingang des zweiten Kreises
 bild: minos
 klang: tor
-{wenn minos_geantwortet} Minos sieht mich an, als hätte ich ihm gerade alles über mich erzählt. Vielleicht habe ich das.
+{wenn minos_geantwortet} Minos sieht mich lange an. Dann wickelt er den Schwanz wieder ab, den er schon halb um sich gelegt hatte.
 „Warum schreist du so?“, sagt Vergil zu ihm. „Halte ihn nicht auf. Er geht, weil man es dort will, wo man kann, was man will. Frag nicht weiter.“
 Es sind dieselben Worte wie bei Charon. Sie wirken wieder. Minos wendet sich der nächsten Seele zu und lässt uns vorbei.
 & seele minos | Minos | König von Kreta, in der Hölle Richter. Er hört jedes Geständnis und zeigt mit den Windungen seines Schwanzes den Kreis an.
@@ -72,6 +72,7 @@ Er zeigt mir mehr als tausend und nennt sie, alle, die die Liebe aus dem Leben g
 
 === paar
 ort: Zweiter Kreis
+probe: Im Wind
 bild: sturm
 „Dichter, ich möchte mit den zweien sprechen, die zusammen gehen und so leicht auf dem Wind scheinen.“
 „Wart, bis sie näher sind. Dann bitte sie bei der Liebe, die sie treibt. Sie werden kommen.“
@@ -84,12 +85,11 @@ Sie ist es, die spricht. Er schweigt. Der Wind hört nicht auf. Wenn ich sie hö
 
 === francesca_worte
 art: text
-„Die Stadt, in der ich geboren bin, liegt am Meer, wo der Po hinabsteigt, um Frieden zu haben mit allen Flüssen, die ihm folgen.“
-„Die Liebe, die ein zartes Herz so schnell ergreift, ergriff ihn. Durch den schönen Körper, der mir genommen wurde. Und wie es geschah, das kränkt mich noch heute.“
-„Die Liebe, die keinem Geliebten erlässt, zurückzulieben, ergriff mich durch seine Freude so stark, dass sie mich, wie du siehst, noch immer nicht verlässt.“
-„Die Liebe hat uns in einen einzigen Tod geführt.“
-„Caina wartet auf den, der uns das Leben nahm.“
-„Was du hören und sagen willst, das hören wir und sagen es dir, solange der Wind hier still ist.“
+[vers 5,94-96]
+[vers 5,97-99]
+[vers 5,100-102]
+[vers 5,103-105]
+[vers 5,106-107]
 
 === gesenkt
 ort: Zweiter Kreis
@@ -113,7 +113,7 @@ bild: sturm
 ort: Zweiter Kreis
 bild: sturm
 Sie sieht mich an, als hätte ich etwas in einer fremden Sprache gesagt.
-Dann sieht sie Paolo an. Sie antwortet nicht auf meine Frage. Sie antwortet auf eine andere, die ich nicht gestellt habe.
+Dann sieht sie Paolo an.
 -> buch | Ich frage, was ich eigentlich fragen wollte.
 
 === buch
@@ -122,7 +122,6 @@ bild: sturm
 [vers 5,121-123]
 „Aber wenn du so sehr wissen willst, wo unsere Liebe die erste Wurzel hatte, dann erzähle ich es dir, wie einer, der weint und spricht.“
 [vers 5,127-138]
-Sie hört auf. Nicht weil der Wind sie wegnimmt. Weil die Geschichte da aufhört.
 -> ohnmacht
 
 === ohnmacht

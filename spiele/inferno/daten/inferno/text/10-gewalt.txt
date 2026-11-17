@@ -16,7 +16,7 @@ klang: brunnen
 Wo wir hinabsteigen, ist kein Weg, sondern ein Bergsturz. Als hätte jemand die Wand von oben bis unten zerbrochen und die Trümmer liegen gelassen.
 [vers 12,11-15]
 Der Minotaurus. Halb Stier, halb Mensch, gezeugt in einer hölzernen Kuh. Er beißt sich vor Wut selbst in den Arm.
-„Glaubst du, hier sei der Herzog von Athen, der dich oben getötet hat?“, ruft Vergil ihm zu. „Hau ab, Bestie. Der hier kommt nicht, weil deine Schwester es ihm beigebracht hat. Er kommt, um eure Strafen zu sehen.“
+„Glaubst du, hier sei der Herzog von Athen, der dich oben getötet hat?“, ruft Vergil ihm zu. „Fort, Bestie. Der hier kommt nicht, weil deine Schwester es ihm beigebracht hat. Er kommt, um eure Strafen zu sehen.“
 Wie ein Stier, der sich losreißt, wenn er den Todesstoß schon hat, und nicht mehr laufen kann, sondern nur noch hin und her springt, so springt er.
 „Lauf zur Spalte!“, ruft Vergil. „Solange er tobt, geh hinunter.“
 + Ich laufe. -> geroell
@@ -71,6 +71,7 @@ Dann wird das Blut flacher und flacher, bis es nur noch die Füße kocht. Hier i
 # ------------------------------------------------------------ Gesang XIII
 
 === wald
+probe: Der Zweig
 rubrik: Hier beginnt der dreizehnte Gesang. Der Wald der Selbstmörder.
 gesang: 13
 ort: Im Wald der Selbstmörder
@@ -131,7 +132,7 @@ Er nennt seinen Namen nicht. Nur die Stadt. Meine Stadt. Die Blätter, die die H
 === blaetter_text
 art: text
 Er sagt nichts, während ich sammle. Aber er weint leiser.
-Ich lege das letzte Blatt an seinen Fuß. Mehr kann ich nicht tun. Ich weiß nicht einmal, wie er hieß.
+Ich lege das letzte Blatt an seinen Fuß.
 
 # ------------------------------------------------------------ Gesang XIV
 
@@ -189,6 +190,7 @@ Er erzählt mir von einer Insel mitten im Meer, Kreta, wo unter einem Berg ein g
 # ------------------------------------------------------------ Gesang XV
 
 === brunetto
+probe: Schritt halten
 rubrik: Hier beginnt der fünfzehnte Gesang. Dante begegnet seinem Lehrer.
 gesang: 15
 ort: Auf dem Damm des Baches
@@ -295,7 +297,7 @@ klang: abgrund
 [vers 17,10-15]
 Ein Gesicht wie das eines ehrlichen Mannes. Freundlich. Und dahinter ein Schlangenleib, bunt bemalt wie ein Teppich. Ich verstehe, ohne dass Vergil es mir sagt: So sieht Betrug aus. Von vorn sieht man nur das Gesicht.
 „Damit du die Erfahrung dieses Rings ganz mitnimmst“, sagt Vergil, „geh und sieh, wie es denen dort geht. Mach es kurz. Ich rede inzwischen mit dem Tier, dass es uns seine starken Schultern leiht.“
-~ Am Rand sitzen welche, jeder mit einem Beutel um den Hals. -> wucherer @20,74
+> Zu denen, die am Rand sitzen, jeder mit einem Beutel um den Hals -> wucherer
 
 === wucherer
 ort: Am Rand des Abgrunds
@@ -321,13 +323,17 @@ Er hält mich trotzdem.
 ort: In der Luft
 klang: abgrund
 Ich sehe nichts. Auf allen Seiten nur Luft, und alles Sichtbare ist verloschen außer dem Tier.
+& seele geryon | Geryon | Das Ungeheuer des Betrugs: das Gesicht eines ehrlichen Mannes, der Leib einer Schlange. Es trägt uns hinab in den achten Kreis.
 [vers 17,115-117]
-Ich weiß nur durch den Wind, dass wir fallen. Er kommt von unten und von vorn. Und durch das Geräusch: Rechts unter uns höre ich den Wasserfall, der ein schreckliches Tosen macht, und es wird lauter. Ich strecke den Kopf vor, um hinabzusehen, und da wird meine Angst größer, denn ich sehe Feuer und höre Klagen. Ich ziehe die Beine an und klammere mich fest.
--> landung
+Ich weiß nur durch den Wind, dass wir fallen. Er kommt von unten und von vorn. Und durch das Geräusch: Rechts unter uns höre ich den Wasserfall, der ein schreckliches Tosen macht, und es wird lauter. Ich strecke den Kopf vor, um hinabzusehen, und da wird meine Angst größer, denn ich sehe Feuer und höre Klagen. Ich ziehe die Beine an.
++ Ich mache die Augen zu und halte mich an Vergil. -> landung {setzt augen_zu_geryon}
++ Ich sehe hinunter, ins Feuer. -> landung {setzt hinunter_geryon}
 
 === landung
 ort: Am Grund
 bild: malebolge
 klang: bolgen
+{wenn augen_zu_geryon} Hinter den Lidern ist es nicht dunkler als vorher. Vergils Arm liegt um meine Brust, die ganze Zeit.
+{wenn hinunter_geryon} Ich sehe Feuer und höre Klagen, und an ihnen merke ich erst, dass wir uns drehen: Sie kommen von rechts, dann von vorn, dann von links, immer näher.
 [vers 17,127-136]
 -> malebolge: | Absteigen

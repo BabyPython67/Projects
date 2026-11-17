@@ -141,7 +141,7 @@ body[data-thema=sterne] { --grund: #0a1230; --pergament: #ede4cf; --pergament2: 
 .menue { width: min(760px, 100%); max-height: 88vh; overflow-y: auto; background: linear-gradient(var(--pergament), var(--pergament2)); border-radius: 10px 10px 0 0; padding: 0 clamp(16px, 4vw, 32px) calc(28px + env(safe-area-inset-bottom)); box-shadow: 0 -8px 30px rgba(0, 0, 0, .5); -webkit-overflow-scrolling: touch; }
 .menue-kopf { position: sticky; top: 0; display: flex; align-items: center; gap: 6px; padding: 12px 0 8px; background: var(--pergament); z-index: 1; }
 .reiter { display: flex; gap: 4px; flex: 1; overflow-x: auto; }
-.reiter button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 8px; font-size: .82em; font-variant: small-caps; letter-spacing: .04em; cursor: pointer; white-space: nowrap; min-height: 40px; }
+.reiter button { background: none; border: 0; border-bottom: 2px solid transparent; padding: 8px 5px; font-size: .74em; font-variant: small-caps; letter-spacing: .04em; cursor: pointer; white-space: nowrap; min-height: 40px; }
 .reiter button.aktiv { border-color: var(--rubrik); color: var(--rubrik); }
 .schliessen { background: none; border: 0; font-size: 1.6em; line-height: 1; padding: 4px 10px; cursor: pointer; min-height: 44px; }
 .menue h3 { font-weight: normal; font-variant: small-caps; color: var(--rubrik); letter-spacing: .05em; margin: 1.2em 0 .4em; }
@@ -175,7 +175,7 @@ textarea.code { width: 100%; font-family: ui-monospace, Menlo, monospace; font-s
 .huegel-bild.zurueck svg .fig-dante { transform: none; transition-duration: .5s; }
 
 .lauschfeld { position: relative; height: min(46vh, 340px); background: #1c1714; border: 3px solid var(--lapis); overflow: hidden; touch-action: none; user-select: none; -webkit-user-select: none; margin-bottom: 1em; }
-.fetzen { position: absolute; color: #e9dcc0; font-size: .74em; font-style: italic; white-space: nowrap; opacity: calc(.15 + var(--n, 0) * .85); filter: blur(calc((1 - var(--n, 0)) * 3px)); animation: rennen 7s linear infinite; pointer-events: none; }
+.fetzen { position: absolute; color: #e9dcc0; font-size: .74em; font-style: italic; max-width: 44%; line-height: 1.25; opacity: calc(.15 + var(--n, 0) * .85); filter: blur(calc((1 - var(--n, 0)) * 3px)); animation: rennen 7s linear infinite; pointer-events: none; }
 .fetzen.gehoert { opacity: .85; filter: none; }
 @keyframes rennen { 0% { transform: translateX(-30px); } 50% { transform: translateX(40px) translateY(-6px); } 100% { transform: translateX(-30px); } }
 
@@ -210,7 +210,8 @@ body.augen-zu #kopf { visibility: hidden; }
 @keyframes stein { 0% { filter: grayscale(0); } 30% { filter: grayscale(1) brightness(.6); } 100% { filter: none; } }
 
 .frist { height: 3px; background: rgba(90, 60, 30, .2); margin: .4em 0 .6em; overflow: hidden; }
-.frist span { display: block; height: 100%; background: var(--rubrik); animation: frist linear forwards; transform-origin: left; }
+.frist span { display: block; height: 100%; background: var(--rubrik); transform-origin: left; }
+.frist.laeuft span { animation: frist linear forwards; }
 @keyframes frist { from { transform: scaleX(1); } to { transform: scaleX(0); } }
 
 .zweige { position: absolute; inset: 0; }
@@ -248,7 +249,7 @@ body.augen-zu #kopf { visibility: hidden; }
 
 .himmel { position: relative; height: min(56vh, 420px); background: radial-gradient(ellipse at 50% 100%, #22305e, #0a1230 70%); border: 3px solid var(--gold); overflow: hidden; }
 .himmel .punkt { position: absolute; width: 2px; height: 2px; background: #f4e7b0; border-radius: 50%; animation: funkeln 3s ease-in-out infinite; }
-.stern { position: absolute; width: 30px; height: 30px; margin: -15px; border: 0; cursor: pointer; background: radial-gradient(circle, #fff7d6 0 18%, rgba(255, 240, 190, .5) 30%, transparent 62%); animation: aufgehen 2s ease both, funkeln 4s 2s ease-in-out infinite; }
+.stern { position: absolute; width: 46px; height: 46px; margin: -23px; border: 0; cursor: pointer; background: radial-gradient(circle, #fff7d6 0 18%, rgba(255, 240, 190, .5) 30%, transparent 62%); animation: aufgehen 2s ease both, funkeln 4s 2s ease-in-out infinite; }
 .stern.gelesen { background: radial-gradient(circle, #fff 0 22%, rgba(255, 240, 190, .7) 34%, transparent 66%); }
 .sternname { text-align: center; font-style: italic; min-height: 1.6em; margin-top: .6em; }
 @keyframes funkeln { 50% { opacity: .45; } }
@@ -258,3 +259,16 @@ body.augen-zu #kopf { visibility: hidden; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 }
 @media (min-width: 900px) { body { font-size: calc(19px * var(--schrift)); } }
+
+.probe-titel { margin: 1.4em 0 -.6em; font-variant: small-caps; letter-spacing: .08em; color: var(--rubrik); font-size: .86em; }
+.probe-titel span { display: inline-block; border: 1px solid var(--rubrik); padding: 0 .4em; margin-right: .3em; }
+.gesichterfeld { position: relative; height: 150px; background: linear-gradient(#a8977a, #7a6a58); border: 3px solid var(--lapis); overflow: hidden; margin-bottom: 1em; }
+.gesicht { position: absolute; top: 34px; width: 54px; height: 70px; border-radius: 45% 45% 40% 40%; border: 2px solid #2a1d12; background: #e3cfb4; font-size: 26px; color: #2a1d12; cursor: pointer; animation: wogen 4s ease-in-out infinite; }
+.gesicht.verwischt { filter: blur(5px); opacity: .7; cursor: default; }
+@keyframes wogen { 50% { transform: translateX(14px); } }
+.wand { position: relative; height: min(52vh, 380px); background: repeating-linear-gradient(170deg, #6e604f 0 24px, #5a4e40 24px 30px); border: 3px solid var(--lapis); overflow: hidden; margin-bottom: 1em; touch-action: none; }
+.stein { position: absolute; width: 20%; height: 12%; border-radius: 30%; border: 2px solid #2a1d12; background: #9a8f80; cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; transition: transform .3s; }
+.stein.traegt { background: #b9c48f; }
+.stein.wackelt { background: #c98a6a; animation: ruck .3s 2; }
+.stein.faellt { transform: translateY(160px) rotate(40deg); opacity: 0; transition: all .8s ease-in; }
+.kletterer2 { position: absolute; left: 47%; width: 16px; height: 30px; background: var(--rubrik); border-radius: 6px 6px 2px 2px; transition: bottom .3s; }

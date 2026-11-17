@@ -93,6 +93,7 @@ bild: ugolino
 # ------------------------------------------------------------ Gesang XXXIII
 
 === ugolino
+probe: Zuhören
 rubrik: Hier beginnt der dreiunddreißigste Gesang. Graf Ugolino erzählt vom Hungerturm.
 gesang: 33
 ort: Antenora
@@ -208,9 +209,14 @@ Drei Gesichter an einem Kopf. Das vordere rot. Das rechte zwischen weiß und gel
 [vers 34,61-69]
 Ich lausche, weil ich das jetzt kann, weil ich es den ganzen Weg gelernt habe. Ich höre die Flügel. Ich höre die Zähne. Ich höre Judas nicht schreien, und Brutus gibt keinen Laut.
 Und er, Luzifer, sagt nichts. Kein Wort. Er hat nie etwas gesagt, die ganze Zeit. Das Einzige hier unten, das nicht spricht.
+& seele luzifer | Luzifer | Der Kaiser des schmerzhaften Reichs, bis zur Brust im Eis. Drei Gesichter, sechs Flügel ohne Federn. Spricht nicht.
+& seele judas | Judas Ischariot | Im vorderen Mund, den Kopf drinnen, die Beine draußen. Verriet Christus.
+& seele brutus | Brutus | Hängt aus dem schwarzen Mund und gibt keinen Laut. Verriet Caesar.
+& seele cassius | Cassius | Im dritten Mund. Verriet Caesar.
 -> abstieg | „Wie kommen wir hier vorbei?“
 
 === abstieg
+probe: Die Umkehr
 ort: Judecca
 bild: luzifer
 klang: eis
@@ -243,6 +249,7 @@ Ich höre auf, die Stufen zu zählen. Ich höre nur das Wasser und seinen Atem u
 -> sterne_auf
 
 === sterne_auf
+probe: Die Sterne
 ort: Draußen
 bild: sterne
 klang: sterne
@@ -257,7 +264,8 @@ klang: sterne
 Hier endet die Hölle.
 {wenn getragen>=1} Die Namen, die mir unten anvertraut wurden, sind jetzt hier oben. Ich werde sie aufschreiben. Dafür bin ich zurückgekommen, unter anderem.
 {nicht getragen>=1} Niemand hat mir einen Namen mitgegeben, den ich versprochen hätte. Ich habe sie trotzdem alle gehört.
-Vor uns, im Morgen, steht ein Berg im Meer. Der Berg, an dem Odysseus unterging. Wir werden ihn hinaufsteigen. Aber das ist ein anderer Teil, und ein anderes Buch.
+Am Anfang wollte ich auf einen Hügel, ins Licht, und kam nicht hinauf. „Du musst einen anderen Weg nehmen“, hat er damals gesagt. Das war er, dieser Weg.
+Irgendwo vor uns ist die Erde vor Luzifer nach oben geflohen, hat Vergil gesagt, und hat einen Berg gemacht. Noch sehe ich nur die Sterne. Den Berg steigen wir später hinauf, in einem anderen Teil, einem anderen Buch.
 + Im Merkbuch nachlesen, wen ich getroffen habe -> rueckblick
 -> @titel | Das Buch schließen
 

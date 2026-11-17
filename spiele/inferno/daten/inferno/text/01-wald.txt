@@ -22,7 +22,7 @@ Fünfunddreißig bin ich. Dichter in Florenz, Mitglied im Rat, eine Frau, Kinder
 === knacken
 bild: wald
 Ich bleibe stehen. Das Knacken hört auf. Ich gehe weiter, es geht weiter, im selben Takt. Es dauert, bis ich begreife, dass es meine eigenen Schritte sind, die von irgendetwas Hartem zurückkommen.
-Ich habe Angst vor meinem eigenen Gehen. So weit ist es gekommen.
+Ich gehe auf Zehenspitzen, damit das Echo leiser wird.
 > Zurück zu dem hellen Fleck über den Bäumen -> rand
 > Dem Wasser nach -> rinnsal {nicht gesehen:rinnsal}
 
@@ -33,9 +33,10 @@ Das Wasser ist eiskalt und schmeckt nach Eisen. Ich trinke trotzdem, auf den Kni
 
 === rand
 ort: Am Fuß des Hügels
-Der Wald hört auf, als hätte jemand eine Linie gezogen. Dahinter steigt ein Hügel an.
+probe: Der Hügel
+Der Wald hört auf. Kein Saum, kein Gebüsch, eine Kante. Dahinter steigt ein Hügel an.
 [vers 1,16-18]
-Ich setze mich auf einen Stein. Mein Atem geht, als wäre ich gerannt, dabei bin ich nur gestolpert, die ganze Nacht. Ich drehe mich nach dem Wald um.
+Ich setze mich auf einen Stein. Ich atme wie nach einem Lauf. Dabei bin ich nur gestolpert, die ganze Nacht. Ich drehe mich nach dem Wald um.
 [vers 1,22-27]
 Dann stehe ich auf. Der Hang ist steil, Geröll, kein Pfad. Ich steige so, dass immer der hintere Fuß der tiefere ist.
 ! huegel text=huegel_text -> schatten
@@ -59,7 +60,7 @@ Er sieht nicht aus wie ein Räuber. Er sieht nicht einmal ganz aus wie einer, de
 
 === wer_bist_du
 bild: vergil
-{wenn schwieg_vergil} Er kommt nicht näher. Er wartet auch. Zwei Männer am Rand eines Waldes, die einander nicht trauen, und keiner trägt eine Waffe. Schließlich spricht er doch, als hätte er das Schweigen lange genug geübt.
+{wenn schwieg_vergil} Er kommt nicht näher. Er wartet auch. Zwei Männer am Rand eines Waldes, die einander nicht trauen, und keiner trägt eine Waffe. Schließlich spricht er doch. Die ersten Wörter klingen rostig.
 „Kein Mensch. Ich war einer.“ Er zählt es auf, ohne Eile, wie von einem Grabstein: die Eltern aus der Lombardei, beide aus Mantua. Geboren unter Julius, spät. Gelebt in Rom unter dem guten Augustus, „in der Zeit der falschen, lügenden Götter“.
 „Ich war Dichter. Ich habe den gerechten Sohn des Anchises besungen, der aus Troja kam, als das stolze Ilion verbrannt war.“
 Dann eine Pause. Er will, dass ich den Rest selbst sage.
@@ -79,7 +80,7 @@ ort: Im Schatten
 {nicht lob_vergil} [vers 1,88-90]
 {wenn lob_vergil} Er hört das Lob, wie man ein altes Lied hört, das jemand falsch summt. Freundlich, aber er hält sich nicht damit auf. Sein Blick geht an mir vorbei zum Hang, wo die Wölfin auf und ab läuft.
 „Du musst einen anderen Weg nehmen“, sagt er, „wenn du hier herauswillst. Dieses Tier lässt keinen vorbei. Es hält dich auf, bis du tot bist. Und es wird nie satt. Nach dem Fressen hat es mehr Hunger als vorher.“
-Er spricht von einem Windhund, der kommen und sie zurück in die Hölle jagen wird. Einer, der nicht von Land und Geld lebt, sondern von Weisheit, Liebe und Kraft. Ich weiß nicht, wen er meint. Ich glaube, er weiß es auch nicht genau.
+Er spricht von einem Windhund, der kommen und sie zurück in die Hölle jagen wird. Einer, der nicht von Land und Geld lebt, sondern von Weisheit, Liebe und Kraft. Ich weiß nicht, wen er meint.
 & prophezeiung windhund | Vergil am Waldrand: Ein Windhund wird kommen und die Wölfin in die Hölle zurückjagen. Er lebt nicht von Land und Geld, sondern von Weisheit, Liebe und Kraft.
 „Folge mir. Ich führe dich durch einen ewigen Ort.“
 [vers 1,115-120]
@@ -94,7 +95,6 @@ Er zeigt nicht auf den Hügel. Er zeigt auf den Boden.
 === aufbruch
 & seele vergil | Vergil | Dichter aus Mantua, 70–19 vor Christus, schrieb die *Aeneis*. Er ist tot und kommt aus dem Limbus. Er führt mich.
 [vers 1,130-136]
-Er geht voran, ich hinterher. Ich habe vergessen zu fragen, wie lange.
 -> abend
 
 # ---------------------------------------------------------------- Gesang II
@@ -110,7 +110,7 @@ Wir gehen am Waldrand entlang, bergab, und mit jedem Schritt wird der Gedanke la
 + Ich gehe weiter und schweige. -> schweigen
 
 === schweigen
-Ich schweige vielleicht hundert Schritte lang. Dann bleibe ich stehen. Er bleibt auch stehen, ohne sich umzudrehen, als hätte er darauf gewartet.
+Ich schweige vielleicht hundert Schritte lang. Dann bleibe ich stehen. Er bleibt auch stehen, ohne sich umzudrehen.
 -> zweifel | Es muss heraus.
 
 === zweifel

@@ -130,7 +130,8 @@ function gehe(ziel, echo = null, vonAbschnitt = null) {
   const info = Z.betrete(app.stand, app.werk, ziel, vonAbschnitt);
   speichere();
   const nach = zaehle();
-  const neu = ['Ins Merkbuch geschrieben', 'Eine Vorhersage notiert', 'Ein Name, den ich hinauftrage', 'Ein Auftrag notiert'].filter((_, i) => nach[i] > vor[i]);
+  const neu = ['Ins Merkbuch geschrieben', 'Eine Vorhersage notiert', 'Ein Name, den ich hinauftrage', 'Namen zum Suchen notiert']
+    .filter((_, i) => nach[i] > vor[i] && (i > 0 || nach[0] <= 2));
   if (neu.length) setTimeout(() => zeigeHinweis(neu.join(' · ') + ' (Menü → Merkbuch)'), 600);
   if (info.spezial === 'titel') return zeigeTitel();
   if (vorher !== info.abschnitt.id && info.knoten.id === info.abschnitt.start && info.erstesMal) {
@@ -179,6 +180,7 @@ function zeigeKnoten(ab, k, echo) {
   }
 
   if (stimmen.length) s.append(lauschbild(ab, k, stimmen));
+  if (k.meta.probe) s.append(el('p.probe-titel', {}, el('span', {}, 'Prüfung'), ' ' + k.meta.probe));
   const aktionen = el('div.aktionen');
   s.append(aktionen);
   if (k.pruefung) return starteProbe(ab, k, aktionen);
@@ -216,7 +218,7 @@ function lauschbild(ab, k, stimmen) {
     const b = el('button.stimme', { style: `left:${st.x}%;top:${st.y}%`, tabindex: '-1' }, st.text);
     b.dataset.key = key;
     const eintrag = { st, key, b, zeit: 0, gehoert: !!app.stand.gehoert[key] };
-    b.addEventListener('click', () => { if (eintrag.gehoert) folge(eintrag); });
+    b.addEventListener('click', () => { if (eintrag.gehoert && performance.now() - (fig._losgelassen || 0) > 400) folge(eintrag); });
     schicht.append(b);
     return eintrag;
   });
@@ -284,8 +286,22 @@ function lauschbild(ab, k, stimmen) {
     if (lauscht && fig._letztePos) aktualisiere(fig._letztePos.x, fig._letztePos.y, 120);
   }, 120);
   fig.addEventListener('pointermove', ev => { fig._letztePos = { x: ev.clientX, y: ev.clientY }; });
-  fig.addEventListener('pointerdown', ev => { fig._letztePos = { x: ev.clientX, y: ev.clientY }; });
-  fig.addEventListener('pointerup', () => { ende(); app.klang && app.klang.lauschen(false); speichere(); });
+  fig.addEventListener('pointerdown', ev => { fig._letztePos = { x: ev.clientX, y: ev.clientY }; fig._seit = performance.now(); });
+  fig.addEventListener('pointerup', ev => {
+    const dauer = performance.now() - (fig._seit || 0);
+    if (dauer > 220) fig._losgelassen = performance.now();
+    if (dauer <= 220 && fig._letztePos) {
+      // Nur getippt: kurz an dieser Stelle lauschen, als hielte man den Finger.
+      const pos = fig._letztePos;
+      let n = 0;
+      const auto = setInterval(() => {
+        aktualisiere(pos.x, pos.y, 120);
+        if (++n >= 7) { clearInterval(auto); ende(); app.klang && app.klang.lauschen(false); speichere(); }
+      }, 120);
+      return;
+    }
+    ende(); app.klang && app.klang.lauschen(false); speichere();
+  });
   fig.addEventListener('pointercancel', ende);
   fig.addEventListener('contextmenu', ev => ev.preventDefault());
 
@@ -317,6 +333,7 @@ function starteProbe(ab, k, wurzel) {
     klang: app.klang, el, vers: refs => versBlock(refs), stand: app.stand, formatiere,
     texte: id => textKnoten(id).filter(t => t.typ === 'p').map(t => t.text),
     texteMitVersen: textKnoten,
+    verszeilen: r => app.werk.verse[r.g - 1].slice(r.a - 1, r.b),
   };
   Promise.resolve(p(buehne, k.pruefung.args, hilfen)).then(ergebnis => {
     Z.wendePruefungsErgebnisAn(app.stand, ergebnis || {});
@@ -498,6 +515,7 @@ function menueEinstellungen(w) {
 
 // --- Hinweise --------------------------------------------------------------
 function zeigeHinweis(text, knopf = null) {
+  document.querySelectorAll('.toast').forEach(t => t.remove());
   const h = el('div.toast', { role: 'status' }, el('span', {}, text), knopf);
   document.body.append(h);
   setTimeout(() => h.classList.add('weg'), knopf ? 9000 : 4000);

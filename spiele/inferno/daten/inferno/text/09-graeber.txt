@@ -40,13 +40,14 @@ Er hebt die Brauen ein wenig. „Sie waren heftig gegen mich, gegen meine Vorfah
 
 === cavalcante
 ort: Zwischen den Gräbern
+probe: Zögern
 bild: graeber
 [vers 10,52-60]
 Cavalcante de' Cavalcanti. Der Vater von Guido, meinem besten Freund. Guido, mit dem ich Gedichte getauscht habe, als wir zwanzig waren. Er hält mich für einen, der durch seinen Geist hierherkommt. Also müsste sein Sohn, der einen größeren Geist hat, doch auch hier sein.
 [vers 10,61-63]
 Ich habe *hat* gesagt. Gering geschätzt *hat*. Ich merke es erst, als es aus meinem Mund ist.
 Er richtet sich auf, mit einem Ruck. „Wie sagst du? *Hat*? Lebt er denn nicht mehr? Trifft das süße Licht nicht mehr seine Augen?“
-! zoegern text=cavalcante_antworten sekunden=7 zu_spaet=gefallen -> nur_hatte
+! zoegern text=cavalcante_antworten sekunden=8 zu_spaet=gefallen -> nur_hatte
 
 === cavalcante_antworten
 art: text
@@ -69,7 +70,6 @@ ort: Zwischen den Gräbern
 bild: graeber
 Ich suche nach dem richtigen Satz. Er hat Zeit gehabt, die ganze Zeit, die ich gebraucht habe.
 [vers 10,70-72]
-Ich habe nichts Falsches gesagt. Ich habe nur zu lange nichts gesagt.
 & seele cavalcante | Cavalcante de' Cavalcanti | Vater meines Freundes Guido. Liegt mit Farinata im selben Grab. Hielt seinen Sohn für tot, weil ich zögerte.
 & setze cavalcante_gezoegert
 -> farinata_weiter
@@ -77,7 +77,7 @@ Ich habe nichts Falsches gesagt. Ich habe nur zu lange nichts gesagt.
 === farinata_weiter
 ort: Zwischen den Gräbern
 bild: graeber
-Aber der andere, der Großmütige, auf dessen Bitte ich stehen geblieben bin, hat das Gesicht nicht verzogen, den Hals nicht bewegt, sich nicht gebeugt. Er macht weiter, als sei nichts dazwischengekommen.
+Aber der andere, der Großmütige, auf dessen Bitte ich stehen geblieben bin, hat das Gesicht nicht verzogen, den Hals nicht bewegt, sich nicht gebeugt. Er macht weiter, genau an der Stelle, an der er aufgehört hat.
 {wenn spitz_farinata} „Wenn sie diese Kunst schlecht gelernt haben, dann quält mich das mehr als dieses Bett.“
 {nicht spitz_farinata} „Dass meine Leute die Kunst der Rückkehr nicht gelernt haben, quält mich mehr als dieses Bett.“
 [vers 10,79-81]
@@ -100,7 +100,7 @@ Ein Wissen, das von selbst stirbt. Wenn die Zeit aufhört, wissen sie gar nichts
 ort: Zwischen den Gräbern
 bild: graeber
 „Sag dem Gefallenen, dass sein Sohn noch bei den Lebenden ist. Und wenn ich vorhin mit der Antwort gezögert habe, dann, weil ich an das gedacht habe, was du mir jetzt erklärt hast.“
-{wenn cavalcante_gezoegert} Das ist nicht ganz wahr. Ich habe gezögert, weil ich gezögert habe.
+{wenn cavalcante_gezoegert} Das ist nicht ganz wahr.
 Farinata nickt. Ob er es ausrichtet, weiß ich nicht. Mein Meister ruft mich schon zurück, und ich bitte Farinata schnell, mir zu sagen, wer noch bei ihm liegt.
 „Hier liegen mehr als tausend. Hier drin ist der zweite Friedrich, der Kaiser, und der Kardinal. Von den anderen schweige ich.“
 Dann verschwindet er. Ich gehe zu Vergil zurück und denke an das Wort, das mir feindlich vorkam.
