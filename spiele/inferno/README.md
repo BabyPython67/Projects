@@ -131,9 +131,9 @@ Es fehlt kein Gesang. `npm run pruefe` bricht ab, wenn einer nicht vorkommt.
 
 **Prüfungen.** Jeder Kreis prüft dich, aber nicht mit einem Rätsel, das die Strafe nachstellt. Geprüft wird, was Dante selbst in diesem Gesang geprüft wird: Angst, Mitleid, Zorn, Neugier, Scham, Härte, Vertrauen. Jede Prüfung hat ihre eigene Geste, und keine kommt zweimal vor: halten, folgen, schieben, werfen, brechen, sammeln, Schritt halten, zögern, hinhören und aufhören zu hören, umkehren. Sie verlangen keine Geschicklichkeit. Man kann sie nicht verlieren, aber man kann sie auf verschiedene Weise bestehen, und das hat Folgen. *Begründung:* Der Pilger ist kein Sünder, der die Strafe nachspielt. Die naheliegende Spiegelung hätte neun gleichartige Rätsel ergeben. So prüft das Spiel den Spieler mit den Werkzeugen, die er die ganze Zeit benutzt, und manchmal wendet es sie gegen ihn.
 
-**Nacherzählte Sprache und Dantes Verse.** Erzählt wird in heutiger, knapper Sprache, nah an Dantes Handlung und Bildern, ohne Zierrat. Wie in den alten Handschriften beginnt jeder Gesang mit einer roten Rubrik („Hier beginnt der fünfte Gesang …“) und einer Goldinitiale. An den wichtigen Stellen stehen Dantes Verse in der Übersetzung von Philalethes als eigener Block, rund 300 Verszeilen. Sie werden nicht danach nacherzählt, sondern stehen für sich. Jeder erlebte Gesang lässt sich im Menü vollständig nachlesen.
+**Nacherzählte Sprache und Dantes Verse.** Erzählt wird in heutiger, knapper Sprache, nah an Dantes Handlung und Bildern, ohne Zierrat. Wie in den alten Handschriften beginnt jeder Gesang mit einer roten Rubrik („Hier beginnt der fünfte Gesang …“) und einer Goldinitiale. An den wichtigen Stellen stehen Dantes Verse in der Übersetzung von Philalethes als eigener Block: 143 Blöcke mit zusammen 748 Verszeilen, etwa ein Sechstel des Inferno. Sie werden nicht danach nacherzählt, sondern stehen für sich. Jeder erlebte Gesang lässt sich im Menü vollständig nachlesen.
 
-**Länge.** Zwölf Abschnitte vom Wald bis zu den Sternen, 215 Textknoten, 14 Prüfungen, rund 60 benannte Seelen und Gestalten. Genaue Zahlen stehen unten unter „Länge“.
+**Länge.** Zwölf Abschnitte vom Wald bis zu den Sternen, 215 Textknoten, 14 Prüfungen und ein Schlussbild, 40 Lauschstellen, 137 Wahlen, rund 60 benannte Seelen und Gestalten. Genaue Zahlen stehen unten unter „Länge“.
 
 **Speichern.** Jeder Schritt wird sofort auf dem Gerät gespeichert, mit einer Sicherheitskopie des vorigen Stands. Das Spiel lässt sich als App auf den Home-Bildschirm legen und weist auf dem Titelblatt darauf hin. Im Menü gibt es einen Sicherungscode zum Kopieren und Wiederherstellen. Ein Service Worker hält alles offline bereit und holt bei jeder Verbindung zuerst die neueste Fassung.
 
@@ -171,7 +171,11 @@ Es fehlt kein Gesang. `npm run pruefe` bricht ab, wenn einer nicht vorkommt.
 
 ## Länge
 
-<!-- LAENGE -->
+**Spieltext: rund 19.800 Wörter eigene Prosa** (18.565 Wörter Erzählung und Rubriken, 1.282 Wörter in Wahlen und Stimmen), dazu **5.528 Wörter Dante-Verse** in 748 Verszeilen. Gezählt mit `npm run wortzahl`. Das Gesangsbuch im Menü enthält zusätzlich das ganze Inferno (4.719 Verse) zum Nachlesen.
+
+**Geschätzte Spielzeit: etwa 3½ bis 4 Stunden für einen Durchgang**, also drei bis vier Abende zu je einer Stunde. Die Schätzung setzt sich so zusammen: Prosa und Wahlen bei ruhigem Lesen (etwa 170 Wörter pro Minute) rund 2 Stunden, die Verse langsamer gelesen (etwa 110 Wörter pro Minute) rund 50 Minuten, 40 Lauschstellen und 14 Prüfungen zusammen etwa 40 Minuten. Wer alle Nebenstimmen aufsucht und die Gesänge im Buch nachliest, braucht deutlich länger. Ein zweiter Durchgang lohnt sich, weil viele Begegnungen anders verlaufen.
+
+Ein natürlicher Haltepunkt nach dem zweiten Kreis lädt dazu ein, für den ersten Abend aufzuhören. Danach kann man an jedem Kapitelblatt aufhören, der Stand bleibt.
 
 ## Speichern und Sicherung
 

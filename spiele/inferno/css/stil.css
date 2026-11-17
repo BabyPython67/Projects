@@ -228,16 +228,16 @@ body.augen-zu #kopf { visibility: hidden; }
 .wegbahn { position: relative; height: 60px; background: linear-gradient(#c9a96a 60%, #7a6a58 60%); border: 3px solid var(--lapis); overflow: hidden; margin-bottom: .8em; }
 .wanderer { position: absolute; bottom: 24px; left: calc(10% + var(--weg, 0) * 80%); width: 14px; height: 26px; background: var(--rubrik); border-radius: 6px 6px 2px 2px; transition: left .3s; }
 .wegbahn.steht { background: linear-gradient(#d86a2a 60%, #7a6a58 60%); }
-.schritt-knopf { width: 100%; min-height: 64px; margin-top: .6em; border: 2px solid var(--rubrik); background: rgba(163, 32, 26, .08); font-variant: small-caps; letter-spacing: .1em; cursor: pointer; touch-action: manipulation; }
-.schritt-knopf:active { background: rgba(163, 32, 26, .22); }
+.schritt-knopf { position: sticky; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 3; box-shadow: 0 4px 18px rgba(0, 0, 0, .35); background-color: var(--pergament) !important; width: 100%; min-height: 64px; margin-top: .6em; border: 2px solid var(--rubrik); background: rgba(163, 32, 26, .08); font-variant: small-caps; letter-spacing: .1em; cursor: pointer; touch-action: manipulation; }
+.schritt-knopf:active { box-shadow: inset 0 0 0 200px rgba(163, 32, 26, .22); }
 
 .fluchtfeld { position: relative; height: min(46vh, 320px); background: linear-gradient(160deg, #3b2e24, #120c0a); border: 3px solid var(--lapis); overflow: hidden; margin-bottom: 1em; }
 .verfolger { position: absolute; inset: 0; background: radial-gradient(circle at 0% 0%, rgba(160, 20, 10, calc(.15 + var(--nah, 0) * .7)), transparent 60%); }
 .halt { position: absolute; width: 58px; height: 58px; margin: -29px; border-radius: 50%; border: 3px solid #e9dcc0; background: rgba(233, 220, 192, .25); cursor: pointer; animation: auf .2s; }
 .fluchtfeld.unten { filter: brightness(.6); }
 
-.hinhoeren { width: 100%; min-height: 70px; margin-top: .6em; border: 2px dashed var(--tinte2); background: rgba(255, 250, 235, .3); cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; font-style: italic; }
-.hinhoeren.an { background: rgba(163, 32, 26, .12); border-style: solid; }
+.hinhoeren { position: sticky; bottom: calc(10px + env(safe-area-inset-bottom)); z-index: 3; box-shadow: 0 4px 18px rgba(0, 0, 0, .35); background-color: var(--pergament) !important; width: 100%; min-height: 70px; margin-top: .6em; border: 2px dashed var(--tinte2); background: rgba(255, 250, 235, .3); cursor: pointer; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; font-style: italic; }
+.hinhoeren.an { box-shadow: inset 0 0 0 200px rgba(163, 32, 26, .14); border-style: solid; }
 .probe-log.streit p { margin-bottom: .5em; }
 
 .schacht { position: relative; height: min(56vh, 420px); background: linear-gradient(#1b2433, #55657d); border: 3px solid var(--lapis); overflow: hidden; touch-action: none; transition: transform 1.6s ease; margin-bottom: 1em; }
