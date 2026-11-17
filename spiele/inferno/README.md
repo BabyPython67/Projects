@@ -242,3 +242,19 @@ Drei Runden waren erlaubt, jede mit einem frischen Unteragenten als Kritiker. Er
 </details>
 
 <!-- KRITIK-RUNDEN -->
+
+## Was ungeprüft bleibt
+
+- **Ein echtes iPad und iPhone.** Getestet wurde nur mit Chromium in iPad- und iPhone-Größe (Playwright). Safari auf dem Gerät, die Fingerbedienung mit echtem Druck, das Anlegen auf dem Home-Bildschirm, das Löschen nach sieben Tagen und das Nachladen einer neuen Fassung auf dem Gerät hat niemand ausprobiert. Die Schritte dafür stehen unter „Prüfen auf dem iPad“.
+- **Der Ton.** Der Klang entsteht im Browser und wurde nur daraufhin geprüft, dass er ohne Fehler startet. Gehört hat ihn kein Mensch. Ob er auf dem iPad bei stummgeschaltetem Gerät spielt, ist offen.
+- **Die Spielzeit.** Die Zeit unter „Länge“ ist aus den Wortzahlen geschätzt, nicht an einem Menschen gemessen.
+- **Bedienung mit VoiceOver** und anderen Hilfen wurde nicht geprüft.
+- **Fünf Quellen** waren aus dieser Umgebung nicht erreichbar (Bot-Schutz, HTTP 403, 404/429, 503). Sie gelten nicht als geöffnet und zählen nicht mit (siehe „Recherche“).
+
+## Ehrliche Einschätzung
+
+**Was trägt.** Das Hören als Art zu erkunden. Es kommt aus dem Inferno selbst, und es macht aus dem Lesen eine Handlung: Man legt den Finger auf ein Bild und wartet, bis eine Stimme deutlich wird. Am stärksten sind die Stellen, an denen eine Geste und Dantes Vers zusammenfallen: Francesca, deren Worte man nur hört, solange man dem Paar im Wind folgt; Ciacco, der nur noch zwei Fragen durchhält; Cavalcante, bei dem das Zögern selbst die Antwort ist; der Zweig des Pier della Vigna, der blutet, wenn man ihn antippt; Brunetto, neben dem man Schritt halten muss, um ihn zu hören; Ugolino, bei dem man selbst entscheidet, ob man bis zum Ende zuhört; die Umkehr an Luzifers Fell. Die 34 Gesänge im Menü und die Verse im Text sorgen dafür, dass man das Inferno danach wirklich kennt, und die Namen, die man hinaufträgt, geben dem langen Abstieg ein eigenes Ziel.
+
+**Was schwach ist.** Die Wahlen ändern Sätze, Einträge und Sterne, aber nie den Weg. Wer das Spiel zweimal spielt, erkennt das schnell. Der Ton ist Rauschen und Murmeln aus dem Synthesizer, stimmungsvoll, aber dünn, und die Miniaturen sind einfache Zeichnungen, keine Buchmalerei. Manche Prüfungen sind im Kern eine Wahl mit gutem Text (die Ehre im Limbus, Argenti, Bocca, Alberigo), andere eine Geste, die man nach dem ersten Mal durchschaut.
+
+**Wo der Text abfällt.** In der Malebolge (Gesänge XVIII bis XXX). Sie ist der längste Abschnitt, und dort folgen zu viele Gestalten in zu kurzer Zeit: Venedico, Jason, Thaïs, die Päpste, die Wahrsager, die Teufel, die Heuchler, die Diebe, Odysseus, Guido, die Zerspaltenen, die Fälscher. Mehrere Bulgen werden in ein oder zwei Absätzen erzählt statt erlebt. Dantes derbe Komik bei den Teufeln (XXI–XXII) kommt kaum an. Schwächer sind auch die langen Reden Vergils, die als Nacherzählung in einem Block stehen: die Ordnung der Sünden (XI), der Alte von Kreta (XIV), die Gründung Mantuas (XX). Dort erklärt der Text, statt zu zeigen, und neben Dantes Versen wirkt er glatt.
