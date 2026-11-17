@@ -212,3 +212,17 @@ Bitte am echten Gerät, weil Playwright Safari auf iOS nicht vollständig nachbi
 - `npm test`: Logik-Tests mit `node:test`. Geprüft werden der Parser der Textdateien, Bedingungen und Effekte, einmalige Wahlen, Speichern und Laden samt Reparatur alter oder kaputter Stände, der Sicherungscode (Rundreise, Leerraum, Kürzung, falsche Prüfsumme, Rückfall ohne Kompression) und das ganze Inferno mit `npm run pruefe` (alle Ziele, alle Verse, alle 34 Gesänge, Service-Worker-Liste, Versionsgleichheit).
 - `npm run test:browser`: Playwright mit Chromium in iPad- und iPhone-Größe. Spiel laden, lauschen und einer Stimme folgen, neu laden, prüfen, dass der Stand noch da ist, Sicherungscode erzeugen, kein seitliches Scrollen, keine Fehler in der Konsole.
 - Nebenbei: Ein Bot-Skript (nicht im Repo) hat das ganze Spiel in Handygröße durchgespielt, mit jeder Prüfung.
+
+## Später: Purgatorio und Paradiso
+
+Die Daten sind darauf vorbereitet:
+- `daten/werke.js` ist ein Register. Ein neues Werk bekommt einen Eintrag mit Titel, Versdatei (`daten/purgatorio/verse-philalethes.json`, aus derselben Gutenberg-Seite mit demselben Skript zu ziehen) und seinen Textdateien.
+- Der Spielstand trägt das Feld `werk`. Merkbuch, getragene Namen und gelesene Gesänge sind pro Werk gespeichert, unter dem Schlüssel `dante.<werk>.stand`. Ein Übergang von der Hölle ins Fegefeuer kann den Stand des Inferno lesen, etwa die getragenen Namen oder ob man Ugolino ganz gehört hat.
+- Das Format der Textdateien kennt keine Inferno-Besonderheiten. Neue Prüfungen kommen als Funktion in `js/pruefungen.js` dazu, neue Miniaturen als Szene in `js/bilder.js`, neue Klangräume in `js/klang.js`.
+- Das Inferno endet mit dem Blick auf den Berg im Meer, also genau dort, wo das Purgatorio beginnt.
+
+## Kritik
+
+Drei Runden waren erlaubt, jede mit einem frischen Unteragenten als Kritiker. Er hat nicht mitgebaut und bekam nur den Spielordner, die lokale Adresse und die fünf Kriterien, ohne Begründungen. Er sollte das README nicht lesen. Er spielte mit Playwright in iPad- und Handygröße, machte eigene Screenshots und änderte keinen Spielcode. Nach jeder Runde habe ich die Probleme von oben nach unten behoben, und jede Runde endete mit einem spielbaren, committeten und gepushten Stand.
+
+<!-- KRITIK-RUNDEN -->
