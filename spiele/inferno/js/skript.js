@@ -133,6 +133,7 @@ export function zerlegeAbschnitt(quelltext, dateiname = '?') {
       bed = b[1] === 'wenn' ? b[2] : b[2].split(',').map(s => '!' + s.trim()).join(',');
       text = b[3];
     }
+    if (text.startsWith('&')) { knoten.effekte.push({ e: text.slice(1).trim(), bed }); return; }
     if (text.startsWith('[vers')) {
       const m = /^\[vers\s+([^\]]+)\]$/.exec(text);
       if (!m) fehler(nr, 'Versblock unlesbar');

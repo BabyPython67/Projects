@@ -68,7 +68,48 @@ Alle hier gezählten Quellen habe ich selbst geöffnet: Webseiten über das Abru
 
 Im Spiel stehen die Verse an den wichtigen Stellen als eigener Block mit Quellenangabe, zum Beispiel „Hölle V, 121–123 · Philalethes“. Jeder Gesang, den man erlebt hat, lässt sich außerdem im Menü unter „Gesänge“ vollständig nachlesen.
 
-<!-- TABELLE-GESAENGE -->
+<details>
+<summary><strong>Die 34 Gesänge und wo sie im Spiel vorkommen</strong> (zugeklappt, verrät Begegnungen und Prüfungen)</summary>
+
+| Gesang | Bei Dante | Stelle im Spiel |
+|---|---|---|
+| I | Der dunkle Wald, drei Tiere, Vergil | Der dunkle Wald: Erwachen (Lauschbild), Prüfung „Der Hügel“, Vergil im Schatten |
+| II | Dantes Zweifel, Beatrice hat Vergil geschickt | Der dunkle Wald: Abend, „Ich bin nicht Aeneas“, die drei Frauen |
+| III | Höllentor, die Lauen, Acheron, Charon | Das Tor und die Vorhölle: Inschrift, Prüfung „Vorübergehen“, Charon, Beben |
+| IV | Limbus, die Dichter, das edle Schloss | Limbus: Seufzer, Christi Höllenfahrt, „der Sechste“, Schloss mit Philosophen |
+| V | Minos, der Sturm, Francesca und Paolo | Zweiter Kreis: Minos, Lauschbild im Sturm, Prüfung „Im Wind“, das Buch, Haltepunkt „An diesem Tag lasen wir nicht weiter“ |
+| VI | Cerberus, Ciacco | Dritter Kreis: Prüfung „Cerberus“, Ciacco, Vorhersage, Liste der fünf Namen |
+| VII | Plutus, Geizige und Verschwender, Fortuna, Styx | Vierter Kreis: Prüfung „Die Lasten“, Fortuna; Fünfter Kreis: Sumpf, Gurgeln unter Wasser |
+| VIII | Phlegyas, Filippo Argenti, die Stadt Dis | Fünfter Kreis: Turm, Fährmann, Argenti; Stadt Dis: gefallene Engel, verschlossenes Tor |
+| IX | Furien, Medusa, Himmelsbote, Ketzergräber | Stadt Dis: Erichtho, Prüfung „Medusa“, der Bote, die Gräber |
+| X | Farinata, Cavalcante | Sechster Kreis: Farinata, Prüfung „Zögern“, Vorhersage der Verbannung |
+| XI | Ordnung der Hölle | Sechster Kreis: Grab des Anastasius, Vergils Erklärung (Unmaß, Gewalt, Betrug, Wucher) |
+| XII | Minotaurus, Blutfluss, Kentauren | Siebter Kreis: Bergsturz, Chiron, Nessus, Tyrannen |
+| XIII | Wald der Selbstmörder, Pier della Vigna | Siebter Kreis: Prüfung „Der Zweig“, Pier della Vigna, die Jagd |
+| XIV | Feuersand, Kapaneus, Greis von Kreta | Siebter Kreis: Prüfung „Die Blätter“, Kapaneus, der Greis |
+| XV | Brunetto Latini | Siebter Kreis: Prüfung „Schritt halten“ |
+| XVI | Drei Florentiner, Wasserfall, Schnur | Siebter Kreis: Guido Guerra, Tegghiaio, Rusticucci, die Schnur |
+| XVII | Geryon, Wucherer, Flug | Siebter Kreis: Geryon, Wucherer, Flug im Dunkeln |
+| XVIII | Übelbulgen; Kuppler, Verführer, Schmeichler | Achter Kreis: Venedico, Jason, Alessio, Thaïs |
+| XIX | Simonisten, Nikolaus III. | Achter Kreis: Nikolaus, Dantes Rede gegen die Päpste |
+| XX | Wahrsager | Achter Kreis: Tränen und Vergils Tadel, Manto und Mantua |
+| XXI | Bestechliche im Pech, Malebranche | Achter Kreis: Pech, Malacoda, Datierung auf Karsamstag 1300 |
+| XXII | Ciampolo, Teufel im Pech | Achter Kreis: Ciampolo |
+| XXIII | Flucht, Heuchler, Kaiphas | Achter Kreis: Prüfung „Flucht“, Heuchler |
+| XXIV | Aufstieg, Diebe, Vanni Fucci | Achter Kreis: Trümmer, Vanni Fucci, seine Vorhersage |
+| XXV | Feigen gegen Gott, Verwandlungen | Achter Kreis: Feigen, Verwandlungen |
+| XXVI | Odysseus' letzte Fahrt | Achter Kreis: Doppelflamme, Odysseus |
+| XXVII | Guido da Montefeltro | Achter Kreis: Guido |
+| XXVIII | Zwietracht; Mosca, Bertran de Born | Achter Kreis: Mohammed und Ali (knapp), Pier da Medicina, Curio, Mosca, Bertran |
+| XXIX | Geri del Bello, Alchemisten | Achter Kreis: Geri, Griffolino, Capocchio |
+| XXX | Fälscher, Streit Adam–Sinon | Achter Kreis: Schicchi, Myrrha, Adam, Sinon, Prüfung „Zuschauen“ |
+| XXXI | Die Riesen am Brunnen | Brunnen: Horn, Nimrod, Ephialtes, Antaeus |
+| XXXII | Caina, Antenora, Bocca | Neunter Kreis: Eis, Brüder, Camicion, Bocca |
+| XXXIII | Ugolino, Tolomea, Alberigo | Neunter Kreis: Prüfung „Ugolino“, Alberigo |
+| XXXIV | Judecca, Luzifer, Ausgang zu den Sternen | Neunter Kreis: Luzifer, Prüfung „Umkehr“, der Bach, die Sterne |
+
+Es fehlt kein Gesang. `npm run pruefe` bricht ab, wenn einer nicht vorkommt.
+</details>
 
 ---
 
@@ -79,3 +120,91 @@ Im Spiel stehen die Verse an den wichtigen Stellen als eigener Block mit Quellen
 - **Bild:** Miniaturen im Stil italienischer Dante-Handschriften, als SVG aus einem kleinen Baukasten gezeichnet (Treppenfelsen, Goldgrund, Lapisgrund, Dante in Rot, Vergil in Blau, nackte Seelen). Keine Bilddateien. Das Pergament wird beim Abstieg dunkler und im Eis fahlblau.
 - **Klang:** Alles wird mit der Web Audio API live erzeugt: Wind, Regen, Feuer, Eis, Schritte, Murmeln. Keine Tondateien, keine Sprachaufnahmen. Die Stimmen beim Lauschen sind gefiltertes Rauschen mit Silbenrhythmus. Man hört, *dass* jemand spricht und wo, aber nicht was. Die Worte erscheinen als Schrift. Ohne Ton funktioniert alles genauso.
 - **Bedienung:** Erkunden heißt lauschen. Finger auf das Bild legen und langsam darüberfahren, wo jemand spricht, wird die Stimme deutlich. Gehörtes lässt sich antippen. Gespräche laufen über Wahlen mit Zeigehand (☞), Wege mit Pfeil (→). Alles ist mit dem Finger auf dem iPad gedacht und funktioniert auch mit der Maus.
+
+---
+
+## So ist das Konzept umgesetzt
+
+**Dante, Vergil und Erkunden.** Du bist Dante und erzählst in der Ich-Form, in der Gegenwart. Vergil geht neben dir: Er erklärt, drängt, tadelt, trägt dich, verhandelt mit Teufeln. Erkundet wird mit den Ohren. Jeder Ort ist eine Miniatur, auf der Stimmen liegen, verwischt und unleserlich. Legst du den Finger auf das Bild und fährst langsam darüber, werden sie deutlich: Stimmen, Geräusche, Fetzen von Sätzen. Was du gehört hast, kannst du antippen und ihm nachgehen. Manche Stimmen führen zu Seelen, an denen man auch vorbeigehen könnte, manche zum Weg weiter hinab. Der Weg selbst ist Dantes Weg: Kreis für Kreis, in der Reihenfolge der 34 Gesänge.
+
+**Begegnungen und Spielraum.** In den Gesprächen entscheidest du, was Dante sagt, fragt oder tut, ob er schweigt, verspricht, hart oder weich ist. Die Seelen verfolgen dabei ihre eigenen Ziele. Was du tust, merkt sich das Spiel. Es verändert, was du erfährst, was Vergil später zu dir sagt und welche Namen du am Ende hinaufträgst. Den Weg und das Ende ändert es nicht. Das Merkbuch im Menü hält fest, wen du getroffen hast, was dir vorausgesagt wurde und wonach du suchst.
+
+**Prüfungen.** Jeder Kreis prüft dich, aber nicht mit einem Rätsel, das die Strafe nachstellt. Geprüft wird, was Dante selbst in diesem Gesang geprüft wird: Angst, Mitleid, Zorn, Neugier, Scham, Härte, Vertrauen. Jede Prüfung hat ihre eigene Geste, und keine kommt zweimal vor: halten, folgen, schieben, werfen, brechen, sammeln, Schritt halten, zögern, hinhören und aufhören zu hören, umkehren. Sie verlangen keine Geschicklichkeit. Man kann sie nicht verlieren, aber man kann sie auf verschiedene Weise bestehen, und das hat Folgen. *Begründung:* Der Pilger ist kein Sünder, der die Strafe nachspielt. Die naheliegende Spiegelung hätte neun gleichartige Rätsel ergeben. So prüft das Spiel den Spieler mit den Werkzeugen, die er die ganze Zeit benutzt, und manchmal wendet es sie gegen ihn.
+
+**Nacherzählte Sprache und Dantes Verse.** Erzählt wird in heutiger, knapper Sprache, nah an Dantes Handlung und Bildern, ohne Zierrat. Wie in den alten Handschriften beginnt jeder Gesang mit einer roten Rubrik („Hier beginnt der fünfte Gesang …“) und einer Goldinitiale. An den wichtigen Stellen stehen Dantes Verse in der Übersetzung von Philalethes als eigener Block, rund 300 Verszeilen. Sie werden nicht danach nacherzählt, sondern stehen für sich. Jeder erlebte Gesang lässt sich im Menü vollständig nachlesen.
+
+**Länge.** Zwölf Abschnitte vom Wald bis zu den Sternen, 215 Textknoten, 14 Prüfungen, rund 60 benannte Seelen und Gestalten. Genaue Zahlen stehen unten unter „Länge“.
+
+**Speichern.** Jeder Schritt wird sofort auf dem Gerät gespeichert, mit einer Sicherheitskopie des vorigen Stands. Das Spiel lässt sich als App auf den Home-Bildschirm legen und weist auf dem Titelblatt darauf hin. Im Menü gibt es einen Sicherungscode zum Kopieren und Wiederherstellen. Ein Service Worker hält alles offline bereit und holt bei jeder Verbindung zuerst die neueste Fassung.
+
+<details>
+<summary>Einzelheiten: die Prüfungen Kreis für Kreis (zugeklappt, verrät alles)</summary>
+
+| Ort | Prüfung | Geste | Was geprüft wird | Folge |
+|---|---|---|---|---|
+| Wald (I) | Der Hügel | Immer wieder „hinauf“ tippen | Die Abkürzung aufgeben, umkehren, einer fremden Stimme folgen | Wie oft man es versucht hat |
+| Vorhölle (III) | Vorübergehen | Finger auf die Menge halten, oder eben nicht | Hinhören lernt man im Spiel als Tugend; hier ist es Zeitverschwendung. Wer zu lange zuhört, erkennt den, „der die große Weigerung tat“ | Ein Eintrag mehr, ein Satz mehr |
+| 1 Limbus (IV) | Die Ehre | Wahl | Wie man die größte Schmeichelei annimmt: Dante wird Sechster unter Homer, Horaz, Ovid, Lucan, Vergil | Kommt bei den Schmeichlern (XVIII) zurück |
+| 2 Wollust (V) | Im Wind | Dem Paar mit dem Finger folgen, um Francesca zu hören | Aushalten, zuhören, mitgerissen werden | Verpasste Sätze fehlen; danach der Haltepunkt zum Aufhören für heute |
+| 3 Völlerei (VI) | Cerberus | Erde in den offenen Rachen werfen | Ein kurzer Moment der Tat, dann der Hunger nach Wissen bei Ciacco | Fünf Namen zum Suchen |
+| 4 Geiz (VII) | Die Lasten | Einen Stein gegen die anderen schieben | Für zwei Runden einer von ihnen sein; erkennen, dass man keinen erkennt | Wer länger schiebt, wird bemerkt |
+| 5 Zorn (VIII) | Argenti | Wahl | Mitleid oder Zorn: Hier küsst Vergil den Zornigen | Mitleid wird gezählt und später vorgehalten |
+| Dis (IX) | Medusa | Hand auf die Augen legen und halten | Nicht hinsehen, während die Furien schreien | Wer loslässt, behält graue Fingerspitzen |
+| 6 Ketzer (X) | Zögern | Antworten mit ablaufender Frist | Ein Wort im falschen Tempus, ein Zögern: Cavalcante glaubt, sein Sohn sei tot | Keine Antwort holt das erste Wort zurück |
+| 7 Gewalt (XIII–XV) | Der Zweig, Die Blätter, Schritt halten | Tippen tut weh; Blätter zurücklegen; gleichmäßig gehen | Berühren als Schuld, Sammeln als Zärtlichkeit, Zuhören, das nicht stehen bleiben darf | Versprechen an Pier, Brunetto |
+| 8 Betrug (XX–XXX) | Tränen, Flucht, Odysseus, Zuschauen | Wahl, schnelles Tippen, Wahl, Halten | Mitleid wird getadelt; Vertrauen in Teufel; die eigene Neugier im Spiegel des Odysseus; Zuhören als niedriger Wunsch | Vergils Strenge, Scham, Spieler, die viel erkundet haben, werden erkannt |
+| 9 Verrat (XXXII–XXXIV) | Bocca, Ugolino, Alberigo, Umkehr | Wahl, Weiterhören oder nicht, Wahl, Wischen | Grausamkeit, Aushalten, ein Schwur mit Hintertür, und der Moment, in dem unten oben wird | Ob man Ugolino bis zum Ende hört; welche Namen Sterne werden |
+</details>
+
+<details>
+<summary>Einzelheiten: Begegnungen und ihre Folgen (zugeklappt)</summary>
+
+- **Namen hinauftragen:** Ciacco, Pier della Vigna, Brunetto, die drei Florentiner, Pier da Medicina, Ugolino (nur wer ihn bis zum Ende hört) und, gegen seinen Willen, Bocca (nur wer ihn an den Haaren reißt). Am Ende wird jeder Name ein Stern.
+- **Ciaccos Liste:** Farinata, Tegghiaio, Rusticucci, Arrigo und Mosca. Man findet sie im 6., 7. und 8. Kreis. Arrigo findet man nie, auch Dante nennt ihn danach nicht mehr.
+- **Mitleid:** Argenti, Pier della Vigna und Geri del Bello zählen. Beim Tadel der Wahrsager hält Vergil es einem vor oder lobt.
+- **Ehre im Limbus:** Stolz, Demut oder Bescheidenheit kehren bei den Schmeichlern als eigener Gedanke wieder.
+- **Guido da Montefeltro:** Wer ihm ehrlich sagt, dass er zurückkehrt, erfährt seine Geschichte nicht.
+- **Alberigo:** Wer den Schwur mit der Hintertür nicht leistet, erfährt nicht, wer er ist.
+- **Nikolaus III.:** Wer die Rede gegen die Päpste hält, wird von Vergil umarmt; wer schweigt, nur getragen.
+- **Odysseus:** Wer unterwegs sehr viele Seelen aufgesucht hat, wird bei Odysseus an die eigene Neugier erinnert.
+</details>
+
+## Länge
+
+<!-- LAENGE -->
+
+## Speichern und Sicherung
+
+- **Automatisch:** Jeder Schritt landet sofort im Speicher des Browsers (`localStorage`), dazu eine Kopie des vorigen Stands für den Fall, dass einer beschädigt ist. Geschlossene Tabs verlieren nichts. Das Spiel bittet außerdem um dauerhaften Speicher (`navigator.storage.persist`).
+- **Safari und die 7 Tage:** Safari löscht Daten von Websites, die man etwa sieben Tage nicht besucht hat. Als Home-Bildschirm-App ist das Spiel davon ausgenommen. Das Titelblatt und die Sicherungsseite weisen darauf hin, solange das Spiel nicht installiert ist.
+- **Sicherungscode:** Menü → Sicherung → „Code erzeugen und kopieren“. Der Code (`INF1-…`) enthält den ganzen Stand, komprimiert und mit Prüfsumme. Ein Tippfehler wird erkannt, statt still einen kaputten Stand zu laden. Einfügen und „Wiederherstellen“ geht auf jedem Gerät. Alle drei Abschnitte erinnert das Kapitelblatt daran, den Code zu erneuern.
+- **Neue Fassungen:** Der Service Worker (`sw.js`) holt jede Datei zuerst aus dem Netz, am HTTP-Cache vorbei, und speichert sie für offline. Ist das Netz weg oder nach 5 Sekunden still, kommt die gespeicherte Fassung. Eine neue Fassung zeigt einen Hinweis und lädt beim nächsten Umblättern, damit kein Schritt verloren geht. Die Fassung steht im Menü unter „Mehr“. `npm run pruefe` prüft, dass jede Datei in der Liste des Service Workers steht und `sw.js` und `js/version.js` dieselbe Version tragen.
+
+## Handschrift
+
+Das ist das Dante-Spiel, das ich selbst gern gemacht hätte. Meine Handschrift erkennt man an diesen Stellen:
+
+- **Hören vor Sehen.** Die Hölle beginnt bei Dante mit Geräuschen, und Vergil erkennt man an seiner heiseren Stimme. Darum erkundet man im Spiel lauschend. Die Stimmen sind erst ein Murmeln und werden dann Schrift. Das Ende des Spiels findet man auch so, wie Dante es beschreibt: nicht mit dem Auge, sondern mit dem Ohr (Hölle XXXIV, 129).
+- **Die Gesten wenden sich gegen den Spieler.** Was man hundertmal getan hat, Antippen, Zuhören, Erkunden, wird an einigen Stellen selbst zur Prüfung. Wie, steht zugeklappt oben.
+- **Ein Haltepunkt mitten im Spiel.** An einer Stelle sagt das Spiel selbst, dass man jetzt aufhören kann, mit Dantes eigenem Satz. Das passt zum Spielen über mehrere Abende.
+- **Die Handschrift als Bühne.** Rote Rubriken wie in den Codices („Hier beginnt der …“), Goldinitialen auf Lapis, Miniaturen mit Dante in Rot und Vergil in Blau. Das Pergament wird beim Abstieg dunkler und im Eis fahlblau, die letzte Seite ist Nachtblau.
+- **Kleine Treue zum Text.** Ciacco nennt fünf Namen. Vier davon findet man unten, den fünften nie, weil Dante ihn auch nicht wieder erwähnt. Vergil verbessert in der Hölle seine eigene *Aeneis*. Im Limbus wird ein Gespräch mit Absicht *nicht* wiedergegeben, weil Dante schreibt, es sei schön, darüber zu schweigen. Luzifer sagt kein einziges Wort.
+- **Die Sterne.** Das bekannte letzte Wort des Inferno sind die Sterne. Im Spiel stehen dort die Namen, die man unten versprochen hat hinaufzutragen.
+
+## Prüfen auf dem iPad
+
+Bitte am echten Gerät, weil Playwright Safari auf iOS nicht vollständig nachbildet:
+
+1. **Öffnen:** Die Seite in Safari aufrufen (nach der Übernahme über GitHub Pages, lokal über `npm start` und die IP-Adresse des Rechners im WLAN). „Beginnen“ antippen.
+2. **Ton:** Lauter stellen. Im ersten Wald sollte leiser Wind zu hören sein, beim Lauschen ein Murmeln, das lauter wird, wenn der Finger einer Stimme nahekommt. Mit Kopfhörern kommen die Stimmen von links oder rechts. Oben rechts „Ton an/aus“ prüfen. Das Spiel spielt auch bei eingeschaltetem Stummschalter (Audio-Sitzung „playback“). Wer das nicht will, schaltet den Ton im Spiel aus.
+3. **Lauschen und Prüfungen:** Finger auf ein Bild legen und langsam ziehen. Die Seite darf dabei nicht scrollen. In der Medusa-Prüfung den Finger lange halten: Es darf kein Kontextmenü und keine Textauswahl aufgehen.
+4. **Home-Bildschirm:** Teilen → „Zum Home-Bildschirm“. Das Symbol (blaues Feld, goldenes I) öffnen. Das Spiel muss ohne Safari-Leisten starten und am selben Ort weitermachen wie im Browser. Achtung: Safari und Home-Bildschirm-App haben *getrennte* Speicher. Den Stand vorher mit dem Sicherungscode übertragen, sonst beginnt die App von vorn.
+5. **Sicherungscode:** Menü → Sicherung → „Code erzeugen und kopieren“, in Notizen einfügen. Dann Menü → Mehr → „Von vorn beginnen“, danach den Code unter „Wiederherstellen“ einfügen. Der alte Ort muss wieder da sein. Ein absichtlich gekürzter Code muss eine Fehlermeldung geben.
+6. **Neue Fassung:** Nach einer Änderung am Spiel (neue Version in `sw.js` und `js/version.js`) die App öffnen, kurz warten. Es erscheint „Eine neue Fassung ist da …“, und beim nächsten Umblättern ist sie geladen. Menü → Mehr zeigt die Fassungsnummer.
+7. **Offline:** Flugmodus an, App öffnen. Das Spiel muss laufen.
+
+## Tests
+
+- `npm test`: Logik-Tests mit `node:test`. Geprüft werden der Parser der Textdateien, Bedingungen und Effekte, einmalige Wahlen, Speichern und Laden samt Reparatur alter oder kaputter Stände, der Sicherungscode (Rundreise, Leerraum, Kürzung, falsche Prüfsumme, Rückfall ohne Kompression) und das ganze Inferno mit `npm run pruefe` (alle Ziele, alle Verse, alle 34 Gesänge, Service-Worker-Liste, Versionsgleichheit).
+- `npm run test:browser`: Playwright mit Chromium in iPad- und iPhone-Größe. Spiel laden, lauschen und einer Stimme folgen, neu laden, prüfen, dass der Stand noch da ist, Sicherungscode erzeugen, kein seitliches Scrollen, keine Fehler in der Konsole.
+- Nebenbei: Ein Bot-Skript (nicht im Repo) hat das ganze Spiel in Handygröße durchgespielt, mit jeder Prüfung.

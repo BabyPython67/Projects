@@ -35,7 +35,8 @@ export function pruefeBedingung(stand, bed, abschnittId) {
     const vergleich = /^([\w.äöüß]+)\s*(>=|<=|==|>|<)\s*(-?\d+)$/.exec(term);
     if (vergleich) {
       const [, name, op, nStr] = vergleich;
-      const w = stand.zahlen[name] || 0, n = +nStr;
+      const abgeleitet = { seelen: Object.keys(stand.merk.seele).length, gehoert: Object.keys(stand.gehoert).length, getragen: Object.keys(stand.getragen).length };
+      const w = name in abgeleitet ? abgeleitet[name] : (stand.zahlen[name] || 0), n = +nStr;
       ok = op === '>=' ? w >= n : op === '<=' ? w <= n : op === '==' ? w === n : op === '>' ? w > n : w < n;
     } else if (term.startsWith('gesehen:')) {
       const r = loeseZiel(term.slice(8), abschnittId);
@@ -93,7 +94,10 @@ export function betrete(stand, werk, ziel, vonAbschnitt) {
   stand.gesehen[key] = (stand.gesehen[key] || 0) + 1;
   stand.ort = { abschnitt: ab.id, knoten: kId };
   if (k.meta.gesang) k.meta.gesang.forEach(g => { stand.gesaenge[g] = 1; });
-  if (erstesMal) k.effekte.forEach(e => wendeEffektAn(stand, e));
+  if (erstesMal) k.effekte.forEach(e => {
+    if (typeof e === 'string') wendeEffektAn(stand, e);
+    else if (pruefeBedingung(stand, e.bed, ab.id)) wendeEffektAn(stand, e.e);
+  });
   return { abschnitt: ab, knoten: k, erstesMal };
 }
 

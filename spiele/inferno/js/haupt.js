@@ -165,8 +165,9 @@ function zeigeKnoten(ab, k, echo) {
   if (k.meta.rubrik) s.append(el('p.rubrik', {}, k.meta.rubrik));
   if (k.meta.ort) s.append(el('h2.ort', {}, k.meta.ort));
 
-  const stimmen = k.stimmen.filter(st => Z.pruefeBedingung(app.stand, st.bed, ab.id));
-  if (k.meta.bild || stimmen.length) s.append(lauschbild(ab, k, stimmen));
+  const stimmen = k.stimmen.filter(st => Z.pruefeBedingung(app.stand, st.bed, ab.id) &&
+    !(st.einmal && Z.pruefeBedingung(app.stand, 'gesehen:' + st.ziel, ab.id)));
+  if (k.meta.bild && !stimmen.length) s.append(lauschbild(ab, k, stimmen));
 
   let ersterAbsatz = !!k.meta.rubrik;
   for (const t of k.teile) {
@@ -177,6 +178,7 @@ function zeigeKnoten(ab, k, echo) {
     s.append(p);
   }
 
+  if (stimmen.length) s.append(lauschbild(ab, k, stimmen));
   const aktionen = el('div.aktionen');
   s.append(aktionen);
   if (k.pruefung) return starteProbe(ab, k, aktionen);

@@ -110,6 +110,11 @@ function baum(x, y, s = 1, art = 'gruen') {
     return `<path d="M${x} ${y}L${x - 2 * s} ${y - 30 * s}L${x - 14 * s} ${y - 44 * s}M${x - 2 * s} ${y - 30 * s}L${x + 4 * s} ${y - 52 * s}L${x - 4 * s} ${y - 66 * s}M${x + 4 * s} ${y - 52 * s}L${x + 16 * s} ${y - 60 * s}M${x - 1 * s} ${y - 18 * s}L${x + 12 * s} ${y - 28 * s}" stroke="#2b1d14" stroke-width="${3 * s}" fill="none" stroke-linecap="round"/>` +
       [[-14, -44], [-4, -66], [16, -60], [12, -28]].map(([a, b]) => `<path d="M${x + a * s} ${y + b * s}l${-3 * s} ${-4 * s}m${3 * s} ${4 * s}l${4 * s} ${-3 * s}" stroke="#2b1d14" stroke-width="${1.4 * s}"/>`).join('');
   }
+  if (art === 'dunkel') {
+    return `<path d="M${x - 2 * s} ${y}L${x - 1.5 * s} ${y - 40 * s}L${x + 1.5 * s} ${y - 40 * s}L${x + 2 * s} ${y}Z" fill="#2b1d14"/>
+  <path d="M${x} ${y - 78 * s}C${x - 22 * s} ${y - 70 * s} ${x - 26 * s} ${y - 40 * s} ${x - 14 * s} ${y - 30 * s}L${x + 14 * s} ${y - 30 * s}C${x + 26 * s} ${y - 40 * s} ${x + 22 * s} ${y - 70 * s} ${x} ${y - 78 * s}Z" fill="#1c2a1a" stroke="#0b0f0a" stroke-width="1.2"/>
+  <path d="M${x - 10 * s} ${y - 50 * s}q5 -5 10 0q5 -5 10 0M${x - 8 * s} ${y - 62 * s}q4 -4 8 0q4 -4 8 0" fill="none" stroke="#2c4028" stroke-width="1.1"/>`;
+  }
   return `<rect x="${x - 2.5 * s}" y="${y - 30 * s}" width="${5 * s}" height="${30 * s}" fill="#5a3a22" stroke="${T}" stroke-width="0.8"/>
   <ellipse cx="${x}" cy="${y - 42 * s}" rx="${16 * s}" ry="${18 * s}" fill="#2f5a2c" stroke="${T}" stroke-width="1"/>
   <path d="M${x - 10 * s} ${y - 44 * s}q5 -6 10 0q5 -6 10 0M${x - 8 * s} ${y - 34 * s}q4 -5 8 0q4 -5 8 0" fill="none" stroke="#4f8247" stroke-width="1.2"/>`;
@@ -206,7 +211,7 @@ function graben(farbe, inhalt = '') { return `<path d="M0 150Q200 130 400 150V26
 // --- Szenen -------------------------------------------------------------------
 const SZENEN = {
   titel: id => grund('lapis', id) + felsen(120, 140, 160, 100, '#6e5e4a', '#a8977a') + paar(190, 150, 1.2),
-  wald: id => grund('nacht', id) + boden(220, '#2c3a22', '#3d5030') + baum(60, 225, 1.4) + baum(130, 230, 1.1) + baum(300, 228, 1.5) + baum(360, 226, 1) + baum(230, 232, 0.9) + dante(190, 238, 1, 1),
+  wald: id => grund('nacht', id) + boden(222, '#1a2214', '#24301c') + [[20, 200, 1.6], [70, 190, 1.4], [120, 205, 1.7], [165, 188, 1.3], [250, 196, 1.6], [300, 186, 1.4], [345, 204, 1.8], [390, 192, 1.5], [40, 240, 1.9], [105, 246, 1.6], [280, 248, 2], [370, 244, 1.7]].map(([x, y, g]) => baum(x, y, g, 'dunkel')).join('') + dante(205, 244, 0.95, 1) + baum(232, 258, 1.6, 'dunkel'),
   huegel: id => grund('gold', id) + felsen(170, 40, 230, 190, '#8a7a63') + `<circle cx="330" cy="40" r="18" fill="#f6d35a" stroke="${T}"/>` + boden(225, '#3e4a2a', '#56653a') + tier('pardel', 250, 200, 0.9) + tier('loewe', 310, 160, 0.9) + tier('woelfin', 230, 130, 0.9) + dante(110, 238, 1, 1),
   vergil: id => grund('gold', id) + felsen(250, 80, 150, 150, '#8a7a63') + boden(225, '#3e4a2a', '#56653a') + dante(160, 240, 1.1, 1) + vergil(235, 240, 1.1, -1),
   tor: id => grund('nacht', id) + felsen(0, 60, 400, 200, '#4a3e33', '#6e604f') + `<path d="M140 240V110Q200 50 260 110V240Z" fill="#120c0a" stroke="${T}" stroke-width="2"/><path d="M128 240V108Q200 30 272 108V240" fill="none" stroke="#7a6a58" stroke-width="10"/>` +

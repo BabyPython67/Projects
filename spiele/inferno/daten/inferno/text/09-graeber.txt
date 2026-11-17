@@ -1,9 +1,165 @@
 @abschnitt graeber
-titel: (in Arbeit) graeber
-kreis: 7
-thema: stille
+titel: Sechster Kreis
+untertitel: Die offenen Gräber
+kreis: 6
+thema: graeber
+gesaenge: X–XI
+start: pfad
 
-=== start
+=== pfad
+rubrik: Hier beginnt der zehnte Gesang. Dante spricht mit Farinata und mit Cavalcante, im selben Grab.
 gesang: 10
-Dieser Abschnitt entsteht noch.
--> gewalt:
+ort: Zwischen den Gräbern
+bild: graeber
+„Höchste Kraft, die du mich durch die gottlosen Kreise führst, wie du willst“, sage ich. „Kann man die sehen, die in den Gräbern liegen? Die Deckel sind schon aufgehoben, und keiner hält Wache.“
+„Sie werden alle verschlossen, wenn sie aus dem Tal Josaphat zurückkommen, mit den Körpern, die sie oben gelassen haben. Auf dieser Seite haben Epikur und alle seine Anhänger ihren Friedhof, die sagen, die Seele stirbt mit dem Körper. Auf die Frage, die du mir stellst, wirst du hier bald eine Antwort haben. Und auch auf den Wunsch, den du mir verschweigst.“
+Er weiß, nach wem ich suche.
+~ „O Tuscier …“ -> tuscier @38,62
+
+=== tuscier
+ort: Zwischen den Gräbern
+bild: graeber
+[vers 10,22-27]
+Der Ton kommt so plötzlich aus einem der Gräber, dass ich mich enger an meinen Führer drücke.
+[vers 10,31-36]
+Farinata degli Uberti. Der Ghibelline, der Florenz einmal in Blut gebadet hat, an der Arbia. Ich habe ihn nie gesehen, nur von ihm gehört, mein ganzes Leben lang, von beiden Seiten.
+Vergil schiebt mich mit seinen schnellen, sicheren Händen zwischen den Gräbern zu ihm hin. „Sprich deutlich mit ihm.“
+& gefunden farinata
+& seele farinata | Farinata degli Uberti | Anführer der Ghibellinen in Florenz, gestorben 1264. Siegte 1260 an der Arbia über die Guelfen, verhinderte danach, dass Florenz zerstört wurde. Liegt als Ketzer im brennenden Grab.
+[vers 10,40-42]
++ Ich sage ihm alles. Wer mein Vater war, mein Großvater, mein Urgroßvater, ohne etwas zu verbergen. -> vaeter {setzt offen_farinata}
++ „Fragst du das jeden, der hier vorbeikommt?“ -> vaeter {setzt frech_farinata}
+
+=== vaeter
+ort: Zwischen den Gräbern
+bild: graeber
+{wenn frech_farinata} Er hört die Frage gar nicht. Er wartet, bis ich ihm antworte. Ich antworte.
+Er hebt die Brauen ein wenig. „Sie waren heftig gegen mich, gegen meine Vorfahren und gegen meine Partei. Darum habe ich sie zweimal verjagt.“
++ „Wenn sie verjagt wurden, kamen sie zurück, beide Male. Eure Leute haben diese Kunst nicht so gut gelernt.“ -> cavalcante {setzt spitz_farinata}
++ „Das ist lange her.“ -> cavalcante
+
+=== cavalcante
+ort: Zwischen den Gräbern
+bild: graeber
+[vers 10,52-60]
+Cavalcante de' Cavalcanti. Der Vater von Guido, meinem besten Freund. Guido, mit dem ich Gedichte getauscht habe, als wir zwanzig waren. Er hält mich für einen, der durch seinen Geist hierherkommt. Also müsste sein Sohn, der einen größeren Geist hat, doch auch hier sein.
+[vers 10,61-63]
+Ich habe *hat* gesagt. Gering geschätzt *hat*. Ich merke es erst, als es aus meinem Mund ist.
+Er richtet sich auf, mit einem Ruck. „Wie sagst du? *Hat*? Lebt er denn nicht mehr? Trifft das süße Licht nicht mehr seine Augen?“
+! zoegern text=cavalcante_antworten sekunden=7 zu_spaet=gefallen -> nur_hatte
+
+=== cavalcante_antworten
+art: text
+lebt | „Er lebt! Er lebt, ich habe ihn vor drei Monaten gesehen!“
+weiss | „Ich weiß nicht, wie es ihm jetzt geht. Ich bin schon lange unterwegs.“
+falsch | „Ich wollte sagen: Er schätzt ihn gering. Er schätzt ihn gering.“
+
+=== nur_hatte
+ort: Zwischen den Gräbern
+bild: graeber
+{wenn antwort_lebt} Er hört es. Ich sehe, dass er es hört. Aber das erste Wort war schneller. *Hat*. Er bleibt noch einen Augenblick so, aufgerichtet, als prüfe er, welchem der beiden Wörter er glauben soll. Dann sinkt er zurück. Er hat sich für das erste entschieden.
+{wenn antwort_weiss} „Du weißt es nicht?“ Er sieht mich an, wie man einen Arzt ansieht, der nicht weiterredet. Dann fällt er rückwärts in sein Grab.
+{wenn antwort_falsch} Er hört das Wort, das ich verbessern will, und nicht die Verbesserung. Er fällt rückwärts in sein Grab.
+Er kommt nicht mehr hervor.
+& seele cavalcante | Cavalcante de' Cavalcanti | Vater meines Freundes Guido. Liegt mit Farinata im selben Grab. Hielt seinen Sohn für tot, weil ich zögerte.
+-> farinata_weiter
+
+=== gefallen
+ort: Zwischen den Gräbern
+bild: graeber
+Ich suche nach dem richtigen Satz. Er hat Zeit gehabt, die ganze Zeit, die ich gebraucht habe.
+[vers 10,70-72]
+Ich habe nichts Falsches gesagt. Ich habe nur zu lange nichts gesagt.
+& seele cavalcante | Cavalcante de' Cavalcanti | Vater meines Freundes Guido. Liegt mit Farinata im selben Grab. Hielt seinen Sohn für tot, weil ich zögerte.
+& setze cavalcante_gezoegert
+-> farinata_weiter
+
+=== farinata_weiter
+ort: Zwischen den Gräbern
+bild: graeber
+Aber der andere, der Großmütige, auf dessen Bitte ich stehen geblieben bin, hat das Gesicht nicht verzogen, den Hals nicht bewegt, sich nicht gebeugt. Er macht weiter, als sei nichts dazwischengekommen.
+{wenn spitz_farinata} „Wenn sie diese Kunst schlecht gelernt haben, dann quält mich das mehr als dieses Bett.“
+{nicht spitz_farinata} „Dass meine Leute die Kunst der Rückkehr nicht gelernt haben, quält mich mehr als dieses Bett.“
+[vers 10,79-81]
+& prophezeiung farinata | Farinata im Grab: Bevor der Mond fünfzigmal neu wird, wirst du erfahren, wie schwer die Kunst der Rückkehr ist. (Also: Auch ich werde aus Florenz verbannt und nicht zurückkommen.)
+Fünfzig Monde. Vier Jahre. Ich rechne es aus, während er weiterspricht, und dann rechne ich es noch einmal aus.
+„Sag mir, warum ist dein Volk in allen Gesetzen so grausam gegen meine Familie?“
+„Wegen des Gemetzels, das die Arbia rot gefärbt hat. Darum betet man in unserer Kirche so.“
+Er seufzt und schüttelt den Kopf. „Da war ich nicht allein. Aber ich war allein, als alle anderen einverstanden waren, Florenz dem Erdboden gleichzumachen. Ich habe es mit offenem Gesicht verteidigt.“
++ „Erklär mir eins. Ihr seht die Zukunft. Aber die Gegenwart nicht?“ -> zukunft
++ „Sag dem, der gefallen ist, dass sein Sohn noch lebt.“ -> botschaft
+
+=== zukunft
+ort: Zwischen den Gräbern
+bild: graeber
+[vers 10,100-108]
+Ein Wissen, das von selbst stirbt. Wenn die Zeit aufhört, wissen sie gar nichts mehr. Für immer.
+-> botschaft | „Dann sag dem, der gefallen ist, dass sein Sohn noch lebt.“
+
+=== botschaft
+ort: Zwischen den Gräbern
+bild: graeber
+„Sag dem Gefallenen, dass sein Sohn noch bei den Lebenden ist. Und wenn ich vorhin mit der Antwort gezögert habe, dann, weil ich an das gedacht habe, was du mir jetzt erklärt hast.“
+{wenn cavalcante_gezoegert} Das ist nicht ganz wahr. Ich habe gezögert, weil ich gezögert habe.
+Farinata nickt. Ob er es ausrichtet, weiß ich nicht. Mein Meister ruft mich schon zurück, und ich bitte Farinata schnell, mir zu sagen, wer noch bei ihm liegt.
+„Hier liegen mehr als tausend. Hier drin ist der zweite Friedrich, der Kaiser, und der Kardinal. Von den anderen schweige ich.“
+Dann verschwindet er. Ich gehe zu Vergil zurück und denke an das Wort, das mir feindlich vorkam.
+„Warum bist du so verstört?“, fragt er. Ich sage es ihm.
+„Behalte, was du gegen dich gehört hast“, sagt er und hebt den Finger. „Wenn du vor dem süßen Strahl derer stehst, deren schönes Auge alles sieht, wirst du von ihr den Weg deines Lebens erfahren.“
+-> gestank
+
+=== gestank
+rubrik: Hier beginnt der elfte Gesang. Vergil erklärt die Ordnung der Hölle.
+gesang: 11
+ort: Am Rand des siebten Kreises
+bild: graeber
+Wir kommen an den Rand eines hohen Abhangs, aus großen zerbrochenen Steinen, im Kreis. Von unten steigt ein Gestank herauf, so stark, dass wir hinter dem Deckel eines großen Grabes Schutz suchen.
+[vers 11,7-9]
+„Wir müssen langsam absteigen“, sagt Vergil, „damit sich die Nase erst an den traurigen Hauch gewöhnt. Dann macht er uns nichts mehr.“
+„Dann lass uns die Zeit nicht verlieren.“
+„Daran denke ich.“
+-> ordnung
+
+=== ordnung
+ort: Hinter dem Grab des Anastasius
+bild: graeber
+„Mein Sohn, unter diesen Steinen sind drei kleinere Kreise, Stufe für Stufe, wie die, die du verlassen hast. Alle voll verfluchter Geister.“
+Er zeichnet es mir mit dem Finger auf den Grabdeckel, damit ich es behalte.
+„Jede Bosheit, die der Himmel hasst, hat Unrecht zum Ziel. Und jedes solche Ziel schadet anderen, durch Gewalt oder durch Betrug. Betrug ist dem Menschen eigen, darum missfällt er Gott mehr. Darum stehen die Betrüger tiefer und leiden mehr.“
+„Der erste Kreis unter uns ist der der Gewalt. Gewalt kann man gegen drei tun: gegen den Nächsten, gegen sich selbst, gegen Gott. Darum hat er drei Ringe. Mörder und Räuber. Die sich selbst töten und ihr Hab und Gut verschleudern. Die Gott lästern, die Natur verachten und die Kunst.“
+„Darunter der Betrug. Gegen die, die einem nicht besonders vertrauen: Heuchler, Schmeichler, Zauberer, Fälscher, Diebe, Simonisten, Kuppler, Bestechliche. Und ganz unten, wo Dis sitzt, der Verrat. An denen, die einem vertrauen.“
++ „Und die im Sumpf, im Wind, im Regen, die mit den Lasten? Warum sind die nicht in der roten Stadt?“ -> unmass
++ „Warum ist der Wucher eine Sünde gegen Gott?“ -> wucher
++ „Ich habe es verstanden.“ -> morgen
+
+=== unmass
+ort: Hinter dem Grab des Anastasius
+bild: graeber
+„Warum irrt dein Verstand so? Erinnerst du dich nicht an die Worte, mit denen deine Ethik die drei Neigungen behandelt, die der Himmel nicht will? Unmäßigkeit, Bosheit und tierische Wildheit. Und dass die Unmäßigkeit Gott weniger beleidigt und weniger Tadel verdient?“
+Aristoteles. Natürlich. Ich habe die *Ethik* gelesen, mehr als einmal. Ich hätte es selbst wissen können. Die oben haben aus Schwäche gesündigt. Die hier unten mit Absicht.
+& seele ordnung | Die Ordnung der Hölle | Oben Unmaß (Kreise 2–5), dann die Stadt Dis: Ketzer (6), Gewalt (7: gegen andere, sich selbst, Gott), Betrug (8), Verrat (9). Nach Aristoteles: Schwäche wiegt leichter als Bosheit.
+> Zurück -> ordnung_weiter
+
+=== wucher
+ort: Hinter dem Grab des Anastasius
+bild: graeber
+[vers 11,97-105]
+„Die Kunst ist Gottes Enkelin. Wer von Arbeit lebt, folgt der Natur und der Kunst. Der Wucherer geht einen anderen Weg. Er verachtet die Natur und ihre Nachfolgerin, weil er seine Hoffnung woandershin setzt. Sein Geld arbeitet, er nicht.“
+& seele ordnung | Die Ordnung der Hölle | Oben Unmaß (Kreise 2–5), dann die Stadt Dis: Ketzer (6), Gewalt (7: gegen andere, sich selbst, Gott), Betrug (8), Verrat (9). Nach Aristoteles: Schwäche wiegt leichter als Bosheit.
+> Zurück -> ordnung_weiter
+
+=== ordnung_weiter
+ort: Hinter dem Grab des Anastasius
+bild: graeber
+„Du bist die Sonne, die jede getrübte Sicht heilt“, sage ich. „Du machst mich so froh, wenn du etwas erklärst, dass mir Zweifeln fast so lieb ist wie Wissen.“
++ „Warum ist der Wucher eine Sünde gegen Gott?“ -> wucher {nicht gesehen:wucher}
++ „Und die oben, im Sumpf und im Regen?“ -> unmass {nicht gesehen:unmass}
++ „Gehen wir.“ -> morgen
+
+=== morgen
+ort: Hinter dem Grab des Anastasius
+bild: graeber
+„Komm jetzt“, sagt er. „Die Fische zittern schon am Horizont, und der Wagen liegt ganz über dem Nordwest. Und weit weg geht es den Felsen hinab.“
+Oben, auf der Erde, wird es bald Tag. Hier unten merkt man es nur daran, dass er es sagt.
+& seele ordnung | Die Ordnung der Hölle | Oben Unmaß (Kreise 2–5), dann die Stadt Dis: Ketzer (6), Gewalt (7: gegen andere, sich selbst, Gott), Betrug (8), Verrat (9). Nach Aristoteles: Schwäche wiegt leichter als Bosheit.
+-> gewalt: | Hinab

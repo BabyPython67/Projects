@@ -1,9 +1,85 @@
 @abschnitt styx
-titel: (in Arbeit) styx
+titel: Fünfter Kreis
+untertitel: Der Sumpf Styx
 kreis: 5
-thema: stille
+thema: sumpf
+gesaenge: VII–VIII
+start: quelle
 
-=== start
+=== quelle
+ort: Fünfter Kreis
+bild: styx
+„Jetzt steigen wir zu größerem Jammer hinab“, sagt Vergil. „Jeder Stern, der stieg, als ich aufbrach, sinkt schon. Wir dürfen nicht zu lange bleiben.“
+Wir gehen quer durch den Kreis bis zu einer Quelle, die kocht und in einen Graben läuft. Das Wasser ist mehr schwarz als dunkelblau. Wir folgen ihm, einen rauen Weg hinab, und unten wird es ein Sumpf, der Styx heißt.
+Im Schlamm stehen Leute, nackt und voller Dreck, mit wütenden Gesichtern. Sie schlagen sich, nicht nur mit den Händen, auch mit dem Kopf, mit der Brust, mit den Füßen. Sie reißen sich mit den Zähnen Stücke ab.
+~ Unter der Oberfläche blubbert es, in einem Takt. -> gurgeln @36,70
+~ Ein Schlag, ein Schrei, wieder ein Schlag. -> zornige @70,62 {einmal}
+
+=== zornige
+ort: Fünfter Kreis
+bild: styx
+Zwei, die sich prügeln, als ob es um etwas ginge. Es geht um nichts. Keiner weiß mehr, wer angefangen hat. Wenn einer müde wird, beißt ihn der andere, damit es weitergeht.
+„Mein Sohn, hier siehst du die Seelen derer, die der Zorn besiegt hat“, sagt Vergil.
+> Zurück -> quelle
+
+=== gurgeln
+ort: Fünfter Kreis
+bild: styx
+[vers 7,115-126]
+Ich halte das Ohr dicht über das Wasser. Es sind Worte. Es sind tatsächlich Worte, nur ohne Mund. Trübe waren wir. Trübe. In der süßen Luft. Ich höre es, bis ich es nicht mehr hören will.
+& seele traege | Die Trägen im Styx | Unter dem Schlamm, wo man sie nicht sieht. Sie gurgeln, dass sie in der Sonne traurig waren und jetzt im Schlamm sind.
+-> turm | Weiter, am Rand des Sumpfs
+
+=== turm
+rubrik: Hier beginnt der achte Gesang. Ein Fährmann bringt die beiden über den Styx, und ein Zorniger greift nach dem Boot.
 gesang: 8
-Dieser Abschnitt entsteht noch.
+ort: Am Fuß eines Turms
+bild: styx
+Wir sind lange um den Sumpf gegangen und kommen an den Fuß eines Turms. Oben brennen zwei kleine Flammen. Weit drüben antwortet eine dritte, so fern, dass das Auge sie kaum erreicht.
+„Was sagen die Feuer? Wer hat sie gemacht?“
+„Über dem schmutzigen Wasser siehst du schon, was erwartet wird, wenn der Dunst es nicht verbirgt.“
+Kein Pfeil fliegt so schnell, wie ein kleines Boot über das Wasser auf uns zukommt, mit einem einzigen Ruderer, der brüllt: „Jetzt bist du da, verdammte Seele!“
+„Phlegyas, Phlegyas, diesmal schreist du umsonst“, sagt Vergil. „Du hast uns nur, solange wir über den Schlamm fahren.“
+Phlegyas schluckt seinen Zorn hinunter wie einer, der merkt, dass man ihn betrogen hat. Vergil steigt ins Boot, dann ich. Erst unter meinem Gewicht liegt es tief. Es hat schon lange niemand Schweres mehr getragen.
+-> argenti
+
+=== argenti
+ort: Auf dem Styx
+bild: styx
+[vers 8,31-36]
+Er ist voller Schlamm, aber ich kenne die Stimme. Filippo Argenti. In Florenz ritt er auf einem Pferd mit silbernen Hufeisen, und wenn er schlechte Laune hatte, schlug er Leute auf der Straße. Er hat einmal einen Verwandten von mir verprügelt.
+Er streckt beide Hände nach dem Boot aus. Sie sind nah. Ich könnte sie nehmen.
++ „Bleib, wo du bist, bei deinem Weinen. Ich kenne dich, auch wenn du so dreckig bist.“ -> kuss {setzt zorn_argenti}
++ Ich sehe ihn an und sage nichts. Er ist ja ein Mensch, der weint. -> wegstossen {setzt mitleid_argenti} {plus mitleid}
++ Ich strecke die Hand nach seiner aus. -> wegstossen {setzt hand_argenti} {plus mitleid}
+
+=== kuss
+ort: Auf dem Styx
+bild: styx
+[vers 8,37-45]
+„Der war in der Welt eine hochmütige Person“, sagt er weiter. „Nichts Gutes schmückt sein Andenken. Darum ist sein Schatten hier so wütend. Wie viele halten sich da oben jetzt für große Könige und werden hier liegen wie Schweine im Dreck und hinterlassen schreckliche Verachtung.“
+Ich habe noch nie gesehen, dass er jemanden küsst. Ich habe nicht gedacht, dass er das für Zorn tun würde.
+& seele argenti | Filippo Argenti | Florentiner aus der Familie Adimari, berüchtigt für seinen Jähzorn. Im Styx.
+-> zerrissen
+
+=== wegstossen
+ort: Auf dem Styx
+bild: styx
+{wenn hand_argenti} Bevor meine Finger seine berühren, schlägt Vergil mir auf den Arm.
+Der Meister stößt ihn weg. „Fort, dorthin, zu den anderen Hunden!“
+Dann dreht er sich zu mir, und sein Gesicht ist nicht freundlich. „Du kennst ihn. Ich sehe es dir an. Du weißt, was er war. Und du schaust ihn an wie ein Kind, das sich verlaufen hat?“
+„Er weint.“
+„Er weint um sich.“
+Er sieht mich an, als warte er auf etwas, das ich noch nicht kann. Dann wendet er sich ab, nicht verärgert. Enttäuscht vielleicht, oder geduldig. Bei ihm ist das schwer zu unterscheiden.
+& seele argenti | Filippo Argenti | Florentiner aus der Familie Adimari, berüchtigt für seinen Jähzorn. Im Styx.
+-> zerrissen
+
+=== zerrissen
+ort: Auf dem Styx
+bild: styx
+{wenn zorn_argenti} „Meister, ich würde gern sehen, wie er in die Suppe getaucht wird, bevor wir aus dem Sumpf sind.“
+{wenn zorn_argenti} „Bevor du das Ufer siehst, wirst du zufrieden sein. So einen Wunsch muss man erfüllen.“
+[vers 8,58-63]
+{wenn zorn_argenti} Ich danke Gott dafür. Ich schreibe das hin, und ich streiche es nicht.
+{nicht zorn_argenti} Ich sehe hin. Er beißt sich selbst. Ich weiß nicht, wem ich danken soll und ob überhaupt.
 -> dis:

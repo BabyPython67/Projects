@@ -1,9 +1,115 @@
 @abschnitt dis
-titel: (in Arbeit) dis
-kreis: 6
-thema: stille
+titel: Die Stadt Dis
+untertitel: Vor dem verschlossenen Tor
+kreis: D
+thema: dis
+gesaenge: VIII–IX
+start: stadt
 
-=== start
+=== stadt
+ort: Vor der Stadt Dis
+bild: dis
+[vers 8,67-75]
+Wir fahren in die tiefen Gräben, die die trostlose Stadt umgeben. Die Mauern scheinen aus Eisen. Wir umrunden sie lange, bis der Fährmann schreit: „Raus! Hier ist der Eingang.“
+[vers 8,82-87]
+Oben auf den Toren stehen sie. Mehr als tausend, die einmal Engel waren. Vergil macht ihnen ein Zeichen, dass er allein mit ihnen reden will.
+Da halten sie ihre große Wut ein wenig zurück. „Komm du allein. Der da soll gehen, der so frech in dieses Reich gekommen ist. Soll er seinen verrückten Weg allein zurückgehen, wenn er ihn findet. Du bleibst hier, du hast ihn durch dieses dunkle Land geführt.“
+Denk, wer das hier liest, wie mir war, als ich diese verfluchten Worte hörte. Ich habe nicht geglaubt, dass ich je zurückkomme.
++ „Lieber Führer, verlass mich nicht so. Wenn man uns nicht weiterlässt, lass uns schnell zusammen zurückgehen.“ -> warte
++ Ich halte mich an seinem Mantel fest und sage nichts. -> warte {setzt mantel}
+
+=== warte
+ort: Vor der Stadt Dis
+bild: dis
+{wenn mantel} Er löst meine Finger, einen nach dem anderen, ohne Hast.
+„Hab keine Angst“, sagt er. „Unseren Weg kann uns keiner nehmen, so einer hat ihn uns gegeben. Warte hier. Stärke deinen müden Geist mit guter Hoffnung. Ich lasse dich in dieser Unterwelt nicht allein.“
+So geht er, der liebe Vater, und lässt mich da. Und ich bleibe im Vielleicht. Ja und Nein streiten in meinem Kopf.
+~ Was er ihnen sagt … -> unhoerbar @50,30
+
+=== unhoerbar
+ort: Vor der Stadt Dis
+bild: dis
+Ich kann nicht hören, was er ihnen anbietet. Ich lege den Kopf schief, ich halte den Atem an. Nichts. Nur dass er nicht lange bei ihnen steht.
+Sie rennen zurück in die Stadt, um die Wette. Sie werfen ihm das Tor vor der Brust zu. Er bleibt draußen stehen.
+Dann kommt er zu mir zurück, mit langsamen Schritten. Die Augen am Boden. Die Brauen ohne jeden Mut. Er seufzt: „Wer hat mir die Häuser des Schmerzes verweigert!“
+Zu mir sagt er: „Erschrick nicht, weil ich zornig bin. Ich gewinne diesen Kampf, egal, wer da drin sich wehrt. Ihre Frechheit ist nicht neu. Sie haben sie schon an einem weniger geheimen Tor gezeigt, das bis heute ohne Riegel ist. Über dem hast du die tote Schrift gesehen. Und schon kommt einer diesseits davon den Hang herab, durch die Kreise, ohne Führer. Durch den wird sich uns die Stadt öffnen.“
+-> lauschen_vergil
+
+=== lauschen_vergil
+rubrik: Hier beginnt der neunte Gesang. Die Furien drohen mit Medusa, und ein Bote des Himmels öffnet das Tor.
 gesang: 9
-Dieser Abschnitt entsteht noch.
+ort: Vor der Stadt Dis
+bild: dis
+Er bleibt stehen wie einer, der horcht. Sein Auge kann nicht weit sehen, durch die schwarze Luft und den dichten Nebel.
+„Und doch müssen wir den Kampf gewinnen“, beginnt er. „Wenn nicht … So eine hat sich uns angeboten. Oh, wie lange es mir dauert, bis der andere kommt!“
+Ich sehe, wie er den Anfang mit dem Ende zudeckt, mit etwas anderem, als er angefangen hat. Das erschreckt mich mehr als alles vorher. Ich lese in seinen abgebrochenen Satz Schlimmeres hinein, als er vielleicht gemeint hat.
++ „Kommt denn jemals einer aus dem ersten Kreis so tief herab, einer, der nur die Hoffnung verloren hat?“ -> erichtho
++ Ich frage nichts. -> furien
+
+=== erichtho
+ort: Vor der Stadt Dis
+bild: dis
+„Selten kommt einer von uns den Weg, den ich gehe“, sagt er. Dann, nach einer Pause, die er sich offenbar nicht gönnen wollte:
+[vers 9,22-27]
+„Ich war noch nicht lange tot. Eine Zauberin, Erichtho, hat mich gezwungen, eine Seele aus dem tiefsten Kreis zu holen, aus dem Kreis des Judas. Das ist der niedrigste Ort und der dunkelste und am weitesten vom Himmel. Ich kenne den Weg. Darum sei ruhig.“
+Das hat er gemeint, im ersten Kreis. Ich war schon einmal ganz unten.
+-> furien
+
+=== furien
+ort: Vor der Stadt Dis
+bild: furien
+Er sagt noch mehr, aber ich weiß nicht mehr, was. Mein Auge hat mich ganz zur Spitze des glühenden Turms gezogen.
+[vers 9,37-45]
+„Das ist Megaira, links. Die rechts, die weint, ist Alekto. In der Mitte Tisiphone.“ Dann schweigt er.
+Sie zerkratzen sich mit den Nägeln die Brust. Sie schlagen sich mit den Händen und schreien so laut, dass ich mich vor Angst an den Dichter drücke.
+[vers 9,52-57]
+! medusa text=furien_text -> schleier
+
+=== furien_text
+art: text
+„Medusa! Medusa soll kommen!“
+Etwas schlägt mit Flügeln gegen die Turmmauer. Stein bröckelt.
+„Wir hätten uns rächen sollen, als Theseus kam!“
+Ein Lachen, zu hoch für eine Kehle.
+Vergils Hände liegen über meinen. Sie sind kalt und halten fest.
+„Sie kommt. Hörst du sie? Sie kommt die Treppe herunter.“
+Stille. Lange. Dann ein Geräusch, wie wenn jemand Steinstaub aus dem Gewand schüttelt.
+„Sie ist fort“, sagt Vergil, die Hände noch über meinen. „Jetzt hör.“
+
+=== schleier
+ort: Vor der Stadt Dis
+bild: dis
+{wenn medusa_fehler>=1} Meine Fingerspitzen sind grau geworden, an der linken Hand. Es geht nicht mehr weg.
+[vers 9,61-63]
+Ich sage das hier für die, die einmal lesen, was ich schreibe. Ich habe es nicht ohne Grund aufgeschrieben.
+-> bote
+
+=== bote
+ort: Vor der Stadt Dis
+bild: dis
+klang: sturm
+[vers 9,64-72]
+~ Ein Brausen über dem Wasser, wie ein Sturm, der den Wald bricht. -> himmelsbote @30,50
+
+=== himmelsbote
+ort: Vor der Stadt Dis
+bild: dis
+klang: sturm
+Vergil nimmt mir die Hände vom Gesicht. „Jetzt richte deinen Blick auf den alten Schaum, dort, wo der Dunst am schärfsten ist.“
+[vers 9,79-90]
+„Ihr aus dem Himmel Gejagten, verachtetes Volk“, sagt er auf der schrecklichen Schwelle, „woher kommt euch diese Frechheit? Warum tretet ihr gegen den Willen, dem man nie sein Ziel abschneiden kann und der eure Qual schon so oft vermehrt hat? Was nützt es, gegen das Schicksal zu stoßen? Euer Cerberus, wenn ihr euch erinnert, trägt dafür noch Kinn und Hals geschoren.“
+Dann geht er zurück über den dreckigen Weg und sagt zu uns kein Wort. Er sieht aus wie einer, den andere Sorgen drängen als die, die vor ihm stehen.
+& seele bote | Der Bote des Himmels | Öffnet mit einem Stäbchen das Tor von Dis. Spricht kein Wort zu Dante.
+-> eintritt
+
+=== eintritt
+ort: In der Stadt Dis
+bild: graeber
+klang: graeber
+Wir gehen hinein, ohne dass sich einer wehrt. Ich will wissen, was in so einer Festung eingeschlossen ist, und sobald ich drin bin, sehe ich mich um.
+Eine weite Ebene, voller Schmerz und schlimmer Qual. Wie bei Arles, wo die Rhône stillsteht, oder bei Pola, wo die Gräber den Boden uneben machen. So ist es hier, nur bitterer.
+[vers 9,118-123]
+„Meister, wer sind die Leute, die in diesen Truhen begraben sind und sich mit so schmerzhaften Seufzern hören lassen?“
+„Hier sind die Erzketzer mit ihren Anhängern, aus jeder Sekte. Die Gräber sind voller, als du glaubst. Gleich und Gleich liegen hier zusammen, und die Gräber sind mehr oder weniger heiß.“
+Er biegt nach rechts ab. Wir gehen zwischen den Qualen und den hohen Mauern.
 -> graeber:
