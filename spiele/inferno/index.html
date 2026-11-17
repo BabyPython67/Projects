@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b1410">
+<meta name="description" content="Dantes Inferno als Spiel: mit Vergil hinab durch die neun Kreise, den Seelen zuhören, vierunddreißig Gesänge.">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Inferno">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="css/stil.css">
+<title>Was ich dort hörte – Dantes Inferno</title>
+</head>
+<body data-thema="titel">
+<div id="app">
+  <header id="kopf">
+    <button id="menue-knopf" aria-label="Menü öffnen">Menü</button>
+    <div id="kopf-titel"></div>
+    <button id="ton-knopf" aria-label="Ton ein- oder ausschalten">Ton an</button>
+  </header>
+  <main id="seite" aria-live="polite"><p>Die Handschrift wird aufgeschlagen …</p></main>
+</div>
+<div id="schicht" hidden></div>
+<noscript><p style="color:#eee;padding:2em">Dieses Spiel braucht JavaScript.</p></noscript>
+<script type="module" src="js/haupt.js"></script>
+</body>
+</html>

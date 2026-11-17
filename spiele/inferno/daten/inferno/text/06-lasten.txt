@@ -1,0 +1,76 @@
+@abschnitt lasten
+titel: Vierter Kreis
+untertitel: Die Lasten
+kreis: 4
+thema: lasten
+gesaenge: VII
+start: plutus
+
+=== plutus
+rubrik: Hier beginnt der siebte Gesang. Geizige und Verschwender wälzen Lasten gegeneinander.
+gesang: 7
+ort: Am Abstieg zum vierten Kreis
+klang: tor
+[vers 7,1-3]
+Ich verstehe kein Wort. Es klingt wie eine Sprache, die jemand aus Wut erfunden hat. Plutus steht breit im Weg, aufgedunsen, mit einem Gesicht, das nur aus Kiefer besteht.
+„Lass dich von deiner Angst nicht verletzen“, sagt Vergil zu mir. „Was er auch kann, er hindert dich nicht, diesen Felsen hinabzusteigen.“
+[vers 7,7-12]
+Wie Segel, die der Wind bläht, zusammenfallen, wenn der Mast bricht, so fällt das Untier in sich zusammen. Wir steigen über ihn hinweg.
+-> kreis
+
+=== kreis
+ort: Vierter Kreis
+probe: Die Gesichter
+bild: lasten
+Gerechtigkeit Gottes, wer häuft so viel neue Mühen und Strafen auf, wie ich sie sah? Und warum zerreißt uns unsere Schuld so?
+[vers 7,25-30]
+Mehr Leute als irgendwo vorher. Zwei Halbkreise. Die auf der einen Seite stemmen große Gewichte mit der Brust und schieben sie vorwärts, und die auf der anderen Seite tun dasselbe, ihnen entgegen. Wenn sie zusammenstoßen, schreien sie sich an. Dann drehen sie um und schieben zurück, den halben Kreis entlang, bis sie auf der anderen Seite wieder zusammenstoßen.
+Ich will wissen, wer sie sind. Ich gehe so nah heran, wie Vergil mich lässt.
+! gesichter text=gesichter_text -> gesichter
+
+=== gesichter_text
+art: text
+Tipp ein Gesicht an, das du zu kennen glaubst.
+Unter dem Dreck ein Mund, ein Kinn. Es dreht sich weg, und es ist niemand mehr.
+Den kenne ich. Ich bin sicher. Dann schiebt er den Stein weiter, und die Stirn ist eine andere.
+Eine Tonsur, ein Ring am Finger. Ich habe ihn segnen sehen, in Santa Croce. Oder einen, der so aussah.
+Es ist wie mit Münzen, die durch zu viele Hände gegangen sind. Kein Bild ist mehr drauf.
+
+=== gesichter
+ort: Vierter Kreis
+bild: lasten
+„Meister, wer sind die? Die links von uns haben Tonsuren. Waren das alles Geistliche?“
+„Alle waren sie so schielend im Kopf, dass sie im ersten Leben kein Maß beim Geldausgeben kannten. Die mit den Tonsuren waren Priester, Päpste und Kardinäle. Bei denen hat der Geiz sein Äußerstes getan.“
++ „Unter denen muss ich doch einige erkennen.“ -> erkennen
++ „Warum schieben sie gegeneinander und nicht miteinander?“ -> gegeneinander {einmal}
+
+=== gegeneinander
+ort: Vierter Kreis
+bild: lasten
+„Weil der eine zu viel behalten und der andere zu viel weggeworfen hat. Sie sind dieselbe Krankheit, von zwei Seiten. Sie treffen sich immer genau in der Mitte, da, wo das Maß gewesen wäre. Und dort schreien sie.“
+> Zurück -> gesichter
+
+=== erkennen
+ort: Vierter Kreis
+bild: lasten
+„Meister, unter denen müsste ich doch einige erkennen. Ich habe sie gekannt.“
+[vers 7,52-57]
+„Schlecht geben und schlecht behalten hat ihnen die schöne Welt genommen und sie in dieses Gerangel gestellt. Wie es ist, siehst du. Ich mache keine schönen Worte darum.“
+[vers 7,61-66]
++ „Meister, wer ist diese Fortuna, die die Güter der Welt so in den Klauen hat?“ -> fortuna
+
+=== nochmal
+ort: Vierter Kreis
+bild: lasten
+Einer hat eine Narbe über der Lippe, die ich kenne. Ich bin sicher, dass ich sie kenne. Ich sehe weg, sehe wieder hin, und die Narbe ist an einem anderen. Oder es ist dieselbe. Ich weiß es nicht.
+Vergil wartet, bis ich es aufgebe.
+-> fortuna | „Wer ist diese Fortuna?“
+
+=== fortuna
+ort: Vierter Kreis
+bild: lasten
+„Ihr dummen Geschöpfe, wie groß ist die Unwissenheit, die euch schadet.“ Er spricht, wie er schreibt, in einem langen Atem. „Der, dessen Wissen alles übersteigt, hat den Himmeln jeweils einen Führer gegeben, damit jeder Teil jedem Teil gleich viel Licht gibt. Genauso hat er für den Glanz der Welt eine Verwalterin eingesetzt. Sie lässt die eitlen Güter von Volk zu Volk wandern, von einem Blut zum anderen, und keine menschliche Klugheit kann sie aufhalten. Darum herrscht ein Volk, und ein anderes verkümmert, nach ihrem Urteil, das versteckt ist wie die Schlange im Gras.“
+[vers 7,91-96]
+Ich habe sie mir immer als blinde Frau mit einem Rad vorgestellt, die einen hoch- und den anderen runterdreht, nach Laune. Bei ihm ist sie eine Art Engel, der seine Arbeit tut und dabei glücklich ist. Und sie hört nicht, wie wir sie verfluchen.
+& seele fortuna | Fortuna | Nach Vergil eine himmlische Verwalterin, die die irdischen Güter wandern lässt. Selig, taub für unser Fluchen.
+-> styx: | „Gehen wir.“

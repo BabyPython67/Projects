@@ -1,0 +1,339 @@
+@abschnitt gewalt
+titel: Siebter Kreis
+untertitel: Blut, Dornen, Feuer
+kreis: 7
+thema: blut
+gesaenge: XII–XVII
+start: bergsturz
+
+# ------------------------------------------------------------ Gesang XII
+
+=== bergsturz
+rubrik: Hier beginnt der zwölfte Gesang. Der Minotaurus, die Kentauren, der Fluss aus Blut.
+gesang: 12
+ort: Am Bergsturz
+klang: brunnen
+Wo wir hinabsteigen, ist kein Weg, sondern ein Bergsturz. Als hätte jemand die Wand von oben bis unten zerbrochen und die Trümmer liegen gelassen.
+[vers 12,11-15]
+Der Minotaurus. Halb Stier, halb Mensch, gezeugt in einer hölzernen Kuh. Er beißt sich vor Wut selbst in den Arm.
+„Glaubst du, hier sei der Herzog von Athen, der dich oben getötet hat?“, ruft Vergil ihm zu. „Fort, Bestie. Der hier kommt nicht, weil deine Schwester es ihm beigebracht hat. Er kommt, um eure Strafen zu sehen.“
+Wie ein Stier, der sich losreißt, wenn er den Todesstoß schon hat, und nicht mehr laufen kann, sondern nur noch hin und her springt, so springt er.
+„Lauf zur Spalte!“, ruft Vergil. „Solange er tobt, geh hinunter.“
++ Ich laufe. -> geroell
+
+=== geroell
+ort: Am Bergsturz
+klang: brunnen
+Wir steigen über die Trümmer. Die Steine bewegen sich unter meinen Füßen, weil sie das Gewicht nicht gewohnt sind.
+„Du denkst vielleicht an diesen Bergsturz“, sagt Vergil. „Als ich das letzte Mal hier herunterkam, war der Fels noch nicht eingestürzt. Aber kurz bevor der kam, der Dis die große Beute aus dem obersten Kreis nahm, bebte das tiefe, stinkende Tal überall. Ich dachte, das All fühle die Liebe, durch die die Welt, wie manche glauben, schon oft ins Chaos zurückgefallen ist. In diesem Moment ist der alte Fels hier und anderswo zusammengebrochen.“
+Der Tod Christi hat die Hölle zerbrochen. Hier liegen noch die Trümmer.
+[vers 12,46-48]
+-> blutfluss
+
+=== blutfluss
+ort: Am Fluss aus Blut
+bild: blutfluss
+Ein Graben, in einem weiten Bogen, der die ganze Ebene umfasst. Zwischen dem Fuß des Felsens und dem Fluss laufen Kentauren in einer langen Reihe, mit Pfeil und Bogen, wie sie früher auf der Erde jagten.
+Als sie uns herabsteigen sehen, bleiben alle stehen. Drei lösen sich aus der Reihe, die Bögen schon gespannt.
+~ „Zu welcher Qual kommt ihr, die ihr den Hang herabsteigt?“ -> kentauren @30,44
+~ Aus dem Blut, ganz nah: ein Kopf, der gerade so herausschaut. -> getaucht @62,76 {einmal}
+
+=== getaucht
+ort: Am Fluss aus Blut
+bild: blutfluss
+Er steckt bis zu den Augenbrauen drin. Wenn er höher kommt, schießen die Kentauren. Ich sehe nur seine Stirn und höre, wie das Blut kocht. Er sagt nichts, er kann nichts sagen, sonst würde es ihm in den Mund laufen.
+Weiter hinten stecken andere nur bis zur Brust drin, noch weiter nur bis zu den Knöcheln. Je mehr einer getötet hat, desto tiefer.
+> Zurück -> blutfluss
+
+=== kentauren
+ort: Am Fluss aus Blut
+bild: blutfluss
+„Sag es von dort, wo du stehst“, ruft der eine, „sonst spanne ich den Bogen.“
+„Die Antwort geben wir Chiron, wenn wir bei ihm sind“, sagt Vergil. „Zu deinem Schaden war dein Wille immer so schnell.“ Dann, zu mir: „Das ist Nessus, der an der schönen Dejanira starb und sich selbst gerächt hat. Der in der Mitte, der auf die Brust schaut, ist der große Chiron, der Achilles erzogen hat. Der andere ist Pholus, der so voll Zorn war.“
+[vers 12,76-78]
+„Habt ihr gemerkt“, sagt Chiron zu den anderen, „dass der hintere bewegt, was er berührt? Die Füße von Toten tun das nicht.“
+Vergil steht schon an seiner Brust, wo die beiden Naturen zusammenkommen. „Er lebt wirklich, und so allein muss ich ihm das dunkle Tal zeigen. Die Notwendigkeit führt ihn, nicht das Vergnügen. Eine, die vom Halleluja-Singen herkam, hat mir diese Aufgabe gegeben. Gib uns einen von deinen Leuten, der uns zeigt, wo die Furt ist, und der den da auf dem Rücken trägt. Er ist kein Geist, der durch die Luft geht.“
+Chiron dreht sich nach rechts zu Nessus. „Geh mit ihnen und führe sie.“
+-> nessus
+
+=== nessus
+ort: Am Ufer, auf Nessus' Rücken
+bild: blutfluss
+Nessus trägt mich. Er riecht nach Pferd und nach dem Fluss. Unter uns kocht das Blut, und in ihm die, die so laut schreien.
+„Das sind Tyrannen“, sagt Nessus, „die nach Blut und Besitz gegriffen haben.“
+[vers 12,106-111]
+Ich sehe Vergil an. „Er soll dir jetzt Erster sein“, sagt er. „Ich bin Zweiter.“
+Weiter vorn steckt einer allein, abseits, bis zum Hals. „Der hat im Schoß Gottes ein Herz durchbohrt, das noch an der Themse verehrt wird.“ Guy de Montfort, der den Prinzen Heinrich in einer Kirche erstach, während der die Messe hörte.
+Dann wird das Blut flacher und flacher, bis es nur noch die Füße kocht. Hier ist die Furt. Auf der anderen Seite, sagt Nessus, wird es wieder tiefer, bis dorthin, wo Attila liegt, die Geißel der Erde, und Pyrrhus und Sextus. Er setzt mich ab und geht durch die Furt zurück.
+& seele tyrannen | Die Tyrannen im Blutfluss | Alexander, Dionysios von Syrakus, Ezzelino da Romano, Obizzo d'Este, Guy de Montfort, Attila. Je mehr Blut, desto tiefer im kochenden Strom.
+-> wald
+
+# ------------------------------------------------------------ Gesang XIII
+
+=== wald
+probe: Der Zweig
+rubrik: Hier beginnt der dreizehnte Gesang. Der Wald der Selbstmörder.
+gesang: 13
+ort: Im Wald der Selbstmörder
+bild: dornenwald
+klang: dornen
+[vers 13,1-6]
+Hier nisten die Harpyien, Vögel mit Frauengesichtern, mit breiten Flügeln und Krallen an den Füßen. Sie sitzen in den Bäumen und klagen.
+[vers 13,22-27]
+„Wenn du ein Zweiglein von einem dieser Bäume abbrichst“, sagt Vergil, „dann werden deine Gedanken alle abgeschnitten.“
+! zweig text=zweig_text -> pier
+
+=== zweig_text
+art: text
+Vergil, ohne Ungeduld: „Brich einen ab. Sonst glaubst du mir nicht, was ich dir nicht sagen kann.“
+„Warum brichst du mich?“
+Der Stamm wird dunkel von Blut, und wieder: „Warum reißt du mich? Hast du gar kein Mitleid? Wir waren Menschen, und jetzt sind wir Holz. Deine Hand müsste gnädiger sein, auch wenn wir Schlangen gewesen wären.“
+
+=== pier
+ort: Im Wald der Selbstmörder
+bild: dornenwald
+klang: dornen
+Wie ein grünes Holzscheit, das an einem Ende brennt und am anderen tropft und zischt, wenn der Wind herauskommt, so kommen aus dem gebrochenen Zweig zugleich Worte und Blut. Ich lasse ihn fallen und stehe da wie einer, der Angst hat.
+„Verletzte Seele“, sagt Vergil zu dem Baum, „hätte er glauben können, was er nur in meinen Versen gelesen hat, er hätte die Hand nicht nach dir ausgestreckt. Aber die Sache war unglaublich, und ich habe ihn dazu gebracht. Das tut mir selber leid. Sag ihm, wer du warst. Er kann deinen Ruf oben in der Welt erneuern, denn er darf zurück.“
+[vers 13,58-63]
+„Pier della Vigna. Kanzler des Kaisers Friedrich. Ich hatte beide Schlüssel zu seinem Herzen. Und dann kam die Hure, die ihre Augen nie vom Haus des Kaisers abwendet, der Neid, und hat alle gegen mich entflammt. Und die Entflammten haben den Kaiser entflammt. Meine frohen Ehren wurden trauriges Leid. Man hat mich geblendet. Mein Geist hat geglaubt, er entkommt der Verachtung, wenn er stirbt. Er hat mich ungerecht gegen mich gemacht, der ich gerecht war.“
+[vers 13,73-78]
+& seele pier | Pier della Vigna | Kanzler Kaiser Friedrichs II., fiel durch Neid in Ungnade, wurde geblendet und tötete sich 1249 im Kerker. Jetzt ein Dornbusch.
++ „Ich werde es tun. Man wird erfahren, dass du treu warst.“ -> pier_frage {setzt pier_versprochen}
++ Ich bringe kein Wort heraus. „Frag du ihn“, sage ich zu Vergil, „was du denkst, dass ich wissen will. Ich kann nicht, so sehr drückt mich das Mitleid.“ -> pier_frage {setzt pier_mitleid} {plus mitleid}
+
+=== pier_frage
+ort: Im Wald der Selbstmörder
+bild: dornenwald
+klang: dornen
+{wenn pier_versprochen} & trage pier | Pier della Vigna
+{wenn pier_mitleid} [vers 13,82-84]
+„Gefangener Geist“, fragt Vergil, „sag uns, wie die Seele in diese Knoten gebunden wird. Und ob sich je eine aus solchen Gliedern löst.“
+Der Stamm bläst hart, dann wird der Wind zur Stimme. „Wenn die wilde Seele den Körper verlässt, aus dem sie sich selbst gerissen hat, schickt Minos sie in den siebten Schlund. Sie fällt in den Wald, nicht an eine bestimmte Stelle. Wo der Zufall sie hinwirft, da keimt sie wie ein Dinkelkorn. Sie wächst zum Schössling und zum wilden Baum. Die Harpyien fressen dann ihre Blätter und machen ihr Schmerz und dem Schmerz ein Fenster.“
+„Wie die anderen werden wir am Ende um unsere Körper kommen. Aber keiner von uns zieht ihn wieder an. Es ist nicht gerecht, das zu haben, was man sich selbst genommen hat. Wir schleifen sie hierher, und durch den traurigen Wald werden unsere Körper hängen, jeder am Busch seines gequälten Schattens.“
+-> jagd
+
+=== jagd
+ort: Im Wald der Selbstmörder
+bild: dornenwald
+klang: dornen
+Wir stehen noch am Stamm, da hören wir einen Lärm, wie wenn ein Jäger die Sau und die Hunde auf seinen Posten zukommen hört, und das Brechen der Äste.
+[vers 13,118-123]
+Hinter ihnen ist der Wald voll schwarzer Hündinnen, gierig und schnell wie Windhunde, die von der Kette gelassen sind. Sie schlagen die Zähne in den, der sich versteckt hat, und zerreißen ihn Stück für Stück, und tragen die Glieder fort.
+Vergil nimmt mich bei der Hand und führt mich zu dem Busch, der vergeblich durch die blutenden Risse weint.
+„O Jacopo da Sant'Andrea“, sagt der Busch, „was hat es dir genützt, dich hinter mir zu verstecken? Was kann ich für dein schuldiges Leben?“
+„Wer warst du?“, fragt Vergil.
+[vers 13,143-151]
+& seele verschwender | Lano und Jacopo da Sant'Andrea | Verschwender, im Wald der Selbstmörder von schwarzen Hündinnen gejagt.
+& seele florentiner | Ein Florentiner ohne Namen | Hat sich im eigenen Haus erhängt. Ein Busch, von den Hunden zerrissen.
+Er nennt seinen Namen nicht. Nur die Stadt. Meine Stadt. Die Blätter, die die Hunde ihm abgerissen haben, liegen überall um ihn herum.
+! blaetter text=blaetter_text -> sand
+
+=== blaetter_text
+art: text
+Er sagt nichts, während ich sammle. Aber er weint leiser.
+Ich lege das letzte Blatt an seinen Fuß.
+
+# ------------------------------------------------------------ Gesang XIV
+
+=== sand
+rubrik: Hier beginnt der vierzehnte Gesang. Eine Wüste aus Sand, auf die Feuer regnet.
+gesang: 14
+ort: Am Rand der brennenden Wüste
+bild: sand
+klang: sand
+[vers 14,1-3]
+Wir kommen an die Grenze, wo der zweite Ring vom dritten getrennt ist. Ein Sandfeld, dicht und trocken, auf dem nichts wächst. Der Wald liegt drumherum wie ein Kranz.
+[vers 14,28-30]
+Nackte Seelen, viele Herden davon, die alle elend weinen, jede auf andere Weise. Einige liegen auf dem Rücken. Einige sitzen ganz zusammengekauert. Andere gehen ohne Pause. Die gehen, sind die meisten. Die liegen, die wenigsten, aber ihre Zungen sind am lautesten.
+Ihre Hände tanzen, ohne Ruhe, mal hierhin, mal dorthin, um die frischen Flammen abzuwehren.
+~ Einer liegt da, groß, und tut, als merke er das Feuer nicht. -> kapaneus @70,78
+~ Hinter mir, unter den Gehenden: Jemand ruft meinen Namen? -> nicht_er @24,60 {einmal}
+
+=== nicht_er
+ort: Am Rand der brennenden Wüste
+bild: sand
+klang: sand
+Ich drehe mich um. Keiner. Oder einer, der mich verwechselt hat. Die Laufenden sehen einen nicht lange an. Sie dürfen nicht stehen bleiben.
+> Zurück -> sand
+
+=== kapaneus
+ort: In der brennenden Wüste
+bild: sand
+klang: sand
+„Meister, wer ist der Große, der sich nicht um das Feuer zu kümmern scheint und so verächtlich daliegt, als könnte der Regen ihn nicht reifen?“
+[vers 14,49-51]
+„Wenn Jupiter seinen Schmied müde macht, von dem er im Zorn den Blitz nahm, mit dem ich am letzten Tag getroffen wurde; wenn er die anderen in Mongibello in der schwarzen Werkstatt müde macht und ruft: Guter Vulcanus, hilf, hilf!; und auf mich schießt mit aller Kraft: Er soll keine fröhliche Rache haben.“
+[vers 14,63-66]
+Ich habe Vergil noch nie so laut gehört. Zu mir sagt er dann ruhiger: „Das war einer der sieben Könige, die Theben belagerten. Er hat Gott verachtet, und es scheint, er verachtet ihn noch. Aber, wie ich ihm sagte, seine Wut ist der richtige Schmuck für seine Brust. Komm. Setz die Füße nicht auf den heißen Sand. Halte dich immer am Wald.“
+& seele kapaneus | Kapaneus | Einer der sieben gegen Theben, lästerte Jupiter. Liegt im Feuerregen und gibt nicht nach.
+-> baechlein
+
+=== baechlein
+ort: Am roten Bach
+bild: sand
+klang: sand
+Schweigend kommen wir an einen kleinen Bach, der aus dem Wald hervorspringt. Seine Röte lässt mich noch heute schaudern. Sein Grund und seine Ufer sind aus Stein, und über ihm erlischt jede Flamme. Hier ist der Weg.
++ „Woher kommt dieser Bach? Wie kann er das Feuer löschen?“ -> greis
++ Ich gehe auf dem Rand des Bachs weiter. -> brunetto
+
+=== greis
+ort: Am roten Bach
+bild: sand
+klang: sand
+Er erzählt mir von einer Insel mitten im Meer, Kreta, wo unter einem Berg ein großer Greis steht, den Rücken nach Osten, das Gesicht nach Rom, als sähe er in einen Spiegel. Sein Kopf ist aus Gold, Arme und Brust aus Silber, dann Kupfer bis zur Gabelung, darunter Eisen, nur der rechte Fuß aus Ton, und auf dem steht er am meisten. Jeder Teil außer dem Gold hat einen Riss, und aus dem Riss tropfen Tränen. Die Tränen sammeln sich und höhlen den Fels und laufen herab in dieses Tal. Sie werden Acheron, Styx und Phlegeton, und ganz unten, wo es nicht mehr hinabgeht, werden sie Kokytos.
+„Der Lethe?“
+„Den siehst du, aber nicht in diesem Graben. Dort, wo die Seelen sich waschen, wenn die Schuld bereut und abgenommen ist.“
+& seele greis | Der Greis von Kreta | Eine Statue aus Gold, Silber, Kupfer, Eisen und Ton. Aus ihren Rissen fließen die Tränen, die zu den Flüssen der Hölle werden: Acheron, Styx, Phlegeton, Kokytos.
+-> brunetto
+
+# ------------------------------------------------------------ Gesang XV
+
+=== brunetto
+probe: Schritt halten
+rubrik: Hier beginnt der fünfzehnte Gesang. Dante begegnet seinem Lehrer.
+gesang: 15
+ort: Auf dem Damm des Baches
+bild: sand
+klang: sand
+Wir gehen auf einem der harten Ränder. Der Dunst vom Bach schützt Wasser und Ufer vor dem Feuer. Wir sind schon so weit vom Wald entfernt, dass ich ihn nicht mehr sehen könnte, wenn ich mich umdrehte. Da kommt uns eine Schar von Seelen entgegen, die neben dem Damm herläuft. Jeder sieht uns an, wie man abends bei Neumond jemanden ansieht, und sie ziehen die Brauen zusammen wie ein alter Schneider beim Einfädeln.
+[vers 15,22-30]
+Herr Brunetto. Brunetto Latini. Er hat mir Rhetorik beigebracht, Cicero, wie man einen Brief schreibt, wie man eine Rede baut, wie man mit Worten dafür sorgt, dass man nicht vergessen wird. Sein Gesicht ist verbrannt, wie alle hier. Ich erkenne ihn trotzdem.
+„Mein Sohn“, sagt er, „lass es dir nicht missfallen, wenn Brunetto Latini ein wenig mit dir zurückgeht und die Schar weiterlaufen lässt.“
+„Ich bitte Euch darum, so sehr ich kann. Wenn Ihr wollt, setze ich mich zu Euch, falls es dem recht ist, mit dem ich gehe.“
+„O Sohn, wer von dieser Herde nur einen Augenblick stehen bleibt, liegt danach hundert Jahre, ohne sich gegen das Feuer wehren zu dürfen. Darum geh weiter. Ich gehe neben dir, unten.“
+& gefunden brunetto
+& seele brunetto | Brunetto Latini | Mein Lehrer, Notar, Gelehrter, Verfasser des *Tesoro*. Gestorben 1294. Läuft mit den Sodomiten im Feuerregen.
+! schritt text=brunetto_worte -> nachsehen
+
+=== brunetto_worte
+art: text
+„Welches Glück oder welches Schicksal führt dich vor deinem letzten Tag hier herunter? Und wer ist der, der dir den Weg zeigt?“
+„Da oben, im heiteren Leben“, sage ich, „habe ich mich in einem Tal verirrt, bevor mein Alter voll war. Gestern früh habe ich ihm den Rücken gekehrt. Dieser hier ist mir erschienen, als ich zurückging, und führt mich nach Hause, auf diesem Weg.“
+„Wenn du deinem Stern folgst, kannst du den ruhmreichen Hafen nicht verfehlen. Wenn ich im schönen Leben richtig gesehen habe.“
+„Wäre ich nicht so früh gestorben, ich hätte dir bei deiner Arbeit Mut gemacht, weil ich sah, wie der Himmel dir gewogen ist.“
+„Aber dieses undankbare, bösartige Volk, das vor alters von Fiesole herabkam und noch nach Berg und Stein schmeckt, wird dein Feind werden, weil du das Rechte tust.“
+„Unter den sauren Vogelbeeren darf keine süße Feige reifen.“
+„Beide Parteien werden Hunger auf dich haben. Aber weit weg von der Ziege soll das Gras sein.“
+„Fragst du, wer noch bei mir ist? Geistliche, große Gelehrte, berühmt. Alle mit derselben Sünde befleckt. Für mehr ist die Zeit zu kurz.“
+„Da kommt neuer Rauch aus dem Sand. Da kommen Leute, mit denen ich nicht sein darf.“
+„Lass dir meinen *Tesoro* empfohlen sein, in dem ich noch lebe. Mehr will ich nicht.“
+
+=== nachsehen
+ort: Auf dem Damm des Baches
+bild: sand
+klang: sand
+{wenn brunetto_pausen>=1} Er hat meinetwegen gestanden. Ich weiß nicht, was das hier unten kostet. Er hat es nicht gesagt.
+Ich habe ihm noch etwas sagen wollen, die ganze Zeit, während wir gingen. Jetzt sage ich es, zu spät, er läuft schon:
+[vers 15,82-87]
+[vers 15,121-124]
+& prophezeiung brunetto | Brunetto Latini auf dem Feuersand: Wenn du deinem Stern folgst, erreichst du den ruhmreichen Hafen. Aber das undankbare Volk von Fiesole wird dein Feind, und beide Parteien werden Hunger auf dich haben.
++ „Ich verspreche es. Man wird Euren *Tesoro* lesen.“ -> wasserfall {setzt brunetto_versprochen}
++ Ich sehe ihm nach, bis ich ihn nicht mehr sehe. -> wasserfall
+
+# ------------------------------------------------------------ Gesang XVI
+
+=== wasserfall
+rubrik: Hier beginnt der sechzehnte Gesang. Drei Florentiner, ein Wasserfall, eine Schnur.
+gesang: 16
+ort: Wo das Wasser hinabfällt
+bild: sand
+klang: abgrund
+{wenn brunetto_versprochen} & trage brunetto | Brunetto Latini
+[vers 16,1-3]
+Da lösen sich drei Schatten aus einer Schar, die unter dem Regen der Qual vorbeizieht, und laufen auf uns zu. „Bleib stehen, du! An deiner Kleidung sieht man, dass du aus unserer verdorbenen Stadt bist.“
+Was für Wunden ich an ihren Gliedern sah, alte und neue, vom Feuer eingebrannt. Es tut mir noch weh, wenn ich daran denke.
+„Auf die musst du höflich sein“, sagt Vergil. „Wäre nicht das Feuer, ich würde sagen, die Eile stünde dir besser an als ihnen.“
+[vers 16,19-21]
+Wie nackte, geölte Ringer, die sich belauern, bevor sie zupacken, so drehen sie sich im Kreis, und dabei hält jeder sein Gesicht zu mir gewandt, so dass ihr Hals und ihre Füße in entgegengesetzte Richtungen gehen.
+„Wenn das Elend dieses lockeren Bodens uns und unsere Bitten verachtenswert macht“, sagt der eine, „dann soll unser Ruf dich bewegen, uns zu sagen, wer du bist. Dieser, in dessen Spuren ich trete, war Guido Guerra. Der andere, der hinter mir den Sand tritt, ist Tegghiaio Aldobrandi. Und ich bin Jacopo Rusticucci. Meine böse Frau hat mir mehr geschadet als alles andere.“
+& gefunden tegghiaio
+& gefunden rusticucci
+& seele drei_florentiner | Guido Guerra, Tegghiaio Aldobrandi, Jacopo Rusticucci | Drei angesehene Florentiner, die sich im Feuerregen wie ein Rad drehen.
++ Ich will mich zu ihnen hinunterwerfen. -> hinunter
++ „Nicht Verachtung, sondern Schmerz hat euer Zustand in mich gelegt.“ -> florenz_frage
+
+=== hinunter
+ort: Wo das Wasser hinabfällt
+bild: sand
+klang: abgrund
+Wäre ich vor dem Feuer geschützt gewesen, ich hätte mich zu ihnen hinuntergeworfen, und ich glaube, der Meister hätte es zugelassen. Aber ich wäre verbrannt und gebacken worden. Die Angst siegt über den guten Willen, der mich so gierig macht, sie zu umarmen.
+-> florenz_frage | „Nicht Verachtung, sondern Schmerz …“
+
+=== florenz_frage
+ort: Wo das Wasser hinabfällt
+bild: sand
+klang: abgrund
+„Ich bin aus eurer Stadt. Eure Taten und eure geehrten Namen habe ich immer mit Liebe gehört und gesagt.“
+„Sag uns: Wohnen Höflichkeit und Tapferkeit noch in unserer Stadt, wie früher? Oder sind sie ganz fort? Einer, der erst kurz bei uns ist, macht uns sehr traurig mit dem, was er erzählt.“
+Ich hebe das Gesicht und rufe es heraus, fast gegen meinen Willen:
+[vers 16,73-75]
+Die drei sehen sich an, wie man sich ansieht, wenn man die Wahrheit hört.
+[vers 16,82-85]
++ „Ich werde von euch sprechen.“ -> schnur {setzt drei_versprochen}
++ Ich nicke nur, sie laufen schon. -> schnur
+
+=== schnur
+ort: Wo das Wasser hinabfällt
+bild: sand
+klang: abgrund
+{wenn drei_versprochen} & trage drei | Guido Guerra, Tegghiaio und Rusticucci
+Sie lösen das Rad auf und fliehen, ihre Beine sehen dabei aus wie Flügel. Man könnte kein Amen sagen, so schnell sind sie weg.
+Wir gehen weiter. Das Wasser fällt mit einem Lärm in die Tiefe, dass man sein eigenes Wort kaum hört.
+Ich trage einen Strick um den Leib. Mit dem wollte ich einmal den Pardel mit dem bunten Fell fangen. Vergil sagt, ich soll ihn abnehmen. Ich wickle ihn ab und gebe ihn ihm, zusammengerollt. Er dreht sich nach rechts und wirft ihn ein Stück vom Rand weg in die Tiefe.
+„Da muss doch etwas Neues antworten“, denke ich, „auf dieses neue Zeichen, dem der Meister so mit den Augen folgt.“
+[vers 16,124-132]
+-> geryon
+
+# ------------------------------------------------------------ Gesang XVII
+
+=== geryon
+rubrik: Hier beginnt der siebzehnte Gesang. Geryon, das Bild des Betrugs, und die Wucherer.
+gesang: 17
+ort: Am Abgrund
+bild: geryon
+klang: abgrund
+„Sieh das Tier mit dem spitzen Schwanz, das über Berge geht und Mauern und Waffen bricht. Sieh das Tier, das die ganze Welt verpestet.“
+[vers 17,10-15]
+Ein Gesicht wie das eines ehrlichen Mannes. Freundlich. Und dahinter ein Schlangenleib, bunt bemalt wie ein Teppich. Ich verstehe, ohne dass Vergil es mir sagt: So sieht Betrug aus. Von vorn sieht man nur das Gesicht.
+„Damit du die Erfahrung dieses Rings ganz mitnimmst“, sagt Vergil, „geh und sieh, wie es denen dort geht. Mach es kurz. Ich rede inzwischen mit dem Tier, dass es uns seine starken Schultern leiht.“
+> Zu denen, die am Rand sitzen, jeder mit einem Beutel um den Hals -> wucherer
+
+=== wucherer
+ort: Am Rand des Abgrunds
+bild: sand
+klang: sand
+Ich gehe allein, ganz am Rand des siebten Kreises, zu den traurigen Leuten, die dort sitzen. Ihre Augen brechen vor Schmerz hervor. Mit den Händen wehren sie mal das Feuer ab, mal den heißen Boden, wie Hunde im Sommer, wenn Flöhe und Fliegen sie beißen.
+Ich erkenne keinen. Aber jeder hat einen Beutel am Hals, mit einer Farbe und einem Zeichen, und auf den Beutel starrt er. Ein gelber mit einem blauen Löwen. Ein roter mit einer weißen Gans. Wappen. Florentiner Familien. Ich kenne die Häuser, in denen sie gewohnt haben.
+Einer mit einem weißen Beutel und einer blauen Sau darauf fährt mich an: „Was machst du in dieser Grube? Hau ab. Und weil du noch lebst, sag meinem Nachbarn Vitaliano, er wird hier links von mir sitzen. Ich bin aus Padua, die anderen sind Florentiner. Oft dröhnen sie mir die Ohren voll.“
+Dann verzieht er den Mund und streckt die Zunge heraus, wie ein Ochse, der sich die Nase leckt.
+& seele wucherer | Die Wucherer | Sitzen am Rand des Feuersands, jeder mit einem Beutel, auf dem sein Familienwappen steht.
+-> aufsteigen | Ich gehe zurück zu Vergil.
+
+=== aufsteigen
+ort: Am Abgrund
+bild: geryon
+klang: abgrund
+Vergil sitzt schon auf dem Rücken des Tiers. „Sei jetzt stark und kühn. Jetzt steigt man auf solchen Treppen hinab. Steig vorn auf. Ich will in der Mitte sein, damit der Schwanz dir nichts tun kann.“
+Ich zittere wie einer, der das Viertagefieber nahen fühlt, dem die Nägel schon blau werden. Aber die Scham, die einen Diener vor einem guten Herrn stark macht, droht mir. Ich setze mich auf die riesigen Schultern. Ich will sagen: Halt mich fest. Die Stimme kommt nicht.
+Er hält mich trotzdem.
+-> flug | Geryon stößt sich ab.
+
+=== flug
+ort: In der Luft
+klang: abgrund
+Ich sehe nichts. Auf allen Seiten nur Luft, und alles Sichtbare ist verloschen außer dem Tier.
+& seele geryon | Geryon | Das Ungeheuer des Betrugs: das Gesicht eines ehrlichen Mannes, der Leib einer Schlange. Es trägt uns hinab in den achten Kreis.
+[vers 17,115-117]
+Ich weiß nur durch den Wind, dass wir fallen. Er kommt von unten und von vorn. Und durch das Geräusch: Rechts unter uns höre ich den Wasserfall, der ein schreckliches Tosen macht, und es wird lauter. Ich strecke den Kopf vor, um hinabzusehen, und da wird meine Angst größer, denn ich sehe Feuer und höre Klagen. Ich ziehe die Beine an.
++ Ich mache die Augen zu und halte mich an Vergil. -> landung {setzt augen_zu_geryon}
++ Ich sehe hinunter, ins Feuer. -> landung {setzt hinunter_geryon}
+
+=== landung
+ort: Am Grund
+bild: malebolge
+klang: bolgen
+{wenn augen_zu_geryon} Hinter den Lidern ist es nicht dunkler als vorher. Vergils Arm liegt um meine Brust, die ganze Zeit.
+{wenn hinunter_geryon} Ich sehe Feuer und höre Klagen, und an ihnen merke ich erst, dass wir uns drehen: Sie kommen von rechts, dann von vorn, dann von links, immer näher.
+[vers 17,127-136]
+-> malebolge: | Absteigen

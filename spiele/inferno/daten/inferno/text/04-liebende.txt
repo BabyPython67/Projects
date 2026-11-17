@@ -1,0 +1,140 @@
+@abschnitt liebende
+titel: Zweiter Kreis
+untertitel: Die Liebenden im Sturm
+kreis: 2
+thema: sturm
+gesaenge: V
+start: minos
+
+=== minos
+rubrik: Hier beginnt der fünfte Gesang. Minos richtet, und im Sturm treiben die, die die Vernunft der Lust unterwarfen.
+gesang: 5
+ort: Am Eingang des zweiten Kreises
+bild: minos
+klang: tor
+Der zweite Kreis ist enger als der erste und umschließt mehr Schmerz. Am Eingang sitzt einer und knurrt.
+[vers 5,4-6]
+Jede Seele, die vor ihn kommt, sagt alles. Sie kann nicht anders. Er hört zu, dann schlingt er seinen Schwanz um sich, so oft, wie viele Stufen sie hinab soll. Zweimal: zweiter Kreis. Siebenmal: siebter. Er sagt dabei kein Wort. Das Urteil steckt in den Windungen.
+Als er mich sieht, hält er inne, mitten in einem Urteil.
+„Du, der du zu diesem Ort des Schmerzes kommst“, sagt er, „pass auf, wie du hineingehst und wem du vertraust. Lass dich nicht täuschen, weil der Eingang so breit ist.“
++ „Ich vertraue dem, der mich führt.“ -> minos_vergil {setzt minos_geantwortet}
++ Ich lasse Vergil antworten. -> minos_vergil
+
+=== minos_vergil
+ort: Am Eingang des zweiten Kreises
+bild: minos
+klang: tor
+{wenn minos_geantwortet} Minos sieht mich lange an. Dann wickelt er den Schwanz wieder ab, den er schon halb um sich gelegt hatte.
+„Warum schreist du so?“, sagt Vergil zu ihm. „Halte ihn nicht auf. Er geht, weil man es dort will, wo man kann, was man will. Frag nicht weiter.“
+Es sind dieselben Worte wie bei Charon. Sie wirken wieder. Minos wendet sich der nächsten Seele zu und lässt uns vorbei.
+& seele minos | Minos | König von Kreta, in der Hölle Richter. Er hört jedes Geständnis und zeigt mit den Windungen seines Schwanzes den Kreis an.
+-> sturm
+
+=== sturm
+ort: Zweiter Kreis
+bild: sturm
+[vers 5,25-28]
+Ein Ort, an dem jedes Licht schweigt. Er brüllt wie das Meer im Sturm, wenn Winde von zwei Seiten kommen.
+[vers 5,31-33]
+Wenn sie an den Absturz kommen, an die Felskante, wo es hinabgeht, schreien sie am lautesten. Dort fluchen sie auf die Kraft Gottes. Ich verstehe: Hier sind die, die die Vernunft der Lust unterworfen haben.
+[vers 5,40-45]
+Und dann, wie Kraniche, die in einer langen Linie fliegen und ihre Klage singen, kommen Schatten auf dem Wind getragen, einer hinter dem anderen.
+„Meister, wer sind die, die von der schwarzen Luft so gestraft werden?“
+~ Eine Königin. -> semiramis @18,30 {einmal}
+~ „… die Asche meines Mannes …“ -> dido @46,22 {einmal}
+~ Eine sehr schöne Frau, um die herum Männer fallen. -> helena @66,46 {einmal}
+~ Zwei, die zusammen fliegen und ganz leicht scheinen. -> paar @84,56
+
+=== semiramis
+ort: Zweiter Kreis
+bild: sturm
+„Die Erste“, sagt Vergil, „war Kaiserin über viele Sprachen. Sie war der Lust so verfallen, dass sie sie in ihrem Gesetz erlaubt hat, damit man ihr nichts vorwerfen konnte. Semiramis. Sie hatte das Land, das jetzt der Sultan regiert.“
+Sie fliegt vorbei, ohne den Kopf zu drehen. Eine Königin, die immer noch aufrecht sitzt, auch wenn sie keinen Thron mehr hat.
+& seele semiramis | Semiramis | Königin von Babylon. Hat die Lust per Gesetz erlaubt.
+> Zurück in den Wind -> sturm
+
+=== dido
+ort: Zweiter Kreis
+bild: sturm
+„Die nächste hat sich aus Liebe getötet und der Asche des Sychaeus die Treue gebrochen“, sagt Vergil.
+Er sagt nicht, dass er ihre Geschichte geschrieben hat. Dido, die Königin von Karthago, die sich in seinen Aeneas verliebt hat, die er hat abreisen lassen, weil die Götter es so wollten. Sie fliegt an uns vorbei, sehr nah. Ich sehe, wie Vergil den Blick senkt.
+Danach Kleopatra, die alles in Lust getan hat.
+& seele dido | Dido und Kleopatra | Dido brach dem toten Sychaeus die Treue und tötete sich aus Liebe zu Aeneas. Kleopatra lebte für die Lust.
+> Zurück in den Wind -> sturm
+
+=== helena
+ort: Zweiter Kreis
+bild: sturm
+„Helena, um derentwillen so viele schlimme Jahre vergingen. Und Achilles, der große, der zuletzt aus Liebe gekämpft hat. Paris. Tristan.“
+Er zeigt mir mehr als tausend und nennt sie, alle, die die Liebe aus dem Leben gerissen hat. Ritter, Damen. Ich höre ihm zu, wie man einer Liste von Gefallenen zuhört. Bei jedem Namen wird mir etwas schwächer in den Knien.
+& seele helena | Helena, Achilles, Paris, Tristan | Im Sturm der Liebenden. Vergil nennt mehr als tausend.
+> Zurück in den Wind -> sturm
+
+=== paar
+ort: Zweiter Kreis
+probe: Im Wind
+bild: sturm
+„Dichter, ich möchte mit den zweien sprechen, die zusammen gehen und so leicht auf dem Wind scheinen.“
+„Wart, bis sie näher sind. Dann bitte sie bei der Liebe, die sie treibt. Sie werden kommen.“
+Ich warte. Als der Wind sie zu uns herüberbiegt, rufe ich: „Ihr gequälten Seelen, kommt und sprecht mit uns, wenn es kein anderer verbietet!“
+[vers 5,82-84]
+So kommen sie aus der Schar, in der Dido fliegt, durch die schlimme Luft zu uns. So stark war mein Ruf.
+[vers 5,88-93]
+Sie ist es, die spricht. Er schweigt. Der Wind hört nicht auf. Wenn ich sie hören will, muss ich ihnen folgen.
+! wind text=francesca_worte -> gesenkt
+
+=== francesca_worte
+art: text
+[vers 5,94-96]
+[vers 5,97-99]
+[vers 5,100-102]
+[vers 5,103-105]
+[vers 5,106-107]
+
+=== gesenkt
+ort: Zweiter Kreis
+bild: sturm
+{wenn francesca_verpasst>=2} Ich habe nicht alles gehört. Der Wind hat Stücke ihrer Geschichte mitgenommen, und sie hat sie nicht wiederholt. Sie wiederholt nichts. Sie hat nur diesen einen Tag.
+& seele francesca | Francesca da Rimini und Paolo Malatesta | Verheiratet mit Gianciotto Malatesta, verliebt in dessen Bruder Paolo. Gianciotto erstach beide um 1285. Sie treiben für immer zusammen im Sturm.
+Ich senke den Kopf und halte ihn gesenkt, so lange, bis Vergil fragt: „Was denkst du?“
+„Ach“, sage ich, „wie viele süße Gedanken, wie viel Verlangen hat die beiden zu diesem schmerzhaften Ort geführt.“
+Dann wende ich mich wieder zu ihnen. „Francesca, dein Leid macht mich traurig und fromm bis zu Tränen.“
++ „Aber sag mir: In der Zeit der süßen Seufzer, woran habt ihr gemerkt, was ihr beide wolltet und euch nicht sagtet?“ -> buch
++ „Wer ist er, der neben dir schweigt?“ -> paolo {einmal}
++ „Bereust du es?“ -> bereuen {einmal}
+
+=== paolo
+ort: Zweiter Kreis
+bild: sturm
+„Er ist der, der nie von mir getrennt wird“, sagt sie. Seinen Namen sagt sie nicht. Sie muss ihn auch nicht sagen. Paolo. Er weint, die ganze Zeit, ohne Laut.
+-> buch | „Woran habt ihr es gemerkt?“
+
+=== bereuen
+ort: Zweiter Kreis
+bild: sturm
+Sie sieht mich an, als hätte ich etwas in einer fremden Sprache gesagt.
+Dann sieht sie Paolo an.
+-> buch | Ich frage, was ich eigentlich fragen wollte.
+
+=== buch
+ort: Zweiter Kreis
+bild: sturm
+[vers 5,121-123]
+„Aber wenn du so sehr wissen willst, wo unsere Liebe die erste Wurzel hatte, dann erzähle ich es dir, wie einer, der weint und spricht.“
+[vers 5,127-138]
+-> ohnmacht
+
+=== ohnmacht
+ort: Zweiter Kreis
+bild: sturm
+[vers 5,139-142]
+& setze ohnmacht_francesca
+-> aufhoeren
+
+=== aufhoeren
+ort: …
+klang: stille
+An diesem Tag lasen wir nicht weiter.
+Wenn du willst, mach es wie sie. Klapp das Buch für heute zu. Dein Weg ist gespeichert, und wenn du wiederkommst, wacht Dante im dritten Kreis auf. Es regnet dort.
++ Das Buch für heute zuklappen -> @titel
+-> regen: | Weiterlesen

@@ -1,0 +1,278 @@
+@abschnitt verrat
+titel: Neunter Kreis
+untertitel: Das Eis
+kreis: 9
+thema: eis
+gesaenge: XXXII–XXXIV
+start: kokytos
+
+# ------------------------------------------------------------ Gesang XXXII
+
+=== kokytos
+rubrik: Hier beginnt der zweiunddreißigste Gesang. Im Eis des Kokytos stecken die Verräter.
+gesang: 32
+ort: Auf dem Kokytos
+bild: eis
+[vers 32,1-3]
+Ich habe solche Verse nicht. Ich fange trotzdem an, und mit Angst. Den Grund des ganzen Alls zu beschreiben ist kein Spiel und nichts für eine Zunge, die Mama und Papa ruft.
+Unter mir ist kein Wasser mehr. Ein See, so gefroren, dass er wie Glas aussieht. Die Donau im Winter in Österreich hat nie so eine dicke Decke gehabt. Und aus dem Eis schauen Köpfe. Bis dahin, wo man vor Scham rot wird, stecken sie drin, blau vor Kälte, und klappern mit den Zähnen wie Störche mit dem Schnabel. Jeder hält das Gesicht nach unten. Mit dem Mund zeigen sie die Kälte, mit den Augen das traurige Herz.
+~ Unter meinen Füßen, eine Stimme: „Gib acht …“ -> achtgeben @48,82
+~ Zwei Köpfe, Stirn an Stirn. -> brueder @24,58 {einmal}
+~ Einer zählt Namen auf, ohne dass ihn einer fragt. -> camicion @76,62 {einmal}
+
+=== achtgeben
+ort: Caina
+bild: eis
+[vers 32,19-21]
+Ich habe nicht gemerkt, dass ich auf Köpfen gehe. Ich gehe jetzt anders. Es hilft wenig. Es sind zu viele.
+Das hier heißt Caina, nach Kain. Hier sind die, die ihre eigenen Leute verraten haben. Francesca hat gesagt, dass Caina auf ihren Mann wartet.
+-> antenora
+
+=== brueder
+ort: Caina
+bild: eis
+Zwei, so dicht aneinander, dass ihre Haare sich vermischen. „Wer seid ihr?“ Sie biegen die Hälse zurück, und als sie mich ansehen, laufen ihnen Tränen aus den Augen, die gleich auf den Lidern gefrieren und sie zuschließen. Da stoßen sie wie zwei Ziegenböcke mit den Köpfen aneinander, so sehr hat der Zorn sie gepackt.
+Brüder. Sie haben sich um ein Erbe gegenseitig umgebracht.
+> Weiter -> kokytos
+
+=== camicion
+ort: Caina
+bild: eis
+„Warum siehst du uns so lange an?“, sagt einer, dem die Kälte beide Ohren genommen hat. Und ohne dass ich frage, nennt er sie mir, alle, die um ihn herum stecken: die Brüder dort, Mordred, dem König Artus die Brust durchstach, und Focaccia, und den, der ihm mit dem Kopf die Sicht versperrt. „Und damit du mich nicht weiter ausfragst: Ich war Camicion de' Pazzi. Ich warte auf Carlino, der wird mich entschuldigen.“
+Er verrät die anderen, damit er nicht allein ist. Er verrät sogar einen, der noch lebt.
+> Weiter -> kokytos
+
+=== antenora
+ort: Antenora
+bild: eis
+Wir gehen weiter zur Mitte, wo alles Gewicht zusammenläuft, und ich zittere in der ewigen Kälte.
+[vers 32,76-78]
+Er schreit, weinend: „Warum trittst du mich? Wenn du nicht kommst, um die Rache für Montaperti zu vergrößern, warum quälst du mich?“
+Montaperti. Bei Montaperti hat ein Florentiner unseren Bannerträger in den Rücken geschlagen und ihm die Hand abgehauen, und das Heer floh, als die Fahne fiel. Wenn das hier der ist …
+„Meister, warte hier auf mich. Ich will aus einem Zweifel heraus, wegen dem da.“
+Vergil bleibt stehen.
+„Wer bist du, der du so andere schmähst?“
+„Und wer bist du, der du durch die Antenora gehst und anderen ins Gesicht trittst, so stark, dass es selbst für einen Lebenden zu viel wäre?“
+„Ich lebe. Und es kann dir lieb sein, wenn ich deinen Namen zu den anderen in meine Aufzeichnungen setze.“
+„Ich will das Gegenteil. Geh weg und quäl mich nicht mehr. Du verstehst dich schlecht aufs Schmeicheln in dieser Ebene.“
++ Ich packe ihn bei den Haaren im Nacken. -> haare {setzt haare_gerauft}
++ Ich lasse ihn. -> lassen
+
+=== haare
+ort: Antenora
+bild: eis
+„Du sagst mir deinen Namen, oder hier bleibt dir kein Haar.“
+[vers 32,100-105]
+Da schreit ein anderer: „Was hast du, Bocca? Reicht es dir nicht, mit den Kiefern zu klappern, musst du auch noch bellen? Welcher Teufel hat dich gepackt?“
+-> bocca_name
+
+=== lassen
+ort: Antenora
+bild: eis
+Ich lasse ihn. Er sieht nicht auf. Ich drehe mich schon um, da schreit ein anderer, zwei Köpfe weiter: „Was hast du, Bocca? Reicht es dir nicht, mit den Kiefern zu klappern, musst du jetzt auch noch reden?“
+Er hat es nicht verhindern können. Ich habe es nicht verhindern müssen.
+-> bocca_name
+
+=== bocca_name
+ort: Antenora
+bild: eis
+Bocca degli Abati. Der Verräter von Montaperti.
+{wenn haare_gerauft} „Jetzt will ich nicht mehr, dass du redest, böser Verräter“, sage ich. „Zu deiner Schande werde ich wahre Nachricht von dir mitnehmen.“
+„Geh und erzähl, was du willst“, sagt er. „Aber verschweig nicht den, der eben so schnell die Zunge hatte. Er weint hier über das Silber der Franzosen. Buoso da Duera.“ Und dann verrät er sie alle, einen nach dem anderen, die um ihn herum stecken, so schnell, als hätte er darauf gewartet.
+{wenn haare_gerauft} & trage bocca | Bocca degli Abati (gegen seinen Willen)
+& seele bocca | Bocca degli Abati | Florentiner Guelfe, der 1260 bei Montaperti zum Feind überlief und dem eigenen Bannerträger die Hand abschlug. In der Antenora, bei den Verrätern an der Heimat.
+-> loch
+
+=== loch
+ort: Antenora
+bild: ugolino
+[vers 32,125-129]
+„Du, der du durch so tierisches Zeichen deinen Hass auf den zeigst, den du frisst: Sag mir, warum. Und wenn du dich zu Recht beklagst, dann zahle ich es dir oben in der Welt heim, wenn die Zunge, mit der ich spreche, nicht vertrocknet.“
+-> ugolino
+
+# ------------------------------------------------------------ Gesang XXXIII
+
+=== ugolino
+probe: Zuhören
+rubrik: Hier beginnt der dreiunddreißigste Gesang. Graf Ugolino erzählt vom Hungerturm.
+gesang: 33
+ort: Antenora
+bild: ugolino
+[vers 33,1-9]
+„Ich weiß nicht, wer du bist und wie du hier heruntergekommen bist. Aber Florentiner bist du, wenn ich dich höre. Du musst wissen: Ich war Graf Ugolino, und der hier ist der Erzbischof Ruggieri. Jetzt sag ich dir, warum ich ihm so ein Nachbar bin.“
+! ugolino text=ugolino_erzaehlt abbruch=weggehoert -> pisa
+
+=== ugolino_erzaehlt
+art: text
+„Dass ich ihm vertraut habe und durch seine bösen Gedanken gefangen und dann getötet wurde, das muss ich nicht erzählen. Aber was du nicht gehört haben kannst, das heißt, wie grausam mein Tod war, das sollst du jetzt hören.“
+„Ein kleines Loch in dem Turm, der nach mir der Hungerturm heißt, hatte mir durch seine Öffnung schon mehrere Monde gezeigt, als ich den bösen Traum hatte, der mir den Schleier der Zukunft zerriss.“
+„Der hier erschien mir als Herr und Meister, wie er den Wolf und die Wölflein jagte. Nach kurzem Lauf schienen Vater und Söhne müde, und mir war, als sähe ich, wie scharfe Zähne ihnen die Flanken aufrissen.“
+„Als ich vor dem Morgen erwachte, hörte ich meine Söhne, die mit mir waren, im Schlaf weinen und nach Brot fragen.“
+„Sie waren schon wach, und die Stunde kam, in der man uns sonst das Essen brachte. Jeder hatte Angst wegen seines Traums.“
+[vers 33,46-51]
+„Ich weinte nicht und antwortete nicht, den ganzen Tag nicht und die Nacht danach nicht, bis die nächste Sonne in die Welt kam. Als ein wenig Licht in den schmerzhaften Kerker fiel und ich auf vier Gesichtern mein eigenes Aussehen sah …“
+[vers 33,58-63]
+„Da hielt ich still, um sie nicht noch trauriger zu machen. An diesem Tag und am nächsten blieben wir alle stumm. Ach, harte Erde, warum hast du dich nicht aufgetan?“
+[vers 33,67-75]
+
+=== weggehoert
+ort: Antenora
+bild: ugolino
+Ich höre nicht mehr hin. Ich kann es nicht.
+Er merkt es nicht. Er erzählt weiter, ins Eis hinein, mit derselben Stimme, als wäre ich noch da. Er erzählt es nicht mir. Er erzählt es, um den zu schänden, den er frisst. Dafür braucht er mich nicht.
+Später, auf der Erde, wird man mir die Geschichte erzählen, wie sie in Pisa erzählt wird. Vier Kinder, ein Turm, ein Schlüssel, der in den Fluss geworfen wurde.
+-> pisa
+
+=== pisa
+ort: Antenora
+bild: ugolino
+{wenn ugolino_ganz} Als er das gesagt hat, verdreht er die Augen und packt den elenden Schädel wieder mit den Zähnen, die am Knochen stark sind wie die eines Hundes.
+{nicht ugolino_ganz} Dann hört man nur noch die Zähne am Knochen.
+Ach, Pisa, Schande der Völker im schönen Land, wo man *sì* sagt. Wenn deine Nachbarn so langsam sind, dich zu strafen, dann sollen die Inseln im Meer sich bewegen und den Arno an der Mündung zustopfen, damit er jeden in dir ertränkt. Wenn Graf Ugolino im Ruf stand, deine Burgen verraten zu haben: Seine Kinder hättest du nicht so ans Kreuz schlagen dürfen. Ihr Alter machte sie unschuldig.
+& seele ugolino | Graf Ugolino della Gherardesca | Herr von Pisa, 1288 vom Erzbischof Ruggieri mit Söhnen und Enkeln in einen Turm gesperrt und verhungert. Nagt im Eis an Ruggieris Schädel.
+{wenn ugolino_ganz} & trage ugolino | Ugolino und seine Kinder, Gaddo, Uguccione, Anselmuccio, Brigata
+-> tolomea
+
+=== tolomea
+ort: Tolomea
+bild: eis
+Wir gehen weiter, dorthin, wo das Eis die anderen hart umschließt, nicht nach unten gebeugt, sondern ganz auf dem Rücken. Hier lässt das Weinen das Weinen nicht zu. Die ersten Tränen bilden einen Knoten und füllen wie ein Visier aus Kristall die Höhle unter den Brauen. Der Schmerz findet an den Augen keinen Ausgang und kehrt nach innen zurück.
+Obwohl mein Gesicht vor Kälte jedes Gefühl verloren hat, wie eine Schwiele, spüre ich einen Wind. „Meister, woher kommt das? Ist hier unten nicht jeder Dunst erloschen?“
+„Bald bist du dort, wo dein Auge dir die Antwort gibt.“
+Da schreit einer aus der kalten Kruste: „Ihr Seelen, so grausam, dass man euch den letzten Platz gegeben hat! Nehmt mir die harten Schleier vom Gesicht, damit ich den Schmerz, der mir das Herz füllt, ein wenig ausweinen kann, bevor die Tränen wieder gefrieren.“
++ „Wenn du willst, dass ich dir helfe, sag mir, wer du bist. Und wenn ich dich dann nicht befreie, will ich bis auf den Grund des Eises sinken.“ -> schwur {setzt geschworen}
++ „Ich verspreche dir nichts.“ -> kein_schwur
+
+=== schwur
+ort: Tolomea
+bild: eis
+[vers 33,115-117]
+Bis auf den Grund des Eises. Dorthin gehe ich ohnehin. Er kann das nicht wissen.
+„Ich bin Bruder Alberigo. Ich bin der mit den Früchten aus dem bösen Garten. Hier bekomme ich Datteln für Feigen.“
+Er hat seine Verwandten zu einem Essen eingeladen. Beim Nachtisch rief er: Bringt die Früchte! Das war das Zeichen für die Mörder.
+„Oh“, sage ich, „bist du schon tot?“
+„Wie es meinem Körper oben in der Welt geht, weiß ich nicht. Diese Tolomea hat das Vorrecht, dass oft eine Seele hier herunterfällt, bevor Atropos sie fortschickt. Wenn die Seele verrät, wie ich verraten habe, nimmt ihr ein Teufel den Körper weg und regiert ihn, bis seine Zeit um ist. Der hinter mir überwintert, war Branca Doria. Der ist schon viele Jahre hier eingeschlossen.“
+„Ich glaube, du betrügst mich. Branca Doria ist nicht tot. Er isst und trinkt und schläft und zieht sich an.“
+„Bevor Michele Zanche oben im Graben mit dem Pech ankam, hatte der hier schon einen Teufel in seinem Körper gelassen. Aber jetzt streck die Hand aus. Öffne mir die Augen.“
+& seele alberigo | Bruder Alberigo und Branca Doria | Verräter an Gästen. Ihre Seelen sind schon in der Tolomea, während Teufel ihre Körper auf der Erde weiterleben lassen.
++ Ich öffne sie ihm nicht. -> nicht_geoeffnet
++ Ich versuche, das Eis von seinen Augen zu kratzen. -> kratzen
+
+=== kratzen
+ort: Tolomea
+bild: eis
+Ich knie mich hin und kratze. Das Eis ist härter als Stein, und meine Nägel brechen daran. Unter meinen Fingern gefriert es nach, schneller, als ich kratzen kann. Seine Tränen frieren mir an die Fingerkuppen.
+Vergil sagt nichts. Er wartet, bis ich aufgebe. Dann gehen wir.
+& setze gekratzt
+-> nicht_geoeffnet
+
+=== kein_schwur
+ort: Tolomea
+bild: eis
+„Dann geh weiter“, sagt er. „Hier unten bekommt keiner etwas umsonst.“
+Er sagt mir nicht, wer er ist. Vergil sagt es mir, im Gehen: Hier, in der Tolomea, liegen die, die ihre Gäste verraten haben. Manche Seelen fallen herab, während ihr Körper oben noch lebt, und ein Teufel trägt ihn weiter. Man sitzt mit ihnen am Tisch und weiß es nicht.
+& seele tolomea | Die Tolomea | Hier liegen die Verräter an Gästen. Manche Seelen fallen herab, bevor sie sterben, und Teufel bewohnen ihre Körper auf der Erde.
+-> judecca
+
+=== nicht_geoeffnet
+ort: Tolomea
+bild: eis
+[vers 33,148-150]
+{wenn gekratzt} Ich habe es versucht. Ich schreibe trotzdem, dass ich es nicht getan habe. Es ist beides wahr.
+Ach, Genua, Volk, fremd jeder guten Sitte und voll von jedem Laster, warum wirst du nicht von der Welt gefegt? Mit dem schlimmsten Geist der Romagna habe ich einen von euch gefunden, der für seine Tat schon mit der Seele im Kokytos badet und oben noch lebendig scheint.
+-> judecca
+
+# ------------------------------------------------------------ Gesang XXXIV
+
+=== judecca
+rubrik: Hier beginnt der vierunddreißigste Gesang. Luzifer, und der Weg hinaus.
+gesang: 34
+ort: Judecca
+bild: luzifer
+klang: eis
+[vers 34,1-3]
+Die Banner des Königs der Hölle rücken vor. Er sagt es mit den Worten eines Kirchenlieds, und es klingt schrecklich in diesem Mund.
+Wie wenn ein dichter Nebel weht oder unsere Hälfte der Welt Nacht wird, so sehe ich von fern eine Mühle, die der Wind dreht. Wegen des Windes ducke ich mich hinter meinen Führer. Es gibt hier keinen anderen Schutz.
+Ich stehe schon, und mit Angst schreibe ich es in Verse, wo die Schatten ganz bedeckt sind und durchscheinen wie ein Strohhalm im Glas. Manche liegen, manche stehen, der eine auf dem Kopf, der andere auf den Füßen, einer gebogen wie ein Bogen, das Gesicht zu den Füßen.
+Vergil tritt zur Seite. „Sieh Dis. Und sieh den Ort, an dem du dich mit Mut wappnen musst.“
+[vers 34,22-27]
+-> luzifer
+
+=== luzifer
+ort: Judecca
+bild: luzifer
+klang: eis
+Der Kaiser des schmerzhaften Reichs ragt mit der halben Brust aus dem Eis. Ich verhalte mich eher zu einem Riesen als die Riesen zu seinen Armen. Wenn er so schön war, wie er jetzt hässlich ist, und trotzdem die Stirn gegen seinen Schöpfer hob, dann muss alles Leid von ihm kommen.
+[vers 34,37-39]
+Drei Gesichter an einem Kopf. Das vordere rot. Das rechte zwischen weiß und gelb. Das linke schwarz wie die Menschen, die vom Nil kommen. Unter jedem zwei große Flügel, ohne Federn, wie bei einer Fledermaus, und er schlägt sie, so dass drei Winde von ihm ausgehen. Davon gefriert der ganze Kokytos.
+[vers 34,53-57]
+[vers 34,61-69]
+Ich lausche, weil ich das jetzt kann, weil ich es den ganzen Weg gelernt habe. Ich höre die Flügel. Ich höre die Zähne. Ich höre Judas nicht schreien, und Brutus gibt keinen Laut.
+Und er, Luzifer, sagt nichts. Kein Wort. Er hat nie etwas gesagt, die ganze Zeit. Das Einzige hier unten, das nicht spricht.
+& seele luzifer | Luzifer | Der Kaiser des schmerzhaften Reichs, bis zur Brust im Eis. Drei Gesichter, sechs Flügel ohne Federn. Spricht nicht.
+& seele judas | Judas Ischariot | Im vorderen Mund, den Kopf drinnen, die Beine draußen. Verriet Christus.
+& seele brutus | Brutus | Hängt aus dem schwarzen Mund und gibt keinen Laut. Verriet Caesar.
+& seele cassius | Cassius | Im dritten Mund. Verriet Caesar.
+-> abstieg | „Wie kommen wir hier vorbei?“
+
+=== abstieg
+probe: Die Umkehr
+ort: Judecca
+bild: luzifer
+klang: eis
+Ich lege ihm, wie er will, die Arme um den Hals. Er wählt Zeit und Ort, und als die Flügel weit genug offen sind, packt er die zottigen Seiten. Von Zotte zu Zotte steigt er hinab, zwischen dem dichten Fell und der gefrorenen Kruste.
+! umkehr text=umkehr_text -> bach
+
+=== umkehr_text
+art: text
+Als wir dort sind, wo der Schenkel sich dreht, am dicken Ende der Hüften, dreht mein Führer, mühsam und keuchend, den Kopf dahin, wo er eben die Füße hatte. Er packt das Fell wie einer, der hinaufsteigt. Ich glaube, wir kehren in die Hölle zurück.
+„Halt dich gut fest“, sagt er, keuchend wie ein Erschöpfter. „Über solche Treppen muss man von so viel Bösem fort.“
+Wir kommen durch eine Felsöffnung und er setzt mich auf den Rand. Ich hebe die Augen und glaube, Luzifer so zu sehen, wie ich ihn verlassen habe. Ich sehe seine Beine nach oben ragen.
+
+=== bach
+bild: stille
+ort: Unter der anderen Hälfte der Welt
+klang: stille
+„Steh auf“, sagt Vergil. „Der Weg ist lang und die Straße schlecht. Und die Sonne steht schon bei der halben Terz.“
+„Wo ist das Eis? Und warum steht er kopfüber? Und wie ist die Sonne in so kurzer Zeit vom Abend zum Morgen gegangen?“
+„Du glaubst, du bist noch auf der anderen Seite der Mitte, wo ich mich am Fell des bösen Wurms festhielt, der die Welt durchbohrt. Dort warst du, solange ich hinabstieg. Als ich mich drehte, bist du durch den Punkt gegangen, zu dem von allen Seiten die Gewichte gezogen werden. Jetzt bist du unter der anderen Halbkugel. Hier ist Morgen, wenn dort Abend ist. Auf dieser Seite ist er vom Himmel gefallen. Und die Erde, die hier war, ist aus Angst vor ihm unter das Meer geflohen. Und vielleicht ist, was von ihr übrig ist, nach oben geflohen und hat einen Berg gemacht.“
+Dann ist es still. Es ist ganz dunkel. Man sieht nichts.
+Man hört etwas.
+~ Wasser. Ein Bächlein, das über Steine rinnt. -> aufstieg @50,60
+
+=== aufstieg
+ort: Der verborgene Weg
+klang: stille
+[vers 34,127-132]
+Wir gehen hinein, mein Führer und ich, auf diesem verborgenen Weg, um in die helle Welt zurückzukehren. Wir denken nicht an Ruhe. Er geht voran, ich hinterher, immer dem Wasser nach, immer nach oben.
+Ich höre auf, die Stufen zu zählen. Ich höre nur das Wasser und seinen Atem und meinen.
+-> sterne_auf
+
+=== sterne_auf
+probe: Die Sterne
+ort: Draußen
+bild: sterne
+klang: sterne
+[vers 34,133-139]
+! sterne -> ende
+
+=== ende
+ort: Draußen
+bild: sterne
+klang: sterne
+& fertig
+Hier endet die Hölle.
+{wenn getragen>=1} Die Namen, die mir unten anvertraut wurden, sind jetzt hier oben. Ich werde sie aufschreiben. Dafür bin ich zurückgekommen, unter anderem.
+{nicht getragen>=1} Niemand hat mir einen Namen mitgegeben, den ich versprochen hätte. Ich habe sie trotzdem alle gehört.
+Am Anfang wollte ich auf einen Hügel, ins Licht, und kam nicht hinauf. „Du musst einen anderen Weg nehmen“, hat er damals gesagt. Das war er, dieser Weg.
+Irgendwo vor uns ist die Erde vor Luzifer nach oben geflohen, hat Vergil gesagt, und hat einen Berg gemacht. Noch sehe ich nur die Sterne. Den Berg steigen wir später hinauf, in einem anderen Teil, einem anderen Buch.
++ Im Merkbuch nachlesen, wen ich getroffen habe -> rueckblick
+-> @titel | Das Buch schließen
+
+=== rueckblick
+ort: Draußen
+bild: sterne
+klang: sterne
+Im Menü, unter „Merkbuch“, steht alles: wen ich getroffen habe, was mir vorausgesagt wurde, wessen Namen ich hinauftrage. Unter „Gesänge“ stehen alle vierunddreißig Gesänge in Dantes Worten, so wie Philalethes sie übersetzt hat.
+Wer das Inferno noch einmal anders gehen will, kann von vorn beginnen. Der Weg bleibt derselbe. Die Begegnungen nicht.
+-> @titel | Das Buch schließen

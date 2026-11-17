@@ -1,0 +1,171 @@
+@abschnitt limbus
+titel: Limbus
+untertitel: Ohne Hoffnung in Sehnsucht
+kreis: 1
+thema: limbus
+gesaenge: IV
+start: donner
+
+=== donner
+rubrik: Hier beginnt der vierte Gesang. Dante erwacht im ersten Kreis, bei denen, die ohne Taufe starben.
+gesang: 4
+ort: Am Rand des Abgrunds
+klang: stille
+[vers 4,1-3]
+Ich bin auf der anderen Seite. Wie, weiß ich nicht. Ich stehe auf und sehe mich um, mit ausgeruhten Augen, und sehe nichts. Ich stehe am Rand eines Tals, so tief und so voll Dunst, dass mein Blick auf halbem Weg hängen bleibt. Von unten kommt ein Dröhnen, das nie aufhört, wie ein Donner, der vergessen hat zu enden.
+Vergil ist weiß im Gesicht. „Jetzt steigen wir hinab in die blinde Welt“, sagt er. „Ich zuerst, du hinter mir.“
++ „Wie soll ich kommen, wenn du Angst hast? Du solltest mir doch Mut machen.“ -> blass
++ Ich sage nichts und folge ihm. -> blass {setzt nichts_gesagt_blass}
+
+=== blass
+ort: Am Rand des Abgrunds
+klang: stille
+{wenn nichts_gesagt_blass} Nach ein paar Schritten dreht er sich trotzdem um.
+„Das ist nicht Angst“, sagt er. „Das ist der Schmerz derer, die hier unten sind. Er malt mir das Mitleid ins Gesicht, und du hältst es für Furcht. Komm. Der Weg ist lang.“
+Wir treten in den ersten Kreis, der um den Abgrund herumläuft.
+-> seufzer
+
+=== seufzer
+ort: Erster Kreis
+bild: limbus
+Hier weint keiner.
+[vers 4,25-27]
+Seufzer, von allen Seiten, von Männern, Frauen und sehr kleinen Kindern. Nicht laut. Wie Leute seufzen, die etwas schon so lange vermissen, dass sie nicht mehr wissen, was es war.
+~ Ein Kind seufzt, ganz nah. -> kinder @18,74 {einmal}
+~ „… wir haben doch nichts …“ -> nichts_getan @56,62
+~ Weiter vorn ist es heller. Jemand singt? -> licht @80,30 {wenn gesehen:nichts_getan}
+
+=== kinder
+ort: Erster Kreis
+bild: limbus
+Es ist ein Kind, kaum zwei Jahre alt, und es seufzt wie ein alter Mann. Es weint nicht. Es sieht zum Rand hinauf.
+Ich will es aufheben. Meine Hände gehen durch es hindurch.
+> Weiter -> seufzer
+
+=== nichts_getan
+ort: Erster Kreis
+bild: limbus
+„Fragst du nicht, wer die sind?“, sagt Vergil. „Ich will, dass du es weißt, bevor wir weitergehen. Sie haben nicht gesündigt. Wenn sie Verdienste hatten, reicht es nicht, weil sie die Taufe nicht hatten. Und wer vor Christus lebte, hat Gott nicht so verehrt, wie man es musste.“
+Er macht eine kleine Pause.
+„Zu denen gehöre ich.“
+[vers 4,40-42]
+Ich merke, dass ich stehen geblieben bin. So viele, und so viele, die ich verehrt habe.
++ „Ist je einer hier herausgekommen? Durch eigenes Verdienst oder durch ein fremdes?“ -> hoellenfahrt
++ „Und du? Hoffst du gar nicht mehr?“ -> keine_hoffnung
++ Ich gehe einfach weiter neben ihm. -> stumm_weiter
+
+=== keine_hoffnung
+ort: Erster Kreis
+bild: limbus
+Er antwortet nicht sofort. Dann: „Hoffen ist hier nicht verboten. Es ist nur nicht vorgesehen.“
+& setze nach_vergils_hoffnung_gefragt
+-> hoellenfahrt | „Ist je einer hier herausgekommen?“
+
+=== stumm_weiter
+ort: Erster Kreis
+bild: limbus
+Wir gehen eine Weile so. Dann fragt er mich doch, als wollte er das Schweigen nicht mir allein überlassen: „Willst du nicht wissen, ob je einer hier herauskam?“
+-> hoellenfahrt | „Doch.“
+
+=== hoellenfahrt
+ort: Erster Kreis
+bild: limbus
+[vers 4,52-55]
+Er war noch neu hier. Da kam einer, gekrönt mit einem Siegeszeichen, und nahm sie mit: den Schatten des ersten Vaters, Adam, und Abel, seinen Sohn, und Noah, und Mose, der Gesetze gab und gehorchte, Abraham, König David, Israel mit seinem Vater und seinen Söhnen und mit Rahel, für die er so viel getan hat. Und viele andere. Die machte er selig.
+„Vor ihnen ist keiner erlöst worden. Ich habe es gesehen. Ich bin hiergeblieben.“
+& seele limbus_alt | Die Väter des Alten Bundes | Adam, Abel, Noah, Mose, Abraham, David, Jakob, Rahel: von Christus aus dem Limbus geholt, als Vergil noch „neu“ war.
+-> licht
+
+=== licht
+ort: Erster Kreis
+bild: limbus
+Wir hören nicht auf zu gehen, während er spricht, und kommen durch den Wald aus Seufzern. Dann sehe ich ein Feuer, das gegen das Dunkel eine Halbkugel aus Licht aufspannt. Noch weit weg, aber nicht so weit, dass ich nicht sehen könnte: Dort sind Menschen, die Ehre haben.
+„Du ehrst jede Wissenschaft und jede Kunst“, sage ich. „Wer sind die, die so geehrt werden, dass sie von den anderen getrennt sind?“
+„Der Name, den sie sich gemacht haben und der oben in eurem Leben noch klingt, verschafft ihnen Gnade im Himmel.“
+[vers 4,79-81]
+-> dichter
+
+=== dichter
+ort: Erster Kreis, im Licht
+probe: Die Ehre
+bild: limbus
+Vier kommen uns entgegen. Sie sehen weder traurig aus noch froh.
+[vers 4,86-90]
+Sie gehen zu Vergil, und eine Weile bin ich nicht da. Sie reden miteinander, wie Leute reden, die sich lange nicht gesehen haben und denen das nicht wichtig ist, weil sie sowieso nichts zu tun haben. Dann drehen sich alle fünf zu mir um. Homer nickt. Vergil lächelt, zum ersten Mal.
+[vers 4,100-102]
+Sie nehmen mich auf. Ich bin der Sechste.
++ Ich nehme den Platz an. Ich habe darauf mein Leben lang hingeschrieben. -> sechster {setzt stolz}
++ Ich senke den Kopf und gehe als Letzter hinter ihnen her, ohne ein Wort. -> sechster {setzt demut}
++ „Ich bin nur ein Schüler. Ich habe noch nichts geschrieben, was hierher gehört.“ -> sechster {setzt bescheiden}
+
+=== sechster
+ort: Erster Kreis, im Licht
+bild: limbus
+{wenn stolz} Homer sieht mich an, mit Augen, die nichts sehen. Er sagt nichts dazu. Horaz grinst ein wenig. Ich merke, dass ich aufrechter gehe als vorher.
+{wenn demut} Ovid legt mir im Gehen die Hand auf die Schulter, kurz, dann nimmt er sie wieder weg. Keiner sagt etwas dazu. Das ist das Höflichste, was mir je passiert ist.
+{wenn bescheiden} Lucan lacht laut auf. „Das sagen alle, bis sie hier sind.“ Die anderen lachen nicht mit, aber sie widersprechen ihm auch nicht.
+Wir gehen zu sechst auf das Licht zu und reden.
+~ Was wir dort sprachen … -> schweigen_schoen @40,56
+
+=== schweigen_schoen
+ort: Erster Kreis, im Licht
+bild: limbus
+[vers 4,104-105]
+Ich schreibe es nicht auf.
+-> kastell
+
+=== kastell
+ort: Das edle Schloss
+bild: limbus
+Wir kommen an ein Schloss, siebenfach ummauert, rundherum ein schöner kleiner Fluss. Wir gehen über ihn wie über festen Boden. Durch sieben Tore. Dann eine Wiese, frisch und grün.
+Die Menschen hier haben ernste, langsame Augen. Sie sprechen selten und mit leiser Stimme. Wir steigen auf eine Anhöhe, von der man alle sehen kann.
+> Zu der Frau, um die viele stehen -> elektra {nicht gesehen:elektra}
+> Zu dem, der ganz allein sitzt -> saladin {nicht gesehen:saladin}
+> Zu dem, um den alle anderen still sind -> aristoteles {nicht gesehen:aristoteles}
+> Zu dem, der etwas in den Sand zeichnet -> euklid {nicht gesehen:euklid}
+> Weiter, wenn du genug gehört hast -> abschied {wenn gesehen:aristoteles}
+
+=== elektra
+ort: Das edle Schloss
+bild: limbus
+Elektra, die Mutter des Dardanus, des Gründers von Troja. Um sie herum Hektor und Aeneas, Vergils Aeneas, in Rüstung, und Caesar, auch in Rüstung, mit Augen wie ein Greifvogel.
+Vergil sieht Aeneas an. Aeneas sieht ihn nicht. Ich frage mich, ob die Figur ihren Dichter kennt.
+& seele elektra | Elektra, Hektor, Aeneas, Caesar | Im edlen Schloss des Limbus. Aeneas ist der Held von Vergils *Aeneis*.
+> Zurück zur Anhöhe -> kastell
+
+=== saladin
+ort: Das edle Schloss
+bild: limbus
+Er sitzt allein. Saladin, der Sultan, der Jerusalem genommen hat und von dem man sich erzählt, dass er Gefangene freiließ, wenn sie ihn darum baten. Kein Christ und kein Römer. Die anderen haben ihn nicht ausgeschlossen. Er hat sich selbst an den Rand gesetzt.
+Ich höre nichts von ihm. Er spricht mit niemandem.
+& seele saladin | Saladin | Sultan, gestorben 1193. Im Limbus allein, abseits der anderen.
+> Zurück zur Anhöhe -> kastell
+
+=== aristoteles
+ort: Das edle Schloss
+bild: limbus
+[vers 4,130-133]
+Aristoteles. Um ihn herum Sokrates, Platon, und dann die anderen, die ich aus Büchern kenne, nur Namen auf Rücken von Abschriften: Demokrit, der sagt, die Welt sei Zufall. Diogenes. Anaxagoras, Thales, Empedokles, Heraklit, Zenon. Cicero. Seneca, der Moralist. Hippokrates, Galen, Avicenna. Averroes, der den großen Kommentar geschrieben hat.
+Aristoteles sagt nur einen Satz, und die um ihn nicken: „Alle Menschen streben von Natur aus nach Wissen.“
+& seele aristoteles | Aristoteles | „Der Meister derer, die wissen“. Mit Sokrates, Platon und den anderen Philosophen im Limbus.
+> Zurück zur Anhöhe -> kastell
+
+=== euklid
+ort: Das edle Schloss
+bild: limbus
+Euklid, der Geometer, zieht mit einem Stöckchen Linien in den Sand der Wiese. Ptolemäus steht daneben und sieht zu. Ein Dreieck, dann ein Kreis darum. Er wischt beides weg und fängt von vorn an.
+> Zurück zur Anhöhe -> kastell
+
+=== abschied
+ort: Das edle Schloss
+bild: limbus
+Ich kann nicht alle aufzählen. Ich müsste viel mehr sagen, als ich sagen kann. Die sechs werden zwei: Vergil führt mich auf einem anderen Weg hinaus, aus der Stille in die Luft, die zittert.
+Ich drehe mich noch einmal um. Hinter uns bleibt das Licht, das Einzige hier unten. Vor uns ist nichts, was leuchtet.
++ „Meister, du gehörst hierher. Warum gehst du mit mir?“ -> warum_mit
++ Ich gehe weiter, ohne mich noch einmal umzudrehen. -> liebende:
+
+=== warum_mit
+ort: Das edle Schloss
+„Weil sie mich gebeten hat“, sagt er. „Und weil ich den Weg kenne. Ich war schon einmal ganz unten.“
+Mehr sagt er nicht. Später erzählt er es mir.
+-> liebende: | Hinab

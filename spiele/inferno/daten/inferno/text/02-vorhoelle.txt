@@ -1,0 +1,127 @@
+@abschnitt vorhoelle
+titel: Das Tor und die Vorhölle
+untertitel: Die nie lebendig waren
+kreis: V
+thema: tor
+gesaenge: III
+start: tor
+
+=== tor
+rubrik: Hier beginnt der dritte Gesang. Über einem Tor steht eine Inschrift.
+gesang: 3
+ort: Vor dem Tor
+bild: tor
+Das Tor hat keine Flügel, nur einen Bogen aus dunklem Stein. Darüber, in einer Farbe, die ich im Dämmerlicht für Rost halte, stehen Worte. Ich lese sie halblaut, weil ich sonst nichts höre.
+[vers 3,1-9]
+Ich lese die letzte Zeile zweimal. Dann sage ich: „Meister, das ist hart.“
+Er antwortet sofort: „Hier musst du jedes Misstrauen zurücklassen. Jede Feigheit muss hier sterben. Wir sind da, wo ich es dir gesagt habe. Hier sind die, die das Gut des Denkens verloren haben.“
+Er nimmt meine Hand. Sein Gesicht ist ruhig, fast heiter. Meine Hand in seiner ist nass.
++ Ich lasse mir die Hand nehmen. -> hinein
++ Ich frage: „Wer hat das geschrieben?“ -> wer_schrieb {einmal}
+
+=== wer_schrieb
+Er sieht hinauf zu den Buchstaben, wie man ein Schild ansieht, an dem man täglich vorbeigeht.
+„Das Tor spricht selbst. Es sagt, wer es gemacht hat: die Macht, die Weisheit und die erste Liebe. Alle drei zusammen.“
+„Die Liebe hat die Hölle gemacht?“
+„Die Gerechtigkeit hat ihn bewegt. Die Liebe hat mitgebaut. Gib mir die Hand.“
+-> hinein | Ich gebe ihm die Hand.
+
+=== hinein
+ort: Hinter dem Tor
+bild: vorhoelle
+klang: vorhoelle
+Dahinter ist kein Raum. Kein Himmel, keine Wände. Nur Luft, so schwarz, dass sie Gewicht hat. Und Geräusch.
+[vers 3,22-30]
+Vergil zieht mich weiter.
++ „Meister, was höre ich da? Wer sind die?“ -> die_lauen
+
+=== die_lauen
+probe: Vorübergehen
+bild: vorhoelle
+klang: vorhoelle
+[vers 3,34-42]
+„Und was drückt sie so, dass sie so laut klagen?“
+„Das ist schnell gesagt. Sie haben keine Hoffnung zu sterben. Ihr blindes Leben ist so niedrig, dass sie jedes andere Schicksal beneiden. Die Welt lässt keinen Ruf von ihnen übrig. Barmherzigkeit und Gerechtigkeit verachten sie. Lass uns nicht von ihnen reden.“
+! vorueber text=lauen_fetzen -> fahne
+
+=== lauen_fetzen
+art: text
+… später, ich wollte es später …
+… es war nicht meine Sache …
+… man hat ja nie gewusst, wer gewinnt …
+… ich habe niemandem geschadet …
+… erst mal abwarten …
+… beide Seiten hatten irgendwie recht …
+… ich hätte ja, wenn jemand gefragt hätte …
+… was hätte ich allein schon tun sollen …
+
+=== fahne
+bild: vorhoelle
+klang: vorhoelle
+[vers 3,52-57]
+{wenn erkannt_weigerung} [vers 3,58-60]
+{wenn erkannt_weigerung} Ich habe zu lange hingehört, und jetzt sehe ich ihn auch. Ich sage seinen Namen nicht. Ihm wurde das Größte angetragen, und er hat es aus Feigheit abgelehnt. Damit hat er den Platz frei gemacht für einen anderen, den ich hasse und der noch lebt. Ich sehe ihm nach, bis die Fahne ihn mitzieht.
+{nicht erkannt_weigerung} Ich sehe nicht genau hin. Einer unter ihnen kommt mir bekannt vor, ein großer Mann, der einmal etwas Großes abgelehnt hat. Aber Vergil hat recht. Ich gehe vorüber.
+Sie sind nackt. Wespen und Bremsen stechen sie, und das Blut läuft ihnen mit den Tränen über die Gesichter bis zu den Füßen. Dort lecken es ekelhafte Würmer auf. Das ist alles, was von ihnen bleibt: ein Futter für Würmer, die nicht einmal satt davon werden.
+& seele lauen | Die Lauen | Am Eingang, noch vor dem ersten Kreis: die nie Partei ergriffen haben, mit den Engeln, die weder für noch gegen Gott waren. Sie rennen ewig einer Fahne nach.
+{wenn erkannt_weigerung} & seele weigerung | Der die große Weigerung tat | Unter den Lauen. Dante nennt ihn nicht. Gemeint ist wohl Papst Cölestin V., der 1294 zurücktrat; nach ihm kam Bonifaz VIII.
+> Weiter, zu der Menge am Ufer -> ufer
+
+=== ufer
+ort: Am Acheron
+bild: acheron
+klang: fluss
+Weiter vorn wird die Menge dichter. Sie steht an einem Fluss und drängt nach vorn, als ginge drüben ein Fest los.
+„Meister, wer sind die? Warum wollen sie so dringend hinüber? So sieht es jedenfalls aus in dem bisschen Licht.“
+„Das erfährst du, wenn wir am Ufer des Acheron stehen.“
+Er sagt es nicht unfreundlich. Ich senke die Augen und rede nicht mehr, bis wir am Wasser sind.
+~ Einer flucht auf seine Mutter. -> fluch @22,52 {einmal}
+~ Einer sagt immer wieder seinen eigenen Namen. -> name @46,40 {einmal}
+~ Ein Ruder schlägt ins Wasser. Ein alter Mann schreit. -> charon @70,58
+
+=== fluch
+bild: acheron
+klang: fluss
+Er flucht nicht laut. Er flucht gründlich. Auf Gott, auf seine Eltern, auf alle Menschen, auf den Ort und die Stunde, in der er gezeugt wurde, auf den Samen, aus dem er kam. Neben ihm flucht eine Frau dasselbe, Wort für Wort, im selben Takt.
+[vers 3,103-105]
+Dann hört er auf, mitten im Satz, und drängt wieder nach vorn. Er will hinüber.
+> Zurück zum Ufer -> ufer
+
+=== name
+bild: acheron
+klang: fluss
+Er steht ganz still zwischen den anderen und sagt seinen Namen vor sich hin. Vorname, Name des Vaters, Name der Stadt. Wieder. Und wieder. Als hätte er Angst, dass er ihn drüben vergisst.
+Ich bleibe neben ihm stehen. Er sieht mich nicht. Sein Name ist ein gewöhnlicher Name. Ich habe ihn schon vergessen, als Vergil mich am Ärmel zieht.
+> Zurück zum Ufer -> ufer
+
+=== charon
+ort: Am Acheron
+bild: acheron
+klang: fluss
+[vers 3,82-87]
+Ein Boot kommt aus dem Dunkel. Der Alte darin ist weiß bis in den Bart, und um seine Augen kreist etwas Rotes, wie Räder aus Glut.
+Er sieht mich. Er hört sofort auf zu schreien.
+& seele charon | Charon | Der Fährmann über den Acheron, mit Augen wie Räder aus Glut. Er will keinen Lebenden übersetzen.
+„Und du da, lebende Seele, weg von denen, die tot sind.“
+Ich rühre mich nicht. Er sagt es noch einmal, anders: „Auf einem anderen Weg, an anderen Häfen kommst du ans Ufer. Nicht hier. Ein leichteres Schiff muss dich tragen.“
++ Ich sehe Vergil an. -> vergil_charon
++ „Ich gehe mit ihm. Er ist mein Führer.“ -> vergil_charon {setzt trotz_charon}
+
+=== vergil_charon
+bild: acheron
+klang: fluss
+{wenn trotz_charon} Charon lacht nicht einmal. Er sieht an mir vorbei, zu Vergil.
+[vers 3,94-96]
+Die zotigen Backen des Fährmanns erschlaffen. Er sagt nichts mehr. Aber die anderen Seelen haben die Worte gehört, die er vorher geschrien hat, und sie verlieren die Farbe, knirschen mit den Zähnen, und dann gehen sie, alle zusammen, laut weinend, zu ihm hinunter. Wer zögert, den schlägt er mit dem Ruder.
+[vers 3,112-117]
+Und noch bevor sie drüben an Land sind, steht auf dieser Seite schon die nächste Menge.
+„Mein Sohn“, sagt Vergil, „alle, die im Zorn Gottes sterben, kommen hier zusammen, aus jedem Land. Sie wollen über den Fluss, weil die Gerechtigkeit sie antreibt, bis die Angst sich in Verlangen verwandelt. Hier kommt nie eine gute Seele vorbei. Wenn Charon sich über dich beschwert, kannst du dir denken, was das heißt.“
+-> beben
+
+=== beben
+bild: acheron
+klang: fluss
+Er hat kaum zu Ende gesprochen, da fängt der Boden an zu zittern.
+[vers 3,130-136]
+& setze ohnmacht_acheron
+-> limbus: | …

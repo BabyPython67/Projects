@@ -1,0 +1,498 @@
+@abschnitt malebolge
+titel: Achter Kreis
+untertitel: Die Übelbulgen
+kreis: 8
+thema: bolgen
+gesaenge: XVIII–XXXI
+start: uebel
+
+# ------------------------------------------------------------ Gesang XVIII
+
+=== uebel
+rubrik: Hier beginnt der achtzehnte Gesang. Zehn Gräben voller Betrüger. In den ersten beiden: Kuppler, Verführer, Schmeichler.
+gesang: 18
+ort: Übelbulgen
+bild: malebolge
+[vers 18,1-3]
+Zehn Gräben liegen hier im Kreis, einer im anderen, um einen weiten, tiefen Brunnen in der Mitte. Vom Fuß des Felsens laufen Brücken aus Stein über die Gräben, wie Speichen zur Nabe. Wir gehen über die Brücken. Unter uns, in jedem Graben, eine andere Art, betrogen zu haben.
+In der ersten Bulge gehen nackte Sünder in zwei Reihen, die eine uns entgegen, die andere mit uns, wie die Pilger in Rom auf der Engelsbrücke im Jubeljahr. Gehörnte Teufel stehen auf dem Fels und schlagen sie mit großen Peitschen von hinten.
+~ Einer versteckt sein Gesicht vor mir. -> venedico @26,64
+~ Einer, der geht, als sei er immer noch ein König. -> jason @64,58 {einmal}
+
+=== venedico
+ort: Erste Bulge
+bild: peitsche
+„Du, der du die Augen zu Boden schlägst: Wenn dein Gesicht nicht lügt, bist du Venedico Caccianemico. Was bringt dich in so scharfe Soße?“
+„Ich sag's ungern“, sagt er. „Aber deine klare Sprache zwingt mich, sie erinnert mich an die alte Welt. Ich habe meine Schwester Ghisolabella dazu gebracht, dem Markgrafen zu Willen zu sein. Wie man die schmutzige Geschichte auch erzählt. Und ich bin nicht der einzige Bologneser, der hier weint.“
+Ein Teufel schlägt ihn mit der Peitsche. „Weg, Kuppler! Hier gibt es keine Frauen zu verkaufen.“
+& seele venedico | Venedico Caccianemico | Aus Bologna. Hat die eigene Schwester verkuppelt.
+> Weiter -> uebel
+
+=== jason
+ort: Erste Bulge
+bild: peitsche
+„Sieh den Großen, der kommt“, sagt Vergil, „der für seinen Schmerz keine Träne zu vergießen scheint. Wie königlich er noch aussieht. Das ist Jason, der durch Mut und Klugheit den Kolchern das Widderfell nahm. Er hat Hypsipyle geschwängert und sitzen lassen, mit schönen Worten. Und Medea auch.“
+& seele jason | Jason | Der Argonaut. Unter den Verführern, weil er Hypsipyle und Medea verließ.
+> Weiter -> schmeichler
+
+=== schmeichler
+ort: Zweite Bulge
+bild: kot
+Im nächsten Graben ein Gestank, als hätte man alle Latrinen der Welt hineingekippt. Und es ist so: Sie stecken in Kot. Ich sehe einen, der so verschmiert ist am Kopf, dass man nicht sieht, ob er Laie war oder Priester.
+„Warum starrst du gerade mich so an?“, schreit er.
+„Weil ich dich, wenn ich mich recht erinnere, mit trockenen Haaren gesehen habe. Du bist Alessio Interminei aus Lucca.“
+Er schlägt sich auf den Kopf. „Hier unten haben mich die Schmeicheleien versenkt, von denen meine Zunge nie genug hatte.“
+Vergil zeigt mir eine Frau, weiter vorn, die sich mit dreckigen Nägeln kratzt.
+[vers 18,133-135]
+{wenn stolz} Ich denke an den Platz unter den Dichtern. Homer hat nichts gesagt. Die anderen haben gelächelt. Wie viel davon war Höflichkeit, und wie viel davon habe ich mir selbst gesagt? Ich weiß es nicht mehr genau. Hier unten riecht man, wohin solche Fragen führen.
+{wenn demut} Ich denke an Ovids Hand auf meiner Schulter, die er gleich wieder wegnahm. Sie hat mir mehr bedeutet als jedes Wort. Vielleicht weil kein Wort dabei war.
+{wenn bescheiden} Ich denke daran, wie ich zu den Dichtern sagte, ich sei nur ein Schüler. Ich habe es nicht ganz so gemeint. Lucan wusste das.
+„Lass es genug sein“, sagt Vergil. „Davon haben deine Augen genug.“
+& seele alessio | Alessio Interminei und Thaïs | Schmeichler, versenkt im Kot der zweiten Bulge.
+-> simonie
+
+# ------------------------------------------------------------ Gesang XIX
+
+=== simonie
+rubrik: Hier beginnt der neunzehnte Gesang. Die Simonisten, die Kirchenämter verkauften.
+gesang: 19
+ort: Dritte Bulge
+bild: simonie
+O Simon Magus, und ihr, seine elenden Nachfolger, die ihr die Dinge Gottes, die die Bräute des Guten sein sollen, für Gold und Silber verhurt: Jetzt muss für euch die Posaune klingen.
+Der graue Fels ist überall voller runder Löcher, alle gleich groß, wie die Taufbecken in meinem schönen San Giovanni. Aus jedem Loch ragen die Füße eines Sünders und die Beine bis zu den Waden. Der Rest steckt drin. Auf den Sohlen brennen Flammen, wie auf geöltem Leder.
+„Meister, wer ist der, der zappelt und mehr leidet als seine Gefährten, mit den röteren Flammen?“
+„Wenn du willst, trage ich dich dort hinab. Von ihm erfährst du, wer er ist und was er getan hat.“
+-> nikolaus
+
+=== nikolaus
+ort: Dritte Bulge
+bild: simonie
+Er trägt mich hinab, bis an das Loch dessen, der so mit den Beinen weint. „Wer du auch bist, der du das Obere nach unten hast, traurige Seele, eingerammt wie ein Pfahl: Sprich, wenn du kannst.“
+Ich stehe da wie ein Mönch, der den falschen Mörder beichten hört, den, der schon kopfüber in der Grube steckt und ihn noch einmal zurückruft, um den Tod zu verschieben.
+[vers 19,52-57]
+Ich verstehe nicht, was er meint. Ich stehe da wie einer, der verspottet wird.
+„Sag ihm schnell“, sagt Vergil, „ich bin nicht der, den du meinst.“
+„Ich bin nicht der, den du meinst.“
+Da verdreht der Geist die Füße. Dann seufzt er, mit weinender Stimme: „Was willst du dann von mir? Ich habe den großen Mantel getragen. Ich war ein Sohn der Bärin, so gierig, die Bärenjungen hochzubringen, dass ich oben das Geld und hier mich selbst in den Beutel gesteckt habe. Unter meinem Kopf liegen die anderen, die vor mir mit Ämtern gehandelt haben. Ich falle auch hinab, wenn der kommt, für den ich dich hielt. Und nach ihm kommt ein noch Schlimmerer, aus dem Westen, ein Hirt ohne Gesetz.“
+Papst Nikolaus III. aus dem Haus Orsini. Und er erwartet Bonifaz, den Papst, der jetzt in Rom sitzt, meinen Feind. Er weiß schon, wann der stirbt.
+& seele nikolaus | Papst Nikolaus III. | Giovanni Gaetano Orsini, Papst 1277–1280. Steckt kopfüber im Fels und erwartet Bonifaz VIII. und nach ihm Clemens V.
+& prophezeiung nikolaus | Nikolaus III. im Loch: Bonifaz VIII. wird hierher kommen, und nach ihm ein noch schlimmerer Hirt aus dem Westen (Clemens V.).
++ Ich sage ihm, was ich von ihm halte. -> invektive {setzt invektive}
++ Ich schweige. Er ist ein Papst, und ich bin ein Christ. -> schweigen_papst
+
+=== invektive
+ort: Dritte Bulge
+bild: simonie
+Ich weiß nicht, ob ich zu kühn bin. Ich antworte ihm in diesem Ton:
+[vers 19,90-93]
+„Petrus und die anderen haben von Matthias kein Gold und Silber verlangt, als er ausgelost wurde. Bleib, wo du bist, du bist gerecht bestraft. Und hüte das schlecht verdiente Geld, das dich gegen Karl so kühn gemacht hat. Wäre da nicht die Ehrfurcht vor den höchsten Schlüsseln, die du im heiteren Leben gehalten hast, ich würde noch härtere Worte nehmen. Euer Geiz betrübt die Welt. Ihr tretet die Guten mit Füßen und hebt die Schlechten hoch. Ihr habt euch einen Gott aus Gold und Silber gemacht.“
+Während ich das sage, strampelt er mit beiden Füßen, ob vor Zorn oder vor Gewissen, weiß ich nicht.
+Vergil hört mit einem zufriedenen Gesicht zu. Er nimmt mich mit beiden Armen, drückt mich an die Brust und trägt mich den Weg zurück hinauf, bis oben auf die Brücke.
+-> wahrsager
+
+=== schweigen_papst
+ort: Dritte Bulge
+bild: simonie
+Ich sage nichts. Die Füße zappeln weiter.
+Vergil wartet. Dann trägt er mich zurück, schweigend, wie er mich heruntergetragen hat. Er drückt mich nicht an die Brust. Er hält mich nur fest.
+-> wahrsager
+
+# ------------------------------------------------------------ Gesang XX
+
+=== wahrsager
+rubrik: Hier beginnt der zwanzigste Gesang. Die Wahrsager gehen mit verdrehtem Kopf.
+gesang: 20
+ort: Vierte Bulge
+bild: wahrsager
+Ich muss neue Strafen in Verse bringen. Im runden Tal sehe ich Leute, die schweigend und weinend gehen, in dem Schritt, in dem man bei uns Litaneien singt. Als ich genauer hinsehe, ist jeder vom Kinn bis zum Brustansatz verdreht. Das Gesicht schaut auf den Rücken. Sie müssen rückwärts gehen, weil ihnen das Vorwärtssehen genommen ist.
+Die Tränen laufen ihnen über das Gesäß.
++ Ich lasse die Tränen laufen, die mir kommen. -> rueffel {setzt weint_offen}
++ Ich wische sie weg, bevor er es sieht. -> rueffel {setzt weint_heimlich}
+
+=== rueffel
+ort: Vierte Bulge
+bild: wahrsager
+[vers 20,25-30]
+{wenn weint_heimlich} Er hat es trotzdem gesehen. Er sieht alles.
+{wenn mitleid>=2} „Bei dem im Sumpf hast du geschaut wie ein verlaufenes Kind. Im Wald hast du vor Mitleid nicht sprechen können. Hier weinst du um Leute, die Gott in die Karten schauen wollten. Wann lernst du, wohin du schaust?“
+{nicht mitleid>=2} „Du hast bisher gut gesehen. Verdirb es jetzt nicht.“
+„Heb den Kopf. Sieh den da, unter dem sich vor den Augen der Thebaner die Erde öffnete. Amphiaraos. Und Tiresias, der aus einem Mann eine Frau wurde und wieder ein Mann. Und Manto, die Seherin, die durch viele Länder zog und sich dort niederließ, wo ich geboren bin.“
+Und dann erzählt er mir, lange und genau, wie Mantua gegründet wurde, und dass alle Geschichten, die anders erzählt werden, falsch sind. Auch seine eigene. In seiner *Aeneis* steht es anders. Hier unten korrigiert er sich.
+& seele wahrsager | Die Wahrsager | Amphiaraos, Tiresias, Manto und andere, mit dem Gesicht auf dem Rücken.
+& plus streng
+-> pech
+
+# ------------------------------------------------------------ Gesänge XXI–XXIII
+
+=== pech
+rubrik: Hier beginnen der einundzwanzigste und der zweiundzwanzigste Gesang. Die Bestechlichen im kochenden Pech und ihre Teufel.
+gesang: 21 22
+ort: Fünfte Bulge
+bild: pech
+klang: pech
+Wie im Arsenal von Venedig im Winter das zähe Pech kocht, um die kaputten Schiffe zu kalfatern, so kocht hier unten, nicht durch Feuer, sondern durch göttliche Kunst, ein dickes Pech, das überall am Ufer klebt.
+„Pass auf!“ Vergil zieht mich zu sich. Hinter uns kommt ein schwarzer Teufel den Fels heraufgelaufen, mit offenen Flügeln, leicht auf den Füßen. Auf der spitzen Schulter trägt er einen Sünder wie einen Sack.
+„He, Übelkrallen! Hier ist einer von den Ältesten von Santa Zita! Steckt ihn unter, ich geh zurück, dort gibt's noch mehr. Da ist jeder ein Betrüger, außer Bonturo.“ Er wirft ihn hinab.
+Der Sünder taucht unter und kommt gekrümmt wieder hoch. Die Teufel unter der Brücke schreien: „Hier hilft dir das Heilige Antlitz nicht! Hier schwimmt man anders als im Serchio!“ Und sie stechen ihn mit mehr als hundert Haken.
+-> malacoda
+
+=== malacoda
+ort: Fünfte Bulge
+bild: pech
+klang: pech
+„Damit man nicht sieht, dass du hier bist“, sagt Vergil, „versteck dich hinter einem Fels. Was sie mir auch antun, hab keine Angst. Ich kenne das.“
+Er geht allein hinunter. Sie stürzen sich auf ihn wie Hunde auf einen Bettler. Er sagt: „Keiner von euch sei böse. Einer trete vor und höre mich an. Dann überlegt, ob ihr mich hakt.“
+Sie schicken Malacoda, Böseschwanz. Vergil spricht mit ihm. Dann ruft er mich. Die Teufel kommen alle nach vorn, und ich habe Angst, dass sie den Pakt nicht halten.
+Malacoda sagt: „Weiter auf diesem Felsen könnt ihr nicht gehen. Die sechste Brücke liegt zerbrochen am Grund. Wenn ihr weiterwollt, geht hier am Damm entlang. Da ist eine andere Brücke, die heil ist. Gestern, fünf Stunden später als jetzt, waren es zwölfhundertsechsundsechzig Jahre, seit hier der Weg zerbrochen ist.“
+Zwölfhundertsechsundsechzig Jahre seit dem Erdbeben bei Christi Tod. Also ist heute Karsamstag, im Jahr dreizehnhundert.
+„Ich schicke zehn von meinen Leuten mit. Geht mit ihnen. Sie tun euch nichts.“ Er ruft sie mit Namen: Alichino, Calcabrina, Cagnazzo, Barbariccia als Anführer, Libicocco, Draghignazzo, Ciriatto mit den Hauern, Graffiacane, Farfarello und der verrückte Rubicante.
++ „Meister, lass uns allein gehen. Siehst du nicht, wie sie mit den Zähnen knirschen und mit den Brauen drohen?“ -> trompete {setzt misstraut}
++ Ich vertraue Vergil. Er hat schon mit Schlimmeren verhandelt. -> trompete
+
+=== trompete
+ort: Fünfte Bulge
+bild: pech
+klang: pech
+{wenn misstraut} „Lass sie knirschen“, sagt Vergil. „Das gilt den Gekochten.“
+Sie drehen sich nach links, aber vorher hat jeder dem Anführer die Zunge zwischen die Zähne gestreckt, als Zeichen. Und der antwortet:
+[vers 21,137-139]
+Ich habe Reiter aufbrechen sehen und Trompeten und Glocken und Trommeln gehört. Aber so ein Signal noch nie.
+Wir gehen mit den zehn Teufeln. Schreckliche Gesellschaft. Aber in der Kirche mit Heiligen und in der Kneipe mit Säufern.
+-> ciampolo
+
+=== ciampolo
+ort: Fünfte Bulge
+bild: pech
+klang: pech
+Wie Delfine, die den Seeleuten ein Zeichen geben, dass Sturm kommt, so zeigt mancher Sünder kurz den Rücken über dem Pech und taucht schneller wieder unter als ein Blitz. Einer bleibt zu lange oben. Graffiacane hakt ihn in die verklebten Haare und zieht ihn hoch, wie einen Otter.
+Die Teufel stehen um ihn herum, die Haken schon erhoben.
++ „Meister, frag ihn, wer er ist, bevor sie ihn zerreißen.“ -> ciampolo_trick {setzt ciampolo_gefragt}
++ Ich sehe weg. -> ciampolo_trick
+
+=== ciampolo_trick
+ort: Fünfte Bulge
+bild: pech
+klang: pech
+{wenn ciampolo_gefragt} Vergil tritt dicht an ihn heran und fragt. Er ist aus Navarra, Ciampolo, und hat im Dienst eines Königs Ämter verkauft. Während ihm die Haken die Haut aufreißen, erzählt er von anderen Italienern im Pech, und dabei behält er die Teufel im Auge.
+{nicht ciampolo_gefragt} Ich höre trotzdem, wie Vergil ihn fragt. Navarra, sagt er. Ciampolo. Ämter verkauft, im Dienst eines Königs. Wenn die Haken ihn treffen, stöhnt er nicht einmal.
+Dann bietet er an, ein paar Landsleute herbeizupfeifen, wenn die Teufel sich zurückziehen. Cagnazzo schüttelt den Kopf: „Hört euch die Gemeinheit an.“ Alichino aber sagt: „Spring nur. Wir sind schneller als du.“
+Er springt. Er ist schneller. Alichino schießt hinterher, zu spät. Calcabrina, wütend über den Spott, packt Alichino in der Luft, und beide fallen ineinander verkrallt ins kochende Pech.
+& seele ciampolo | Ciampolo aus Navarra | Bestechlicher Beamter im kochenden Pech. Entkam den Teufeln mit einem Trick.
+-> flucht_anfang
+
+=== flucht_anfang
+probe: Die Flucht
+rubrik: Hier beginnt der dreiundzwanzigste Gesang. Die Flucht vor den Teufeln. Die Heuchler in bleiernen Mänteln.
+gesang: 23
+ort: Fünfte Bulge
+bild: pech
+klang: pech
+Schweigend, allein, ohne Begleitung, gehen wir weiter, einer vor, einer hinter dem anderen, wie Minderbrüder auf der Straße.
+Mir fällt die Fabel von Äsop ein, vom Frosch und der Maus. Und dann denke ich: Durch uns sind sie verhöhnt worden. Durch uns sind die beiden ins Pech gefallen. Wenn Zorn sich zum bösen Willen gesellt, werden sie hinter uns her sein, grausamer als ein Hund hinter einem Hasen.
+„Meister, wenn du dich und mich nicht schnell versteckst, ich habe Angst vor den Übelkrallen. Ich höre sie schon.“
+Da sehe ich sie kommen, mit ausgebreiteten Flügeln, nicht weit weg.
+! flucht text=flucht_text -> heuchler
+
+=== flucht_text
+art: text
+Vergil packt mich, wie eine Mutter, die vom Lärm geweckt wird und die Flammen schon nah sieht, ihr Kind nimmt und flieht.
+Er lässt sich mit mir auf dem Rücken den Hang hinab, auf dem harten Fels, mehr wie auf einem Bett als wie ein Gefährte.
+Kein Wasser läuft je so schnell durch eine Rinne zum Mühlrad, wie er mich hinunterträgt.
+Kaum sind seine Füße unten, sind sie oben auf dem Grat. Aber hier können sie nicht hin. Die Vorsehung hat sie an ihre Bulge gebunden.
+
+=== heuchler
+ort: Sechste Bulge
+bild: heuchler
+Unten finden wir bemalte Leute, die in sehr langsamen Schritten herumgehen, weinend, müde und besiegt. Sie tragen Mäntel mit Kapuzen, die über die Augen fallen, geschnitten wie die Kutten der Mönche in Cluny. Außen sind sie golden, dass es blendet. Innen alles Blei, so schwer, dass die Mäntel, die Kaiser Friedrich Verrätern anlegen ließ, aus Stroh gewesen wären.
+Einer hört meine toskanische Sprache. „Bleibt stehen, ihr, die ihr so durch die dunkle Luft rennt!“ Zwei bleiben stehen: Catalano und Loderingo, Lustige Brüder aus Bologna, die man in Florenz zusammen zum Bürgermeister gemacht hat, damit sie Frieden halten. Was daraus wurde, sieht man noch heute an den Ruinen beim Gardingo.
+„Ihr Brüder, eure Bosheit …“, fange ich an. Dann höre ich auf. Mir fällt einer auf, der auf dem Boden gekreuzigt liegt, mit drei Pfählen. Er windet sich, als er mich sieht.
+„Der da“, sagt Catalano, „hat den Pharisäern geraten, es sei besser, einen Menschen für das Volk leiden zu lassen. Kaiphas. Er liegt quer über dem Weg, nackt, und jeder, der vorbeikommt, tritt auf ihn. Sein Schwiegervater liegt genauso hier, und die anderen aus dem Rat.“
+Vergil wundert sich über ihn lange. Dann fragt er nach einem Ausgang. Catalano sagt: „Näher als du hoffst, kommt ein Felsgrat. Nur über diese Bulge ist er zerbrochen. Ihr könnt über die Trümmer hinauf.“
+Vergil steht eine Weile mit gesenktem Kopf. „Schlecht hat uns der erklärt, der die Sünder dort drüben hakt.“
+„In Bologna habe ich gehört, der Teufel habe viele Laster“, sagt der Bruder. „Unter anderem, dass er ein Lügner ist und der Vater der Lüge.“
+Vergil geht mit großen Schritten davon, ein wenig verstört vor Zorn im Gesicht.
+{wenn misstraut} Ich hatte recht, mit den Teufeln. Ich sage es nicht.
+& seele heuchler | Die Heuchler, Kaiphas | In vergoldeten Bleimänteln. Kaiphas liegt gekreuzigt auf dem Weg, und alle treten auf ihn.
+-> aufstieg
+
+# ------------------------------------------------------------ Gesänge XXIV–XXV
+
+=== aufstieg
+rubrik: Hier beginnen der vierundzwanzigste und der fünfundzwanzigste Gesang. Die Diebe und die Schlangen.
+gesang: 24 25
+ort: Auf den Trümmern
+probe: Prüf, ob er trägt
+bild: malebolge
+Vergil dreht sich zu mir um, mit dem freundlichen Blick, den er zuerst am Fuß des Hügels hatte. Er sieht sich die Trümmer an, er überlegt, dann öffnet er die Arme und schiebt mich an den ersten Block. Über mir zeigt er auf den nächsten. „Halt dich an dem fest. Aber prüf erst, ob er dich trägt.“
+! griff text=griff_text -> atemlos
+
+=== griff_text
+art: text
+Tipp einen Stein an, um ihn zu prüfen. Halt ihn gedrückt, um dich daran hochzuziehen.
+Der wackelt. Den nehme ich nicht.
+Der Stein bricht mir unter der Hand weg. Vergil hat mich am Gürtel, bevor ich falle.
+Oben. Meine Lunge ist leer.
+
+=== atemlos
+ort: Auf den Trümmern
+bild: malebolge
+{wenn griff_rutscher>=1} Meine Hand blutet, wo der lose Stein sie aufgerissen hat.
+Oben bin ich so außer Atem, dass ich mich hinsetze.
+[vers 24,46-51]
+„Darum steh auf. Besiege die Atemnot mit dem Geist, der jeden Kampf gewinnt, wenn er nicht mit dem schweren Körper niedersinkt. Eine längere Treppe muss noch erstiegen werden.“
++ „Geh. Ich bin stark und kühn.“ -> diebe
++ Ich stehe auf, ohne etwas zu sagen. -> diebe
+
+=== diebe
+ort: Siebte Bulge
+bild: schlangen
+Ich stehe auf und stelle mich atemloser, als ich bin. Wir gehen über den Grat, und unten im Graben höre ich eine Stimme, die keine Worte formen kann. Ich beuge mich vor. Es ist so dunkel, dass mein lebendiges Auge den Grund nicht erreicht.
+Von der nächsten Brücke aus sehe ich es: ein schreckliches Gewimmel von Schlangen, so vielerlei, dass mir die Erinnerung noch das Blut gerinnen lässt. Dazwischen laufen nackte, erschrockene Leute, ohne Hoffnung auf ein Versteck. Die Hände auf den Rücken gebunden, mit Schlangen.
+Eine Schlange schießt auf einen nahe bei uns und beißt ihn in den Nacken. Er fängt Feuer, brennt und fällt als Asche zusammen. Und die Asche sammelt sich von selbst und wird wieder er. So stirbt der Phönix und wird wieder geboren.
+„Wer bist du?“, fragt Vergil.
+„Ich bin vor kurzem aus der Toskana in diesen wilden Schlund geregnet. Mir gefiel ein Tierleben, kein Menschenleben, Maultier, das ich war. Ich bin Vanni Fucci, das Tier. Pistoia war mein würdiger Stall.“
+& seele vanni | Vanni Fucci | Aus Pistoia, gestorben 1300. Raubte den Kirchenschatz von San Zeno und ließ einen anderen dafür büßen.
++ „Frag ihn, welche Schuld ihn hier herabgestoßen hat. Ich kannte ihn als Mann von Blut und Wut.“ -> vanni
+
+=== vanni
+ort: Siebte Bulge
+bild: schlangen
+Der Sünder hört es und verstellt sich nicht. Er wird rot vor trauriger Scham.
+„Es schmerzt mich mehr, dass du mich in diesem Elend erwischst, als dass ich aus dem anderen Leben gerissen wurde. Ich steck so tief, weil ich ein Dieb der schönen Sakristei war und es fälschlich einem anderen angehängt habe. Aber damit du dich an diesem Anblick nicht freust, wenn du je aus diesen dunklen Orten herauskommst: Hör zu.“
+„Pistoia wird zuerst die Schwarzen los. Dann erneuert Florenz Leute und Sitten. Mars zieht aus dem Val di Magra einen Dunst, in schwarze Wolken gehüllt, und im heftigen Sturm wird auf dem Feld von Piceno gekämpft. Der wird die Wolke plötzlich zerreißen, so dass jeder Weiße getroffen wird.“
+„Und das habe ich gesagt, damit es dir wehtut.“
+& prophezeiung vanni | Vanni Fucci zwischen den Schlangen: Die Schwarzen werden siegen, und jeder Weiße wird getroffen. Er sagt es, damit es mir wehtut.
+-> feigen
+
+=== feigen
+ort: Siebte Bulge
+bild: schlangen
+Am Ende seiner Worte hebt er die Hände mit beiden Feigen, den Daumen zwischen den Fingern, und schreit: „Nimm, Gott, denen zeig ich sie!“
+Von da an sind mir die Schlangen Freunde. Eine wickelt sich ihm um den Hals, als wolle sie sagen: Du sollst nicht weiterreden. Eine andere um die Arme, und bindet ihn so fest, dass er keine Bewegung mehr machen kann.
+Dann sehe ich, was in diesem Graben eigentlich geschieht. Drei Florentiner stehen unter uns. Eine Schlange mit sechs Füßen springt einen von ihnen an, klammert sich an ihn, und die beiden schmelzen ineinander wie warmes Wachs. Ihre Farben mischen sich. Aus zwei Köpfen wird einer, aus zwei Gestalten eine, die keine von beiden ist. Langsam geht sie weg.
+Bei einem anderen tauschen Mensch und Schlange die Form. Der Mensch kriecht auf dem Bauch davon. Die Schlange steht auf und spuckt hinter ihm her.
+[vers 25,94-99]
+Ich schreibe es so, und ich weiß, was ich da behaupte. Ovid und Lucan haben Verwandlungen beschrieben. So eine nicht.
+& seele verwandelte | Die verwandelten Diebe | Agnello, Buoso, Puccio, Cianfa, Guercio: Florentiner, die mit Schlangen verschmelzen oder die Gestalt tauschen.
+-> flammen
+
+# ------------------------------------------------------------ Gesänge XXVI–XXVII
+
+=== flammen
+rubrik: Hier beginnt der sechsundzwanzigste Gesang. Odysseus erzählt seine letzte Fahrt.
+gesang: 26
+ort: Achte Bulge
+bild: flammen
+klang: flammen
+Freu dich, Florenz, du bist so groß, dass du über Meer und Land die Flügel schlägst, und durch die Hölle geht dein Name. Unter den Dieben habe ich fünf deiner Bürger gefunden. Ich schäme mich.
+Wir steigen weiter. Vom nächsten Grat aus sehe ich den achten Graben, so voll kleiner Flammen wie ein Tal voll Glühwürmchen an einem Sommerabend, wenn der Bauer am Hang sich ausruht. Jede Flamme hat einen Sünder gestohlen und zeigt ihn nicht.
+[vers 26,19-24]
+Ich stehe auf der Brücke und beuge mich so weit vor, dass ich gefallen wäre, ohne gestoßen zu werden, hätte ich mich nicht an einem Felsen festgehalten.
+~ Eine Flamme mit zwei Spitzen, wie auf dem Scheiterhaufen, auf dem zwei Brüder brannten. -> doppelflamme @52,46
+
+=== doppelflamme
+ort: Achte Bulge
+bild: flammen
+klang: flammen
+„Da drin werden Odysseus und Diomedes gestraft“, sagt Vergil. „Zusammen gehen sie in die Rache, wie sie im Zorn zusammen gingen. Sie weinen über die List mit dem Pferd, das das Tor öffnete, aus dem die Römer ihren edlen Samen holten. Über Achilles, den sie von Deidamia weglockten. Über das Palladium.“
+„Meister, wenn die in den Funken sprechen können, dann bitte ich dich, und bitte dich noch einmal, dass meine Bitte tausend Bitten wert sei: Lass mich warten, bis die gehörnte Flamme hierher kommt. Sieh, wie ich mich vor Verlangen zu ihr neige.“
+„Deine Bitte ist viel Lob wert. Aber halte deine Zunge. Lass mich sprechen. Ich weiß, was du willst. Sie waren Griechen, vielleicht würden sie deine Worte verschmähen.“
+Als die Flamme da ist, spricht er sie an. „Ihr zwei in einem Feuer: Wenn ich mir etwas bei euch verdient habe, als ich lebte, als ich in der Welt die hohen Verse schrieb, dann bleibt. Einer von euch soll sagen, wo er verloren ging.“
+Das größere Horn der alten Flamme fängt an zu flackern und zu murmeln, wie eine, die der Wind quält. Dann bewegt es die Spitze hin und her, als wäre es eine Zunge, und wirft eine Stimme heraus.
+-> odysseus
+
+=== odysseus
+ort: Achte Bulge
+bild: flammen
+klang: flammen
+„Als ich mich von Kirke trennte, die mich mehr als ein Jahr bei Gaeta festhielt, da konnten weder die Liebe zu meinem Sohn noch das Mitleid mit meinem alten Vater noch die Liebe, die Penelope froh machen sollte, das Verlangen in mir besiegen, die Welt zu erfahren, und die Laster der Menschen, und ihren Wert.“
+„Ich fuhr hinaus aufs offene Meer, mit einem einzigen Schiff und der kleinen Mannschaft, die mich nie verlassen hatte. Spanien sah ich, Marokko, Sardinien. Ich und meine Gefährten waren alt und langsam, als wir an die Enge kamen, wo Herkules seine Zeichen gesetzt hat, damit der Mensch nicht weiterfährt.“
+„Da sprach ich zu ihnen.“
+[vers 26,112-120]
++ Ich hätte das Ruder genommen. -> schiffbruch {setzt mit_odysseus}
++ Ich wäre in Ithaka geblieben, beim Vater und bei Penelope. -> schiffbruch {setzt ithaka}
+
+=== schiffbruch
+ort: Achte Bulge
+bild: flammen
+klang: flammen
+„Mit dieser kurzen Rede habe ich meine Gefährten so scharf auf die Reise gemacht, dass ich sie danach kaum hätte halten können. Wir drehten das Heck gegen den Morgen und machten aus den Rudern Flügel für den verrückten Flug. Die Nacht sah schon alle Sterne des anderen Pols. Fünfmal war das Licht unter dem Mond angegangen und wieder ausgegangen, seit wir den hohen Schritt gewagt hatten. Da erschien uns ein Berg, dunkel von der Entfernung, so hoch, wie ich noch keinen gesehen hatte.“
+[vers 26,136-142]
+{wenn mit_odysseus} Ich hätte das Ruder genommen. Ich hätte ihn nicht einmal den Satz zu Ende sagen lassen müssen.
+{wenn ithaka} Ich hätte mir gewünscht, in Ithaka zu bleiben. Ob ich es gekonnt hätte, wenn er so zu mir gesprochen hätte, weiß ich nicht.
+{wenn seelen>=34} Ich denke an alle, bei denen ich stehen geblieben bin, obwohl Vergil schon weiterging. An jede Stimme, der ich nachgegangen bin, um noch etwas zu erfahren. Ich habe das Wissen genannt. Er hat es auch Wissen genannt.
+& seele odysseus | Odysseus und Diomedes | In einer zweigehörnten Flamme. Odysseus erzählt seine letzte Fahrt über die Säulen des Herkules hinaus, bis zum Berg im Meer, an dem sein Schiff versank.
+-> guido
+
+=== guido
+rubrik: Hier beginnt der siebenundzwanzigste Gesang. Guido da Montefeltro und der Rat, den er einem Papst gab.
+gesang: 27
+ort: Achte Bulge
+bild: flammen
+klang: flammen
+Die Flamme ist schon wieder aufrecht und still und geht weg, mit der Erlaubnis des süßen Dichters. Da kommt eine andere hinter ihr, und ein wirrer Laut aus ihrer Spitze lässt uns die Augen auf sie richten.
+„Du, an den ich meine Stimme richte, der du eben lombardisch sprachst: Bleib und sprich mit mir. Sag mir, ob die Romagna Frieden hat oder Krieg. Denn ich war aus den Bergen zwischen Urbino und der Quelle des Tiber.“
+Vergil stößt mich an. „Sprich du. Das ist ein Italiener.“
+Ich erzähle ihm von der Romagna, wie sie jetzt ist, Stadt für Stadt: wer herrscht, wer droht, wer betrügt. Dann frage ich ihn, wer er ist.
+[vers 27,61-66]
+Er glaubt, ich bleibe hier unten. Er glaubt, keiner kehrt zurück. Darum würde er erzählen.
++ Ich lasse ihn in dem Glauben. -> guido_erzaehlt {setzt guido_getaeuscht}
++ „Ich gehe zurück. Ich werde es erzählen.“ -> guido_schweigt
+
+=== guido_schweigt
+ort: Achte Bulge
+bild: flammen
+klang: flammen
+Die Flamme erstarrt. Eine Weile steht sie ganz still. Dann geht sie, ohne ein Wort, und ihre Spitze zuckt, als lache sie oder als weine sie.
+Ich weiß jetzt nicht, wer er war. Vergil sagt es mir später: Guido da Montefeltro, Feldherr der Ghibellinen, der im Alter Franziskaner wurde und dann einem Papst einen bösen Rat gab. Mehr weiß auch Vergil nicht. Den Rest hätte nur er erzählen können.
+& seele guido | Guido da Montefeltro | Feldherr, später Franziskaner. Er schwieg, als ich ihm sagte, dass ich zurückkehre.
+-> zerspalten
+
+=== guido_erzaehlt
+ort: Achte Bulge
+bild: flammen
+klang: flammen
+„Ich war ein Mann der Waffen, und dann trug ich den Strick der Franziskaner und glaubte, so gegürtet könnte ich alles wiedergutmachen. Und es wäre auch so gekommen, wäre nicht der große Priester gewesen, möge ihn das Unglück holen, der mich in die alten Sünden zurückgeholt hat.“
+„Der Fürst der neuen Pharisäer führte Krieg nahe beim Lateran, nicht gegen Sarazenen und nicht gegen Juden, sondern gegen Christen. Er rief mich und verlangte Rat, wie er Palestrina zu Boden werfen könne. Ich schwieg, weil mir seine Worte betrunken schienen. Da sagte er: Dein Herz soll nicht fürchten. Ich spreche dich schon jetzt frei. Ich kann den Himmel auf- und zuschließen.“
+„Da sagte ich: Vater, weil du mich von der Sünde reinwäschst, in die ich jetzt falle: Lange versprechen und wenig halten, das lässt dich auf dem hohen Thron siegen.“
+„Als ich starb, kam Franziskus, um mich zu holen. Aber einer von den schwarzen Cherubim sagte: Nimm ihn nicht, tu mir kein Unrecht. Er muss zu meinen Leuten hinunter, weil er den betrügerischen Rat gegeben hat. Absolvieren kann man den nicht, der nicht bereut. Und bereuen und wollen zugleich geht nicht, wegen des Widerspruchs.“
+[vers 27,121-123]
+& seele guido | Guido da Montefeltro | Feldherr, später Franziskaner. Riet Papst Bonifaz VIII., Palestrina durch falsche Versprechen zu nehmen, im Vertrauen auf eine Lossprechung im Voraus. Ein schwarzer Cherub holte ihn.
+{wenn guido_getaeuscht} Er geht, das Horn hin und her drehend. Er wird nie erfahren, dass ich es oben erzählt habe. Ich habe ihn mit seinem eigenen Mittel bezahlt.
+-> zerspalten
+
+# ------------------------------------------------------------ Gesang XXVIII
+
+=== zerspalten
+rubrik: Hier beginnt der achtundzwanzigste Gesang. Die Zwietracht säten, werden zerspalten.
+gesang: 28
+ort: Neunte Bulge
+bild: zerspalten
+Wer könnte, auch in Prosa und nach vielen Versuchen, das Blut und die Wunden ganz beschreiben, die ich jetzt sah? Jede Zunge würde versagen.
+Hier gehen die, die Zwietracht gesät haben, in Kirche, Staat und Familie. Ein Teufel mit einem Schwert schneidet jeden, der vorbeikommt, auf. Wenn sie den Kreis gegangen sind, sind die Wunden zugewachsen, und er schneidet sie von neuem. Einer von ihnen, aufgerissen wie ein Fass, dem die Daube fehlt, nennt sich Mohammed. Vor ihm geht Ali.
+~ Einer mit abgeschnittener Nase, der nur ein Ohr hat. -> pier_da_medicina @22,62 {einmal}
+~ „Getan ist getan.“ -> mosca @48,56
+~ Einer trägt etwas in der Hand, wie eine Laterne. -> bertran @70,40
+
+=== pier_da_medicina
+ort: Neunte Bulge
+bild: zerspalten
+Pier da Medicina. Er öffnet die Kehle, die außen ganz rot ist, und sagt: „Erinnere dich an mich, wenn du je die süße Ebene wiedersiehst, die von Vercelli nach Marcabò abfällt.“ Neben ihm Curio, dem die Zunge aus dem Hals geschnitten ist, der Caesar zum Rubikon riet. Er hat so kühn gesprochen. Jetzt kann er gar nicht mehr sprechen.
++ „Ich werde mich erinnern.“ -> pier_m_versprochen
+> Weiter -> zerspalten
+
+=== pier_m_versprochen
+ort: Neunte Bulge
+bild: zerspalten
+& trage pier_m | Pier da Medicina
+Er nickt, als hätte er nichts anderes erwartet, und geht weiter in den Schnitt des Schwertes.
+> Weiter -> zerspalten
+
+=== mosca
+ort: Neunte Bulge
+bild: zerspalten
+Einer, beide Hände abgeschnitten, hebt die Stümpfe in die dunkle Luft, dass ihm das Blut das Gesicht verschmiert. „Erinnere dich auch an Mosca! Ich habe gesagt: Getan ist getan. Das war der böse Same für die Toskaner.“
+Der Satz, mit dem in Florenz der Mord an Buondelmonte beschlossen wurde. Der Satz, mit dem der Krieg zwischen Guelfen und Ghibellinen in unserer Stadt anfing.
+„Und der Tod deines Geschlechts“, sage ich. Er geht weg, Schmerz auf Schmerz gehäuft, wie einer, der traurig und verrückt ist.
+& gefunden mosca
+& seele mosca | Mosca dei Lamberti | Riet 1216 zum Mord an Buondelmonte: „Getan ist getan.“ Damit begann die Spaltung von Florenz. Einer der fünf, nach denen ich Ciacco fragte.
+> Weiter -> zerspalten
+
+=== bertran
+ort: Neunte Bulge
+bild: zerspalten
+Ich sehe es wirklich, und ich habe Angst, es ohne Beweis zu erzählen: einen Rumpf ohne Kopf, der geht, wie die anderen gehen. Den abgeschnittenen Kopf hält er an den Haaren in der Hand, wie eine Laterne. Und der Kopf sieht uns an und sagt: „Weh mir!“
+Er hebt den Arm mit dem Kopf hoch, um uns die Worte näher zu bringen.
+„Ich bin Bertran de Born. Ich habe dem jungen König die schlimmen Ratschläge gegeben. Ich habe Vater und Sohn gegeneinander aufgebracht.“
+[vers 28,139-142]
+Vergeltungsrecht. Er sagt es selbst. Was er getrennt hat, ist an ihm getrennt.
+& seele bertran | Bertran de Born | Troubadour und Ritter, säte Zwietracht zwischen König Heinrich II. von England und dessen Sohn. Trägt den eigenen Kopf wie eine Laterne.
+-> geri
+
+# ------------------------------------------------------------ Gesänge XXIX–XXX
+
+=== geri
+rubrik: Hier beginnen der neunundzwanzigste und der dreißigste Gesang. Ein Verwandter, die Fälscher und ein Streit.
+gesang: 29 30
+ort: Zwischen der neunten und zehnten Bulge
+bild: zerspalten
+Meine Augen sind so trunken von Tränen, dass sie bleiben wollen und weinen.
+„Was starrst du noch?“, sagt Vergil. „Das hast du in den anderen Gräben nicht gemacht. Die Bulge ist zweiundzwanzig Meilen rund. Der Mond steht schon unter unseren Füßen.“
+„Hättest du auf den Grund geachtet, warum ich hinsah, du hättest mich vielleicht bleiben lassen. Ich glaube, in dieser Höhle weint ein Geist von meinem Blut.“
+„Hör auf, an ihn zu denken. Ich habe ihn unter der Brücke gesehen, wie er auf dich zeigte und dir mit dem Finger drohte. Geri del Bello hat man ihn genannt.“
+Der Cousin meines Vaters. Er wurde erschlagen, und keiner aus der Familie hat ihn gerächt. Darum ging er weg, ohne mit mir zu sprechen.
++ „Das macht ihn mir noch lieber.“ -> faelscher {plus mitleid}
++ „Es gibt keine Blutrache mehr, die ich ihm schulde.“ -> faelscher
+
+=== faelscher
+probe: Zusehen
+ort: Zehnte Bulge
+bild: faelscher
+Wir kommen an den letzten Graben. Klagen schießen auf mich ein wie Pfeile, deren Spitzen in Mitleid getaucht sind. Ich halte mir die Ohren zu.
+Ein Gestank wie von faulenden Gliedern. Hier liegen die Fälscher, übereinander, wie in den Spitälern im Sommer, alle Kranken aus dem Chianatal und den Sümpfen in einem Graben. Zwei sitzen aneinandergelehnt und kratzen sich den Schorf wie Pferdeknechte, die es eilig haben.
+„Ich war aus Arezzo“, sagt der eine, Griffolino. „Ich habe einem gesagt, ich könne fliegen. Der hat mich verbrennen lassen. Aber hier bin ich wegen der Alchemie.“
+Der andere grinst mich an. „Du erinnerst dich doch, wie gut ich die Natur nachäffen konnte?“ Capocchio. Wir haben zusammen studiert.
+Dann die anderen. Gianni Schicchi, der sich als toter Buoso Donati ausgab und ein Testament diktierte. Er rennt herum und beißt die anderen in den Nacken. Myrrha, die sich als eine andere ausgab, um bei ihrem Vater zu liegen.
+Und ein Mann mit einem Bauch, so geschwollen, dass er aussieht wie eine Laute. Meister Adam, der Gulden gefälscht hat. „Ich hatte alles, was ich wollte. Jetzt will ich einen Tropfen Wasser. Die Bächlein, die vom Casentino zum Arno laufen, stehen mir immer vor den Augen.“
+Neben ihm zwei, die dampfen wie nasse Hände im Winter. „Die Lügnerin, die Joseph beschuldigt hat. Und Sinon, der lügende Grieche von Troja.“
+Sinon ärgert sich, so genannt zu werden. Er schlägt Meister Adam mit der Faust auf den harten Bauch. Der klingt wie eine Trommel. Und Meister Adam schlägt ihm mit dem Arm ins Gesicht.
+! zuschauen text=streit -> scham
+
+=== streit
+art: text
+Adam: „Auch wenn ich mich nicht bewegen kann, für so etwas habe ich den Arm frei.“
+Sinon: „Als du zum Feuer gingst, hattest du ihn nicht so frei. Zum Münzenprägen schon.“
+Adam: „Da sagst du die Wahrheit. Aber in Troja hast du sie nicht gesagt, als man dich fragte.“
+Sinon: „Hab ich falsch gesprochen, hast du falsch geprägt. Ich bin hier für eine Lüge, du für mehr als jeder andere Teufel.“
+Adam: „Denk an das Pferd, Meineidiger. Die ganze Welt weiß es.“
+Sinon: „Und dich plagt der Durst, der dir die Zunge spaltet, und das faule Wasser, das dir den Bauch vor die Augen bläht.“
+Adam: „Dir reißt der Mund, wie immer. Ich habe Durst, und das Wasser bläht mich. Du hast das Fieber und den Kopfschmerz. Und um den Spiegel des Narziss zu lecken, bräuchtest du nicht viel Einladung.“
+Sinon: „Fass dir an den eigenen Bauch.“
+Adam: „Fass dir an die eigene Zunge.“
+Sinon lacht. Adam lacht nicht. Dann wieder ein Schlag.
+
+=== scham
+ort: Zehnte Bulge
+bild: faelscher
+{wenn zu_lange_zugehoert} [vers 30,130-132]
+{wenn zu_lange_zugehoert} Als ich ihn mit Zorn zu mir sprechen höre, drehe ich mich um, mit einer Scham, die mir heute noch im Gedächtnis kreist. Wie einer, der von etwas Schlimmem träumt und im Traum wünscht, es sei ein Traum. So stehe ich, ohne sprechen zu können. Ich will mich entschuldigen, und ich entschuldige mich ja schon, mit dem Gesicht, und glaube es nicht.
+{nicht zu_lange_zugehoert} Ich wende mich ab, bevor er etwas sagen muss. Aber er hat gesehen, dass ich zugehört habe, und wie gern.
+[vers 30,142-148]
+& seele faelscher | Die Fälscher | Griffolino, Capocchio, Gianni Schicchi, Myrrha, Meister Adam, Sinon: krank, geschwollen, im Fieber, für immer im Streit.
+-> riesen
+
+# ------------------------------------------------------------ Gesang XXXI
+
+=== riesen
+rubrik: Hier beginnt der einunddreißigste Gesang. Die Riesen stehen um den Brunnen.
+gesang: 31
+ort: Am Brunnen
+bild: riesen
+klang: brunnen
+Dieselbe Zunge, die mich gerade gebissen hat, dass mir beide Wangen rot wurden, gibt mir nun die Arznei. So soll die Lanze des Achilles gewesen sein: erst Wunde, dann Heilung.
+Wir kehren dem elenden Tal den Rücken und gehen schweigend über den Damm. Es ist weniger als Nacht und weniger als Tag, so dass mein Blick nicht weit reicht. Aber ich höre ein Horn, so laut, dass jeder Donner schwach dagegen wäre.
+[vers 31,16-18]
+Ich halte den Kopf in die Richtung und sehe viele hohe Türme. „Meister, was ist das für eine Stadt?“
+„Weil du in die Dunkelheit zu weit hineinschaust, täuscht dich deine Einbildung. Das sind keine Türme. Das sind Riesen. Sie stehen im Brunnen, rund um den Rand, vom Nabel abwärts.“
+-> nimrod
+
+=== nimrod
+ort: Am Brunnen
+bild: riesen
+klang: brunnen
+[vers 31,67-69]
+„Dummer Geist“, sagt Vergil zu ihm, „halt dich an dein Horn. Damit lass deine Wut aus.“ Und zu mir: „Er klagt sich selbst an. Das ist Nimrod, durch dessen bösen Gedanken nicht mehr nur eine Sprache auf der Welt gesprochen wird. Lassen wir ihn stehen und reden wir nicht umsonst. Jede Sprache ist für ihn, wie seine für die anderen ist. Keiner versteht sie.“
+Weiter links steht Ephialtes, mit fünf Ketten gefesselt, der gegen Jupiter kämpfen wollte. Er schüttelt sich, wie ein Erdbeben einen Turm schüttelt, und ich hatte nie mehr Angst zu sterben.
+Dann Antaeus. Der ist nicht gefesselt, weil er nicht gegen die Götter gekämpft hat. Er kann uns hinunterbringen.
+„Bring uns hinab, wo die Kälte den Kokytos verschließt“, sagt Vergil zu ihm. „Der hier kann dir geben, was man hier begehrt. Er lebt, und er kann dir noch Ruhm in der Welt geben.“
+& seele riesen | Die Riesen | Nimrod, Ephialtes, Antaeus. Sie stehen im Brunnen um den neunten Kreis. Nimrods Sprache versteht niemand.
+-> antaeus
+
+=== antaeus
+ort: Am Brunnen
+bild: riesen
+klang: brunnen
+Antaeus streckt die Hände aus und nimmt meinen Führer. Vergil sagt: „Komm her, ich halte dich.“ Er macht aus sich und mir ein einziges Bündel.
+Wie der Turm Garisenda in Bologna aussieht, wenn man unter seiner Neigung steht und eine Wolke darüberzieht, so dass er sich zu neigen scheint, so sieht Antaeus aus, als er sich bückt. In diesem Moment hätte ich gern einen anderen Weg genommen.
+Aber er setzt uns sanft auf den Grund ab, der Luzifer mit Judas verschlingt. Und so gebückt bleibt er nicht. Wie ein Mast auf einem Schiff richtet er sich auf.
+-> verrat: | Hinab ins Eis

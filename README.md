@@ -7,7 +7,8 @@ und eine eigene Adresse, die Startseite verlinkt alle:
 | | Ordner | Adresse |
 |---|---|---|
 | Startseite | `index.html` | https://babypython67.github.io/Projects/ |
-| **Woyzeck**, ein Spiel, das man liest: Büchners Woyzeck als Textspiel, du bist Andres an seiner Seite (neu) | [spiele/woyzeck/](spiele/woyzeck/) | https://babypython67.github.io/Projects/spiele/woyzeck/ |
+| **Inferno**, Dantes Weg selbst gehen: Story-Spiel nach Dantes Inferno, lauschend erkunden, mit Dantes Versen (neu) | [spiele/inferno/](spiele/inferno/) | https://babypython67.github.io/Projects/spiele/inferno/ |
+| Woyzeck, ein Spiel, das man liest: Büchners Woyzeck als Textspiel, du bist Andres an seiner Seite | [spiele/woyzeck/](spiele/woyzeck/) | https://babypython67.github.io/Projects/spiele/woyzeck/ |
 | Carreau, Boule unter Platanen: Dorfpartien auf immer neuen Plätzen, Können statt Würfel | [spiele/carreau/](spiele/carreau/) | https://babypython67.github.io/Projects/spiele/carreau/ |
 | Rungholt, Würfel-Roguelike: eine Nacht durchs Watt zur versunkenen Stadt | [spiele/rungholt/](spiele/rungholt/) | https://babypython67.github.io/Projects/spiele/rungholt/ |
 | Moorlicht, Laternen-Roguelite: Funken ziehen, Licht gegen Kälte, eine Geschichte über viele Nächte | [spiele/moorlicht/](spiele/moorlicht/) | https://babypython67.github.io/Projects/spiele/moorlicht/ |
@@ -25,7 +26,8 @@ Projects/
 ├── .nojekyll             Pages liefert die Dateien unverändert aus (ohne Jekyll)
 ├── .gitignore            node_modules, Testberichte, Python-Cache, Editor-Dateien
 ├── spiele/               ein Ordner pro Spiel, jeder mit README, Tests und eigener Adresse
-│   ├── woyzeck/          Textspiel nach Büchner (neu)
+│   ├── inferno/          Story-Spiel nach Dantes Inferno (neu)
+│   ├── woyzeck/          Textspiel nach Büchner
 │   ├── carreau/          Boule unter Platanen
 │   ├── rungholt/         Würfel-Roguelike im Watt
 │   ├── moorlicht/        Laternen-Roguelite im Moor
@@ -70,6 +72,8 @@ node --test spiele/moorlicht/tests/smoke.test.js
 node --test spiele/carreau/test/*.test.mjs
 node --test spiele/woyzeck/tests/logik.test.mjs spiele/woyzeck/tests/inhalt.test.mjs
 node --test spiele/woyzeck/tests/browser.test.mjs
+node --test spiele/inferno/tests/logik.test.js
+node --test spiele/inferno/tests/browser.test.js
 ```
 
 Johannisnacht hat keine Tests (eine einzelne Datei ohne getrennte Spiellogik). Der Browser-Test von
