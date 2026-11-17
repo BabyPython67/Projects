@@ -1,0 +1,9 @@
+@abschnitt dis
+titel: (in Arbeit) dis
+kreis: 6
+thema: stille
+
+=== start
+gesang: 9
+Dieser Abschnitt entsteht noch.
+-> graeber:

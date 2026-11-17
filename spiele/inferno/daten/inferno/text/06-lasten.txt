@@ -1,0 +1,9 @@
+@abschnitt lasten
+titel: (in Arbeit) lasten
+kreis: 4
+thema: stille
+
+=== start
+gesang: 7
+Dieser Abschnitt entsteht noch.
+-> styx:

@@ -1,0 +1,149 @@
+@abschnitt wald
+titel: Der dunkle Wald
+untertitel: Wie ich verloren ging
+kreis: W
+thema: wald
+gesaenge: I–II
+start: erwachen
+
+# ---------------------------------------------------------------- Gesang I
+
+=== erwachen
+rubrik: Hier beginnt der erste Gesang. Dante hat sich in einem Wald verirrt.
+gesang: 1
+bild: wald
+Ich weiß nicht, wann ich vom Weg abgekommen bin. Ich war so müde, dass ich im Gehen geschlafen haben muss. Als ich wieder zu mir kam, standen die Stämme so dicht, dass ich die Hände vor mich hielt wie ein Blinder.
+[vers 1,1-3]
+Fünfunddreißig bin ich. Dichter in Florenz, Mitglied im Rat, eine Frau, Kinder, Feinde. Nichts davon nützt hier etwas. Es ist so dunkel, dass ich nur noch hören kann.
+~ Etwas knackt hinter mir. -> knacken @24,66
+~ Wasser, ganz leise, links. -> rinnsal @14,84
+~ Über den Wipfeln, ein Vogel. Es wird hell. -> rand @72,18
+
+=== knacken
+bild: wald
+Ich bleibe stehen. Das Knacken hört auf. Ich gehe weiter, es geht weiter, im selben Takt. Es dauert, bis ich begreife, dass es meine eigenen Schritte sind, die von irgendetwas Hartem zurückkommen.
+Ich habe Angst vor meinem eigenen Gehen. So weit ist es gekommen.
+> Zurück zu dem hellen Fleck über den Bäumen -> rand
+> Dem Wasser nach -> rinnsal {nicht gesehen:rinnsal}
+
+=== rinnsal
+bild: wald
+Das Wasser ist eiskalt und schmeckt nach Eisen. Ich trinke trotzdem, auf den Knien. Als ich den Kopf hebe, sehe ich zwischen zwei Stämmen einen hellen Streifen. Nicht den Himmel. Einen Hang, auf den schon Sonne fällt.
+> Zum Hang -> rand
+
+=== rand
+ort: Am Fuß des Hügels
+Der Wald hört auf, als hätte jemand eine Linie gezogen. Dahinter steigt ein Hügel an.
+[vers 1,16-18]
+Ich setze mich auf einen Stein. Mein Atem geht, als wäre ich gerannt, dabei bin ich nur gestolpert, die ganze Nacht. Ich drehe mich nach dem Wald um.
+[vers 1,22-27]
+Dann stehe ich auf. Der Hang ist steil, Geröll, kein Pfad. Ich steige so, dass immer der hintere Fuß der tiefere ist.
+! huegel text=huegel_text -> schatten
+
+=== huegel_text
+art: text
+Kaum bin ich ein Stück oben, steht er da, ein Pardel, leicht und schnell, das Fell voller Flecken. Er weicht nicht. Wohin ich auch trete, er ist schon dort. Ich rutsche zurück, auf dem Hintern, wie ein Kind.
+Diesmal ist es ein Löwe. Er kommt mit erhobenem Kopf auf mich zu, und die Luft vor ihm zittert, als hätte auch sie Angst. Ich falle mehr, als dass ich steige.
+Und dann die Wölfin. So mager, dass man ihre Gier an den Rippen ablesen kann. Viele hat sie schon elend gemacht, das sieht man ihr an. Sie treibt mich zurück, Schritt für Schritt, dorthin, wo die Sonne schweigt.
+Die Wölfin. Sie ist nicht müde geworden. Ich schon.
+Unten, im Schatten zwischen Hang und Wald, steht jemand. Er räuspert sich, wie einer, der sehr lange nichts gesagt hat.
+
+=== schatten
+ort: Im Schatten
+bild: vergil
+[vers 1,61-63]
+Er sieht nicht aus wie ein Räuber. Er sieht nicht einmal ganz aus wie einer, der da ist. Das Licht vom Hügel geht ein wenig durch seinen Mantel.
++ „Erbarm dich, wer du auch bist, Mensch oder Schatten.“ -> wer_bist_du {setzt bat_erbarmen}
++ „Lebst du?“ -> wer_bist_du
++ Ich sage nichts und warte, ob er näher kommt. -> wer_bist_du {setzt schwieg_vergil}
+
+=== wer_bist_du
+bild: vergil
+{wenn schwieg_vergil} Er kommt nicht näher. Er wartet auch. Zwei Männer am Rand eines Waldes, die einander nicht trauen, und keiner trägt eine Waffe. Schließlich spricht er doch, als hätte er das Schweigen lange genug geübt.
+„Kein Mensch. Ich war einer.“ Er zählt es auf, ohne Eile, wie von einem Grabstein: die Eltern aus der Lombardei, beide aus Mantua. Geboren unter Julius, spät. Gelebt in Rom unter dem guten Augustus, „in der Zeit der falschen, lügenden Götter“.
+„Ich war Dichter. Ich habe den gerechten Sohn des Anchises besungen, der aus Troja kam, als das stolze Ilion verbrannt war.“
+Dann eine Pause. Er will, dass ich den Rest selbst sage.
+[vers 1,76-78]
++ „Dann bist du Vergil.“ -> vergil_erkannt
+
+=== vergil_erkannt
+bild: vergil
+Seine Verse habe ich auswendig gelernt, als ich jünger war als mein ältester Sohn heute. Ich habe sie abgeschrieben, bis mir die Hand wehtat. Was an meinen Sätzen schön ist, habe ich bei ihm gestohlen. Und jetzt steht er da, im Schatten, und hat ein Gesicht.
+Mir wird heiß. Eben bin ich noch auf allen vieren den Hang hinuntergerutscht, vor seinen Augen.
++ „Du bist mein Meister. Bei dir habe ich den Stil gelernt, der mir Ehre gemacht hat.“ -> woelfin {setzt lob_vergil}
++ „Sieh das Tier da oben. Hilf mir gegen sie.“ -> woelfin
+
+=== woelfin
+ort: Im Schatten
+{wenn lob_vergil} [vers 1,85-90]
+{nicht lob_vergil} [vers 1,88-90]
+{wenn lob_vergil} Er hört das Lob, wie man ein altes Lied hört, das jemand falsch summt. Freundlich, aber er hält sich nicht damit auf. Sein Blick geht an mir vorbei zum Hang, wo die Wölfin auf und ab läuft.
+„Du musst einen anderen Weg nehmen“, sagt er, „wenn du hier herauswillst. Dieses Tier lässt keinen vorbei. Es hält dich auf, bis du tot bist. Und es wird nie satt. Nach dem Fressen hat es mehr Hunger als vorher.“
+Er spricht von einem Windhund, der kommen und sie zurück in die Hölle jagen wird. Einer, der nicht von Land und Geld lebt, sondern von Weisheit, Liebe und Kraft. Ich weiß nicht, wen er meint. Ich glaube, er weiß es auch nicht genau.
+& prophezeiung windhund | Vergil am Waldrand: Ein Windhund wird kommen und die Wölfin in die Hölle zurückjagen. Er lebt nicht von Land und Geld, sondern von Weisheit, Liebe und Kraft.
+„Folge mir. Ich führe dich durch einen ewigen Ort.“
+[vers 1,115-120]
+„Und wenn du dann noch höher willst, kommt eine Seele, die würdiger ist als ich. Der übergebe ich dich, wenn ich gehe. Der Kaiser dort oben will nicht, dass ich in seine Stadt komme. Ich habe gegen sein Gesetz gelebt, ohne es zu kennen.“
++ „Dichter, bei dem Gott, den du nicht gekannt hast: Führ mich.“ -> aufbruch
++ „Wo ist dieser ewige Ort?“ -> wo_ort
+
+=== wo_ort
+Er zeigt nicht auf den Hügel. Er zeigt auf den Boden.
+-> aufbruch | „Dann führ mich.“
+
+=== aufbruch
+& seele vergil | Vergil | Dichter aus Mantua, 70–19 vor Christus, schrieb die *Aeneis*. Er ist tot und kommt aus dem Limbus. Er führt mich.
+[vers 1,130-136]
+Er geht voran, ich hinterher. Ich habe vergessen zu fragen, wie lange.
+-> abend
+
+# ---------------------------------------------------------------- Gesang II
+
+=== abend
+rubrik: Hier beginnt der zweite Gesang. Dante zweifelt, und Vergil erzählt, wer ihn geschickt hat.
+gesang: 2
+bild: wald
+Die Bauern lassen die Hacken liegen. Die Ochsen werden losgebunden. Überall hört man auf. Nur ich fange an.
+[vers 2,1-6]
+Wir gehen am Waldrand entlang, bergab, und mit jedem Schritt wird der Gedanke lauter.
++ Ich sage ihm, was ich denke. -> zweifel
++ Ich gehe weiter und schweige. -> schweigen
+
+=== schweigen
+Ich schweige vielleicht hundert Schritte lang. Dann bleibe ich stehen. Er bleibt auch stehen, ohne sich umzudrehen, als hätte er darauf gewartet.
+-> zweifel | Es muss heraus.
+
+=== zweifel
+„Dichter, sieh mich an, bevor du mich da hineinführst. Bin ich stark genug? Du hast geschrieben, wie Aeneas lebendig in die Unterwelt ging. Er durfte, weil aus ihm Rom werden sollte. Paulus wurde in den Himmel entrückt, damit der Glaube Kraft bekommt. Aber ich?“
+[vers 2,31-33]
+„Wenn ich mitgehe, ist es Wahnsinn. Du bist klug. Du verstehst es besser, als ich es sagen kann.“
+Während ich rede, merke ich, dass ich schon nicht mehr will. Wie einer, der nachts einen Plan macht und ihn am Morgen nicht wiedererkennt.
++ „Lass mich zurückgehen.“ -> beatrice {setzt wollte_zurueck}
++ „Sag mir, warum gerade ich.“ -> beatrice
+
+=== beatrice
+{wenn wollte_zurueck} Er lacht nicht. Er sagt auch nicht nein.
+„Deine Seele hat die Feigheit gepackt“, sagt Vergil. „Die wirft einen Menschen herum, dass er vor etwas Gutem zurückweicht wie ein Pferd vor einem Schatten. Ich sage dir, warum ich gekommen bin. Dann geht die Angst.“
+„Ich war bei denen, die in der Schwebe sind. Da rief mich eine Frau.“
+[vers 2,52-57]
+Er sagt ihren Namen nicht selbst. Er lässt sie ihn sagen, mit ihren Worten.
+[vers 2,70-72]
+Beatrice. Ich war neun, als ich sie zum ersten Mal sah, und achtzehn beim zweiten Mal. Sie hat mich gegrüßt, und ich bin nach Hause gegangen und habe mich eingeschlossen. Seit zehn Jahren ist sie tot. Ich habe ein ganzes Buch über sie geschrieben. Ich wusste nicht, dass sie mich noch sieht.
++ „Sie ist bis in die Hölle gekommen? Hatte sie keine Angst?“ -> drei_frauen
++ Ich bekomme kein Wort heraus. -> drei_frauen {setzt beatrice_stumm}
+
+=== drei_frauen
+{wenn beatrice_stumm} Er wartet, bis ich wieder atme. Dann spricht er weiter, leiser.
+{nicht beatrice_stumm} „Ich habe sie dasselbe gefragt.“
+„Sie hat gesagt: Angst haben soll man nur vor Dingen, die schaden können. Euer Elend reicht nicht an sie heran. Eure Flammen fassen sie nicht.“
+Dann erzählt er, wie es oben angefangen hat. Eine Frau im Himmel, deren Namen er nicht ausspricht, die Mutter, hat gesehen, wo ich stehe. Sie hat Lucia gerufen. Lucia ist zu Beatrice gegangen, die neben Rahel saß, und hat gesagt: Siehst du nicht, wie er kämpft? Er, der dich so geliebt hat, dass er deinetwegen aus der Menge getreten ist?
+„Und als sie mir das alles gesagt hatte, hat sie die Augen abgewandt. Sie hat geweint. Darum bin ich so schnell gekommen.“
+Drei Frauen. Eine Kette von Bitten vom höchsten Ort bis zu einem Toten, der in der Schwebe lebt, und von dort bis zu mir an diesen Hang.
+& seele beatrice | Beatrice | Beatrice Portinari aus Florenz, gestorben 1290. Ich habe sie geliebt. Sie hat Vergil zu mir geschickt.
+-> mut | „Was zögere ich noch?“
+
+=== mut
+[vers 2,127-132]
+„Geh“, sage ich. „Ein Wille für uns beide. Du bist mein Führer, mein Herr, mein Meister.“
+Er geht voran. Ich folge ihm auf den tiefen, wilden Weg.
+-> vorhoelle: | Hinab

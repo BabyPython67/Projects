@@ -1,0 +1,9 @@
+@abschnitt graeber
+titel: (in Arbeit) graeber
+kreis: 7
+thema: stille
+
+=== start
+gesang: 10
+Dieser Abschnitt entsteht noch.
+-> gewalt:

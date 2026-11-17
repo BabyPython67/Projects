@@ -1,0 +1,9 @@
+@abschnitt liebende
+titel: (in Arbeit) liebende
+kreis: 2
+thema: stille
+
+=== start
+gesang: 5
+Dieser Abschnitt entsteht noch.
+-> regen:

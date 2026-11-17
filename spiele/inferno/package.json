@@ -1,0 +1,18 @@
+{
+  "name": "inferno-was-ich-dort-hoerte",
+  "private": true,
+  "type": "module",
+  "description": "Dantes Inferno als Spiel im Browser",
+  "scripts": {
+    "start": "node werkzeuge/server.js",
+    "test": "node --test tests/logik.test.js",
+    "test:browser": "node --test tests/browser.test.js",
+    "test:alle": "node --test tests/logik.test.js tests/browser.test.js",
+    "pruefe": "node werkzeuge/pruefe.js",
+    "wortzahl": "node werkzeuge/wortzahl.js",
+    "icons": "node werkzeuge/icons.js"
+  },
+  "devDependencies": {
+    "playwright": "1.63.0"
+  }
+}

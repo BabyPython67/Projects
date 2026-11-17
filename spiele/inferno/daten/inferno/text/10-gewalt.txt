@@ -1,0 +1,9 @@
+@abschnitt gewalt
+titel: (in Arbeit) gewalt
+kreis: 8
+thema: stille
+
+=== start
+gesang: 11
+Dieser Abschnitt entsteht noch.
+-> malebolge:

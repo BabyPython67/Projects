@@ -1,0 +1,9 @@
+@abschnitt regen
+titel: (in Arbeit) regen
+kreis: 3
+thema: stille
+
+=== start
+gesang: 6
+Dieser Abschnitt entsteht noch.
+-> lasten:

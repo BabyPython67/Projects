@@ -1,0 +1,9 @@
+@abschnitt vorhoelle
+titel: (in Arbeit) vorhoelle
+kreis: 0
+thema: stille
+
+=== start
+gesang: 3
+Dieser Abschnitt entsteht noch.
+-> limbus:
