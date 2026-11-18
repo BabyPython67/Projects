@@ -93,7 +93,8 @@ export const PRUEFUNGEN = {
     const vergil = h.el('div.probe-log');
     b.append(h.el('p.lausch-hinweis', {}, 'Leg den Finger auf die Menge, wenn du hinhören willst. Oder geh vorüber.'), feld, vergil);
     const stimmen = t.map((s, i) => {
-      const e = h.el('span.fetzen', { style: `left:${4 + (i * 29) % 50}%;top:${8 + (i * 23) % 74}%;animation-delay:${-i * 0.7}s` }, s);
+      // Zwei Spalten, vier Reihen: die Fetzen decken sich nicht.
+      const e = h.el('span.fetzen', { style: `left:${i % 2 ? 51 : 3}%;top:${6 + Math.floor(i / 2) * 23}%;animation-delay:${-i * 0.7}s` }, s);
       feld.append(e); return { e, gehoert: false };
     });
     let gehoert = 0;
@@ -412,7 +413,7 @@ export const PRUEFUNGEN = {
   async flucht(b, args, h) {
     const t = zeilen(h, args); // Zeilen der Flucht …, [vorletzte: Vergil, wenn man zappelt], [letzte: unten]
     const zeilenFlucht = t.slice(0, -2), zappelText = t[t.length - 2], unten = t[t.length - 1];
-    const buehne = h.buehne('pech', '.fluchtfeld');
+    const buehne = h.buehne('pech', '.fluchtfeld', 1.25);
     const text = h.el('div.buehne-text');
     buehne.append(text);
     const zeit = h.el('div.flucht-zeit', {}, h.el('span'));

@@ -4,7 +4,7 @@ import * as Z from './zustand.js';
 import { WERKE } from '../daten/werke.js';
 import { VERSION } from './version.js';
 import { zeichneKarte, EBENEN } from './karte.js';
-import { tafelDaten, tafelPfad, tafelnFuer } from './tafeln.js';
+import { tafelDaten, tafelPfad, tafelnFuer, TAFELN } from './tafeln.js';
 import { Klang } from './klang.js';
 import { PRUEFUNGEN } from './pruefungen.js';
 
@@ -147,7 +147,36 @@ function versBlock(refs) {
 }
 
 function zeigeKopf(abschnitt) {
-  $('#kopf-titel').textContent = abschnitt.titel + (abschnitt.untertitel ? ' · ' + abschnitt.untertitel : '');
+  $('#kopf-titel').replaceChildren(el('span', {}, abschnitt.titel), abschnitt.untertitel ? el('span.kopf-unter', {}, ' · ' + abschnitt.untertitel) : '');
+}
+
+// Stimmen auf dem Bild: ganz im Bild halten und auseinanderschieben, wo sie sich decken.
+function ordneStimmen(fig) {
+  const r = fig.getBoundingClientRect();
+  if (!r.width) return;
+  fig.classList.toggle('eng', r.width < 360);
+  const knoepfe = [...fig.querySelectorAll('.stimme')];
+  const kaesten = knoepfe.map(b => {
+    b.style.left = b.dataset.x + '%'; b.style.top = b.dataset.y + '%';
+    const w = b.offsetWidth, h = b.offsetHeight;
+    let x = Math.min(Math.max(+b.dataset.x / 100 * r.width, w / 2 + 4), r.width - w / 2 - 4);
+    let y = Math.min(Math.max(+b.dataset.y / 100 * r.height, h / 2 + 4), r.height - h / 2 - 4);
+    return { b, w, h, x, y };
+  });
+  for (let runde = 0; runde < 30; runde++) {
+    let bewegt = false;
+    for (let i = 0; i < kaesten.length; i++) for (let j = i + 1; j < kaesten.length; j++) {
+      const a = kaesten[i], c = kaesten[j];
+      const ux = (a.w + c.w) / 2 + 4 - Math.abs(a.x - c.x), uy = (a.h + c.h) / 2 + 4 - Math.abs(a.y - c.y);
+      if (ux > 0 && uy > 0) {
+        const d = uy / 2 + 1, s = a.y <= c.y ? -1 : 1;
+        a.y += s * d; c.y -= s * d; bewegt = true;
+      }
+    }
+    for (const k of kaesten) k.y = Math.min(Math.max(k.y, k.h / 2 + 4), r.height - k.h / 2 - 4);
+    if (!bewegt) break;
+  }
+  for (const k of kaesten) { k.b.style.left = k.x + 'px'; k.b.style.top = k.y + 'px'; }
 }
 
 function gehe(ziel, echo = null, vonAbschnitt = null) {
@@ -278,7 +307,7 @@ function lauschbild(ab, k, stimmen) {
   const knoten = stimmen.map((st, i) => {
     const key = ab.id + ':' + k.id + '~' + i;
     const b = el('button.stimme', { style: `left:${st.x}%;top:${st.y}%`, tabindex: '-1' }, st.text);
-    b.dataset.key = key;
+    b.dataset.key = key; b.dataset.x = st.x; b.dataset.y = st.y;
     const eintrag = { st, key, b, zeit: 0, gehoert: !!app.stand.gehoert[key] };
     b.addEventListener('click', () => { if (eintrag.gehoert && performance.now() - (fig._losgelassen || 0) > 400) folge(eintrag); });
     schicht.append(b);
@@ -305,6 +334,13 @@ function lauschbild(ab, k, stimmen) {
   huelle.insertBefore(hinweis, tafel);
   let hilfeKnopf = null;
   knoten.forEach(e => { if (e.gehoert) markiere(e); });
+
+  const ordnen = () => { if (document.body.contains(fig)) ordneStimmen(fig); else removeEventListener('resize', ordnen); };
+  requestAnimationFrame(ordnen);
+  const bild = fig.querySelector('img');
+  if (bild && !bild.complete) bild.addEventListener('load', ordnen, { once: true });
+  addEventListener('resize', ordnen);
+  if (document.fonts) document.fonts.ready.then(ordnen);
 
   let lauscht = false, letzt = 0;
   const kreis = el('div.hoerkreis');
@@ -396,12 +432,13 @@ function starteProbe(ab, k, wurzel) {
     klang: app.klang, el, vers: refs => versBlock(refs), stand: app.stand, formatiere, zeichen,
     tafel: (name, opt) => baueTafel(name, opt).fig,
     // Bühne: eine Tafel als Hintergrund, auf der man handelt.
-    buehne: (name, klasse = '') => {
+    // zoom: wie stark die Bühne ihr Bild höchstens vergrößert (dann wird sie entsprechend schmaler).
+    buehne: (name, klasse = '', zoom = 1) => {
       const t = tafelDaten(name);
       const b = el('div.buehne' + klasse);
       if (t) {
         b.style.aspectRatio = (t.w / t.h).toFixed(4);
-        b.style.width = `min(calc(100% - 12px), calc(var(--tafel-max) * ${(t.w / t.h).toFixed(4)}), ${Math.floor(t.w / 2)}px)`;
+        b.style.width = `min(calc(100% - 12px), calc(var(--tafel-max) * ${(t.w / t.h).toFixed(4)}), ${Math.floor(t.w / 2 / zoom)}px)`;
         b.append(el('img.grund', { src: tafelPfad(t), alt: '', width: t.w, height: t.h, draggable: 'false' }));
       }
       return b;
@@ -653,7 +690,7 @@ async function start() {
   }
   app.stand = ladeStand();
   zeigeTitel();
-  window.__inferno = { app, gehe, Z }; // für Tests
+  window.__inferno = { app, gehe, Z, baueTafel, TAFELN }; // für Tests
 }
 
 start();

@@ -9,7 +9,7 @@ export const GERAETE = [
   { name: 'handy-quer', ...devices['iPhone 13 landscape'] },
 ];
 
-// art: titel | kapitel | szene | lausch | vers | pruefung | menue | ende
+// art: titel | kapitel | szene | lausch | pruefung | ende | tafeln | menue
 export const BILDSCHIRME = [
   { name: 'titel-neu', art: 'titel' },
   { name: 'titel-weiter', art: 'titel', mitStand: true },
@@ -43,6 +43,7 @@ export const BILDSCHIRME = [
   { name: 'pruefung-umkehr', art: 'pruefung', ziel: 'verrat:abstieg' },
   { name: 'pruefung-sterne', art: 'pruefung', ziel: 'verrat:sterne_auf' },
   { name: 'ende', art: 'ende', ziel: 'verrat:ende' },
+  { name: 'tafeln-alle', art: 'tafeln' },
   { name: 'menue-merkbuch', art: 'menue', reiter: 'Merkbuch' },
   { name: 'menue-gesaenge', art: 'menue', reiter: 'Gesänge' },
   { name: 'menue-gesang', art: 'menue', reiter: 'Gesänge', gesang: true },
@@ -53,7 +54,8 @@ export const BILDSCHIRME = [
 
 // Bringt die Seite auf den gewünschten Bildschirm. Jede Bildschirmart beginnt
 // mit frisch geladener Seite, damit keine Zeitgeber älterer Prüfungen stören.
-export async function zeige(page, url, b) {
+export async function zeige(page, url, b, { schnell = false } = {}) {
+  const w = ms => page.waitForTimeout(schnell ? Math.round(ms / 4) : ms);
   await page.goto(url);
   await page.waitForFunction(() => window.__inferno && window.__inferno.app.werk);
   if (b.art === 'titel') {
@@ -62,7 +64,19 @@ export async function zeige(page, url, b) {
       await page.goto(url);
       await page.waitForFunction(() => window.__inferno && window.__inferno.app.werk);
     }
-    await page.waitForTimeout(900);
+    await w(900);
+    return;
+  }
+  if (b.art === 'tafeln') {
+    // Alle Tafeln des Spiels auf einer Seite, in der Größe, in der das Spiel sie zeigt
+    await page.evaluate(() => {
+      const { app, Z, baueTafel, TAFELN } = window.__inferno;
+      app.stand = Z.neuerStand('inferno');
+      const s = document.querySelector('#seite'); s.className = 'blatt'; s.replaceChildren();
+      const gesehen = new Set();
+      for (const [n, t] of Object.entries(TAFELN)) { if (gesehen.has(t.datei)) continue; gesehen.add(t.datei); s.append(baueTafel(n).fig); }
+    });
+    await page.waitForFunction(() => [...document.images].every(i => i.complete), null, { timeout: 60000 });
     return;
   }
   // Ein Stand, der schon einige Gesänge kennt (für Menü und Gesangsbuch).
@@ -80,11 +94,12 @@ export async function zeige(page, url, b) {
     gehe(ziel);
   }, { ziel: b.ziel || '', ohneKapitel: !!b.ohneKapitel, art: b.art });
   if (b.art === 'kapitel') await page.locator('.kapitel-titel').waitFor();
-  if (b.art === 'pruefung') await page.waitForTimeout(1600);
+  if (b.art === 'pruefung') await w(1600);
   if (b.art === 'menue') {
     await page.getByRole('button', { name: 'Menü öffnen' }).click();
     await page.locator('.reiter button', { hasText: b.reiter }).click();
     if (b.gesang) await page.locator('.gesang-raster button:not([disabled])').first().click();
   }
-  await page.waitForTimeout(700); // Einblend-Animationen
+  await page.waitForFunction(() => [...document.images].every(i => i.complete), null, { timeout: 20000 });
+  await w(700); // Einblend-Animationen
 }
