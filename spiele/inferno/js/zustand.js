@@ -2,7 +2,8 @@
 // Reines Modul ohne DOM (in Node testbar).
 import { loeseZiel } from './skript.js';
 
-export const STAND_VERSION = 1;
+// 1: Runde 1 und 2. 2: Runde 3 (neue Prüfungen im Limbus, andere Merkzeichen).
+export const STAND_VERSION = 2;
 
 export function neuerStand(werk = 'inferno') {
   return {
@@ -120,6 +121,7 @@ export function waehle(stand, abschnittId, knoten, wahl) {
 export function wendePruefungsErgebnisAn(stand, ergebnis = {}) {
   (ergebnis.setzt || []).forEach(f => { stand.flags[f] = true; });
   Object.entries(ergebnis.zahlen || {}).forEach(([k, v]) => { stand.zahlen[k] = v; });
+  Object.entries(ergebnis.plus || {}).forEach(([k, v]) => { stand.zahlen[k] = (stand.zahlen[k] || 0) + v; });
 }
 
 // --- Speichern ---------------------------------------------------------
@@ -144,6 +146,12 @@ export function pruefeStand(roh) {
   s.merk = { ...leer.merk, ...(roh.merk || {}) };
   s.zeit = { ...leer.zeit, ...(roh.zeit || {}) };
   if (s.ort && (typeof s.ort.abschnitt !== 'string' || typeof s.ort.knoten !== 'string')) s.ort = null;
+  if (roh.v < 2) {
+    // Stände aus Runde 2: Die Wahl im Limbus heißt jetzt nach dem Platz in der Reihe.
+    if (s.flags.demut) { s.flags.sechster = true; delete s.flags.demut; }
+    if (s.flags.bescheiden) { s.flags.abseits = true; delete s.flags.bescheiden; }
+    s.ausFruehererFassung = roh.v;
+  }
   s.v = STAND_VERSION;
   return s;
 }

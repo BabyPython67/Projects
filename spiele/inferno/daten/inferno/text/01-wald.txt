@@ -9,7 +9,7 @@ start: erwachen
 # ---------------------------------------------------------------- Gesang I
 
 === erwachen
-rubrik: Hier beginnt der erste Gesang. Dante hat sich in einem Wald verirrt.
+rubrik: Hier beginnt der erste Gesang. Ein Wald, bei Nacht.
 gesang: 1
 bild: wald
 Ich weiß nicht, wann ich vom Weg abgekommen bin. Ich war so müde, dass ich im Gehen geschlafen haben muss. Als ich wieder zu mir kam, standen die Stämme so dicht, dass ich die Hände vor mich hielt wie ein Blinder.
@@ -48,11 +48,13 @@ Diesmal ist es ein Löwe. Er kommt mit erhobenem Kopf auf mich zu, und die Luft 
 Und dann die Wölfin. So mager, dass man ihre Gier an den Rippen ablesen kann. Viele hat sie schon elend gemacht, das sieht man ihr an. Sie treibt mich zurück, Schritt für Schritt, dorthin, wo die Sonne schweigt.
 Die Wölfin. Sie ist nicht müde geworden. Ich schon.
 Unten, im Schatten zwischen Hang und Wald, steht jemand. Er räuspert sich, wie einer, der sehr lange nichts gesagt hat.
+Der im Schatten räuspert sich nicht noch einmal. Er wartet, und es ist nicht klar, wie lange noch.
 
 === schatten
 ort: Im Schatten
 bild: vergil
 [vers 1,61-63]
+{wenn huegel_stur} Er hat lange gewartet. „Ich habe gezählt“, sagt er später, „wie oft du hinaufgelaufen bist.“ Er sagt die Zahl nicht.
 Er sieht nicht aus wie ein Räuber. Er sieht nicht einmal ganz aus wie einer, der da ist. Das Licht vom Hügel geht ein wenig durch seinen Mantel.
 + „Erbarm dich, wer du auch bist, Mensch oder Schatten.“ -> wer_bist_du {setzt bat_erbarmen}
 + „Lebst du?“ -> wer_bist_du
@@ -71,8 +73,8 @@ Dann sieht er mich an und fragt zurück:
 bild: vergil
 Seine Verse habe ich auswendig gelernt, als ich jünger war als mein ältester Sohn heute. Ich habe sie abgeschrieben, bis mir die Hand wehtat. Was an meinen Sätzen schön ist, habe ich bei ihm gestohlen. Und jetzt steht er da, im Schatten, und hat ein Gesicht.
 Mir wird heiß. Eben bin ich noch auf allen vieren den Hang hinuntergerutscht, vor seinen Augen.
-+ „Du bist mein Meister. Bei dir habe ich den Stil gelernt, der mir Ehre gemacht hat.“ -> woelfin {setzt lob_vergil}
-+ „Sieh das Tier da oben. Hilf mir gegen sie.“ -> woelfin
++ Ich sage ihm, was er mir ist. -> woelfin {setzt lob_vergil}
++ Ich zeige nur auf das Tier am Hang. -> woelfin
 
 === woelfin
 ort: Im Schatten
@@ -89,10 +91,11 @@ Er spricht von einem Windhund, der kommen und sie zurück in die Hölle jagen wi
 + „Wo ist dieser ewige Ort?“ -> wo_ort
 
 === wo_ort
-Er zeigt nicht auf den Hügel. Er zeigt auf den Boden.
+Statt auf den Hügel zeigt er auf den Boden zwischen unseren Füßen.
 -> aufbruch | „Dann führ mich.“
 
 === aufbruch
+bild: aufbruch
 & seele vergil | Vergil | Dichter aus Mantua, 70–19 vor Christus, schrieb die *Aeneis*. Er ist tot und kommt aus dem Limbus. Er führt mich.
 [vers 1,130-136]
 -> abend
@@ -100,9 +103,9 @@ Er zeigt nicht auf den Hügel. Er zeigt auf den Boden.
 # ---------------------------------------------------------------- Gesang II
 
 === abend
-rubrik: Hier beginnt der zweite Gesang. Dante zweifelt, und Vergil erzählt, wer ihn geschickt hat.
+rubrik: Hier beginnt der zweite Gesang. Der Abend desselben Tages.
 gesang: 2
-bild: wald
+bild: titel
 Die Bauern lassen die Hacken liegen. Die Ochsen werden losgebunden. Überall hört man auf. Nur ich fange an.
 [vers 2,1-6]
 Wir gehen am Waldrand entlang, bergab, und mit jedem Schritt wird der Gedanke lauter.
@@ -122,6 +125,7 @@ Während ich rede, merke ich, dass ich schon nicht mehr will. Wie einer, der nac
 + „Sag mir, warum gerade ich.“ -> beatrice
 
 === beatrice
+bild: beatrice
 {wenn wollte_zurueck} Er lacht nicht. Er sagt auch nicht nein.
 „Deine Seele hat die Feigheit gepackt“, sagt Vergil. „Die wirft einen Menschen herum, dass er vor etwas Gutem zurückweicht wie ein Pferd vor einem Schatten. Ich sage dir, warum ich gekommen bin. Dann geht die Angst.“
 „Ich war bei denen, die in der Schwebe sind. Da rief mich eine Frau.“
@@ -133,6 +137,7 @@ Beatrice. Ich war neun, als ich sie zum ersten Mal sah, und achtzehn beim zweite
 + Ich bekomme kein Wort heraus. -> drei_frauen {setzt beatrice_stumm}
 
 === drei_frauen
+bild: beatrice
 {wenn beatrice_stumm} Er wartet, bis ich wieder atme. Dann spricht er weiter, leiser.
 {nicht beatrice_stumm} „Ich habe sie dasselbe gefragt.“
 „Sie hat gesagt: Angst haben soll man nur vor Dingen, die schaden können. Euer Elend reicht nicht an sie heran. Eure Flammen fassen sie nicht.“

@@ -7,7 +7,7 @@ gesaenge: VII
 start: plutus
 
 === plutus
-rubrik: Hier beginnt der siebte Gesang. Geizige und Verschwender wälzen Lasten gegeneinander.
+rubrik: Hier beginnt der siebte Gesang. Eine Stimme, die niemand versteht.
 gesang: 7
 ort: Am Abstieg zum vierten Kreis
 klang: tor
@@ -15,7 +15,7 @@ klang: tor
 Ich verstehe kein Wort. Es klingt wie eine Sprache, die jemand aus Wut erfunden hat. Plutus steht breit im Weg, aufgedunsen, mit einem Gesicht, das nur aus Kiefer besteht.
 „Lass dich von deiner Angst nicht verletzen“, sagt Vergil zu mir. „Was er auch kann, er hindert dich nicht, diesen Felsen hinabzusteigen.“
 [vers 7,7-12]
-Wie Segel, die der Wind bläht, zusammenfallen, wenn der Mast bricht, so fällt das Untier in sich zusammen. Wir steigen über ihn hinweg.
+Wie Segel, die der Wind bläht, zusammenfallen, wenn der Mast bricht, so fällt das Untier in sich zusammen, und wir steigen über den Haufen hinweg, der von ihm bleibt.
 -> kreis
 
 === kreis
@@ -30,7 +30,7 @@ Ich will wissen, wer sie sind. Ich gehe so nah heran, wie Vergil mich lässt.
 
 === gesichter_text
 art: text
-Tipp ein Gesicht an, das du zu kennen glaubst.
+Tippe auf ein Gesicht, das du zu kennen glaubst, und sieh näher hin.
 Unter dem Dreck ein Mund, ein Kinn. Es dreht sich weg, und es ist niemand mehr.
 Den kenne ich. Ich bin sicher. Dann schiebt er den Stein weiter, und die Stirn ist eine andere.
 Eine Tonsur, ein Ring am Finger. Ich habe ihn segnen sehen, in Santa Croce. Oder einen, der so aussah.
@@ -63,12 +63,13 @@ bild: lasten
 ort: Vierter Kreis
 bild: lasten
 Einer hat eine Narbe über der Lippe, die ich kenne. Ich bin sicher, dass ich sie kenne. Ich sehe weg, sehe wieder hin, und die Narbe ist an einem anderen. Oder es ist dieselbe. Ich weiß es nicht.
-Vergil wartet, bis ich es aufgebe.
+Vergil wartet, bis ich es von selbst aufgebe, und erst dann sagt er etwas.
 -> fortuna | „Wer ist diese Fortuna?“
 
 === fortuna
 ort: Vierter Kreis
 bild: lasten
+{wenn gesichter>=4} „Du hast jedem ins Gesicht gesehen, als schulde er dir seinen Namen“, sagt Vergil, bevor ich frage. „Sie haben keinen mehr. Das ist die Strafe.“
 „Ihr dummen Geschöpfe, wie groß ist die Unwissenheit, die euch schadet.“ Er spricht, wie er schreibt, in einem langen Atem. „Der, dessen Wissen alles übersteigt, hat den Himmeln jeweils einen Führer gegeben, damit jeder Teil jedem Teil gleich viel Licht gibt. Genauso hat er für den Glanz der Welt eine Verwalterin eingesetzt. Sie lässt die eitlen Güter von Volk zu Volk wandern, von einem Blut zum anderen, und keine menschliche Klugheit kann sie aufhalten. Darum herrscht ein Volk, und ein anderes verkümmert, nach ihrem Urteil, das versteckt ist wie die Schlange im Gras.“
 [vers 7,91-96]
 Ich habe sie mir immer als blinde Frau mit einem Rad vorgestellt, die einen hoch- und den anderen runterdreht, nach Laune. Bei ihm ist sie eine Art Engel, der seine Arbeit tut und dabei glücklich ist. Und sie hört nicht, wie wir sie verfluchen.

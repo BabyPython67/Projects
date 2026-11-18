@@ -7,7 +7,7 @@ gesaenge: III
 start: tor
 
 === tor
-rubrik: Hier beginnt der dritte Gesang. Über einem Tor steht eine Inschrift.
+rubrik: Hier beginnt der dritte Gesang. Vor einem Tor.
 gesang: 3
 ort: Vor dem Tor
 bild: tor
@@ -15,7 +15,7 @@ Das Tor hat keine Flügel, nur einen Bogen aus dunklem Stein. Darüber, in einer
 [vers 3,1-9]
 Ich lese die letzte Zeile zweimal. Dann sage ich: „Meister, das ist hart.“
 Er antwortet sofort: „Hier musst du jedes Misstrauen zurücklassen. Jede Feigheit muss hier sterben. Wir sind da, wo ich es dir gesagt habe. Hier sind die, die das Gut des Denkens verloren haben.“
-Er nimmt meine Hand. Sein Gesicht ist ruhig, fast heiter. Meine Hand in seiner ist nass.
+Er nimmt meine Hand, mit einem ruhigen, fast heiteren Gesicht, und hält sie fest, auch als er merkt, wie nass sie ist.
 + Ich lasse mir die Hand nehmen. -> hinein
 + Ich frage: „Wer hat das geschrieben?“ -> wer_schrieb {einmal}
 
@@ -32,7 +32,7 @@ bild: vorhoelle
 klang: vorhoelle
 Dahinter ist kein Raum. Kein Himmel, keine Wände. Nur Luft, so schwarz, dass sie Gewicht hat. Und Geräusch.
 [vers 3,22-30]
-Vergil zieht mich weiter.
+Vergil zieht mich weiter, bevor sich meine Augen an das Dunkel gewöhnt haben.
 + „Meister, was höre ich da? Wer sind die?“ -> die_lauen
 
 === die_lauen
@@ -46,30 +46,31 @@ klang: vorhoelle
 
 === lauen_fetzen
 art: text
-… später, ich wollte es später …
+… ich habe keinem Herrn geschworen …
+… ich wollte sehen, wer siegt …
 … es war nicht meine Sache …
-… man hat ja nie gewusst, wer gewinnt …
 … ich habe niemandem geschadet …
-… erst mal abwarten …
-… beide Seiten hatten irgendwie recht …
-… ich hätte ja, wenn jemand gefragt hätte …
-… was hätte ich allein schon tun sollen …
+… ich habe nie Nein gesagt, und nie Ja …
+… Gott hat mich nicht gerufen, der andere auch nicht …
+… ich hätte ja, wenn man mich gefragt hätte …
+… ich war für mich …
 
 === fahne
 bild: vorhoelle
 klang: vorhoelle
 [vers 3,52-57]
-{wenn erkannt_weigerung} [vers 3,58-60]
-{wenn erkannt_weigerung} Ich habe zu lange hingehört, und jetzt sehe ich ihn auch. Ich sage seinen Namen nicht. Ihm wurde das Größte angetragen, und er hat es aus Feigheit abgelehnt. Damit hat er den Platz frei gemacht für einen anderen, den ich hasse und der noch lebt. Ich sehe ihm nach, bis die Fahne ihn mitzieht.
-{nicht erkannt_weigerung} Ich sehe nicht genau hin. Einer unter ihnen kommt mir bekannt vor, ein großer Mann, der einmal etwas Großes abgelehnt hat. Aber Vergil hat recht. Ich gehe vorüber.
+[vers 3,58-60]
+Ich sage seinen Namen nicht. Ihm wurde das Größte angetragen, und er hat es aus Feigheit abgelegt, und nach ihm kam einer auf den Stuhl, den ich hasse und der noch lebt.
+{wenn zurueckgeblieben} Als ich mich umdrehe, ist Vergil weit voraus. Er wartet nicht auf mich. Ich muss laufen, um ihn einzuholen, an denen vorbei, die nie gelaufen sind, außer hinter dieser Fahne her.
+{wenn verweilt<=1} Ich habe kaum hingehört. Vergil nickt, als ich neben ihm bin, und sagt nichts.
 Sie sind nackt. Wespen und Bremsen stechen sie, und das Blut läuft ihnen mit den Tränen über die Gesichter bis zu den Füßen. Dort lecken es ekelhafte Würmer auf. Das ist alles, was von ihnen bleibt: ein Futter für Würmer, die nicht einmal satt davon werden.
 & seele lauen | Die Lauen | Am Eingang, noch vor dem ersten Kreis: die nie Partei ergriffen haben, mit den Engeln, die weder für noch gegen Gott waren. Sie rennen ewig einer Fahne nach.
-{wenn erkannt_weigerung} & seele weigerung | Der die große Weigerung tat | Unter den Lauen. Dante nennt ihn nicht. Gemeint ist wohl Papst Cölestin V., der 1294 zurücktrat; nach ihm kam Bonifaz VIII.
+& seele weigerung | Der die große Weigerung tat | Unter den Lauen. Dante nennt ihn nicht. Gemeint ist wohl Papst Cölestin V., der 1294 zurücktrat; nach ihm kam Bonifaz VIII.
 > Weiter, zu der Menge am Ufer -> ufer
 
 === ufer
 ort: Am Acheron
-bild: acheron
+bild: vorhoelle
 klang: fluss
 Weiter vorn wird die Menge dichter. Sie steht an einem Fluss und drängt nach vorn, als ginge drüben ein Fest los.
 „Meister, wer sind die? Warum wollen sie so dringend hinüber? So sieht es jedenfalls aus in dem bisschen Licht.“
@@ -84,7 +85,7 @@ bild: acheron
 klang: fluss
 Er flucht nicht laut. Er flucht gründlich. Auf Gott, auf seine Eltern, auf alle Menschen, auf den Ort und die Stunde, in der er gezeugt wurde, auf den Samen, aus dem er kam. Neben ihm flucht eine Frau dasselbe, Wort für Wort, im selben Takt.
 [vers 3,103-105]
-Dann hört er auf, mitten im Satz, und drängt wieder nach vorn. Er will hinüber.
+Dann hört er mitten im Satz auf und drängt wieder nach vorn zum Wasser, als könne er es nicht erwarten, hinüberzukommen.
 > Zurück zum Ufer -> ufer
 
 === name

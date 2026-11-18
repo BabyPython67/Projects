@@ -7,7 +7,7 @@ gesaenge: V
 start: minos
 
 === minos
-rubrik: Hier beginnt der fünfte Gesang. Minos richtet, und im Sturm treiben die, die die Vernunft der Lust unterwarfen.
+rubrik: Hier beginnt der fünfte Gesang. Eine Stufe tiefer.
 gesang: 5
 ort: Am Eingang des zweiten Kreises
 bild: minos
@@ -36,7 +36,8 @@ bild: sturm
 [vers 5,25-28]
 Ein Ort, an dem jedes Licht schweigt. Er brüllt wie das Meer im Sturm, wenn Winde von zwei Seiten kommen.
 [vers 5,31-33]
-Wenn sie an den Absturz kommen, an die Felskante, wo es hinabgeht, schreien sie am lautesten. Dort fluchen sie auf die Kraft Gottes. Ich verstehe: Hier sind die, die die Vernunft der Lust unterworfen haben.
+Wenn sie an den Absturz kommen, an die Felskante, wo es hinabgeht, schreien sie am lautesten. Dort fluchen sie auf die Kraft Gottes.
+[vers 5,37-39]
 [vers 5,40-45]
 Und dann, wie Kraniche, die in einer langen Linie fliegen und ihre Klage singen, kommen Schatten auf dem Wind getragen, einer hinter dem anderen.
 „Meister, wer sind die, die von der schwarzen Luft so gestraft werden?“
@@ -73,7 +74,7 @@ Er zeigt mir mehr als tausend und nennt sie, alle, die die Liebe aus dem Leben g
 === paar
 ort: Zweiter Kreis
 probe: Im Wind
-bild: sturm
+bild: francesca
 „Dichter, ich möchte mit den zweien sprechen, die zusammen gehen und so leicht auf dem Wind scheinen.“
 „Wart, bis sie näher sind. Dann bitte sie bei der Liebe, die sie treibt. Sie werden kommen.“
 Ich warte. Als der Wind sie zu uns herüberbiegt, rufe ich: „Ihr gequälten Seelen, kommt und sprecht mit uns, wenn es kein anderer verbietet!“
@@ -93,7 +94,7 @@ art: text
 
 === gesenkt
 ort: Zweiter Kreis
-bild: sturm
+bild: francesca
 {wenn francesca_verpasst>=2} Ich habe nicht alles gehört. Der Wind hat Stücke ihrer Geschichte mitgenommen, und sie hat sie nicht wiederholt. Sie wiederholt nichts. Sie hat nur diesen einen Tag.
 & seele francesca | Francesca da Rimini und Paolo Malatesta | Verheiratet mit Gianciotto Malatesta, verliebt in dessen Bruder Paolo. Gianciotto erstach beide um 1285. Sie treiben für immer zusammen im Sturm.
 Ich senke den Kopf und halte ihn gesenkt, so lange, bis Vergil fragt: „Was denkst du?“
@@ -105,20 +106,19 @@ Dann wende ich mich wieder zu ihnen. „Francesca, dein Leid macht mich traurig 
 
 === paolo
 ort: Zweiter Kreis
-bild: sturm
+bild: francesca
 „Er ist der, der nie von mir getrennt wird“, sagt sie. Seinen Namen sagt sie nicht. Sie muss ihn auch nicht sagen. Paolo. Er weint, die ganze Zeit, ohne Laut.
 -> buch | „Woran habt ihr es gemerkt?“
 
 === bereuen
 ort: Zweiter Kreis
-bild: sturm
-Sie sieht mich an, als hätte ich etwas in einer fremden Sprache gesagt.
-Dann sieht sie Paolo an.
+bild: francesca
+Sie sieht mich an wie jemanden, der eine Sprache spricht, die sie nie gelernt hat, und dann sieht sie lange Paolo an.
 -> buch | Ich frage, was ich eigentlich fragen wollte.
 
 === buch
 ort: Zweiter Kreis
-bild: sturm
+bild: francesca
 [vers 5,121-123]
 „Aber wenn du so sehr wissen willst, wo unsere Liebe die erste Wurzel hatte, dann erzähle ich es dir, wie einer, der weint und spricht.“
 [vers 5,127-138]
@@ -126,7 +126,7 @@ bild: sturm
 
 === ohnmacht
 ort: Zweiter Kreis
-bild: sturm
+bild: ohnmacht
 [vers 5,139-142]
 & setze ohnmacht_francesca
 -> aufhoeren

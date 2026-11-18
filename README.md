@@ -73,7 +73,7 @@ node --test spiele/carreau/test/*.test.mjs
 node --test spiele/woyzeck/tests/logik.test.mjs spiele/woyzeck/tests/inhalt.test.mjs
 node --test spiele/woyzeck/tests/browser.test.mjs
 node --test spiele/inferno/tests/logik.test.js
-node --test spiele/inferno/tests/browser.test.js
+node --test spiele/inferno/tests/browser.test.js spiele/inferno/tests/spielstand.test.js spiele/inferno/tests/pruefungen.test.js spiele/inferno/tests/layout.test.js
 ```
 
 Johannisnacht hat keine Tests (eine einzelne Datei ohne getrennte Spiellogik). Der Browser-Test von

@@ -9,7 +9,7 @@ start: bergsturz
 # ------------------------------------------------------------ Gesang XII
 
 === bergsturz
-rubrik: Hier beginnt der zwölfte Gesang. Der Minotaurus, die Kentauren, der Fluss aus Blut.
+rubrik: Hier beginnt der zwölfte Gesang. Ein Bergsturz.
 gesang: 12
 ort: Am Bergsturz
 klang: brunnen
@@ -26,7 +26,7 @@ ort: Am Bergsturz
 klang: brunnen
 Wir steigen über die Trümmer. Die Steine bewegen sich unter meinen Füßen, weil sie das Gewicht nicht gewohnt sind.
 „Du denkst vielleicht an diesen Bergsturz“, sagt Vergil. „Als ich das letzte Mal hier herunterkam, war der Fels noch nicht eingestürzt. Aber kurz bevor der kam, der Dis die große Beute aus dem obersten Kreis nahm, bebte das tiefe, stinkende Tal überall. Ich dachte, das All fühle die Liebe, durch die die Welt, wie manche glauben, schon oft ins Chaos zurückgefallen ist. In diesem Moment ist der alte Fels hier und anderswo zusammengebrochen.“
-Der Tod Christi hat die Hölle zerbrochen. Hier liegen noch die Trümmer.
+Ich lege die Hand auf einen der Blöcke. Die Bruchkante ist scharf, als wäre sie nicht über zwölfhundert Jahre alt, sondern von gestern.
 [vers 12,46-48]
 -> blutfluss
 
@@ -72,7 +72,7 @@ Dann wird das Blut flacher und flacher, bis es nur noch die Füße kocht. Hier i
 
 === wald
 probe: Der Zweig
-rubrik: Hier beginnt der dreizehnte Gesang. Der Wald der Selbstmörder.
+rubrik: Hier beginnt der dreizehnte Gesang. Ein Wald, durch den kein Pfad führt.
 gesang: 13
 ort: Im Wald der Selbstmörder
 bild: dornenwald
@@ -88,15 +88,18 @@ art: text
 Vergil, ohne Ungeduld: „Brich einen ab. Sonst glaubst du mir nicht, was ich dir nicht sagen kann.“
 „Warum brichst du mich?“
 Der Stamm wird dunkel von Blut, und wieder: „Warum reißt du mich? Hast du gar kein Mitleid? Wir waren Menschen, und jetzt sind wir Holz. Deine Hand müsste gnädiger sein, auch wenn wir Schlangen gewesen wären.“
+Vergil nimmt meine Hand in seine. Seine ist kalt und zittert nicht. Zusammen biegen wir den Zweig, bis er bricht.
 
 === pier
 ort: Im Wald der Selbstmörder
 bild: dornenwald
 klang: dornen
 Wie ein grünes Holzscheit, das an einem Ende brennt und am anderen tropft und zischt, wenn der Wind herauskommt, so kommen aus dem gebrochenen Zweig zugleich Worte und Blut. Ich lasse ihn fallen und stehe da wie einer, der Angst hat.
+{wenn zweig_vergil} Meine Hand liegt noch in seiner, als er spricht.
 „Verletzte Seele“, sagt Vergil zu dem Baum, „hätte er glauben können, was er nur in meinen Versen gelesen hat, er hätte die Hand nicht nach dir ausgestreckt. Aber die Sache war unglaublich, und ich habe ihn dazu gebracht. Das tut mir selber leid. Sag ihm, wer du warst. Er kann deinen Ruf oben in der Welt erneuern, denn er darf zurück.“
+Einen Namen nennt er nicht. Er muss es nicht. Wer in Italien die Schlüssel zu Friedrichs Herzen hatte, weiß jeder: Pier della Vigna, der Kanzler.
 [vers 13,58-63]
-„Pier della Vigna. Kanzler des Kaisers Friedrich. Ich hatte beide Schlüssel zu seinem Herzen. Und dann kam die Hure, die ihre Augen nie vom Haus des Kaisers abwendet, der Neid, und hat alle gegen mich entflammt. Und die Entflammten haben den Kaiser entflammt. Meine frohen Ehren wurden trauriges Leid. Man hat mich geblendet. Mein Geist hat geglaubt, er entkommt der Verachtung, wenn er stirbt. Er hat mich ungerecht gegen mich gemacht, der ich gerecht war.“
+„Und dann kam die Hure, die ihre Augen nie vom Haus des Kaisers abwendet, der Neid, und hat alle gegen mich entflammt. Und die Entflammten haben den Kaiser entflammt. Meine frohen Ehren wurden trauriges Leid. Man hat mich geblendet. Mein Geist hat geglaubt, er entkommt der Verachtung, wenn er stirbt. Er hat mich ungerecht gegen mich gemacht, der ich gerecht war.“
 [vers 13,73-78]
 & seele pier | Pier della Vigna | Kanzler Kaiser Friedrichs II., fiel durch Neid in Ungnade, wurde geblendet und tötete sich 1249 im Kerker. Jetzt ein Dornbusch.
 + „Ich werde es tun. Man wird erfahren, dass du treu warst.“ -> pier_frage {setzt pier_versprochen}
@@ -137,7 +140,7 @@ Ich lege das letzte Blatt an seinen Fuß.
 # ------------------------------------------------------------ Gesang XIV
 
 === sand
-rubrik: Hier beginnt der vierzehnte Gesang. Eine Wüste aus Sand, auf die Feuer regnet.
+rubrik: Hier beginnt der vierzehnte Gesang. Wo der Wald aufhört.
 gesang: 14
 ort: Am Rand der brennenden Wüste
 bild: sand
@@ -154,7 +157,7 @@ Ihre Hände tanzen, ohne Ruhe, mal hierhin, mal dorthin, um die frischen Flammen
 ort: Am Rand der brennenden Wüste
 bild: sand
 klang: sand
-Ich drehe mich um. Keiner. Oder einer, der mich verwechselt hat. Die Laufenden sehen einen nicht lange an. Sie dürfen nicht stehen bleiben.
+Ich drehe mich um. Keiner. Oder einer, der mich verwechselt hat. Die Laufenden sehen einen nicht lange an, weil sie nicht stehen bleiben dürfen.
 > Zurück -> sand
 
 === kapaneus
@@ -173,7 +176,7 @@ Ich habe Vergil noch nie so laut gehört. Zu mir sagt er dann ruhiger: „Das wa
 ort: Am roten Bach
 bild: sand
 klang: sand
-Schweigend kommen wir an einen kleinen Bach, der aus dem Wald hervorspringt. Seine Röte lässt mich noch heute schaudern. Sein Grund und seine Ufer sind aus Stein, und über ihm erlischt jede Flamme. Hier ist der Weg.
+Schweigend kommen wir an einen kleinen Bach, der aus dem Wald hervorspringt. Seine Röte lässt mich noch heute schaudern. Sein Grund und seine Ufer sind aus Stein, und über ihm erlischt jede Flamme. Auf seinem steinernen Rand, sagt Vergil, gehen wir weiter.
 + „Woher kommt dieser Bach? Wie kann er das Feuer löschen?“ -> greis
 + Ich gehe auf dem Rand des Bachs weiter. -> brunetto
 
@@ -182,8 +185,8 @@ ort: Am roten Bach
 bild: sand
 klang: sand
 Er erzählt mir von einer Insel mitten im Meer, Kreta, wo unter einem Berg ein großer Greis steht, den Rücken nach Osten, das Gesicht nach Rom, als sähe er in einen Spiegel. Sein Kopf ist aus Gold, Arme und Brust aus Silber, dann Kupfer bis zur Gabelung, darunter Eisen, nur der rechte Fuß aus Ton, und auf dem steht er am meisten. Jeder Teil außer dem Gold hat einen Riss, und aus dem Riss tropfen Tränen. Die Tränen sammeln sich und höhlen den Fels und laufen herab in dieses Tal. Sie werden Acheron, Styx und Phlegeton, und ganz unten, wo es nicht mehr hinabgeht, werden sie Kokytos.
-„Der Lethe?“
-„Den siehst du, aber nicht in diesem Graben. Dort, wo die Seelen sich waschen, wenn die Schuld bereut und abgenommen ist.“
+„Die Lethe?“
+„Die siehst du, aber nicht in diesem Graben. Dort, wo die Seelen sich waschen, wenn die Schuld bereut und abgenommen ist.“
 & seele greis | Der Greis von Kreta | Eine Statue aus Gold, Silber, Kupfer, Eisen und Ton. Aus ihren Rissen fließen die Tränen, die zu den Flüssen der Hölle werden: Acheron, Styx, Phlegeton, Kokytos.
 -> brunetto
 
@@ -191,10 +194,10 @@ Er erzählt mir von einer Insel mitten im Meer, Kreta, wo unter einem Berg ein g
 
 === brunetto
 probe: Schritt halten
-rubrik: Hier beginnt der fünfzehnte Gesang. Dante begegnet seinem Lehrer.
+rubrik: Hier beginnt der fünfzehnte Gesang. Auf einem der steinernen Ränder.
 gesang: 15
 ort: Auf dem Damm des Baches
-bild: sand
+bild: brunetto
 klang: sand
 Wir gehen auf einem der harten Ränder. Der Dunst vom Bach schützt Wasser und Ufer vor dem Feuer. Wir sind schon so weit vom Wald entfernt, dass ich ihn nicht mehr sehen könnte, wenn ich mich umdrehte. Da kommt uns eine Schar von Seelen entgegen, die neben dem Damm herläuft. Jeder sieht uns an, wie man abends bei Neumond jemanden ansieht, und sie ziehen die Brauen zusammen wie ein alter Schneider beim Einfädeln.
 [vers 15,22-30]
@@ -221,9 +224,10 @@ art: text
 
 === nachsehen
 ort: Auf dem Damm des Baches
-bild: sand
+bild: brunetto
 klang: sand
-{wenn brunetto_pausen>=1} Er hat meinetwegen gestanden. Ich weiß nicht, was das hier unten kostet. Er hat es nicht gesagt.
+{wenn brunetto_pausen>=1} Er ist meinetwegen stehen geblieben, mitten im Feuer, und hat kein Wort darüber verloren, was es ihn kostet. Hundert Jahre, hat er gesagt.
+Welche Sünde er mit „derselben“ meint, muss er mir nicht sagen. Vergil hat sie mir im sechsten Kreis genannt, mit dem Namen der Stadt, auf die Gott Feuer regnen ließ wie hier: Sodom. Mein Lehrer läuft mit den Sodomiten.
 Ich habe ihm noch etwas sagen wollen, die ganze Zeit, während wir gingen. Jetzt sage ich es, zu spät, er läuft schon:
 [vers 15,82-87]
 [vers 15,121-124]
@@ -234,7 +238,7 @@ Ich habe ihm noch etwas sagen wollen, die ganze Zeit, während wir gingen. Jetzt
 # ------------------------------------------------------------ Gesang XVI
 
 === wasserfall
-rubrik: Hier beginnt der sechzehnte Gesang. Drei Florentiner, ein Wasserfall, eine Schnur.
+rubrik: Hier beginnt der sechzehnte Gesang. Ein Rauschen, wie in einem Bienenstock.
 gesang: 16
 ort: Wo das Wasser hinabfällt
 bild: sand
@@ -288,14 +292,14 @@ Ich trage einen Strick um den Leib. Mit dem wollte ich einmal den Pardel mit dem
 # ------------------------------------------------------------ Gesang XVII
 
 === geryon
-rubrik: Hier beginnt der siebzehnte Gesang. Geryon, das Bild des Betrugs, und die Wucherer.
+rubrik: Hier beginnt der siebzehnte Gesang. Am Rand des großen Abgrunds.
 gesang: 17
 ort: Am Abgrund
 bild: geryon
 klang: abgrund
 „Sieh das Tier mit dem spitzen Schwanz, das über Berge geht und Mauern und Waffen bricht. Sieh das Tier, das die ganze Welt verpestet.“
 [vers 17,10-15]
-Ein Gesicht wie das eines ehrlichen Mannes. Freundlich. Und dahinter ein Schlangenleib, bunt bemalt wie ein Teppich. Ich verstehe, ohne dass Vergil es mir sagt: So sieht Betrug aus. Von vorn sieht man nur das Gesicht.
+Ein Gesicht wie das eines ehrlichen Mannes. Freundlich. Und dahinter ein Schlangenleib, bunt bemalt wie ein Teppich. Von vorn sieht man nur das Gesicht.
 „Damit du die Erfahrung dieses Rings ganz mitnimmst“, sagt Vergil, „geh und sieh, wie es denen dort geht. Mach es kurz. Ich rede inzwischen mit dem Tier, dass es uns seine starken Schultern leiht.“
 > Zu denen, die am Rand sitzen, jeder mit einem Beutel um den Hals -> wucherer
 
@@ -315,8 +319,7 @@ ort: Am Abgrund
 bild: geryon
 klang: abgrund
 Vergil sitzt schon auf dem Rücken des Tiers. „Sei jetzt stark und kühn. Jetzt steigt man auf solchen Treppen hinab. Steig vorn auf. Ich will in der Mitte sein, damit der Schwanz dir nichts tun kann.“
-Ich zittere wie einer, der das Viertagefieber nahen fühlt, dem die Nägel schon blau werden. Aber die Scham, die einen Diener vor einem guten Herrn stark macht, droht mir. Ich setze mich auf die riesigen Schultern. Ich will sagen: Halt mich fest. Die Stimme kommt nicht.
-Er hält mich trotzdem.
+Ich zittere wie einer, der das Viertagefieber nahen fühlt, dem die Nägel schon blau werden. Aber die Scham, die einen Diener vor einem guten Herrn stark macht, droht mir. Ich setze mich auf die riesigen Schultern. Ich will sagen: Halt mich fest. Die Stimme kommt nicht, aber er legt die Arme um mich, als hätte er es gehört.
 -> flug | Geryon stößt sich ab.
 
 === flug
@@ -325,7 +328,7 @@ klang: abgrund
 Ich sehe nichts. Auf allen Seiten nur Luft, und alles Sichtbare ist verloschen außer dem Tier.
 & seele geryon | Geryon | Das Ungeheuer des Betrugs: das Gesicht eines ehrlichen Mannes, der Leib einer Schlange. Es trägt uns hinab in den achten Kreis.
 [vers 17,115-117]
-Ich weiß nur durch den Wind, dass wir fallen. Er kommt von unten und von vorn. Und durch das Geräusch: Rechts unter uns höre ich den Wasserfall, der ein schreckliches Tosen macht, und es wird lauter. Ich strecke den Kopf vor, um hinabzusehen, und da wird meine Angst größer, denn ich sehe Feuer und höre Klagen. Ich ziehe die Beine an.
+Ich weiß nur durch den Wind, dass wir fallen. Er kommt von unten und von vorn. Und durch das Geräusch: Rechts unter uns höre ich den Wasserfall, der ein schreckliches Tosen macht, und es wird lauter. Ich strecke den Kopf vor, um hinabzusehen, und da wird meine Angst größer, denn ich sehe Feuer und höre Klagen. Ich presse die Beine fester an den feuchten Leib unter mir.
 + Ich mache die Augen zu und halte mich an Vergil. -> landung {setzt augen_zu_geryon}
 + Ich sehe hinunter, ins Feuer. -> landung {setzt hinunter_geryon}
 

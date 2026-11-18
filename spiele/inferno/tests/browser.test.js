@@ -20,8 +20,8 @@ for (const geraet of ['iPad (gen 7)', 'iPhone 13']) {
       await page.getByRole('button', { name: 'Beginnen' }).click();
       await page.getByRole('button', { name: 'Hinab' }).click();
       // Handlung: lauschen (Finger auf das Bild halten) und der Stimme folgen
-      await page.locator('figure.miniatur').scrollIntoViewIfNeeded();
-      const fig = await page.locator('figure.miniatur').boundingBox();
+      await page.locator('.tafel.lauschen .tafel-bild').scrollIntoViewIfNeeded();
+      const fig = await page.locator('.tafel.lauschen .tafel-bild').boundingBox();
       const stimme = await page.locator('.stimme').nth(2).boundingBox();
       await page.mouse.move(stimme.x + stimme.width / 2, stimme.y + stimme.height / 2);
       await page.mouse.down();
@@ -39,7 +39,7 @@ for (const geraet of ['iPad (gen 7)', 'iPhone 13']) {
       assert.ok(stand.gesehen['wald:erwachen'] >= 1);
       // Sicherungscode im Menü
       await page.getByRole('button', { name: 'Menü öffnen' }).click();
-      await page.getByRole('button', { name: 'Sicherung' }).click();
+      await page.getByRole('button', { name: 'Sichern' }).click();
       await page.getByText('Code erzeugen und kopieren').click();
       await page.waitForFunction(() => document.querySelector('textarea.code').value.length > 10);
       const code = await page.locator('textarea.code').first().inputValue();

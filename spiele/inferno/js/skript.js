@@ -3,7 +3,7 @@
 // Reines Modul ohne DOM, damit es in Node getestet werden kann.
 
 const META_ABSCHNITT = ['titel', 'untertitel', 'kreis', 'thema', 'start', 'gesaenge'];
-const META_KNOTEN = ['ort', 'bild', 'gesang', 'rubrik', 'klang', 'art', 'probe'];
+const META_KNOTEN = ['ort', 'bild', 'gesang', 'rubrik', 'klang', 'art', 'probe', 'frist', 'fristziel'];
 
 function zerlegeOptionen(rest) {
   // "{einmal} {wenn a, b>2} {setzt x, y} {plus mitleid 2}" -> Objekt
@@ -178,7 +178,11 @@ export function pruefeWerk(abschnitte, verse) {
       k.stimmen.forEach(w => pruefeZiel(w.ziel, a, wo));
       if (k.pruefung) pruefeZiel(k.pruefung.ziel, a, wo);
       if (k.weiter) pruefeZiel(k.weiter.ziel, a, wo);
+      if (k.meta.frist && !k.meta.fristziel) probleme.push(`${wo}: frist ohne fristziel`);
+      if (k.meta.fristziel) pruefeZiel(k.meta.fristziel, a, wo);
       if (k.meta.art !== 'text' && !k.wahlen.length && !k.stimmen.length && !k.pruefung && !k.weiter) probleme.push(`${wo}: Sackgasse`);
+      // Ein Versverweis mitten im Absatz würde als Rohtext erscheinen
+      for (const t of k.teile) if (t.typ === 'p' && /\[vers\b/.test(t.text)) probleme.push(`${wo}: Versverweis im Fließtext (muss in eine eigene Zeile)`);
       if (verse) for (const t of k.teile) if (t.typ === 'vers') for (const r of t.refs) {
         const g = verse[r.g - 1];
         if (!g || r.a < 1 || r.b > g.length || r.a > r.b) probleme.push(`${wo}: Vers außerhalb: ${r.g},${r.a}-${r.b}`);

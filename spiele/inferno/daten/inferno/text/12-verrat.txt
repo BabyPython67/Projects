@@ -9,7 +9,7 @@ start: kokytos
 # ------------------------------------------------------------ Gesang XXXII
 
 === kokytos
-rubrik: Hier beginnt der zweiunddreißigste Gesang. Im Eis des Kokytos stecken die Verräter.
+rubrik: Hier beginnt der zweiunddreißigste Gesang. Der Grund des Ganzen.
 gesang: 32
 ort: Auf dem Kokytos
 bild: eis
@@ -70,7 +70,7 @@ Da schreit ein anderer: „Was hast du, Bocca? Reicht es dir nicht, mit den Kief
 ort: Antenora
 bild: eis
 Ich lasse ihn. Er sieht nicht auf. Ich drehe mich schon um, da schreit ein anderer, zwei Köpfe weiter: „Was hast du, Bocca? Reicht es dir nicht, mit den Kiefern zu klappern, musst du jetzt auch noch reden?“
-Er hat es nicht verhindern können. Ich habe es nicht verhindern müssen.
+So hat ein anderer seinen Namen gesagt, und ich musste dafür nichts tun als warten.
 -> bocca_name
 
 === bocca_name
@@ -94,10 +94,10 @@ bild: ugolino
 
 === ugolino
 probe: Zuhören
-rubrik: Hier beginnt der dreiunddreißigste Gesang. Graf Ugolino erzählt vom Hungerturm.
+rubrik: Hier beginnt der dreiunddreißigste Gesang. Er hebt den Mund von seinem Mahl.
 gesang: 33
 ort: Antenora
-bild: ugolino
+bild: turm
 [vers 33,1-9]
 „Ich weiß nicht, wer du bist und wie du hier heruntergekommen bist. Aber Florentiner bist du, wenn ich dich höre. Du musst wissen: Ich war Graf Ugolino, und der hier ist der Erzbischof Ruggieri. Jetzt sag ich dir, warum ich ihm so ein Nachbar bin.“
 ! ugolino text=ugolino_erzaehlt abbruch=weggehoert -> pisa
@@ -117,7 +117,7 @@ art: text
 
 === weggehoert
 ort: Antenora
-bild: ugolino
+bild: turm
 Ich höre nicht mehr hin. Ich kann es nicht.
 Er merkt es nicht. Er erzählt weiter, ins Eis hinein, mit derselben Stimme, als wäre ich noch da. Er erzählt es nicht mir. Er erzählt es, um den zu schänden, den er frisst. Dafür braucht er mich nicht.
 Später, auf der Erde, wird man mir die Geschichte erzählen, wie sie in Pisa erzählt wird. Vier Kinder, ein Turm, ein Schlüssel, der in den Fluss geworfen wurde.
@@ -125,10 +125,10 @@ Später, auf der Erde, wird man mir die Geschichte erzählen, wie sie in Pisa er
 
 === pisa
 ort: Antenora
-bild: ugolino
+bild: turm
 {wenn ugolino_ganz} Als er das gesagt hat, verdreht er die Augen und packt den elenden Schädel wieder mit den Zähnen, die am Knochen stark sind wie die eines Hundes.
 {nicht ugolino_ganz} Dann hört man nur noch die Zähne am Knochen.
-Ach, Pisa, Schande der Völker im schönen Land, wo man *sì* sagt. Wenn deine Nachbarn so langsam sind, dich zu strafen, dann sollen die Inseln im Meer sich bewegen und den Arno an der Mündung zustopfen, damit er jeden in dir ertränkt. Wenn Graf Ugolino im Ruf stand, deine Burgen verraten zu haben: Seine Kinder hättest du nicht so ans Kreuz schlagen dürfen. Ihr Alter machte sie unschuldig.
+Ach, Pisa, Schande der Völker im schönen Land, wo man *sì* sagt. Wenn deine Nachbarn so langsam sind, dich zu strafen, dann sollen die Inseln im Meer sich bewegen und den Arno an der Mündung zustopfen, damit er jeden in dir ertränkt. Wenn Graf Ugolino im Ruf stand, deine Burgen verraten zu haben: Seine Kinder hättest du nicht so ans Kreuz schlagen dürfen. Ihr junges Alter machte sie unschuldig, du neues Theben.
 & seele ugolino | Graf Ugolino della Gherardesca | Herr von Pisa, 1288 vom Erzbischof Ruggieri mit Söhnen und Enkeln in einen Turm gesperrt und verhungert. Nagt im Eis an Ruggieris Schädel.
 {wenn ugolino_ganz} & trage ugolino | Ugolino und seine Kinder, Gaddo, Uguccione, Anselmuccio, Brigata
 -> tolomea
@@ -162,7 +162,7 @@ Er hat seine Verwandten zu einem Essen eingeladen. Beim Nachtisch rief er: Bring
 ort: Tolomea
 bild: eis
 Ich knie mich hin und kratze. Das Eis ist härter als Stein, und meine Nägel brechen daran. Unter meinen Fingern gefriert es nach, schneller, als ich kratzen kann. Seine Tränen frieren mir an die Fingerkuppen.
-Vergil sagt nichts. Er wartet, bis ich aufgebe. Dann gehen wir.
+Vergil sagt nichts und wartet, bis ich aufgebe, und dann gehen wir.
 & setze gekratzt
 -> nicht_geoeffnet
 
@@ -185,7 +185,7 @@ Ach, Genua, Volk, fremd jeder guten Sitte und voll von jedem Laster, warum wirst
 # ------------------------------------------------------------ Gesang XXXIV
 
 === judecca
-rubrik: Hier beginnt der vierunddreißigste Gesang. Luzifer, und der Weg hinaus.
+rubrik: Hier beginnt der vierunddreißigste Gesang. Die Banner des Höllenkönigs rücken vor.
 gesang: 34
 ort: Judecca
 bild: luzifer
@@ -207,8 +207,8 @@ Der Kaiser des schmerzhaften Reichs ragt mit der halben Brust aus dem Eis. Ich v
 Drei Gesichter an einem Kopf. Das vordere rot. Das rechte zwischen weiß und gelb. Das linke schwarz wie die Menschen, die vom Nil kommen. Unter jedem zwei große Flügel, ohne Federn, wie bei einer Fledermaus, und er schlägt sie, so dass drei Winde von ihm ausgehen. Davon gefriert der ganze Kokytos.
 [vers 34,53-57]
 [vers 34,61-69]
-Ich lausche, weil ich das jetzt kann, weil ich es den ganzen Weg gelernt habe. Ich höre die Flügel. Ich höre die Zähne. Ich höre Judas nicht schreien, und Brutus gibt keinen Laut.
-Und er, Luzifer, sagt nichts. Kein Wort. Er hat nie etwas gesagt, die ganze Zeit. Das Einzige hier unten, das nicht spricht.
+Ich lausche, wie ich es den ganzen Weg getan habe, und höre die Flügel und darunter das Mahlen der Zähne. Judas schreit nicht. Brutus windet sich und gibt keinen Laut.
+Luzifer selbst sagt kein Wort. Er ist das Einzige hier unten, das nicht spricht.
 & seele luzifer | Luzifer | Der Kaiser des schmerzhaften Reichs, bis zur Brust im Eis. Drei Gesichter, sechs Flügel ohne Federn. Spricht nicht.
 & seele judas | Judas Ischariot | Im vorderen Mund, den Kopf drinnen, die Beine draußen. Verriet Christus.
 & seele brutus | Brutus | Hängt aus dem schwarzen Mund und gibt keinen Laut. Verriet Caesar.
@@ -228,16 +228,17 @@ art: text
 Als wir dort sind, wo der Schenkel sich dreht, am dicken Ende der Hüften, dreht mein Führer, mühsam und keuchend, den Kopf dahin, wo er eben die Füße hatte. Er packt das Fell wie einer, der hinaufsteigt. Ich glaube, wir kehren in die Hölle zurück.
 „Halt dich gut fest“, sagt er, keuchend wie ein Erschöpfter. „Über solche Treppen muss man von so viel Bösem fort.“
 Wir kommen durch eine Felsöffnung und er setzt mich auf den Rand. Ich hebe die Augen und glaube, Luzifer so zu sehen, wie ich ihn verlassen habe. Ich sehe seine Beine nach oben ragen.
+Ich will zurück, dorthin, wo eben noch unten war. Vergil hält mich am Gürtel. „Nicht dorthin. Glaub mir noch dieses eine Mal.“
 
 === bach
 bild: stille
 ort: Unter der anderen Hälfte der Welt
 klang: stille
+{wenn umkehr_falsch>=1} Mir ist noch schwindlig davon, dass ich in die falsche Richtung wollte.
 „Steh auf“, sagt Vergil. „Der Weg ist lang und die Straße schlecht. Und die Sonne steht schon bei der halben Terz.“
 „Wo ist das Eis? Und warum steht er kopfüber? Und wie ist die Sonne in so kurzer Zeit vom Abend zum Morgen gegangen?“
 „Du glaubst, du bist noch auf der anderen Seite der Mitte, wo ich mich am Fell des bösen Wurms festhielt, der die Welt durchbohrt. Dort warst du, solange ich hinabstieg. Als ich mich drehte, bist du durch den Punkt gegangen, zu dem von allen Seiten die Gewichte gezogen werden. Jetzt bist du unter der anderen Halbkugel. Hier ist Morgen, wenn dort Abend ist. Auf dieser Seite ist er vom Himmel gefallen. Und die Erde, die hier war, ist aus Angst vor ihm unter das Meer geflohen. Und vielleicht ist, was von ihr übrig ist, nach oben geflohen und hat einen Berg gemacht.“
-Dann ist es still. Es ist ganz dunkel. Man sieht nichts.
-Man hört etwas.
+Dann ist es still und so dunkel, dass ich die eigene Hand nicht sehe. Was hier den Weg weist, ist kein Licht.
 ~ Wasser. Ein Bächlein, das über Steine rinnt. -> aufstieg @50,60
 
 === aufstieg
@@ -264,6 +265,12 @@ klang: sterne
 Hier endet die Hölle.
 {wenn getragen>=1} Die Namen, die mir unten anvertraut wurden, sind jetzt hier oben. Ich werde sie aufschreiben. Dafür bin ich zurückgekommen, unter anderem.
 {nicht getragen>=1} Niemand hat mir einen Namen mitgegeben, den ich versprochen hätte. Ich habe sie trotzdem alle gehört.
+{wenn huegel_stur} Ich habe lange gebraucht, ihm zu folgen, damals am Hügel.
+{wenn medusa_fehler>=1} Vor Dis haben seine Hände über meinen gelegen, als meine nicht reichten.
+{wenn antwort_zoegern} Einem Vater im Grab hat mein Schweigen geantwortet, und ich habe es nicht zurückgenommen.
+{wenn ugolino_ganz} Ugolino habe ich bis zum Ende zugehört. Das trage ich auch hinauf.
+{nicht ugolino_ganz} Ugolino habe ich nicht bis zum Ende gehört. Den Rest weiß ich trotzdem.
+{wenn getragen_still} Als die Teufel kamen, habe ich mich tragen lassen.
 Am Anfang wollte ich auf einen Hügel, ins Licht, und kam nicht hinauf. „Du musst einen anderen Weg nehmen“, hat er damals gesagt. Das war er, dieser Weg.
 Irgendwo vor uns ist die Erde vor Luzifer nach oben geflohen, hat Vergil gesagt, und hat einen Berg gemacht. Noch sehe ich nur die Sterne. Den Berg steigen wir später hinauf, in einem anderen Teil, einem anderen Buch.
 + Im Merkbuch nachlesen, wen ich getroffen habe -> rueckblick
@@ -274,5 +281,5 @@ ort: Draußen
 bild: sterne
 klang: sterne
 Im Menü, unter „Merkbuch“, steht alles: wen ich getroffen habe, was mir vorausgesagt wurde, wessen Namen ich hinauftrage. Unter „Gesänge“ stehen alle vierunddreißig Gesänge in Dantes Worten, so wie Philalethes sie übersetzt hat.
-Wer das Inferno noch einmal anders gehen will, kann von vorn beginnen. Der Weg bleibt derselbe. Die Begegnungen nicht.
+Wer das Inferno noch einmal anders gehen will, kann von vorn beginnen. Er findet denselben Weg und andere Begegnungen.
 -> @titel | Das Buch schließen
