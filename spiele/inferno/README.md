@@ -119,6 +119,8 @@ Es fehlt kein Gesang. `npm run pruefe` bricht ab, wenn einer nicht vorkommt.
 - **Erweiterbar:** `daten/werke.js` ist ein Register der Werke. Purgatorio und Paradiso werden weitere Einträge mit eigenen Textdateien und Versen. Spielstand, Merkbuch und Gesangsbuch sind pro Werk angelegt.
 - **Bild (seit Runde 3):** Gustave Dorés Stiche zum Inferno als Tafeln, gemeinfrei, aus Scans auf Wikimedia Commons. Die eigenen SVG-Miniaturen der Runden 1 und 2 sind entfernt. Einzelheiten unter „Optik (Runde 3)“.
 - **Schrift (seit Runde 3):** EB Garamond in drei Schnitten, frei unter der SIL Open Font License (`schrift/OFL.txt`), aus dem npm-Paket `@fontsource/eb-garamond`. Sie liegt im Spielordner, damit iPad und Handy dieselbe Schrift zeigen und das Spiel offline läuft.
+- **Icon:** Es bleibt das aus Runde 2 (blaues Feld, goldenes I). Ein Entwurf im neuen Stil, Papier mit roter Initiale, lag bereit. Nach der letzten Kritikrunde habe ich aber nur noch Fehler behoben, und ein neues Icon wäre eine neue Änderung gewesen.
+- **Eine Kritikrunde in Runde 3:** Erlaubt waren zwei. Auf Wunsch des Auftraggebers gab es nach der Überarbeitung nur eine.
 - **Klang:** Alles wird mit der Web Audio API live erzeugt: Wind, Regen, Feuer, Eis, Schritte, Murmeln. Keine Tondateien, keine Sprachaufnahmen. Die Stimmen beim Lauschen sind gefiltertes Rauschen mit Silbenrhythmus. Man hört, *dass* jemand spricht und wo, aber nicht was. Die Worte erscheinen als Schrift. Ohne Ton funktioniert alles genauso.
 - **Bedienung:** Erkunden heißt lauschen. Finger auf das Bild legen und langsam darüberfahren, wo jemand spricht, wird die Stimme deutlich. Gehörtes lässt sich antippen. Gespräche laufen über Wahlen mit dem Absatzzeichen ¶, Wege mit », gehörte Stimmen mit ~. Alles ist mit dem Finger auf dem iPad gedacht und funktioniert auch mit der Maus.
 
@@ -282,10 +284,10 @@ Dazu kommen Begegnungen, die als Wahl entschieden werden, ohne eigene Geste: Boc
 
 Stand Runde 3, gezählt mit `npm run wortzahl`:
 - **Eigene Prosa:** rund 20.600 Wörter, davon 19.298 in Erzählung und Rubriken und 1.323 in Wahlen und Stimmen.
-- **Dantes Verse:** 6.256 Wörter in 161 Versblöcken mit 851 Verszeilen.
+- **Dantes Verse:** 6.316 Wörter in 162 Versblöcken mit 856 Verszeilen.
 - **Gesangsbuch:** Das Menü enthält zusätzlich das ganze Inferno (4.719 Verse) zum Nachlesen.
 
-Gegenüber Runde 2 sind 11 Textknoten, 13 Versblöcke und 83 Verszeilen dazugekommen, vor allem im achten Kreis.
+Gegenüber Runde 2 sind 11 Textknoten, 14 Versblöcke und 88 Verszeilen dazugekommen, vor allem im achten Kreis.
 
 **Geschätzte Spielzeit: etwa 4 Stunden für einen Durchgang**, also vier Abende zu je einer Stunde. So setzt sich die Schätzung zusammen:
 - Prosa und Wahlen, ruhig gelesen (etwa 170 Wörter pro Minute): rund 2 Stunden.
@@ -320,7 +322,7 @@ Bitte am echten Gerät, weil Playwright Safari auf iOS nicht vollständig nachbi
 
 1. **Öffnen:** Die Seite in Safari aufrufen (nach der Übernahme über GitHub Pages, lokal über `npm start` und die IP-Adresse des Rechners im WLAN). „Beginnen“ antippen.
 2. **Ton:** Lauter stellen. Im ersten Wald sollte leiser Wind zu hören sein, beim Lauschen ein Murmeln, das lauter wird, wenn der Finger einer Stimme nahekommt. Mit Kopfhörern kommen die Stimmen von links oder rechts. Oben rechts „Ton an/aus“ prüfen. Das Spiel spielt auch bei eingeschaltetem Stummschalter (Audio-Sitzung „playback“). Wer das nicht will, schaltet den Ton im Spiel aus.
-3. **Lauschen und Prüfungen:** Finger auf ein Bild legen und langsam ziehen. Die Seite darf dabei nicht scrollen. In der Medusa-Prüfung den Finger lange halten: Es darf kein Kontextmenü und keine Textauswahl aufgehen.
+3. **Lauschen und Prüfungen:** Finger auf ein Bild legen und langsam ziehen. Die Seite darf dabei nicht scrollen. In der Medusa-Prüfung den Finger lange halten: Es darf kein Kontextmenü und keine Textauswahl aufgehen, und das Dunkel muss den ganzen Bildschirm füllen.
 4. **Home-Bildschirm:** Teilen → „Zum Home-Bildschirm“. Das Symbol (blaues Feld, goldenes I) öffnen. Das Spiel muss ohne Safari-Leisten starten und am selben Ort weitermachen wie im Browser. Achtung: Safari und Home-Bildschirm-App haben *getrennte* Speicher. Den Stand vorher mit dem Sicherungscode übertragen, sonst beginnt die App von vorn.
 5. **Sicherungscode:** Menü → Sichern → „Code erzeugen und kopieren“, in Notizen einfügen. Dann Menü → Mehr → „Von vorn beginnen“, danach den Code unter „Wiederherstellen“ einfügen. Der alte Ort muss wieder da sein. Ein absichtlich gekürzter Code muss eine Fehlermeldung geben.
 6. **Neue Fassung:** Nach einer Änderung am Spiel (neue Version in `sw.js` und `js/version.js`) die App öffnen, kurz warten. Es erscheint „Eine neue Fassung ist da …“, und beim nächsten Umblättern ist sie geladen. Menü → Mehr zeigt die Fassungsnummer.
@@ -339,11 +341,11 @@ Bitte am echten Gerät, weil Playwright Safari auf iOS nicht vollständig nachbi
 
 ## Tests
 
-- `npm test`: Logik-Tests mit `node:test`. Geprüft werden der Parser der Textdateien, Bedingungen und Effekte, einmalige Wahlen, Speichern und Laden samt Reparatur alter oder kaputter Stände, der Sicherungscode (Rundreise, Leerraum, Kürzung, falsche Prüfsumme, Rückfall ohne Kompression) und das ganze Inferno mit `npm run pruefe` (alle Ziele, alle Verse, alle 34 Gesänge, Service-Worker-Liste, Versionsgleichheit).
+- `npm test`: Logik-Tests mit `node:test`. Geprüft werden der Parser der Textdateien, Bedingungen und Effekte, einmalige Wahlen, Speichern und Laden samt Reparatur alter oder kaputter Stände, der Sicherungscode (Rundreise, Leerraum, Kürzung, falsche Prüfsumme, Rückfall ohne Kompression) und das ganze Inferno mit `npm run pruefe` (alle Ziele, alle Verse, alle 34 Gesänge, kein Versverweis mitten im Absatz, Service-Worker-Liste, Versionsgleichheit).
 - `npm run test:browser`: Playwright mit Chromium, vier Testdateien.
   - `tests/browser.test.js`: in iPad- und iPhone-Größe das Spiel laden, lauschen und einer Stimme folgen, neu laden und prüfen, dass der Stand noch da ist. Dazu Sicherungscode erzeugen, kein seitliches Scrollen, keine Fehler in der Konsole.
   - `tests/spielstand.test.js`: Ein echter Spielstand aus Runde 2 (`tests/stand-runde2.json`, mit dem Code von Runde 2 im Browser erzeugt) wird übernommen. Das Titelblatt zeigt einen Hinweis, das Spiel läuft am selben Ort weiter, und die Wahl von damals wirkt fort. Ein Stand mit einem Ort, den es nicht mehr gibt, führt zu einem klaren Hinweis und zurück an den Anfang des Abschnitts.
-  - `tests/pruefungen.test.js`: Jede der 17 Prüfungen wird mit ihrer Geste abgeschlossen, ob Tippen, Halten, Ziehen, Wischen oder Warten. Danach muss das Spiel an der erwarteten Stelle weitergehen, ohne Fehler. Ausnahme ist „Im Wind“, die man nur mit dem Finger am bewegten Paar besteht; sie spielt der Kritiker.
+  - `tests/pruefungen.test.js`: Jede der 17 Prüfungen wird mit ihrer Geste abgeschlossen, ob Tippen, Halten, Ziehen, Wischen oder Warten. Danach muss das Spiel an der erwarteten Stelle weitergehen, ohne Fehler. Ausnahme ist „Im Wind“, die man nur mit dem Finger am bewegten Paar besteht; sie spielt der Kritiker. Seit den Fehlern aus Runde 3 wird zusätzlich geprüft: Das Dunkel beim Augenzuhalten füllt den ganzen Bildschirm und schneidet keine Zeile ab, der Rest eines Wischs über die Wende zählt nicht als falsche Richtung, und das Echo einer gewählten Rede zeigt Hervorhebungen statt Sternchen. Alle drei Prüfungen schlagen am Code vor der Korrektur fehl.
   - `tests/layout.test.js`: Alle 39 Bildschirmarten auf vier Geräten (iPad hoch und quer, iPhone hoch und quer), also 156 Bildschirme: Titelblatt neu und mit Stand, vier Kapitelblätter, Lauschbild, sechs Szenen, alle 17 Prüfungen, das Ende, eine Seite mit allen 48 Tafeln und das Menü mit allen Reitern samt Gesangstext und Karte. Geprüft wird jeder Text: läuft er vom Bildschirm, ist er abgeschnitten oder breiter als sein Feld, überlappt er einen anderen Text? Text in Zeichnungen (SVG) muss auf der Fläche bleiben, auf der er steht. Jedes sichtbare Bild muss mindestens die doppelte Anzeigegröße in Pixeln haben. Einzelne Bildschirme: `LAYOUT_NUR=menue-karte npm run test:layout`.
 - **Nachweis:** Gegen den Stand von Runde 2 (`ef9fd68`) findet der Layout-Test genau den Fehler der alten Karte, auf allen vier Geräten: „SVG-Text „8. Betrug · Übelbulgen“ läuft über den Rand der Fläche, auf der er steht“, ebenso „9. Verrat · Kokytos“. Nachstellen: `git archive ef9fd68 spiele/inferno | tar -x -C /tmp/alt`, dann `tests/bildschirme.js` und `tests/layout.test.js` hineinkopieren und dort `LAYOUT_NUR=menue-karte node --test tests/layout.test.js` laufen lassen.
 
@@ -391,7 +393,7 @@ Zeitgeber starten erst, wenn die Prüfung ganz zu sehen ist, und jede Prüfung t
 4. Prüfungen: **nicht bestanden** (knapp). Sie sind abwechslungsreich, und mehr als die Hälfte trifft Dante genau. Aber man kann nirgends scheitern, drei wirken nicht nach, und eine macht den Spieler aktiv, wo Dante getragen wird.
 5. Technik: **bestanden.** Auf beiden Geräten ohne Fehler, nichts läuft über, Speichern und Weiterspielen klappen. Mängel: Bilder sperrten auf dem Handy das Scrollen, einige Zeilen erschienen in Prüfungen doppelt, und in der Stimmenliste standen doppelte Anführungszeichen.
 
-**Was sich danach geändert hat:** Runde 2 war die letzte. Für eine dritte reichte das Rundenbudget nicht. Danach habe ich nur noch Fehler behoben: Stumme Bilder lassen sich auf dem Handy wieder überscrollen, nur Lauschbilder halten den Finger fest. Die doppelten Zeilen in drei Prüfungen sind weg, die doppelten Anführungszeichen auch. Eine Überleitung vor einem Vers im ersten Gesang passt jetzt zum Vers.
+**Was sich danach geändert hat:** Runde 2 war damals die letzte. Für eine dritte reichte das Rundenbudget nicht; die offenen Punkte hat erst die Überarbeitung für Runde 3 aufgegriffen. Danach habe ich nur noch Fehler behoben: Stumme Bilder lassen sich auf dem Handy wieder überscrollen, nur Lauschbilder halten den Finger fest. Die doppelten Zeilen in drei Prüfungen sind weg, die doppelten Anführungszeichen auch. Eine Überleitung vor einem Vers im ersten Gesang passt jetzt zum Vers.
 
 **Offen geblieben** (keine Fehler im Sinn der Regel, darum nicht mehr angefasst): die Textschwächen aus Kriterium 3, Prüfungen ohne Scheitern und teils ohne Nachwirkung, der dünnere achte Kreis, eine fehlende Nebenfigur und der Sprung an den Seitenanfang beim Zurückkehren. Diese Punkte stehen auch unter „Ehrliche Einschätzung“.
 
@@ -451,9 +453,57 @@ Gesammelt aus Kriterium 3 (Text), Kriterium 4 (Prüfungen) und den Punkten der P
 | 37 | Prüfungen | Vorübergehen belohnt gerade das Hinhören, vor dem Vergil warnt | **behoben** | Cölestin sieht jeder; wer alles anhört, verliert Vergil und bekommt es später vorgehalten. |
 </details>
 
+### Runde 3 (Fassung 2026.11.18-2)
+
+1. Sog: **bestanden.** Der Anfang und die großen Begegnungen ziehen bis zur Stadt Dis, und das Ende greift die eigenen Entscheidungen auf. Aufhören würde man bei Vergils längeren Erklärungen und auf einer langen Strecke im achten Kreis ohne Prüfung.
+2. Inferno: **bestanden.** Alle 34 Gesänge stehen in Dantes Reihenfolge, nah nacherzählt, und rund ein Sechstel der Verse wörtlich. Schief waren eine Zahl, ein Artikel und ein Verweis auf eine nie gezeigte Stelle. Die zweite Hälfte hat deutlich weniger Verse als die erste, und einige Nebenfiguren fehlen.
+3. Text: **bestanden.** Knapp, konkret, Gefühle meist gezeigt. Erkennbar bleiben gleichförmige Kurzsätze, Pointen am Absatzende, wiederkehrende Formeln und stellenweise Erklären oder Doppelungen mit dem Vers davor.
+4. Prüfungen: **bestanden.** Jede hat eine eigene Geste, die zur Szene gehört, und Scheitern wirkt später nach. Schwächer sind drei Prüfungen mit derselben Mechanik, einige, die kaum etwas prüfen, und lange Strecken im achten Kreis ohne Prüfung.
+5. Technik: **nicht bestanden.** Keine Skriptfehler, keine Sackgassen, Sicherung und Weiterspielen klappen. Aber es gab vier echte Fehler: sichtbaren Rohtext, sichtbare Sternchen, ein Dunkel, das nicht den Bildschirm füllte, und eine Wischgeste, die eine richtige Bewegung als falsch zählte.
+6. Optik: **nicht bestanden.** Im Ganzen wie aus einem Guss, wie eine illustrierte Ausgabe des 19. Jahrhunderts, und die Tafeln sind scharf. Es gab aber sichtbare Brüche: Bühnen der Prüfungen stehen auf dem iPad links statt mittig, eine Tafel hat einen weißen Scanrand, zwei Tafeln stehen an der falschen Stelle, und die Menüreiter brechen auf dem iPhone um.
+
+**Was sich danach geändert hat:** Runde 3 war die letzte. Danach habe ich nur die sieben Stellen behoben, die der Kritiker als Fehler markiert hat. Vier waren technisch: der Rohtext, die Sternchen, das Dunkel und die Wischgeste. Drei standen im Text: eine falsche Zahl, ein falscher Artikel und ein Verweis auf eine Stelle, die man nie gelesen hatte; dort steht jetzt Dantes Vers. Für jeden technischen Fehler gibt es einen Test, der am alten Code scheitert. Außerdem meldet `npm run pruefe` jetzt jeden Versverweis mitten im Absatz.
+
+<details>
+<summary>Einzelheiten der Korrekturen nach Runde 3 (zugeklappt, verrät Begegnungen und Prüfungen)</summary>
+
+- **Medusa:** Das Dunkel hing in der Prüfung, und deren Einblend-Animation machte sie zum Bezugsrahmen. Darum lag das Schwarz nur über dem Kasten, und auf dem iPhone fielen die ersten Zeilen oben heraus. Jetzt hängt es am `<body>` und füllt den Bildschirm. Ältere Zeilen weichen, bevor eine abgeschnitten würde.
+- **Heuchler:** Der Verweis auf Vers 23,64–67 stand am Ende eines Absatzes und erschien als Rohtext. Jetzt steht er in einer eigenen Zeile, und die Verse über die Bleimäntel sind zu sehen.
+- **Umkehr:** Ein Wisch, der über die Wende hinausführte, zählte mit seinem Rest als falsche Richtung. Nach der Wende braucht es jetzt einen neuen Griff.
+- **Echo:** Die wiederholte Rede („Man wird Euren *Tesoro* lesen“) wird formatiert wie jeder andere Text.
+- **Sodom:** Brunettos Szene verweist auf Vergils Ordnung im sechsten Kreis. Dort steht jetzt Vers 11,46–50 mit „Cahors und Sodoma“.
+- **Bergsturz:** „nicht über zwölfhundert Jahre alt“ statt „nicht dreizehnhundert“. Das passt zu Malacodas 1266 Jahren.
+- **Lethe:** „Die Lethe?“ – „Die siehst du“.
+</details>
+
+**Offen geblieben** (keine Fehler im Sinn der Regel, darum nicht mehr angefasst): Die Bühnen der Prüfungen stehen auf dem iPad links. Eine Tafel hat einen Scanrand, zwei stehen an der falschen Stelle, und einer Szene fehlt ihre Tafel. Feste Knöpfe verdecken manchmal die neueste Zeile. Die Menüreiter brechen auf dem iPhone um, und die Stimmenschilder decken auf dem Handy viel vom Bild. Offen sind auch die dünnere zweite Hälfte, gleiche Mechaniken, ein Haltepunkt, der beim Wiederkommen nicht weiterspringt, eine ungenaue Fehlermeldung beim gekürzten Sicherungscode und die Stilmuster aus Kriterium 3.
+
+<details>
+<summary>Offen gebliebene Punkte im Einzelnen (zugeklappt, verrät Begegnungen und Prüfungen)</summary>
+
+- Bühnen linksbündig auf dem iPad, hoch und quer: Argenti, Medusa, Blätter, Griff, Sterne.
+- Bei Geryons Landung (Gesang XVII) steht die Thaïs-Tafel aus Gesang XVIII. Beim Eintritt in Dis (IX) steht schon Farinata (X).
+- Argentis Tafel hat links einen weißen Scanrand. Bei den Wahrsagern fehlt die Tafel (`bild: wahrsager` gibt es nicht).
+- „Schritt“ bei Brunetto und „Gedrückt halten“ bei Adam verdecken die neueste Zeile.
+- Beim Heranzoomen in „Die Gesichter“ wirkt das Bild grob, schon vor dem Verwischen.
+- Ciacco, Argenti und Cavalcante sind dieselbe Mechanik (Frist). Hügel und Ugolino sind wiederholtes Drücken. Zwischen Gesang XVIII und XXII sowie XXV und XXIX gibt es keine Prüfung.
+- Die Pause nach Francesca verspricht beim Wiederkommen den dritten Kreis, zeigt aber dieselbe Seite.
+- Ein am Ende gekürzter Sicherungscode meldet „beginnt mit ‚INF1-‘“ statt „unvollständig“.
+- Doppelungen von Prosa und Vers bei den Geizigen und im Styx.
+</details>
+
+<details>
+<summary>Bericht Runde 3 (zugeklappt)</summary>
+
+[kritik/runde-3.md](kritik/runde-3.md). Die Screenshots, auf die er verweist, lagen nur in der Arbeitsumgebung des Kritikers und sind nicht im Repository.
+</details>
+
 ## Was ungeprüft bleibt
 
 - **Ein echtes iPad und iPhone.** Getestet wurde nur mit Chromium in iPad- und iPhone-Größe (Playwright). Safari auf dem Gerät, die Fingerbedienung mit echtem Druck, das Anlegen auf dem Home-Bildschirm, das Löschen nach sieben Tagen und das Nachladen einer neuen Fassung auf dem Gerät hat niemand ausprobiert. Die Schritte dafür stehen unter „Prüfen auf dem iPad“.
+- **Die Korrekturen nach der letzten Kritikrunde.** Die sieben Fehler aus Runde 3 sind behoben und durch Tests belegt, aber kein Kritiker hat den Stand danach noch einmal gespielt. Die Punkte ohne Fehlermarke sind bewusst offen (siehe Runde 3).
+- **Die Optik am echten Gerät.** Ob Safari die Schrift lädt, die Tafeln mit `multiply` auf das Papier druckt und sie auf dem Retina-Bildschirm scharf zeigt, hat niemand gesehen. Die Punkte 8 bis 15 unter „Prüfen auf dem iPad“ beschreiben, worauf man achten muss.
+- **Die Ladezeit über Mobilfunk.** Die 48 Tafeln sind zusammen 17,5 MB groß, eine einzelne meist 250 bis 500 KB. Gemessen wurde nur lokal.
 - **Der Ton.** Der Klang entsteht im Browser und wurde nur daraufhin geprüft, dass er ohne Fehler startet. Gehört hat ihn kein Mensch. Ob er auf dem iPad bei stummgeschaltetem Gerät spielt, ist offen.
 - **Die Spielzeit.** Die Zeit unter „Länge“ ist aus den Wortzahlen geschätzt, nicht an einem Menschen gemessen.
 - **Bedienung mit VoiceOver** und anderen Hilfen wurde nicht geprüft.
@@ -461,8 +511,8 @@ Gesammelt aus Kriterium 3 (Text), Kriterium 4 (Prüfungen) und den Punkten der P
 
 ## Ehrliche Einschätzung
 
-**Was trägt.** Das Hören als Art zu erkunden. Es kommt aus dem Inferno selbst und macht aus dem Lesen eine Handlung: Man legt den Finger auf ein Bild und wartet, bis eine Stimme deutlich wird. Am stärksten ist das Spiel dort, wo eine Geste und Dantes Vers zusammenfallen. Dann liest man eine Stelle des Inferno nicht nur, sondern tut selbst etwas, das zu ihr gehört. Die Verse im Text und die vollständigen Gesänge im Menü sorgen dafür, dass man das Inferno danach wirklich kennt. Die Namen, die man hinaufträgt, geben dem langen Abstieg ein eigenes Ziel.
+**Was trägt.** Das Hören als Art zu erkunden. Es kommt aus dem Inferno selbst und macht aus dem Lesen eine Handlung: Man legt den Finger auf ein Bild und wartet, bis eine Stimme deutlich wird. Am stärksten ist das Spiel dort, wo eine Geste und Dantes Vers zusammenfallen. Dann liest man eine Stelle des Inferno nicht nur, sondern tut selbst etwas, das zu ihr gehört. Seit Runde 3 sieht es auch aus, als nähme es sich ernst: wie eine illustrierte Inferno-Ausgabe des 19. Jahrhunderts, mit Dorés Stichen, einer klassischen Antiqua, roten Rubriken und einer gestochenen Karte. Die Bilder lenken nicht mehr vom Text ab, sie gehören zu ihm. Die Verse im Text und die vollständigen Gesänge im Menü sorgen dafür, dass man das Inferno danach wirklich kennt. Der Kritiker der dritten Runde hat Sog, Inferno, Text und Prüfungen bestanden gegeben, zum ersten Mal auch Text und Prüfungen.
 
-**Was schwach ist.** Die Wahlen ändern Sätze, Einträge und das Ende im Kleinen, aber nie den Weg. Wer zweimal spielt, merkt das schnell. Der Ton ist Rauschen und Murmeln aus dem Synthesizer, stimmungsvoll, aber dünn, und die Miniaturen sind einfache Zeichnungen, keine Buchmalerei. Einige Prüfungen sind im Kern eine Wahl mit gutem Text, andere eine Geste, die man nach dem ersten Mal durchschaut. Verlieren kann man keine, und nicht jede wirkt später nach.
+**Was schwach ist.** Die Wahlen ändern Sätze, Einträge und das Ende im Kleinen, aber nie den Weg. Wer zweimal spielt, merkt das. Der Ton ist Rauschen und Murmeln aus dem Synthesizer, stimmungsvoll, aber dünn. Einige Prüfungen teilen dieselbe Mechanik oder prüfen kaum etwas, und im langen achten Kreis gibt es weite Strecken ohne Prüfung. Optisch bleiben kleine Brüche, die ich nach der letzten Runde nicht mehr angefasst habe: Bühnen, die auf dem iPad nicht mittig stehen, zwei Tafeln an der falschen Stelle, ein Scanrand, das alte Icon. Dorés Stiche sind genau und düster, aber es sind die Bilder, die fast jede Ausgabe zeigt. Eine eigene Bildsprache hat das Spiel nicht.
 
-**Wo der Text abfällt.** In der zweiten Hälfte, vor allem im achten Kreis, dem längsten Abschnitt. Dort folgen zu viele Gestalten in zu kurzer Zeit, und manches wird berichtet statt erlebt. Dantes derbe Komik kommt kaum an. Schwächer sind auch Vergils lange Erklärreden, die als Nacherzählung in einem Block stehen. Durchgehend gilt: Die Prosa erzählt den gerade zitierten Vers oft noch einmal nach, viele Abschnitte enden mit einem kurzen Pointensatz, die Rubriken verraten manchmal vorab, was geschieht, und neben Dantes Versen wirkt der eigene Text glatt.
+**Wo der Text abfällt.** In der zweiten Hälfte. Der achte Kreis hat viel weniger Verse als die ersten zehn Gesänge, lange Reden stehen als nacherzählte Prosa, und manches wird berichtet statt erlebt. Durchgehend bleiben Muster, die man einem Maschinentext ansieht: gleichförmig kurze Sätze, Absätze, die mit einem Merksatz enden, Formeln, die wiederkehren. Neben Dantes Versen wirkt der eigene Text glatter, wenn auch weniger als in den ersten Runden.
