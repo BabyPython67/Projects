@@ -39,7 +39,7 @@ for (const geraet of ['iPad (gen 7)', 'iPhone 13']) {
       assert.ok(stand.gesehen['wald:erwachen'] >= 1);
       // Sicherungscode im Menü
       await page.getByRole('button', { name: 'Menü öffnen' }).click();
-      await page.getByRole('button', { name: 'Sicherung' }).click();
+      await page.getByRole('button', { name: 'Sichern' }).click();
       await page.getByText('Code erzeugen und kopieren').click();
       await page.waitForFunction(() => document.querySelector('textarea.code').value.length > 10);
       const code = await page.locator('textarea.code').first().inputValue();

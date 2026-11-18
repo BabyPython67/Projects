@@ -48,7 +48,7 @@ export const BILDSCHIRME = [
   { name: 'menue-gesaenge', art: 'menue', reiter: 'Gesänge' },
   { name: 'menue-gesang', art: 'menue', reiter: 'Gesänge', gesang: true },
   { name: 'menue-karte', art: 'menue', reiter: 'Karte' },
-  { name: 'menue-sicherung', art: 'menue', reiter: 'Sicherung' },
+  { name: 'menue-sicherung', art: 'menue', reiter: 'Sichern' },
   { name: 'menue-mehr', art: 'menue', reiter: 'Mehr' },
 ];
 

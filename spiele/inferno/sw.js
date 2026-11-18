@@ -1,7 +1,7 @@
 // Service Worker: offline spielbar, neue Fassungen kommen zuverlässig an.
 // Strategie: Netz zuerst (mit Revalidierung am HTTP-Cache vorbei), sonst Cache.
 // Bei jeder Änderung VERSION erhöhen (gleich wie in js/version.js).
-const VERSION = '2026.11.18-1';
+const VERSION = '2026.11.18-2';
 const CACHE = 'inferno-' + VERSION;
 // Die Tafeln (tafeln/*.jpg, zusammen rund 17 MB) stehen nicht in der Liste: Sie werden
 // gespeichert, sobald man sie sieht oder das Spiel sie für den Abschnitt vorauslädt.

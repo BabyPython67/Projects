@@ -118,7 +118,7 @@ blockquote.vers cite { display: block; margin-top: .55em; font-style: normal; te
 
 /* Kapitelblatt */
 #seite.kapitel { text-align: center; display: flex; flex-direction: column; justify-content: center; }
-.kapitel-karte { width: min(260px, 70%); margin: 0 auto 1.4em; }
+.kapitel-karte { width: min(240px, 62%); margin: 0 auto 1.4em; opacity: .85; }
 .kapitel-nr { color: var(--rot); text-transform: uppercase; letter-spacing: .22em; font-size: .7em; margin: 0 0 .4em; }
 .kapitel-titel { font-weight: 400; font-size: clamp(1.8em, 7vw, 2.5em); line-height: 1.1; margin: .1em 0 .3em; letter-spacing: .01em; overflow-wrap: break-word; }
 .kapitel-unter { font-style: italic; font-size: 1.1em; color: var(--tinte2); }
@@ -130,7 +130,7 @@ blockquote.vers cite { display: block; margin-top: .55em; font-style: normal; te
 
 /* Titelblatt */
 #seite.titelblatt { text-align: center; }
-.titel-tafel { max-width: 520px; margin: 0 auto 1.4em; }
+.titel-tafel { --tafel-max: 36vh; max-width: 520px; margin: 0 auto 1.2em; }
 .titel-oben { text-transform: uppercase; letter-spacing: .26em; font-size: .64em; color: var(--tinte2); margin: .2em 0 .6em; }
 #seite.titelblatt h1 { font-weight: 400; font-size: clamp(2em, 8vw, 3em); line-height: 1.05; margin: .1em 0 .25em; letter-spacing: .01em; }
 .unter { text-transform: uppercase; color: var(--rot); letter-spacing: .18em; font-size: .7em; }
@@ -324,3 +324,4 @@ body.augen-zu #kopf { visibility: hidden; }
 /* Niedrige Bildschirme (Handy quer): Tafeln dürfen fast die ganze Höhe nehmen, sonst haben Stimmen keinen Platz */
 @media (max-height: 520px) { :root { --tafel-max: 84vh; } }
 .tafel-bild.eng .stimme { font-size: .64em; padding: 2px 6px 3px; }
+.titel-hinweis { font-size: .84em; font-style: italic; color: var(--rot); max-width: 30em; margin: .8em auto 0; }

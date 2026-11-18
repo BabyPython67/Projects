@@ -217,7 +217,7 @@ function zeigeKapitelblatt(ab, weiter) {
     ab.gesaenge ? el('p.kapitel-gesaenge', {}, (einGesang ? 'Gesang ' : 'Gesänge ') + ab.gesaenge) : null,
   ].filter(Boolean));
   if (nr > 0 && nr % 3 === 0) {
-    s.append(el('p.kapitel-hinweis', {}, 'Ein guter Moment, den Sicherungscode zu erneuern: Menü › Sicherung.'));
+    s.append(el('p.kapitel-hinweis', {}, 'Ein guter Moment, den Sicherungscode zu erneuern: Menü › Sichern.'));
   }
   s.append(el('div.aktionen', {}, el('button.wahl.weiter', { onclick: () => { app.klang && app.klang.blatt(); weiter(); } }, 'Hinab')));
   vorausladen(ab);
@@ -490,7 +490,7 @@ function zeigeTitel() {
   }
   s.append(aktionen);
   if (app.hinweisAlterStand) {
-    s.append(el('p.titel-ort', {}, app.hinweisAlterStand));
+    s.append(el('p.titel-hinweis', { role: 'status' }, app.hinweisAlterStand));
     app.hinweisAlterStand = null;
   }
   s.append(el('p.titel-ton', {}, 'Mit Ton gespielt, am besten mit Kopfhörern. Es geht auch stumm.'));
@@ -500,7 +500,7 @@ function zeigeTitel() {
       el('p', {}, istIOS()
         ? 'Tippe in Safari auf das Teilen-Symbol und dann auf „Zum Home-Bildschirm“. Safari löscht Daten von Seiten, die man etwa sieben Tage nicht besucht; die installierte App ist davon ausgenommen.'
         : 'Installiere das Spiel über das Browsermenü als App („Zum Startbildschirm hinzufügen“ oder „Installieren“). Dann bleibt der Spielstand sicher erhalten.'),
-      el('p', {}, 'Zusätzlich gibt es im Menü unter „Sicherung“ einen Code, mit dem du deinen Stand überall wiederherstellen kannst.')));
+      el('p', {}, 'Zusätzlich gibt es im Menü unter „Sichern“ einen Code, mit dem du deinen Stand überall wiederherstellen kannst.')));
   }
   s.append(el('p.titel-impressum', {}, 'Mit Dantes Versen in der Übersetzung von Philalethes (1839–1849)', el('br'), 'und den Stichen von Gustave Doré (1861)'));
 }
@@ -515,7 +515,10 @@ function neuesSpiel() {
 function zeigeOrt() {
   const { abschnitt, knoten } = app.stand.ort;
   const ab = app.werk.abschnitte[abschnitt];
-  if (!ab || !ab.knoten[knoten]) { zeigeHinweis('Der gespeicherte Ort existiert in dieser Fassung nicht mehr. Du beginnst am Anfang des Abschnitts.'); return gehe((ab ? ab.id : app.werk.reihe[0]) + ':'); }
+  if (!ab || !ab.knoten[knoten]) {
+    zeigeHinweis('Der gespeicherte Ort existiert in dieser Fassung nicht mehr. Du beginnst am Anfang des Abschnitts; alles, was du erlebt hast, bleibt im Merkbuch.');
+    return gehe((ab ? ab.id : app.werk.reihe[0]) + ':');
+  }
   app.letzteAktivitaet = Date.now();
   app.letzteTafel = null;
   vorausladen(ab);
@@ -538,7 +541,7 @@ function aktualisiereTonKnopf() {
 function oeffneMenue(tab = 'merkbuch') {
   const schicht = $('#schicht');
   schicht.hidden = false;
-  const reiter = [['merkbuch', 'Merkbuch'], ['gesaenge', 'Gesänge'], ['karte', 'Karte'], ['sicherung', 'Sicherung'], ['einstellungen', 'Mehr']];
+  const reiter = [['merkbuch', 'Merkbuch'], ['gesaenge', 'Gesänge'], ['karte', 'Karte'], ['sicherung', 'Sichern'], ['einstellungen', 'Mehr']];
   const inhalt = el('div.menue-inhalt');
   const leiste = el('nav.reiter', {}, reiter.map(([id, name]) => el('button' + (id === tab ? '.aktiv' : ''), { onclick: () => oeffneMenue(id) }, name)));
   const panel = el('div.menue', { role: 'dialog', 'aria-label': 'Menü' },
@@ -689,6 +692,11 @@ async function start() {
     throw e;
   }
   app.stand = ladeStand();
+  if (app.stand && app.stand.ausFruehererFassung) {
+    app.hinweisAlterStand = 'Dein Weg aus der früheren Fassung ist übernommen. Die Bilder und einige Prüfungen sind neu; was du schon erlebt hast, bleibt erhalten.';
+    delete app.stand.ausFruehererFassung;
+    speichere();
+  }
   zeigeTitel();
   window.__inferno = { app, gehe, Z, baueTafel, TAFELN }; // für Tests
 }

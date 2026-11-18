@@ -9,10 +9,11 @@ const zeilen = (h, args) => (args.text ? h.texte(args.text) : []);
 function knopf(h, text, fn, klasse = '', zeichen = 'rede') {
   return h.el('button.wahl' + klasse, { onclick: fn }, h.zeichen(zeichen), h.el('span', { html: h.formatiere(text) }));
 }
-function schreibe(h, ziel, text, klasse = 'p') {
+// rollen: false, solange man auf eine Bühne zielt – die Seite soll sich dann nicht bewegen.
+function schreibe(h, ziel, text, klasse = 'p', rollen = true) {
   const p = h.el(klasse.startsWith('p') ? klasse : 'p.' + klasse, { html: h.formatiere(text) });
   ziel.append(p);
-  if (!ziel.closest('.buehne')) sichtbar(p);
+  if (rollen && !ziel.closest('.buehne')) sichtbar(p);
   return p;
 }
 // Neue Zeilen nur dann ins Bild holen, wenn sie unter dem Bildschirmrand liegen,
@@ -174,10 +175,10 @@ export const PRUEFUNGEN = {
         satz.style.setProperty('--fort', Math.min(1, fort / dauer(i)));
         satz.classList.toggle('klar', nah);
         if (fort >= dauer(i)) {
-          if (teile[i].typ === 'vers') log.append(h.vers(teile[i].refs)); else schreibe(h, log, t[i]);
+          if (teile[i].typ === 'vers') log.append(h.vers(teile[i].refs)); else schreibe(h, log, t[i], 'p', false);
           gehoert++; i++; fort = 0;
         } else if (weg > 2600 && fort > 0) {
-          schreibe(h, log, '… (der Wind nimmt die Worte mit)', 'p.leise'); verpasst++; i++; fort = 0; weg = 0;
+          schreibe(h, log, '… (der Wind nimmt die Worte mit)', 'p.leise', false); verpasst++; i++; fort = 0; weg = 0;
           ton(h, 'wind', 0.6);
         }
         if (i >= t.length) {
@@ -426,7 +427,7 @@ export const PRUEFUNGEN = {
       reize.forEach(r => versuchung.append(knopf(h, r, () => {
         gezappelt++; ton(h, 'stein', 0.4);
         buehne.classList.remove('wankt'); void buehne.offsetWidth; buehne.classList.add('wankt');
-        schreibe(h, log, gezappelt === 1 ? zappelText : 'Er stolpert, fängt sich, und hält mich fester.', 'p.leise');
+        schreibe(h, log, gezappelt === 1 ? zappelText : 'Er stolpert, fängt sich, und hält mich fester.', 'p.leise', false);
       }, '.leise', 'weg')));
       let i = 0;
       const dauer = Math.max(4, zeilenFlucht.length) * 2600;
@@ -436,7 +437,7 @@ export const PRUEFUNGEN = {
         const f = Math.min(1, (performance.now() - start) / dauer);
         zeit.style.setProperty('--fort', f.toFixed(3));
         const soll = Math.min(zeilenFlucht.length, Math.floor(f * zeilenFlucht.length) + 1);
-        while (i < soll) { text.textContent = zeilenFlucht[i]; schreibe(h, log, zeilenFlucht[i]); i++; ton(h, 'schritt', 0.4); }
+        while (i < soll) { text.textContent = zeilenFlucht[i]; schreibe(h, log, zeilenFlucht[i], 'p', false); i++; ton(h, 'schritt', 0.4); }
         if (f >= 1) {
           clearInterval(takt);
           versuchung.remove(); buehne.classList.add('unten'); ton(h, 'stein', 0.5);
