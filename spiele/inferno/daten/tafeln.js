@@ -8,10 +8,10 @@ export const TAFELN = {
   "gesang": 2,
   "titel": "Der Tag verging",
   "alt": "Der Tag verging",
-  "commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 65 (Canto XXXI - The Titans).jpg",
-  "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_65_%28Canto_XXXI_-_The_Titans%29.jpg",
+  "commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 6 (Start of Canto II - Day was departing).jpg",
+  "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_6_%28Start_of_Canto_II_-_Day_was_departing%29.jpg",
   "lizenz": "gemeinfrei (Public Domain)",
-  "original": "5881×4702",
+  "original": "2320×2850",
   "bytes": 372115
  },
  "wald": {
@@ -21,10 +21,10 @@ export const TAFELN = {
   "gesang": 1,
   "titel": "Im dunklen Wald",
   "alt": "Im dunklen Wald",
-  "commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 13 (Canto V - Minos).jpg",
-  "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_13_%28Canto_V_-_Minos%29.jpg",
+  "commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 1 (I found myself within a forest dark...).jpg",
+  "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_1_%28I_found_myself_within_a_forest_dark...%29.jpg",
   "lizenz": "gemeinfrei (Public Domain)",
-  "original": "2826×2314",
+  "original": "2343×3062",
   "bytes": 461422
  },
  "panther": {
@@ -290,7 +290,7 @@ export const TAFELN = {
  "dis": {
   "datei": "dis.jpg",
   "w": 1114,
-  "h": 911,
+  "h": 886,
   "gesang": 8,
   "titel": "Vor der Stadt Dis",
   "alt": "Vor der Stadt Dis",
@@ -298,7 +298,7 @@ export const TAFELN = {
   "quelle": "https://commons.wikimedia.org/wiki/File%3AGottliche_Komodie._T._1%2C_Die_Holle_1870_%28148618466%29.jpg",
   "lizenz": "gemeinfrei (Public Domain)",
   "original": "6322×4543",
-  "bytes": 235523
+  "bytes": 238325
  },
  "furien": {
   "datei": "furien.jpg",
