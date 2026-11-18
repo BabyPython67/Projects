@@ -69,6 +69,7 @@ Vergil wartet, bis ich es von selbst aufgebe, und erst dann sagt er etwas.
 === fortuna
 ort: Vierter Kreis
 bild: lasten
+{wenn gesichter>=4} „Du hast jedem ins Gesicht gesehen, als schulde er dir seinen Namen“, sagt Vergil, bevor ich frage. „Sie haben keinen mehr. Das ist die Strafe.“
 „Ihr dummen Geschöpfe, wie groß ist die Unwissenheit, die euch schadet.“ Er spricht, wie er schreibt, in einem langen Atem. „Der, dessen Wissen alles übersteigt, hat den Himmeln jeweils einen Führer gegeben, damit jeder Teil jedem Teil gleich viel Licht gibt. Genauso hat er für den Glanz der Welt eine Verwalterin eingesetzt. Sie lässt die eitlen Güter von Volk zu Volk wandern, von einem Blut zum anderen, und keine menschliche Klugheit kann sie aufhalten. Darum herrscht ein Volk, und ein anderes verkümmert, nach ihrem Urteil, das versteckt ist wie die Schlange im Gras.“
 [vers 7,91-96]
 Ich habe sie mir immer als blinde Frau mit einem Rad vorgestellt, die einen hoch- und den anderen runterdreht, nach Laune. Bei ihm ist sie eine Art Engel, der seine Arbeit tut und dabei glücklich ist. Und sie hört nicht, wie wir sie verfluchen.

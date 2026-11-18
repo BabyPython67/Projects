@@ -6,9 +6,9 @@
   "scripts": {
     "start": "node werkzeuge/server.js",
     "test": "node --test tests/logik.test.js",
-    "test:browser": "node --test tests/browser.test.js tests/spielstand.test.js tests/layout.test.js",
+    "test:browser": "node --test tests/browser.test.js tests/spielstand.test.js tests/pruefungen.test.js tests/layout.test.js",
     "test:layout": "node --test tests/layout.test.js",
-    "test:alle": "node --test tests/logik.test.js tests/browser.test.js tests/spielstand.test.js tests/layout.test.js",
+    "test:alle": "node --test tests/logik.test.js tests/browser.test.js tests/spielstand.test.js tests/pruefungen.test.js tests/layout.test.js",
     "test:spielstand": "node --test tests/spielstand.test.js",
     "pruefe": "node werkzeuge/pruefe.js",
     "wortzahl": "node werkzeuge/wortzahl.js",
