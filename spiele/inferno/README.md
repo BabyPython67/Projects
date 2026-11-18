@@ -357,7 +357,9 @@ Die Daten sind darauf vorbereitet:
 
 ## Kritik
 
-Drei Runden waren erlaubt, jede mit einem frischen Unteragenten als Kritiker. Er hat nicht mitgebaut und bekam nur den Spielordner, die lokale Adresse und die fünf Kriterien, ohne Begründungen. Er sollte das README nicht lesen. Er spielte mit Playwright in iPad- und Handygröße, machte eigene Screenshots und änderte keinen Spielcode. Nach jeder Runde habe ich die Probleme von oben nach unten behoben, und jede Runde endete mit einem spielbaren, committeten und gepushten Stand.
+Jede Runde hatte einen frischen Unteragenten als Kritiker. Er hat nicht mitgebaut und bekam nur den Spielordner, die lokale Adresse und die Kriterien, ohne Begründungen. Er sollte das README und frühere Berichte nicht lesen. Er spielte mit Playwright in iPad- und Handygröße, machte eigene Screenshots und änderte keinen Spielcode. In den Runden 1 und 2 gab es fünf Kriterien, in Runde 3 kam als sechstes die Optik dazu. Nach jeder Runde habe ich die Probleme von oben nach unten behoben, und jede Runde endete mit einem spielbaren, committeten und gepushten Stand.
+
+In der Überarbeitung für Runde 3 gab es nur einen Kritiker, keine Runde 4. So wollte es der Auftraggeber. Runde 3 ist damit die letzte, und danach habe ich nur behoben, was der Kritiker als Fehler markiert hat.
 
 ### Runde 1 (Fassung 2026.11.17-2)
 
