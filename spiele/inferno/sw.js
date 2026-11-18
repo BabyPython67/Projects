@@ -1,12 +1,15 @@
 // Service Worker: offline spielbar, neue Fassungen kommen zuverlässig an.
 // Strategie: Netz zuerst (mit Revalidierung am HTTP-Cache vorbei), sonst Cache.
 // Bei jeder Änderung VERSION erhöhen (gleich wie in js/version.js).
-const VERSION = '2026.11.17-4';
+const VERSION = '2026.11.18-1';
 const CACHE = 'inferno-' + VERSION;
+// Die Tafeln (tafeln/*.jpg, zusammen rund 17 MB) stehen nicht in der Liste: Sie werden
+// gespeichert, sobald man sie sieht oder das Spiel sie für den Abschnitt vorauslädt.
 const DATEIEN = [
   './', 'index.html', 'manifest.webmanifest', 'css/stil.css',
-  'js/haupt.js', 'js/skript.js', 'js/zustand.js', 'js/bilder.js', 'js/klang.js', 'js/pruefungen.js', 'js/version.js',
-  'daten/werke.js', 'daten/inferno/verse-philalethes.json',
+  'js/haupt.js', 'js/skript.js', 'js/zustand.js', 'js/karte.js', 'js/tafeln.js', 'js/klang.js', 'js/pruefungen.js', 'js/version.js',
+  'schrift/eb-garamond-latin-400-normal.woff2', 'schrift/eb-garamond-latin-400-italic.woff2', 'schrift/eb-garamond-latin-600-normal.woff2', 'schrift/OFL.txt',
+  'daten/werke.js', 'daten/tafeln.js', 'daten/inferno/verse-philalethes.json',
   'daten/inferno/text/01-wald.txt', 'daten/inferno/text/02-vorhoelle.txt', 'daten/inferno/text/03-limbus.txt',
   'daten/inferno/text/04-liebende.txt', 'daten/inferno/text/05-regen.txt', 'daten/inferno/text/06-lasten.txt',
   'daten/inferno/text/07-styx.txt', 'daten/inferno/text/08-dis.txt', 'daten/inferno/text/09-graeber.txt',

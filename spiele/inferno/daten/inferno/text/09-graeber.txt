@@ -7,13 +7,13 @@ gesaenge: X–XI
 start: pfad
 
 === pfad
-rubrik: Hier beginnt der zehnte Gesang. Dante spricht mit Farinata und mit Cavalcante, im selben Grab.
+rubrik: Hier beginnt der zehnte Gesang. Ein schmaler Weg zwischen Mauer und Gräbern.
 gesang: 10
 ort: Zwischen den Gräbern
 bild: graeber
 „Höchste Kraft, die du mich durch die gottlosen Kreise führst, wie du willst“, sage ich. „Kann man die sehen, die in den Gräbern liegen? Die Deckel sind schon aufgehoben, und keiner hält Wache.“
 „Sie werden alle verschlossen, wenn sie aus dem Tal Josaphat zurückkommen, mit den Körpern, die sie oben gelassen haben. Auf dieser Seite haben Epikur und alle seine Anhänger ihren Friedhof, die sagen, die Seele stirbt mit dem Körper. Auf die Frage, die du mir stellst, wirst du hier bald eine Antwort haben. Und auch auf den Wunsch, den du mir verschweigst.“
-Er weiß, nach wem ich suche.
+Er weiß, nach wem ich suche, bevor ich es ausgesprochen habe.
 ~ „O Tuscier …“ -> tuscier @38,62
 
 === tuscier
@@ -93,7 +93,6 @@ Er seufzt und schüttelt den Kopf. „Da war ich nicht allein. Aber ich war alle
 ort: Zwischen den Gräbern
 bild: graeber
 [vers 10,100-108]
-Ein Wissen, das von selbst stirbt. Wenn die Zeit aufhört, wissen sie gar nichts mehr. Für immer.
 -> botschaft | „Dann sag dem, der gefallen ist, dass sein Sohn noch lebt.“
 
 === botschaft
@@ -109,7 +108,7 @@ Dann verschwindet er. Ich gehe zu Vergil zurück und denke an das Wort, das mir 
 -> gestank
 
 === gestank
-rubrik: Hier beginnt der elfte Gesang. Vergil erklärt die Ordnung der Hölle.
+rubrik: Hier beginnt der elfte Gesang. Im Windschatten eines großen Grabsteins.
 gesang: 11
 ort: Am Rand des siebten Kreises
 bild: graeber
@@ -136,7 +135,7 @@ Er zeichnet es mir mit dem Finger auf den Grabdeckel, damit ich es behalte.
 ort: Hinter dem Grab des Anastasius
 bild: graeber
 „Warum irrt dein Verstand so? Erinnerst du dich nicht an die Worte, mit denen deine Ethik die drei Neigungen behandelt, die der Himmel nicht will? Unmäßigkeit, Bosheit und tierische Wildheit. Und dass die Unmäßigkeit Gott weniger beleidigt und weniger Tadel verdient?“
-Aristoteles. Natürlich. Ich habe die *Ethik* gelesen, mehr als einmal. Ich hätte es selbst wissen können. Die oben haben aus Schwäche gesündigt. Die hier unten mit Absicht.
+Aristoteles. Natürlich. Ich habe die *Ethik* gelesen, mehr als einmal. Ich hätte es selbst wissen können. Wer oben liegt, war schwach, und wer hier unten liegt, hat es gewollt.
 & seele ordnung | Die Ordnung der Hölle | Oben Unmaß (Kreise 2–5), dann die Stadt Dis: Ketzer (6), Gewalt (7: gegen andere, sich selbst, Gott), Betrug (8), Verrat (9). Nach Aristoteles: Schwäche wiegt leichter als Bosheit.
 > Zurück -> ordnung_weiter
 

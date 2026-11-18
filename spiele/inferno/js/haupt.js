@@ -3,7 +3,8 @@ import { zerlegeAbschnitt } from './skript.js';
 import * as Z from './zustand.js';
 import { WERKE } from '../daten/werke.js';
 import { VERSION } from './version.js';
-import { zeichne, zeichneKarte } from './bilder.js';
+import { zeichneKarte, EBENEN } from './karte.js';
+import { tafelDaten, tafelPfad, tafelnFuer } from './tafeln.js';
 import { Klang } from './klang.js';
 import { PRUEFUNGEN } from './pruefungen.js';
 
@@ -27,6 +28,27 @@ function el(tag, attrs = {}, ...kinder) {
 }
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const formatiere = s => esc(s).replace(/\*([^*]+)\*/g, '<em>$1</em>');
+// Randzeichen vor Wahlen, alle aus der Buchschrift: Rede ¶, Weg », Stimme ~
+const ZEICHEN = { rede: '¶', weg: '»', stimme: '~', hilfe: '¶', ton: '¶', gefahr: '×' };
+const zeichen = art => el('span.zeiger', { 'aria-hidden': 'true' }, ZEICHEN[art] || '¶');
+const KREIS_NAME = ['', 'Erster', 'Zweiter', 'Dritter', 'Vierter', 'Fünfter', 'Sechster', 'Siebter', 'Achter', 'Neunter'];
+
+// Eine Tafel: Dorés Stich mit Rahmen und Unterschrift.
+function baueTafel(name, { unterschrift = true, klasse = '' } = {}) {
+  const t = tafelDaten(name);
+  const fig = el('figure.tafel' + klasse);
+  const bild = el('div.tafel-bild');
+  if (t) {
+    bild.style.setProperty('--sv', (t.w / t.h).toFixed(4));
+    bild.style.setProperty('--maxb', Math.floor(t.w / 2) + 'px'); // nie größer als die halbe Pixelbreite: immer doppelt scharf
+    bild.append(el('img', { src: tafelPfad(t), width: t.w, height: t.h, alt: t.alt || t.titel, decoding: 'async', draggable: 'false' }));
+  } else {
+    bild.classList.add('leer');
+  }
+  fig.append(bild);
+  if (t && unterschrift) fig.append(el('figcaption', { html: `<em>${esc(t.titel)}</em><br>Hölle ${ROEMISCH[t.gesang]} · Gustave Doré` }));
+  return { fig, bild, daten: t };
+}
 
 // --- Zustand der Sitzung -------------------------------------------------
 const app = {
@@ -91,6 +113,16 @@ function setzeThema(thema) {
   if (app.klang) app.klang.raum(thema);
 }
 
+// --- Tafeln vorausladen (für unterwegs und offline) -----------------------
+function vorausladen(ab) {
+  const i = app.werk.reihe.indexOf(ab.id);
+  const naechster = app.werk.abschnitte[app.werk.reihe[i + 1]];
+  const urls = [...tafelnFuer(ab), ...(naechster ? tafelnFuer(naechster) : [])];
+  let n = 0;
+  const eins = () => { if (n < urls.length) fetch(urls[n++]).catch(() => {}).finally(() => setTimeout(eins, 300)); };
+  setTimeout(eins, 1500);
+}
+
 // --- Seiten --------------------------------------------------------------
 const seite = () => $('#seite');
 
@@ -132,7 +164,7 @@ function gehe(ziel, echo = null, vonAbschnitt = null) {
   const nach = zaehle();
   const neu = ['Ins Merkbuch geschrieben', 'Eine Vorhersage notiert', 'Ein Name, den ich hinauftrage', 'Namen zum Suchen notiert']
     .filter((_, i) => nach[i] > vor[i] && (i > 0 || nach[0] <= 2));
-  if (neu.length) setTimeout(() => zeigeHinweis(neu.join(' · ') + ' (Menü → Merkbuch)'), 600);
+  if (neu.length) setTimeout(() => zeigeHinweis(neu.join(' · ') + ' (Menü › Merkbuch)'), 600);
   if (info.spezial === 'titel') return zeigeTitel();
   if (vorher !== info.abschnitt.id && info.knoten.id === info.abschnitt.start && info.erstesMal) {
     return zeigeKapitelblatt(info.abschnitt, () => zeigeKnoten(info.abschnitt, info.knoten, echo));
@@ -143,47 +175,57 @@ function gehe(ziel, echo = null, vonAbschnitt = null) {
 function zeigeKapitelblatt(ab, weiter) {
   setzeThema(ab.thema);
   zeigeKopf(ab);
+  app.letzteTafel = null;
   const s = leereSeite('kapitel');
   const nr = app.werk.reihe.indexOf(ab.id);
-  s.append(
-    el('div.kapitel-karte', { html: zeichneKarte(ab.kreis, app.stand) }),
-    el('p.rubrik', {}, ab.kreis && /^\d$/.test(ab.kreis) ? `${['', 'Erster', 'Zweiter', 'Dritter', 'Vierter', 'Fünfter', 'Sechster', 'Siebter', 'Achter', 'Neunter'][+ab.kreis]} Kreis` : ''),
+  const kreis = ab.kreis && /^\d$/.test(ab.kreis) ? `${KREIS_NAME[+ab.kreis]} Kreis` : '';
+  const einGesang = ab.gesaenge && !/[–-]/.test(ab.gesaenge);
+  s.append(...[
+    el('div.kapitel-karte', { html: zeichneKarte(ab.kreis, { klein: true }) }),
+    kreis && kreis !== ab.titel ? el('p.kapitel-nr', {}, kreis) : null,
     el('h1.kapitel-titel', {}, ab.titel),
     ab.untertitel ? el('p.kapitel-unter', {}, ab.untertitel) : null,
-    ab.gesaenge ? el('p.kapitel-gesaenge', {}, 'Gesänge ' + ab.gesaenge) : null,
-  );
+    ab.gesaenge ? el('p.kapitel-gesaenge', {}, (einGesang ? 'Gesang ' : 'Gesänge ') + ab.gesaenge) : null,
+  ].filter(Boolean));
   if (nr > 0 && nr % 3 === 0) {
-    s.append(el('p.kapitel-hinweis', {}, 'Ein guter Moment, den Sicherungscode zu erneuern: Menü → Sicherung.'));
+    s.append(el('p.kapitel-hinweis', {}, 'Ein guter Moment, den Sicherungscode zu erneuern: Menü › Sicherung.'));
   }
   s.append(el('div.aktionen', {}, el('button.wahl.weiter', { onclick: () => { app.klang && app.klang.blatt(); weiter(); } }, 'Hinab')));
+  vorausladen(ab);
 }
 
 function zeigeKnoten(ab, k, echo) {
   setzeThema(k.meta.klang || ab.thema);
   zeigeKopf(ab);
   const s = leereSeite('blatt');
+  const schonDa = (app.stand.gesehen[ab.id + ':' + k.id] || 0) > 1;
   if (echo) s.append(el('p.echo', {}, echo));
   if (k.meta.rubrik) s.append(el('p.rubrik', {}, k.meta.rubrik));
   if (k.meta.ort) s.append(el('h2.ort', {}, k.meta.ort));
 
   const stimmen = k.stimmen.filter(st => Z.pruefeBedingung(app.stand, st.bed, ab.id) &&
     !(st.einmal && Z.pruefeBedingung(app.stand, 'gesehen:' + st.ziel, ab.id)));
-  if (k.meta.bild && !stimmen.length) s.append(lauschbild(ab, k, stimmen));
+  // Eine Tafel nur, wenn sie neu ist: dasselbe Bild nicht auf jeder Seite.
+  const bild = k.meta.bild || null;
+  const datei = bild && tafelDaten(bild) ? tafelDaten(bild).datei : null;
+  if (datei && !stimmen.length && datei !== app.letzteTafel && !k.pruefung) s.append(baueTafel(bild).fig);
+  if (datei) app.letzteTafel = datei;
 
   let ersterAbsatz = !!k.meta.rubrik;
   for (const t of k.teile) {
     if (!Z.pruefeBedingung(app.stand, t.bed, ab.id)) continue;
     if (t.typ === 'vers') { s.append(versBlock(t.refs)); continue; }
     const p = el('p', { html: formatiere(t.text) });
-    if (ersterAbsatz && /^[A-ZÄÖÜ„»]/.test(t.text)) { p.classList.add('initial'); ersterAbsatz = false; }
+    if (ersterAbsatz && /^[A-ZÄÖÜ]/.test(t.text)) { p.classList.add('initial'); ersterAbsatz = false; }
     s.append(p);
   }
 
-  if (stimmen.length) s.append(lauschbild(ab, k, stimmen));
-  if (k.meta.probe) s.append(el('p.probe-titel', {}, el('span', {}, 'Prüfung'), ' ' + k.meta.probe));
+  let anker = null;
+  if (stimmen.length) { anker = lauschbild(ab, k, stimmen); s.append(anker); }
+  if (k.meta.probe) s.append(el('p.probe-titel', {}, el('span', {}, 'Prüfung'), el('strong', {}, k.meta.probe)));
   const aktionen = el('div.aktionen');
   s.append(aktionen);
-  if (k.pruefung) return starteProbe(ab, k, aktionen);
+  if (k.pruefung) { aktionen.remove(); return starteProbe(ab, k, s); }
 
   const wahlen = Z.sichtbareWahlen(app.stand, ab.id, k);
   for (const w of wahlen) {
@@ -193,7 +235,7 @@ function zeigeKnoten(ab, k, echo) {
         Z.waehle(app.stand, ab.id, k, w);
         gehe(w.ziel, w.art === 'rede' ? w.text : null, ab.id);
       },
-    }, el('span.zeiger', { 'aria-hidden': 'true' }, w.art === 'rede' ? '☞' : '→'), el('span', { html: formatiere(w.text) })));
+    }, zeichen(w.art), el('span', { html: formatiere(w.text) })));
   }
   if (k.weiter) {
     aktionen.append(el('button.wahl.weiter', { onclick: () => { app.klang && app.klang.blatt(); gehe(k.weiter.ziel, null, ab.id); } }, k.weiter.label || 'Weiter'));
@@ -202,17 +244,37 @@ function zeigeKnoten(ab, k, echo) {
     // Darf nicht vorkommen; Ausweg statt Sackgasse.
     aktionen.append(el('button.wahl.weiter', { onclick: () => gehe(ab.id + ':' + ab.start, null, ab.id) }, 'Zurück zum Anfang des Abschnitts'));
   }
+  // Eine Frist: Wer zu lange wählt, dem nimmt die Hölle die Wahl ab.
+  if (k.meta.frist && wahlen.length) {
+    const linie = el('div.frist.frist-knoten', {}, el('span'));
+    aktionen.before(linie);
+    const ms = Number(k.meta.frist) * 1000;
+    const los = () => setTimeout(() => {
+      if (!document.body.contains(linie)) return;
+      linie.firstChild.style.animationDuration = ms + 'ms'; linie.classList.add('laeuft');
+      setTimeout(() => { if (document.body.contains(linie)) gehe(k.meta.fristziel, null, ab.id); }, ms);
+    }, 900);
+    if (typeof IntersectionObserver === 'undefined') los();
+    else { const io = new IntersectionObserver(e => { if (e.some(x => x.isIntersecting)) { io.disconnect(); los(); } }, { threshold: 0.5 }); io.observe(aktionen); }
+  }
+  // Zurück an einem Ort, an dem man schon war: gleich dorthin, wo es weitergeht.
+  if (schonDa && (anker || wahlen.length > 1)) {
+    const ziel = anker || aktionen;
+    requestAnimationFrame(() => {
+      const y = ziel.getBoundingClientRect().top + window.scrollY - $('#kopf').offsetHeight - 12;
+      if (y > 40) window.scrollTo(0, y);
+    });
+  }
 }
 
 // --- Lauschbild: hören, bevor man sieht ---------------------------------
 function lauschbild(ab, k, stimmen) {
-  const fig = el('figure.miniatur', { html: zeichne(k.meta.bild || ab.thema) });
-  if (!stimmen.length) return fig;
-  if (stimmen.length) fig.classList.add('lauschen');
+  const { fig: tafel, bild: fig } = baueTafel(k.meta.bild || ab.thema);
+  tafel.classList.add('lauschen');
   const schicht = el('div.stimmen');
   fig.append(schicht);
   const liste = el('div.gehoert-liste');
-  const huelle = el('div.lausch-huelle', {}, fig, liste);
+  const huelle = el('div.lausch-huelle', {}, tafel, liste);
   const knoten = stimmen.map((st, i) => {
     const key = ab.id + ':' + k.id + '~' + i;
     const b = el('button.stimme', { style: `left:${st.x}%;top:${st.y}%`, tabindex: '-1' }, st.text);
@@ -231,17 +293,18 @@ function lauschbild(ab, k, stimmen) {
     e.gehoert = true;
     app.stand.gehoert[e.key] = 1;
     e.b.classList.add('gehoert');
-    e.listenKnopf = el('button.wahl.stimme-wahl', { onclick: () => folge(e) },
-      el('span.zeiger', { 'aria-hidden': 'true' }, '∿'), el('span', {}, e.st.text));
+    e.listenKnopf = el('button.wahl.stimme-wahl', { onclick: () => folge(e) }, zeichen('stimme'), el('span', {}, e.st.text));
     liste.append(e.listenKnopf);
     app.klang && app.klang.gefunden();
+    if (knoten.every(x => x.gehoert) && hilfeKnopf) hilfeKnopf.remove();
   };
-  knoten.forEach(e => { if (e.gehoert) markiere(e); });
 
   const hinweis = el('p.lausch-hinweis', {}, app.stand.flags._lauschenGelernt
     ? 'Finger auf das Bild legen und lauschen.'
     : 'Halte den Finger auf das Bild und fahre langsam darüber. Wo jemand spricht, wird die Stimme deutlich. Was du gehört hast, kannst du antippen.');
-  huelle.insertBefore(hinweis, liste);
+  huelle.insertBefore(hinweis, tafel);
+  let hilfeKnopf = null;
+  knoten.forEach(e => { if (e.gehoert) markiere(e); });
 
   let lauscht = false, letzt = 0;
   const kreis = el('div.hoerkreis');
@@ -287,7 +350,7 @@ function lauschbild(ab, k, stimmen) {
   }, 120);
   fig.addEventListener('pointermove', ev => { fig._letztePos = { x: ev.clientX, y: ev.clientY }; });
   fig.addEventListener('pointerdown', ev => { fig._letztePos = { x: ev.clientX, y: ev.clientY }; fig._seit = performance.now(); });
-  fig.addEventListener('pointerup', ev => {
+  fig.addEventListener('pointerup', () => {
     const dauer = performance.now() - (fig._seit || 0);
     if (dauer > 220) fig._losgelassen = performance.now();
     if (dauer <= 220 && fig._letztePos) {
@@ -305,16 +368,16 @@ function lauschbild(ab, k, stimmen) {
   fig.addEventListener('pointercancel', ende);
   fig.addEventListener('contextmenu', ev => ev.preventDefault());
 
-  // Hilfe, wenn lange nichts gefunden wird.
-  const hilfe = setTimeout(() => {
+  // Vergils Hilfe: nach 25 Sekunden, solange noch Stimmen fehlen, egal ob man schon getastet hat.
+  setTimeout(() => {
     if (!document.body.contains(fig)) return;
     const offen = knoten.filter(e => !e.gehoert);
     if (!offen.length) return;
-    huelle.insertBefore(el('button.wahl.hilfe', {
-      onclick: ev => { offen.forEach(markiere); ev.currentTarget.remove(); },
-    }, el('span.zeiger', {}, '☞'), el('span', {}, 'Vergil: „Hör genauer hin.“ (alle Stimmen zeigen)')), liste);
-  }, 30000);
-  fig.addEventListener('pointerdown', () => clearTimeout(hilfe), { once: true });
+    hilfeKnopf = el('button.wahl.hilfe', {
+      onclick: ev => { knoten.filter(e => !e.gehoert).forEach(markiere); ev.currentTarget.remove(); },
+    }, zeichen('hilfe'), el('span', {}, 'Vergil: „Hör genauer hin.“ (alle Stimmen zeigen)'));
+    huelle.insertBefore(hilfeKnopf, liste);
+  }, 25000);
   return huelle;
 }
 
@@ -330,7 +393,19 @@ function starteProbe(ab, k, wurzel) {
     return tk.teile.filter(t => Z.pruefeBedingung(app.stand, t.bed, ab.id));
   };
   const hilfen = {
-    klang: app.klang, el, vers: refs => versBlock(refs), stand: app.stand, formatiere,
+    klang: app.klang, el, vers: refs => versBlock(refs), stand: app.stand, formatiere, zeichen,
+    tafel: (name, opt) => baueTafel(name, opt).fig,
+    // Bühne: eine Tafel als Hintergrund, auf der man handelt.
+    buehne: (name, klasse = '') => {
+      const t = tafelDaten(name);
+      const b = el('div.buehne' + klasse);
+      if (t) {
+        b.style.aspectRatio = (t.w / t.h).toFixed(4);
+        b.style.width = `min(calc(100% - 12px), calc(var(--tafel-max) * ${(t.w / t.h).toFixed(4)}), ${Math.floor(t.w / 2)}px)`;
+        b.append(el('img.grund', { src: tafelPfad(t), alt: '', width: t.w, height: t.h, draggable: 'false' }));
+      }
+      return b;
+    },
     texte: id => textKnoten(id).filter(t => t.typ === 'p').map(t => t.text),
     texteMitVersen: textKnoten,
     verszeilen: r => app.werk.verse[r.g - 1].slice(r.a - 1, r.b),
@@ -349,23 +424,38 @@ function istInstalliert() { return window.navigator.standalone === true || match
 function zeigeTitel() {
   setzeThema('titel');
   $('#kopf-titel').textContent = '';
+  app.letzteTafel = null;
   const s = leereSeite('titelblatt');
   const hatStand = app.stand && app.stand.ort;
+  const fertig = hatStand && app.stand.fertig;
   s.append(
-    el('div.titel-initial', { 'aria-hidden': 'true' }, 'I'),
+    baueTafel('titel', { klasse: '.titel-tafel' }).fig,
+    el('p.titel-oben', {}, 'Dante Alighieri'),
     el('h1', {}, 'Was ich dort hörte'),
-    el('p.unter', {}, 'Dantes Inferno · ein Spiel in vierunddreißig Gesängen'),
+    el('p.unter', {}, 'Die Hölle · ein Spiel in vierunddreißig Gesängen'),
+    el('hr.titel-linie'),
     el('p.titel-zitat', {}, '„Als ich auf halbem Weg stand unsers Lebens …“'),
   );
   const aktionen = el('div.aktionen');
-  if (hatStand) {
+  const minuten = hatStand ? Math.round(app.stand.zeit.gespielt / 60000) : 0;
+  if (fertig) {
+    const namen = Object.keys(app.stand.getragen).length;
+    aktionen.append(
+      el('p.titel-ort', {}, `Vollendet. ${minuten} Minuten unterwegs, ${namen === 1 ? 'ein Name' : namen + ' Namen'} hinaufgetragen.`),
+      el('button.wahl.weiter', { onclick: () => { starteTon(); oeffneMenue('merkbuch'); } }, 'Den Weg nachlesen'),
+      el('button.wahl.weiter', { onclick: () => { if (confirm('Noch einmal von vorn gehen? Der vollendete Weg wird dabei überschrieben.')) { starteTon(); neuesSpiel(); } } }, 'Noch einmal gehen'));
+  } else if (hatStand) {
     const ab = app.werk.abschnitte[app.stand.ort.abschnitt];
     aktionen.append(el('button.wahl.weiter', { onclick: () => { starteTon(); zeigeOrt(); } }, 'Weiterspielen'),
-      el('p.titel-ort', {}, (ab ? ab.titel : '') + ' · ' + Math.round(app.stand.zeit.gespielt / 60000) + ' Minuten unterwegs'));
+      el('p.titel-ort', {}, (ab ? ab.titel : '') + ' · ' + minuten + ' Minuten unterwegs'));
   } else {
     aktionen.append(el('button.wahl.weiter', { onclick: () => { starteTon(); neuesSpiel(); } }, 'Beginnen'));
   }
   s.append(aktionen);
+  if (app.hinweisAlterStand) {
+    s.append(el('p.titel-ort', {}, app.hinweisAlterStand));
+    app.hinweisAlterStand = null;
+  }
   s.append(el('p.titel-ton', {}, 'Mit Ton gespielt, am besten mit Kopfhörern. Es geht auch stumm.'));
   if (!istInstalliert()) {
     s.append(el('div.install', {},
@@ -375,6 +465,7 @@ function zeigeTitel() {
         : 'Installiere das Spiel über das Browsermenü als App („Zum Startbildschirm hinzufügen“ oder „Installieren“). Dann bleibt der Spielstand sicher erhalten.'),
       el('p', {}, 'Zusätzlich gibt es im Menü unter „Sicherung“ einen Code, mit dem du deinen Stand überall wiederherstellen kannst.')));
   }
+  s.append(el('p.titel-impressum', {}, 'Mit Dantes Versen in der Übersetzung von Philalethes (1839–1849)', el('br'), 'und den Stichen von Gustave Doré (1861)'));
 }
 
 function neuesSpiel() {
@@ -389,6 +480,8 @@ function zeigeOrt() {
   const ab = app.werk.abschnitte[abschnitt];
   if (!ab || !ab.knoten[knoten]) { zeigeHinweis('Der gespeicherte Ort existiert in dieser Fassung nicht mehr. Du beginnst am Anfang des Abschnitts.'); return gehe((ab ? ab.id : app.werk.reihe[0]) + ':'); }
   app.letzteAktivitaet = Date.now();
+  app.letzteTafel = null;
+  vorausladen(ab);
   zeigeKnoten(ab, ab.knoten[knoten], null);
 }
 
@@ -447,7 +540,7 @@ function menueGesaenge(w) {
 
 function leseGesang(w, g) {
   w.replaceChildren(el('button.zurueck', { onclick: () => { w.replaceChildren(); menueGesaenge(w); } }, '← Alle Gesänge'),
-    el('h3', {}, `${ROEMISCH[g]}. Gesang`));
+    el('h3.gesang-titel', {}, `${ROEMISCH[g]}. Gesang`));
   const block = el('div.gesang-text');
   app.werk.verse[g - 1].forEach((z, i) => {
     block.append(el('span.verszeile', {}, z, (i + 1) % 3 === 0 ? el('span.nr', {}, String(i + 1)) : null));
@@ -459,9 +552,12 @@ function leseGesang(w, g) {
 
 function menueKarte(w) {
   const ab = app.stand && app.stand.ort ? app.werk.abschnitte[app.stand.ort.abschnitt] : null;
-  w.append(el('div.karte-gross', { html: zeichneKarte(ab ? ab.kreis : '0', app.stand) }));
-  w.append(el('p', {}, 'Die Hölle ist ein Trichter unter Jerusalem. Neun Kreise, jeder enger als der vorige. Oben die Maßlosen, in der Mitte die Gewalttätigen, unten die Betrüger und Verräter.'));
-  if (ab) w.append(el('p', {}, el('strong', {}, 'Du bist hier: '), ab.titel + (ab.untertitel ? ' – ' + ab.untertitel : '')));
+  const aktiv = ab ? ab.kreis : '';
+  const hier = EBENEN.findIndex(e => e.k === String(aktiv));
+  const legende = el('ol.karte-legende', {}, EBENEN.map((e, i) => el('li' + (i === hier ? '.hier' : hier >= 0 && i > hier ? '.fern' : ''), {},
+    el('span.nr', {}, e.ziffer), el('span', {}, el('span.name', {}, e.name), el('span.gs', {}, (/[–-]/.test(e.gesaenge) ? 'Gesänge ' : 'Gesang ') + e.gesaenge)))));
+  w.append(el('div.karte-feld', {}, el('div.karte-gross', { html: zeichneKarte(aktiv) }), legende));
+  w.append(el('p', {}, 'Die Hölle ist ein Trichter unter Jerusalem, bis zur Mitte der Erde. Neun Kreise, jeder enger als der vorige. Oben die Maßlosen, in der Mitte die Gewalttätigen, unten die Betrüger und Verräter.'));
 }
 
 function menueSicherung(w) {
@@ -473,9 +569,9 @@ function menueSicherung(w) {
       speichere();
       feld.value = await Z.erzeugeSicherungscode(app.stand);
       feld.select();
-      try { await navigator.clipboard.writeText(feld.value); status.textContent = 'Kopiert. Füge ihn in eine Notiz ein.'; } catch { status.textContent = 'Markiert. Jetzt kopieren (lange drücken → Kopieren).'; }
+      try { await navigator.clipboard.writeText(feld.value); status.textContent = 'Kopiert. Füge ihn in eine Notiz ein.'; } catch { status.textContent = 'Markiert. Jetzt kopieren (lange drücken, dann Kopieren).'; }
     },
-  }, el('span.zeiger', {}, '☞'), el('span', {}, 'Code erzeugen und kopieren'));
+  }, zeichen('rede'), el('span', {}, 'Code erzeugen und kopieren'));
   w.append(erzeugen, feld, status);
   w.append(el('h3', {}, 'Wiederherstellen'));
   const ein = el('textarea.code', { rows: 4, placeholder: 'INF1-…', 'aria-label': 'Code zum Wiederherstellen' });
@@ -489,19 +585,19 @@ function menueSicherung(w) {
         zeigeHinweis('Stand wiederhergestellt.');
       } catch (e) { status2.textContent = e.message; }
     },
-  }, el('span.zeiger', {}, '☞'), el('span', {}, 'Stand aus Code wiederherstellen')), status2);
-  if (!istInstalliert()) w.append(el('p.hinweis', {}, istIOS() ? 'Tipp: Als App installieren (Teilen → „Zum Home-Bildschirm“). Dann löscht Safari den Stand nicht nach sieben Tagen.' : 'Tipp: Als App installieren, dann bleibt der Stand dauerhaft.'));
+  }, zeichen('rede'), el('span', {}, 'Stand aus Code wiederherstellen')), status2);
+  if (!istInstalliert()) w.append(el('p.hinweis', {}, istIOS() ? 'Tipp: Als App installieren (Teilen, dann „Zum Home-Bildschirm“). Dann löscht Safari den Stand nicht nach sieben Tagen.' : 'Tipp: Als App installieren, dann bleibt der Stand dauerhaft.'));
 }
 
 function menueEinstellungen(w) {
   const ton = el('button.wahl', { onclick: () => { app.einst.ton = !app.einst.ton; speichereEinstellungen(); starteTon(); oeffneMenue('einstellungen'); } },
-    el('span.zeiger', {}, '♪'), el('span', {}, app.einst.ton ? 'Ton ausschalten' : 'Ton einschalten'));
+    zeichen('ton'), el('span', {}, app.einst.ton ? 'Ton ausschalten' : 'Ton einschalten'));
   const groesse = el('div.schriftwahl', {}, el('span', {}, 'Schrift: '),
     ...[[0.9, 'klein'], [1, 'mittel'], [1.15, 'groß'], [1.3, 'sehr groß']].map(([f, n]) =>
       el('button' + (app.einst.schrift === f ? '.aktiv' : ''), { onclick: () => { app.einst.schrift = f; speichereEinstellungen(); oeffneMenue('einstellungen'); } }, n)));
   w.append(ton, groesse);
   if (app.stand && app.stand.ort) {
-    w.append(el('button.wahl', { onclick: () => { schliesseMenue(); zeigeTitel(); } }, el('span.zeiger', {}, '☞'), el('span', {}, 'Zum Titelblatt')));
+    w.append(el('button.wahl', { onclick: () => { schliesseMenue(); zeigeTitel(); } }, zeichen('rede'), el('span', {}, 'Zum Titelblatt')));
   }
   w.append(el('button.wahl.gefahr', {
     onclick: () => {
@@ -509,7 +605,7 @@ function menueEinstellungen(w) {
       localStorage.removeItem(SPEICHER); localStorage.removeItem(SPEICHER + '.vorher');
       app.stand = null; schliesseMenue(); zeigeTitel();
     },
-  }, el('span.zeiger', {}, '✕'), el('span', {}, 'Von vorn beginnen')));
+  }, zeichen('gefahr'), el('span', {}, 'Von vorn beginnen')));
   w.append(el('p.klein', {}, `Fassung ${VERSION}. Verse: Dante Alighieri, Die Hölle, übersetzt von Philalethes (gemeinfrei). Alles andere: neu erzählt.`));
 }
 

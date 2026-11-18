@@ -1,0 +1,509 @@
+{
+ "tafeln": [
+  {
+   "name": "titel",
+   "datei": "Plate_6.jpg",
+   "gesang": 2,
+   "titel": "Der Tag verging",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_65_%28Canto_XXXI_-_The_Titans%29.jpg",
+   "original": "5881×4702",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 65 (Canto XXXI - The Titans).jpg"
+  },
+  {
+   "name": "wald",
+   "datei": "Plate_1.jpg",
+   "gesang": 1,
+   "titel": "Im dunklen Wald",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_13_%28Canto_V_-_Minos%29.jpg",
+   "original": "2826×2314",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 13 (Canto V - Minos).jpg"
+  },
+  {
+   "name": "panther",
+   "datei": "Plate_2.jpg",
+   "gesang": 1,
+   "titel": "Der Pardel",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_2_%28the_panther%29.jpg",
+   "original": "2824×2320",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 2 (the panther).jpg"
+  },
+  {
+   "name": "loewe",
+   "datei": "Plate_3.jpg",
+   "gesang": 1,
+   "titel": "Der Löwe",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_3_%28The_lion%29.jpg",
+   "original": "2320×2832",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 3 (The lion).jpg"
+  },
+  {
+   "name": "vergil",
+   "datei": "Plate_4.jpg",
+   "gesang": 1,
+   "titel": "Einer, heiser durch langes Schweigen",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_4_%28Dante_meets_Virgil%29.jpg",
+   "original": "2320×2850",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 4 (Dante meets Virgil).jpg"
+  },
+  {
+   "name": "aufbruch",
+   "datei": "Plate_5.jpg",
+   "gesang": 1,
+   "titel": "Er ging, und ich folgte ihm",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_5_%28End_of_Canto_I%29.jpg",
+   "original": "2320×2850",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 5 (End of Canto I).jpg"
+  },
+  {
+   "name": "beatrice",
+   "datei": "Plate_7.jpg",
+   "gesang": 2,
+   "titel": "Beatrice",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_7_%28Beatrice%29.jpg",
+   "original": "2320×2850",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 7 (Beatrice).jpg"
+  },
+  {
+   "name": "tor",
+   "datei": "Plate_8.jpg",
+   "gesang": 3,
+   "titel": "Durch mich geht man in die Stadt der Schmerzen",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_8_%28Canto_III_-_Abandon_all_hope_ye_who_enter_here%29.jpg",
+   "original": "2820×2314",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 8 (Canto III - Abandon all hope ye who enter here).jpg"
+  },
+  {
+   "name": "vorhoelle",
+   "datei": "DoomedSoulsCrossAcheron.jpg",
+   "gesang": 3,
+   "titel": "Die Seelen am Ufer",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoDoomedSoulsCrossAcheron.jpg",
+   "original": "3984×3184",
+   "datei_commons": "DVinfernoDoomedSoulsCrossAcheron.jpg"
+  },
+  {
+   "name": "acheron",
+   "datei": "Plate_10.jpg",
+   "gesang": 3,
+   "titel": "Charon",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_10_%28Canto_III_-_Charon_herds_the_sinners_onto_his_boat%29.jpg",
+   "original": "2826×2314",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 10 (Canto III - Charon herds the sinners onto his boat).jpg"
+  },
+  {
+   "name": "limbus",
+   "datei": "Plate_11.jpg",
+   "gesang": 4,
+   "titel": "Im Limbus",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_11_%28Canto_IV_-_Limbo%2C_the_Viruous_Pagans%29.jpg",
+   "original": "2826×2314",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 11 (Canto IV - Limbo, the Viruous Pagans).jpg"
+  },
+  {
+   "name": "dichter",
+   "datei": "Plate_12.jpg",
+   "gesang": 4,
+   "titel": "Die fünf Dichter",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_12_%28Canto_IV_-_Limbo%2C_Dante_is_accepted_as_an_equal_by_the_great_Greek_and_Roman_poets%29.jpg",
+   "original": "2314×2826",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 12 (Canto IV - Limbo, Dante is accepted as an equal by the great Greek and Roman poets).jpg"
+  },
+  {
+   "name": "minos",
+   "datei": "Plate_13.jpg",
+   "gesang": 5,
+   "titel": "Minos",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_13_%28Canto_V_-_Minos%29.jpg",
+   "original": "2826×2314",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 13 (Canto V - Minos).jpg"
+  },
+  {
+   "name": "sturm",
+   "datei": "Plate_14.jpg",
+   "gesang": 5,
+   "titel": "Der Sturm der Hölle",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_14_%28Canto_V_-_The_hurricane_of_souls%29.jpg",
+   "original": "2314×2762",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 14 (Canto V - The hurricane of souls).jpg"
+  },
+  {
+   "name": "francesca",
+   "datei": "Plate_15.jpg",
+   "gesang": 5,
+   "titel": "Francesca und Paolo",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_15_%28Canto_V_-_Francesca_di_Rimini%29.jpg",
+   "original": "2314×2832",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 15 (Canto V - Francesca di Rimini).jpg"
+  },
+  {
+   "name": "ohnmacht",
+   "datei": "Plate_18.jpg",
+   "gesang": 5,
+   "titel": "Ich fiel, wie ein toter Körper fällt",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_18_%28Canto_V_-_Dante_has_a_touch_of_the_vapours%29.jpg",
+   "original": "2314×2826",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 18 (Canto V - Dante has a touch of the vapours).jpg"
+  },
+  {
+   "name": "cerberus",
+   "datei": "H1870_148618330.jpg",
+   "gesang": 6,
+   "titel": "Cerberus",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGottliche_Komodie._T._1%2C_Die_Holle_1870_%28148618330%29.jpg",
+   "original": "6322×4485",
+   "datei_commons": "Gottliche Komodie. T. 1, Die Holle 1870 (148618330).jpg",
+   "aliase": [
+    "regen"
+   ],
+   "ausschnitt": [
+    0.235,
+    0.115,
+    0.815,
+    0.715
+   ],
+   "tonwerte": [
+    0.8,
+    90.0
+   ]
+  },
+  {
+   "name": "lasten",
+   "datei": "Plate_22.jpg",
+   "gesang": 7,
+   "titel": "Geizige und Verschwender",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_22_%28Canto_VII_-_Hoarders_and_Wasters%29.jpg",
+   "original": "5878×4678",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 22 (Canto VII - Hoarders and Wasters).jpg"
+  },
+  {
+   "name": "styx",
+   "datei": "VirgilShowSoulsOfWrathful.jpg",
+   "gesang": 7,
+   "titel": "Die Zornigen im Sumpf",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoVirgilShowSoulsOfWrathful_m.jpg",
+   "original": "2423×1907",
+   "datei_commons": "DVinfernoVirgilShowSoulsOfWrathful m.jpg"
+  },
+  {
+   "name": "phlegyas",
+   "datei": "FerryAcrossTheStyx.jpg",
+   "gesang": 8,
+   "titel": "Über den Styx",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoFerryAcrossTheStyx_m.jpg",
+   "original": "2675×2093",
+   "datei_commons": "DVinfernoFerryAcrossTheStyx m.jpg"
+  },
+  {
+   "name": "argenti",
+   "datei": "H1870_148618452.jpg",
+   "gesang": 8,
+   "titel": "Filippo Argenti",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGottliche_Komodie._T._1%2C_Die_Holle_1870_%28148618452%29.jpg",
+   "original": "4543×6322",
+   "datei_commons": "Gottliche Komodie. T. 1, Die Holle 1870 (148618452).jpg",
+   "ausschnitt": [
+    0.085,
+    0.2,
+    0.75,
+    0.765
+   ],
+   "tonwerte": [
+    0.8,
+    90.0
+   ]
+  },
+  {
+   "name": "dis",
+   "datei": "H1870_148618466.jpg",
+   "gesang": 8,
+   "titel": "Vor der Stadt Dis",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGottliche_Komodie._T._1%2C_Die_Holle_1870_%28148618466%29.jpg",
+   "original": "6322×4543",
+   "datei_commons": "Gottliche Komodie. T. 1, Die Holle 1870 (148618466).jpg",
+   "ausschnitt": [
+    0.225,
+    0.11,
+    0.805,
+    0.752
+   ],
+   "tonwerte": [
+    0.8,
+    90.0
+   ]
+  },
+  {
+   "name": "furien",
+   "datei": "MegaeraTisifphoneAlecto.jpg",
+   "gesang": 9,
+   "titel": "Die Furien",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoMegaeraTisifphoneAlecto_m.jpg",
+   "original": "1908×2458",
+   "datei_commons": "DVinfernoMegaeraTisifphoneAlecto m.jpg"
+  },
+  {
+   "name": "graeber",
+   "datei": "UbertiAddressesDante_m.jpg",
+   "gesang": 10,
+   "titel": "Farinata",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoUbertiAddressesDante_m.jpg",
+   "original": "1914×2420",
+   "datei_commons": "DVinfernoUbertiAddressesDante m.jpg"
+  },
+  {
+   "name": "blutfluss",
+   "datei": "MinotaurOnCliff.jpg",
+   "gesang": 12,
+   "titel": "Der Minotaurus",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoMinotaurOnCliff_m.jpg",
+   "original": "1969×2409",
+   "datei_commons": "DVinfernoMinotaurOnCliff m.jpg"
+  },
+  {
+   "name": "dornenwald",
+   "datei": "ForestOfSuicides.jpg",
+   "gesang": 13,
+   "titel": "Der Wald der Selbstmörder",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoForestOfSuicides_m.jpg",
+   "original": "1969×2425",
+   "datei_commons": "DVinfernoForestOfSuicides m.jpg"
+  },
+  {
+   "name": "sand",
+   "datei": "ViolentInRainOfFire.jpg",
+   "gesang": 14,
+   "titel": "Der Feuerregen",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoViolentInRainOfFire_m.jpg",
+   "original": "3039×2364",
+   "datei_commons": "DVinfernoViolentInRainOfFire m.jpg"
+  },
+  {
+   "name": "brunetto",
+   "datei": "BrunettoLatini.jpg",
+   "gesang": 15,
+   "titel": "Brunetto Latini",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoBrunettoLatiniAccostsDante_m.jpg",
+   "original": "2704×2100",
+   "datei_commons": "DVinfernoBrunettoLatiniAccostsDante m.jpg"
+  },
+  {
+   "name": "geryon",
+   "datei": "IntoAbyssOnGeryonsBack.jpg",
+   "gesang": 17,
+   "titel": "Auf Geryons Rücken",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoIntoAbyssOnGeryonsBack_m.jpg",
+   "original": "1952×2436",
+   "datei_commons": "DVinfernoIntoAbyssOnGeryonsBack m.jpg"
+  },
+  {
+   "name": "malebolge",
+   "datei": "ShadeOfThais.jpg",
+   "gesang": 18,
+   "titel": "Thaïs",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoShadeOfThais_m.jpg",
+   "original": "1953×2420",
+   "datei_commons": "DVinfernoShadeOfThais m.jpg",
+   "aliase": [
+    "peitsche",
+    "kot"
+   ]
+  },
+  {
+   "name": "simonie",
+   "datei": "PopeNicholasIII.jpg",
+   "gesang": 19,
+   "titel": "Nikolaus III.",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADvinfernoPopeNicholasIII_m.jpg",
+   "original": "1974×2414",
+   "datei_commons": "DvinfernoPopeNicholasIII m.jpg"
+  },
+  {
+   "name": "pech",
+   "datei": "DemonsThreatenVirgil.jpg",
+   "gesang": 21,
+   "titel": "Die Übelkrallen",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoDemonsThreatenVirgil.jpg",
+   "original": "2682×2115",
+   "datei_commons": "DVinfernoDemonsThreatenVirgil.jpg"
+  },
+  {
+   "name": "ciampolo",
+   "datei": "CiampoloDemonAlichino.jpg",
+   "gesang": 22,
+   "titel": "Alichino und Calcabrina",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoCiampoloDemonAlichino_m.jpg",
+   "original": "2668×2123",
+   "datei_commons": "DVinfernoCiampoloDemonAlichino m.jpg"
+  },
+  {
+   "name": "heuchler",
+   "datei": "HypocritesAddressDante.jpg",
+   "gesang": 23,
+   "titel": "Die Heuchler",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoHypocritesAddressDante_m.jpg",
+   "original": "2594×2049",
+   "datei_commons": "DVinfernoHypocritesAddressDante m.jpg"
+  },
+  {
+   "name": "schlangen",
+   "datei": "ThievesTorturedBySerpents.jpg",
+   "gesang": 24,
+   "titel": "Die Diebe",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoThievesTorturedBySerpents_m.jpg",
+   "original": "2683×2108",
+   "datei_commons": "DVinfernoThievesTorturedBySerpents m.jpg"
+  },
+  {
+   "name": "verwandlung",
+   "datei": "AgnelloChangingIntoSerpent.jpg",
+   "gesang": 25,
+   "titel": "Agnello",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoAgnelloChangingIntoSerpent_m.jpg",
+   "original": "1985×2425",
+   "datei_commons": "DVinfernoAgnelloChangingIntoSerpent m.jpg"
+  },
+  {
+   "name": "flammen",
+   "datei": "FlamingSpirits.jpg",
+   "gesang": 26,
+   "titel": "Die Flammen",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoFlamingSpiritsOfEvilCounsellors_m.jpg",
+   "original": "1914×2387",
+   "datei_commons": "DVinfernoFlamingSpiritsOfEvilCounsellors m.jpg"
+  },
+  {
+   "name": "zerspalten",
+   "datei": "MutilatedShades.jpg",
+   "gesang": 28,
+   "titel": "Die Zerspaltenen",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoMutilatedShades_m.jpg",
+   "original": "1952×2384",
+   "datei_commons": "DVinfernoMutilatedShades m.jpg"
+  },
+  {
+   "name": "bertran",
+   "datei": "SeveredHeadOfBertranddeBorn.jpg",
+   "gesang": 28,
+   "titel": "Bertran de Born",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoSeveredHeadOfBertranddeBorn_m.jpg",
+   "original": "1952×2404",
+   "datei_commons": "DVinfernoSeveredHeadOfBertranddeBorn m.jpg"
+  },
+  {
+   "name": "faelscher",
+   "datei": "VirgilReprovesDantesCuriosity.jpg",
+   "gesang": 30,
+   "titel": "Meister Adam und Sinon",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoVirgilReprovesDantesCuriosity_m.jpg",
+   "original": "1912×2516",
+   "datei_commons": "DVinfernoVirgilReprovesDantesCuriosity m.jpg"
+  },
+  {
+   "name": "riesen",
+   "datei": "Plate_65.jpg",
+   "gesang": 31,
+   "titel": "Die Riesen",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_65_%28Canto_XXXI_-_The_Titans%29.jpg",
+   "original": "5881×4702",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 65 (Canto XXXI - The Titans).jpg"
+  },
+  {
+   "name": "antaeus",
+   "datei": "GiantAntaeus.jpg",
+   "gesang": 31,
+   "titel": "Antaeus",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoGiantAntaeusLoweringDanteAndVirgil_m.jpg",
+   "original": "1965×2425",
+   "datei_commons": "DVinfernoGiantAntaeusLoweringDanteAndVirgil m.jpg"
+  },
+  {
+   "name": "eis",
+   "datei": "H1870_148619530.jpg",
+   "gesang": 32,
+   "titel": "Im Eis",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGottliche_Komodie._T._1%2C_Die_Holle_1870_%28148619530%29.jpg",
+   "original": "6386×4641",
+   "datei_commons": "Gottliche Komodie. T. 1, Die Holle 1870 (148619530).jpg",
+   "ausschnitt": [
+    0.22,
+    0.125,
+    0.805,
+    0.755
+   ],
+   "tonwerte": [
+    0.8,
+    90.0
+   ]
+  },
+  {
+   "name": "ugolino",
+   "datei": "UgolinoGnawing.jpg",
+   "gesang": 32,
+   "titel": "Ugolino",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoUgolinoGnawingHeadOfRuggieari_m.jpg",
+   "original": "2012×1536",
+   "datei_commons": "DVinfernoUgolinoGnawingHeadOfRuggieari m.jpg"
+  },
+  {
+   "name": "turm",
+   "datei": "H1870_148619571.jpg",
+   "gesang": 33,
+   "titel": "Im Hungerturm",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGottliche_Komodie._T._1%2C_Die_Holle_1870_%28148619571%29.jpg",
+   "original": "6386×4625",
+   "datei_commons": "Gottliche Komodie. T. 1, Die Holle 1870 (148619571).jpg",
+   "ausschnitt": [
+    0.235,
+    0.13,
+    0.81,
+    0.765
+   ],
+   "tonwerte": [
+    0.8,
+    90.0
+   ]
+  },
+  {
+   "name": "luzifer",
+   "datei": "LuciferKingOfHell.jpg",
+   "gesang": 34,
+   "titel": "Luzifer",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3ADVinfernoLuciferKingOfHell_m.jpg",
+   "original": "2020×1588",
+   "datei_commons": "DVinfernoLuciferKingOfHell m.jpg"
+  },
+  {
+   "name": "sterne",
+   "datei": "H1870_148619695.jpg",
+   "gesang": 34,
+   "titel": "Und wir traten hervor, die Sterne zu sehen",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGottliche_Komodie._T._1%2C_Die_Holle_1870_%28148619695%29.jpg",
+   "original": "4607×6386",
+   "datei_commons": "Gottliche Komodie. T. 1, Die Holle 1870 (148619695).jpg",
+   "ausschnitt": [
+    0.11,
+    0.205,
+    0.745,
+    0.775
+   ],
+   "tonwerte": [
+    0.8,
+    90.0
+   ]
+  },
+  {
+   "name": "felsen",
+   "datei": "Plate_5.jpg",
+   "gesang": 24,
+   "titel": "Fels",
+   "quelle": "https://commons.wikimedia.org/wiki/File%3AGustave_Dor%C3%A9_-_Dante_Alighieri_-_Inferno_-_Plate_5_%28End_of_Canto_I%29.jpg",
+   "original": "2320×2850",
+   "datei_commons": "Gustave Doré - Dante Alighieri - Inferno - Plate 5 (End of Canto I).jpg",
+   "ausschnitt": [
+    0.03,
+    0.06,
+    0.52,
+    0.7
+   ]
+  }
+ ]
+}

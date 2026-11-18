@@ -12,7 +12,6 @@ bild: dis
 [vers 8,67-75]
 Wir fahren in die tiefen Gräben, die die trostlose Stadt umgeben. Die Mauern scheinen aus Eisen. Wir umrunden sie lange, bis der Fährmann schreit: „Raus! Hier ist der Eingang.“
 [vers 8,82-87]
-Oben auf den Toren stehen sie. Mehr als tausend, die einmal Engel waren. Vergil macht ihnen ein Zeichen, dass er allein mit ihnen reden will.
 Da halten sie ihre große Wut ein wenig zurück. „Komm du allein. Der da soll gehen, der so frech in dieses Reich gekommen ist. Soll er seinen verrückten Weg allein zurückgehen, wenn er ihn findet. Du bleibst hier, du hast ihn durch dieses dunkle Land geführt.“
 Denk, wer das hier liest, wie mir war, als ich diese verfluchten Worte hörte. Ich habe nicht geglaubt, dass ich je zurückkomme.
 + „Lieber Führer, verlass mich nicht so. Wenn man uns nicht weiterlässt, lass uns schnell zusammen zurückgehen.“ -> warte
@@ -36,7 +35,7 @@ Zu mir sagt er: „Erschrick nicht, weil ich zornig bin. Ich gewinne diesen Kamp
 -> lauschen_vergil
 
 === lauschen_vergil
-rubrik: Hier beginnt der neunte Gesang. Die Furien drohen mit Medusa, und ein Bote des Himmels öffnet das Tor.
+rubrik: Hier beginnt der neunte Gesang. Vor der verschlossenen Stadt.
 gesang: 9
 ort: Vor der Stadt Dis
 bild: dis
@@ -52,7 +51,7 @@ bild: dis
 „Selten kommt einer von uns den Weg, den ich gehe“, sagt er. Dann, nach einer Pause, die er sich offenbar nicht gönnen wollte:
 [vers 9,22-27]
 „Ich war noch nicht lange tot. Eine Zauberin, Erichtho, hat mich gezwungen, eine Seele aus dem tiefsten Kreis zu holen, aus dem Kreis des Judas. Das ist der niedrigste Ort und der dunkelste und am weitesten vom Himmel. Ich kenne den Weg. Darum sei ruhig.“
-Das hat er gemeint, im ersten Kreis. Ich war schon einmal ganz unten.
+Er sagt es zu mir, aber er sieht dabei auf das Tor.
 -> furien
 
 === furien

@@ -120,6 +120,7 @@ export function waehle(stand, abschnittId, knoten, wahl) {
 export function wendePruefungsErgebnisAn(stand, ergebnis = {}) {
   (ergebnis.setzt || []).forEach(f => { stand.flags[f] = true; });
   Object.entries(ergebnis.zahlen || {}).forEach(([k, v]) => { stand.zahlen[k] = v; });
+  Object.entries(ergebnis.plus || {}).forEach(([k, v]) => { stand.zahlen[k] = (stand.zahlen[k] || 0) + v; });
 }
 
 // --- Speichern ---------------------------------------------------------

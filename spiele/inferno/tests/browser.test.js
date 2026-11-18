@@ -20,8 +20,8 @@ for (const geraet of ['iPad (gen 7)', 'iPhone 13']) {
       await page.getByRole('button', { name: 'Beginnen' }).click();
       await page.getByRole('button', { name: 'Hinab' }).click();
       // Handlung: lauschen (Finger auf das Bild halten) und der Stimme folgen
-      await page.locator('figure.miniatur').scrollIntoViewIfNeeded();
-      const fig = await page.locator('figure.miniatur').boundingBox();
+      await page.locator('.tafel.lauschen .tafel-bild').scrollIntoViewIfNeeded();
+      const fig = await page.locator('.tafel.lauschen .tafel-bild').boundingBox();
       const stimme = await page.locator('.stimme').nth(2).boundingBox();
       await page.mouse.move(stimme.x + stimme.width / 2, stimme.y + stimme.height / 2);
       await page.mouse.down();

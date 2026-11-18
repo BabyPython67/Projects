@@ -33,7 +33,7 @@ export async function pruefeAlles() {
   for (let g = 1; g <= 34; g++) if (!gesaenge.has(g)) probleme.push(`Gesang ${g} kommt nirgends vor (meta gesang)`);
   const sw = await readFile(join(W, 'sw.js'), 'utf8');
   const liste = JSON.parse('[' + /const DATEIEN = \[([\s\S]*?)\];/.exec(sw)[1].replace(/'/g, '"').replace(/,\s*$/, '') + ']');
-  const noetig = [...await alleDateien('js'), ...await alleDateien('css'), ...await alleDateien('daten'), ...await alleDateien('icons'), 'index.html', 'manifest.webmanifest'].map(p => relative('.', p));
+  const noetig = [...await alleDateien('js'), ...await alleDateien('css'), ...await alleDateien('daten'), ...await alleDateien('icons'), ...await alleDateien('schrift'), 'index.html', 'manifest.webmanifest'].map(p => relative('.', p));
   for (const d of noetig) if (!liste.includes(d)) probleme.push('Fehlt im Service Worker: ' + d);
   for (const d of liste) if (d !== './' && !noetig.includes(d)) probleme.push('Service Worker nennt nicht vorhandene Datei: ' + d);
   const v1 = /VERSION = '([^']+)'/.exec(sw)[1];
