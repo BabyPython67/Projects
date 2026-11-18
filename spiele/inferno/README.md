@@ -146,7 +146,7 @@ Gold und Lapisblau der Buchmalerei aus den Runden 1 und 2 sind weggefallen. Die 
   - Dantes Verse sind eingerückt, mit einer roten Linie davor.
   - Vor den Wahlen stehen Randzeichen aus der Buchschrift: ¶ für Rede, » für Wege, ~ für gehörte Stimmen.
 - **Lauschbilder:** Die Stimmen sind kleine Papierzettel auf dem Stich. Das Spiel hält sie ganz im Bild und schiebt sie auseinander, wo sie sich decken würden.
-- **Prüfungen:** Jede Prüfung steht auf einer Doré-Tafel als Bühne, zum Beispiel Pardel und Löwe, der Sturm der Liebenden, die Furien, der Wald der Selbstmörder, die Übelkrallen oder Luzifer. Die Zeichen auf der Bühne haben eine einzige Form: Kreise aus Papierfarbe, Rot für Gefahr. Darüber steht „Prüfung“ mit dem Namen in Kursiv.
+- **Prüfungen:** Jede Prüfung steht auf einer Doré-Tafel ihres Gesangs als Bühne. Die Zeichen auf der Bühne haben eine einzige Form: Kreise aus Papierfarbe, Rot für Gefahr. Darüber steht „Prüfung“ mit dem Namen in Kursiv.
 - **Menü:** Ein Papierblatt mit Reitern in Versalien, die auch auf dem Handy Platz haben. Das Merkbuch ist eine Liste mit feinen Linien.
 - **Karte:** Ein neuer Schnitt durch den Trichter, gezeichnet wie eine gestochene Tafel.
   - Der Fels ist schräg schraffiert. Das Innere des Trichters ist waagrecht schraffiert und wird nach unten dichter.
