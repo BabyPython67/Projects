@@ -26,7 +26,7 @@ ort: Am Bergsturz
 klang: brunnen
 Wir steigen über die Trümmer. Die Steine bewegen sich unter meinen Füßen, weil sie das Gewicht nicht gewohnt sind.
 „Du denkst vielleicht an diesen Bergsturz“, sagt Vergil. „Als ich das letzte Mal hier herunterkam, war der Fels noch nicht eingestürzt. Aber kurz bevor der kam, der Dis die große Beute aus dem obersten Kreis nahm, bebte das tiefe, stinkende Tal überall. Ich dachte, das All fühle die Liebe, durch die die Welt, wie manche glauben, schon oft ins Chaos zurückgefallen ist. In diesem Moment ist der alte Fels hier und anderswo zusammengebrochen.“
-Ich lege die Hand auf einen der Blöcke. Die Bruchkante ist scharf, als wäre sie nicht dreizehnhundert Jahre alt, sondern von gestern.
+Ich lege die Hand auf einen der Blöcke. Die Bruchkante ist scharf, als wäre sie nicht über zwölfhundert Jahre alt, sondern von gestern.
 [vers 12,46-48]
 -> blutfluss
 
@@ -185,8 +185,8 @@ ort: Am roten Bach
 bild: sand
 klang: sand
 Er erzählt mir von einer Insel mitten im Meer, Kreta, wo unter einem Berg ein großer Greis steht, den Rücken nach Osten, das Gesicht nach Rom, als sähe er in einen Spiegel. Sein Kopf ist aus Gold, Arme und Brust aus Silber, dann Kupfer bis zur Gabelung, darunter Eisen, nur der rechte Fuß aus Ton, und auf dem steht er am meisten. Jeder Teil außer dem Gold hat einen Riss, und aus dem Riss tropfen Tränen. Die Tränen sammeln sich und höhlen den Fels und laufen herab in dieses Tal. Sie werden Acheron, Styx und Phlegeton, und ganz unten, wo es nicht mehr hinabgeht, werden sie Kokytos.
-„Der Lethe?“
-„Den siehst du, aber nicht in diesem Graben. Dort, wo die Seelen sich waschen, wenn die Schuld bereut und abgenommen ist.“
+„Die Lethe?“
+„Die siehst du, aber nicht in diesem Graben. Dort, wo die Seelen sich waschen, wenn die Schuld bereut und abgenommen ist.“
 & seele greis | Der Greis von Kreta | Eine Statue aus Gold, Silber, Kupfer, Eisen und Ton. Aus ihren Rissen fließen die Tränen, die zu den Flüssen der Hölle werden: Acheron, Styx, Phlegeton, Kokytos.
 -> brunetto
 

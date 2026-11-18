@@ -181,6 +181,8 @@ export function pruefeWerk(abschnitte, verse) {
       if (k.meta.frist && !k.meta.fristziel) probleme.push(`${wo}: frist ohne fristziel`);
       if (k.meta.fristziel) pruefeZiel(k.meta.fristziel, a, wo);
       if (k.meta.art !== 'text' && !k.wahlen.length && !k.stimmen.length && !k.pruefung && !k.weiter) probleme.push(`${wo}: Sackgasse`);
+      // Ein Versverweis mitten im Absatz würde als Rohtext erscheinen
+      for (const t of k.teile) if (t.typ === 'p' && /\[vers\b/.test(t.text)) probleme.push(`${wo}: Versverweis im Fließtext (muss in eine eigene Zeile)`);
       if (verse) for (const t of k.teile) if (t.typ === 'vers') for (const r of t.refs) {
         const g = verse[r.g - 1];
         if (!g || r.a < 1 || r.b > g.length || r.a > r.b) probleme.push(`${wo}: Vers außerhalb: ${r.g},${r.a}-${r.b}`);

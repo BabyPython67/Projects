@@ -249,8 +249,11 @@ export const PRUEFUNGEN = {
     const hand = h.buehne('furien', '.hand');
     hand.setAttribute('role', 'button'); hand.setAttribute('aria-label', 'Augen zuhalten');
     hand.append(h.el('span', {}, 'Hier die Hand auf die Augen legen und halten'));
+    // Das Dunkel hängt am <body>, nicht in der Prüfung: Dort würde jede Animation
+    // (transform, filter) es auf den Kasten der Prüfung beschränken.
     const dunkel = h.el('div.dunkel', { 'aria-live': 'polite' });
-    b.append(hand, dunkel);
+    b.append(hand);
+    const augenAuf = () => { document.body.classList.remove('augen-zu'); dunkel.classList.remove('an'); dunkel.remove(); };
     const log = h.el('div.probe-log');
     b.append(log);
     let fehler = 0;
@@ -258,18 +261,23 @@ export const PRUEFUNGEN = {
       let lauf = null;
       const beginne = () => {
         document.body.classList.add('augen-zu');
-        dunkel.replaceChildren(); dunkel.classList.add('an');
+        dunkel.replaceChildren(); document.body.append(dunkel); dunkel.classList.add('an');
         let i = 0;
         const zeige = () => {
-          if (i < t.length - 1) { dunkel.append(h.el('p', { html: h.formatiere(t[i]) })); ton(h, i % 2 ? 'klage' : 'bruellen', 0.7); i++; lauf = setTimeout(zeige, 2100); }
-          else { lauf = null; document.body.classList.remove('augen-zu'); dunkel.classList.remove('an'); hand.remove(); schreibe(h, log, t[t.length - 1]); b.append(aktionen(h, knopf(h, 'Die Augen öffnen', () => fertig({ zahlen: { medusa_fehler: fehler } })))); }
+          if (i < t.length - 1) {
+            dunkel.append(h.el('p', { html: h.formatiere(t[i]) }));
+            // Ältere Zeilen weichen, bevor eine oben abgeschnitten würde
+            while (dunkel.childElementCount > 1 && dunkel.scrollHeight > dunkel.clientHeight) dunkel.firstElementChild.remove();
+            ton(h, i % 2 ? 'klage' : 'bruellen', 0.7); i++; lauf = setTimeout(zeige, 2100);
+          }
+          else { lauf = null; augenAuf(); hand.remove(); schreibe(h, log, t[t.length - 1]); b.append(aktionen(h, knopf(h, 'Die Augen öffnen', () => fertig({ zahlen: { medusa_fehler: fehler } })))); }
         };
         zeige();
       };
       const abbruch = () => {
         if (!lauf) return;
         clearTimeout(lauf); lauf = null; fehler++;
-        document.body.classList.remove('augen-zu'); dunkel.classList.remove('an');
+        augenAuf();
         ton(h, 'stein');
         b.classList.add('versteinert'); setTimeout(() => b.classList.remove('versteinert'), 1400);
         schreibe(h, log, fehler === 1 ? 'Vergil reißt mich herum. „Augen zu! Wenn sie sich zeigt und du siehst sie, gibt es keinen Weg mehr nach oben.“' : 'Vergil legt seine eigenen Hände über meine. „Noch einmal. Bis ich es sage.“', 'p.leise');
@@ -566,7 +574,8 @@ export const PRUEFUNGEN = {
         }
         schacht.style.setProperty('--weg', Math.min(1, gedreht ? 1 - (weg - 0.5) * 2 : weg * 2));
         if (!gedreht && weg >= 0.5) {
-          gedreht = true; schacht.classList.add('gedreht'); ton(h, 'donner', 0.6);
+          // Der Rest dieses Wischs zählt nicht mehr: Nach der Wende braucht es einen neuen Griff.
+          gedreht = true; startY = null; schacht.classList.add('gedreht'); ton(h, 'donner', 0.6);
           schreibe(h, log, t[0] || ''); schreibe(h, log, t[1] || '', 'p.vergil-stimme');
           anzeige.textContent = '„Halt dich gut fest.“';
         }

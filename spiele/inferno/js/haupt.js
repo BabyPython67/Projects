@@ -130,6 +130,7 @@ function leereSeite(klasse = '') {
   const s = seite();
   s.className = klasse;
   s.replaceChildren();
+  document.querySelectorAll('body > .dunkel').forEach(d => d.remove()); document.body.classList.remove('augen-zu');
   window.scrollTo(0, 0);
   return s;
 }
@@ -228,7 +229,7 @@ function zeigeKnoten(ab, k, echo) {
   zeigeKopf(ab);
   const s = leereSeite('blatt');
   const schonDa = (app.stand.gesehen[ab.id + ':' + k.id] || 0) > 1;
-  if (echo) s.append(el('p.echo', {}, echo));
+  if (echo) s.append(el('p.echo', { html: formatiere(echo) }));
   if (k.meta.rubrik) s.append(el('p.rubrik', {}, k.meta.rubrik));
   if (k.meta.ort) s.append(el('h2.ort', {}, k.meta.ort));
 

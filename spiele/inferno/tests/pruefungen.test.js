@@ -44,6 +44,11 @@ const FAELLE = {
   'dis:furien': async p => {
     await p.locator('.hand').scrollIntoViewIfNeeded();
     const { x, y } = await mitte(p, '.hand'); await p.mouse.move(x, y); await p.mouse.down();
+    // Das Dunkel bedeckt den ganzen Bildschirm, und keine Zeile ist oben abgeschnitten
+    await p.waitForTimeout(4500);
+    const d = await p.evaluate(() => { const e = document.querySelector('.dunkel.an'); const r = e.getBoundingClientRect(); const z = e.firstElementChild.getBoundingClientRect(); return { w: r.width, h: r.height, vw: innerWidth, vh: innerHeight, oben: z.top - r.top }; });
+    assert.deepEqual([d.w, d.h], [d.vw, d.vh], 'Dunkel nicht bildschirmfüllend');
+    assert.ok(d.oben >= 0, 'erste Zeile im Dunkel abgeschnitten');
     await p.getByRole('button', { name: 'Die Augen öffnen' }).waitFor({ timeout: 25000 }).catch(() => {});
     await p.mouse.up(); await klick(p, 'Die Augen öffnen'); return null;
   },
@@ -71,7 +76,13 @@ const FAELLE = {
   },
   'malebolge:adam': async p => { await klick(p, 'Mich abwenden'); return 'malebolge:scham'; },
   'verrat:ugolino': async p => { await klick(p, 'Weiter zuhören'); await klick(p, 'Nicht mehr hören'); return 'verrat:weggehoert'; },
-  'verrat:abstieg': async p => { await zieh(p, '.schacht', 0, 200, 20); await zieh(p, '.schacht', 0, 200, 20); await zieh(p, '.schacht', 0, -200, 20); await zieh(p, '.schacht', 0, -200, 20); await klick(p, 'Weiter'); return null; },
+  'verrat:abstieg': async p => {
+    // Der zweite Wisch führt über die Wende hinaus; sein Rest darf nicht als falsche Richtung zählen.
+    await zieh(p, '.schacht', 0, 200, 20); await zieh(p, '.schacht', 0, 200, 20); await zieh(p, '.schacht', 0, -200, 20); await zieh(p, '.schacht', 0, -200, 20);
+    await klick(p, 'Weiter');
+    assert.equal(await p.evaluate(() => window.__inferno.app.stand.zahlen.umkehr_falsch), 0);
+    return null;
+  },
   'verrat:sterne_auf': async p => { await klick(p, 'Weiter'); return 'verrat:ende'; },
 };
 
@@ -89,6 +100,19 @@ describe('Jede Prüfung lässt sich abschließen', { concurrency: 6 }, () => {
       } finally { await ctx.close(); }
     });
   }
+});
+
+// Das Echo einer gewählten Rede zeigt Hervorhebungen, keine Sternchen.
+it('Echo einer Wahl ist formatiert (gewalt:nachsehen)', async () => {
+  const { page, fehler, ctx } = await seite('gewalt:nachsehen');
+  try {
+    await klick(page, '„Ich verspreche es. Man wird Euren Tesoro lesen.“');
+    const echo = page.locator('.echo');
+    await echo.waitFor();
+    assert.equal(await echo.textContent(), '„Ich verspreche es. Man wird Euren Tesoro lesen.“');
+    assert.equal(await echo.locator('em').textContent(), 'Tesoro');
+    assert.deepEqual(fehler, []);
+  } finally { await ctx.close(); }
 });
 
 after(async () => { await browser.close(); server.close(); });
